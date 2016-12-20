@@ -5,6 +5,8 @@
 #include <stdio.h>
 #include <conio.h>
 
+#include <math.h> // for fmod()
+
 #include "ModelicaUtilities.h"
 
 
@@ -14,16 +16,42 @@
 #define HIGH          1
 
 
+typedef struct {
+
+	double time;
+	int builtInLedOn;
+
+} State_t;
+
+
+static State_t state_s;
+
+
 void pinMode(int a, int b) {
 	ModelicaFormatMessage("pinMode(%d, %d)\n", a, b);
 }
 
-void digitalWrite(int a, int b) {
-	ModelicaFormatMessage("digitalWrite(%d, %d)\n", a, b);
+void digitalWrite(int id, int value) {
+	
+	ModelicaFormatMessage("digitalWrite(%d, %d)\n", id, value);
+
+	switch(id) {
+	case LED_BUILTIN: state_s.builtInLedOn = value; break;
+	default: break;
+	}
 }
 
-void delay(int a) {
-	ModelicaFormatMessage("delay(%d)\n", a);
+void delay(int ms) {
+
+	double end_time = state_s.time + ms * 1e-3;
+	
+	ModelicaFormatMessage("delay(%d)\n", ms);
+
+	while (state_s.time < end_time) {
+		// idle
+		ModelicaFormatMessage("idle: %f < %f\n", state_s.time , end_time);
+	}
+
 }
 
 
@@ -31,7 +59,16 @@ void delay(int a) {
 
 
 DWORD WINAPI MyThreadFunction(LPVOID lpParam) {
+
+	//State_t *state = (State_t *)lpParam;
+
 	ModelicaFormatMessage("The parameter: %u.\n", *(DWORD*)lpParam);
+
+	for(;;) {
+		//state->builtInLedOn = fmod(state->time, 1) > 0.5 ? 5 : 0;
+		loop();
+	}
+
 	return 0;
 }
 
@@ -40,8 +77,11 @@ void * ModelicaArduino_open() {
 
 	DWORD dwThreadId, dwThrdParam = 1;
 	HANDLE hThread;
+	State_t *state;
 
 	ModelicaMessage("ModelicaArduino_open()\n");
+
+	state = &state_s; //malloc(sizeof(State_t));
 
 	setup();
  
@@ -49,7 +89,7 @@ void * ModelicaArduino_open() {
 	NULL, 				// default security attributes
 	0, 					// use default stack size
 	MyThreadFunction, 	// thread function
-	&dwThrdParam, 		// argument to thread function
+	state, 		        // argument to thread function
 	0, 					// use default creation flags
 	&dwThreadId); 		// returns the thread identifier
 	 
@@ -65,7 +105,9 @@ void * ModelicaArduino_open() {
 	if (CloseHandle(hThread) != 0)
 		ModelicaFormatMessage("Handle to thread closed successfully.\n");
 
-	return (void *)NULL;
+	//return (void *)NULL;
+
+	return state;
 }
 
 
@@ -75,9 +117,15 @@ void ModelicaArduino_close(void *externalObject) {
 
 }
 
-void ModelicaArduino_update(void *object, double time) {
+void ModelicaArduino_update(void *instance, double time, double *builtInLedOn) {
 
-	loop();
+	//*builtInLedOn = fmod(time, 1) > 0.5 ? 5 : 0;
+	//State_t *state = (State_t *)instance;
+	//state->time = time;
+	//*builtInLedOn = state->builtInLedOn;
+
+	state_s.time = time;
+	*builtInLedOn = state_s.builtInLedOn;
 
 }
 

@@ -22,10 +22,22 @@ package Arduino
     Modelica.Electrical.Analog.Sources.ConstantVoltage constantVoltage
       annotation (Placement(transformation(extent={{-10,70},{10,90}})));
 
-  protected
-      Boolean builtInLedOn = false;
+  //protected
+      Real builtInLedOn;
+
+      function evaluate
+      input Arduino.ExternalArduino instance;
+      input Modelica.SIunits.Time timeIn;
+      output Real ledIsOn;
+      external "C" ModelicaArduino_update(instance, timeIn, ledIsOn) annotation (
+        Include="#include <ModelicaArduino.c>",
+        IncludeDirectory="modelica://Arduino/Resources/C-Sources");
+      end evaluate;
 
   equation
+
+    builtInLedOn = evaluate(externalArduino, time);
+
     connect(GND, ground.p)
       annotation (Line(points={{-100,-40},{0,-40},{0,-80}}, color={0,0,255}));
     connect(pulseVoltage.p, Pin0)
@@ -43,9 +55,15 @@ package Arduino
             {38,-80},{0,-80}}, color={0,0,255}));
     annotation (Icon(coordinateSystem(preserveAspectRatio=false), graphics={
             Rectangle(
+            extent={{-100,100},{100,-100}},
+            lineThickness=0.5,
+            fillColor={136,172,188},
+            fillPattern=FillPattern.Solid,
+            pattern=LinePattern.None),
+            Rectangle(
             extent={{-20,60},{0,40}},
             lineThickness=0.5,
-            fillColor=DynamicSelect({0,0,100}, if diode.i > 0 then {0,0, 255} else {0,0,100}),
+            fillColor=DynamicSelect({0,200,100}, if builtInLedOn > 0 then {0,0, 255} else {0,0,100}),
             fillPattern=FillPattern.Solid,
             pattern=LinePattern.None,
             lineColor={0,0,0})}),                                  Diagram(
