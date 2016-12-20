@@ -30,8 +30,9 @@ package Arduino
       input Modelica.SIunits.Time timeIn;
       output Real ledIsOn;
       external "C" ModelicaArduino_update(instance, timeIn, ledIsOn) annotation (
-        Include="#include <ModelicaArduino.c>",
-        IncludeDirectory="modelica://Arduino/Resources/C-Sources");
+        Include="#include <ModelicaArduino.h>",
+        IncludeDirectory="modelica://Arduino/Resources/C-Sources",
+        Library="ModelicaArduino");
       end evaluate;
 
   equation
@@ -125,16 +126,17 @@ package Arduino
         output ExternalArduino externalArduino;
     external"C" externalArduino =
           ModelicaArduino_open() annotation (
-      Include="#include <ModelicaArduino.c>",
-      IncludeDirectory="modelica://Arduino/Resources/C-Sources");
-
+      Include="#include <ModelicaArduino.h>",
+      IncludeDirectory="modelica://Arduino/Resources/C-Sources",
+      Library="ModelicaArduino");
     end constructor;
 
     function destructor "Close Arduino"
       input ExternalArduino externalArduino;
     external"C" ModelicaArduino_close(externalArduino) annotation (
-    Include="#include <ModelicaArduino.c>",
-    IncludeDirectory="modelica://Arduino/Resources/C-Sources");
+    Include="#include <ModelicaArduino.h>",
+    IncludeDirectory="modelica://Arduino/Resources/C-Sources",
+    Library="ModelicaArduino");
     end destructor;
 
   end ExternalArduino;
