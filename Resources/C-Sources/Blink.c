@@ -29,11 +29,15 @@ void setup() {
 
 // the loop function runs over and over again forever
 void loop() {
-  
-  Serial.println(-3.5);
+
+  int v;
 
   digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
   delay(1000);                       // wait for a second
+
+  v = analogRead(A0);
+  Serial.println(v);
+
   digitalWrite(LED_BUILTIN, LOW);    // turn the LED off by making the voltage LOW
   delay(1000);                       // wait for a second
 }

@@ -5,6 +5,6 @@ void * ModelicaArduino_open();
 
 void ModelicaArduino_close(void *externalObject);
 
-void ModelicaArduino_update(void *instance, double time, double *builtInLedOn);
+void ModelicaArduino_update(void *instance, double time, double *analogInput, double *builtInLedOn);
 
 #endif // MODELICA_ARDUINO_H

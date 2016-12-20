@@ -69,6 +69,7 @@ typedef struct {
 
 	double time;
 	int builtInLedOn;
+	double analogInput[8];
 
 } State_t;
 
@@ -90,6 +91,8 @@ SoftSerial Serial;
 
 static State_t state_s;
 
+//static long count;
+
 
 void pinMode(int a, int b) {
 	ModelicaFormatMessage("pinMode(%d, %d)\n", a, b);
@@ -97,7 +100,7 @@ void pinMode(int a, int b) {
 
 void digitalWrite(int id, int value) {
 	
-	ModelicaFormatMessage("digitalWrite(%d, %d)\n", id, value);
+	//ModelicaFormatMessage("digitalWrite(%d, %d)\n", id, value);
 
 	switch(id) {
 	case LED_BUILTIN: state_s.builtInLedOn = value; break;
@@ -109,12 +112,15 @@ void delay(int ms) {
 
 	double end_time = state_s.time + ms * 1e-3;
 	
-	ModelicaFormatMessage("delay(%d)\n", ms);
+	//ModelicaFormatMessage("delay(%d)\n", ms);
 
 	while (state_s.time < end_time) {
 		// idle
-		ModelicaFormatMessage("idle: %f < %f\n", state_s.time , end_time);
+		// ModelicaFormatMessage("idle: %f < %f\n", state_s.time , end_time);
+		//count++;
 	}
+
+	//ModelicaFormatMessage("count: %d\n", count);
 
 }
 
@@ -130,7 +136,25 @@ void analogReference(uint8_t mode)
 }
 
 int analogRead(uint8_t pin) {
-	return 0;
+
+/*
+	switch(pin) {
+	case A0: return state_s.analogInput[0];
+	case A1: return state_s.analogInput[1];
+	case A2: return state_s.analogInput[2];
+	case A3: return state_s.analogInput[3];
+	case A4: return state_s.analogInput[4];
+	case A5: return state_s.analogInput[5];
+	case A6: return state_s.analogInput[6];
+	case A7: return state_s.analogInput[7];
+	}
+*/
+
+	// TODO: clip [0, 1023]
+	return (state_s.analogInput[pin - 14] / 5) * 1024;
+
+	// TODO: error?
+	//return 0;
 }
 
 void analogWrite(uint8_t pin, int val) {
@@ -146,7 +170,7 @@ DWORD WINAPI MyThreadFunction(LPVOID lpParam) {
 
 	//State_t *state = (State_t *)lpParam;
 
-	ModelicaFormatMessage("The parameter: %u.\n", *(DWORD*)lpParam);
+	//ModelicaFormatMessage("The parameter: %u.\n", *(DWORD*)lpParam);
 
 	for(;;) {
 		//state->builtInLedOn = fmod(state->time, 1) > 0.5 ? 5 : 0;
@@ -162,8 +186,9 @@ void * ModelicaArduino_open() {
 	DWORD dwThreadId, dwThrdParam = 1;
 	HANDLE hThread;
 	State_t *state;
+	//count = 0;
 
-	ModelicaMessage("ModelicaArduino_open()\n");
+	//ModelicaMessage("ModelicaArduino_open()\n");
 
 	state = &state_s; //malloc(sizeof(State_t));
 
@@ -197,11 +222,11 @@ void * ModelicaArduino_open() {
 
 void ModelicaArduino_close(void *externalObject) {
 
-	ModelicaMessage("ModelicaArduino_close()\n");
+	//ModelicaMessage("ModelicaArduino_close()\n");
 
 }
 
-void ModelicaArduino_update(void *instance, double time, double *builtInLedOn) {
+void ModelicaArduino_update(void *instance, double time, double *analogInput, double *builtInLedOn) {
 
 	//*builtInLedOn = fmod(time, 1) > 0.5 ? 5 : 0;
 	//State_t *state = (State_t *)instance;
@@ -210,6 +235,10 @@ void ModelicaArduino_update(void *instance, double time, double *builtInLedOn) {
 
 	state_s.time = time;
 	*builtInLedOn = state_s.builtInLedOn;
+
+	for (int i = 0; i < 6; i++) {
+		state_s.analogInput[i] = analogInput[i];
+	}
 
 }
 
