@@ -74,7 +74,7 @@ typedef struct {
 	double analog[8];
 
 	// LED_BUILTIN, D0..D13
-	int digital[15];
+	//int digital[15];
 	int portMode[15]; // 0 = input, 1 = digital, 2 = PWM
 	double pulseWidth[15];
 
@@ -110,7 +110,7 @@ void digitalWrite(int pin, int val) {
 	
 	state_s.pulseWidth[pin] = (val == HIGH) ? 100 : 0;
 
-	ModelicaFormatMessage("digitalWrite(%d, %d) -> %f\n", pin, val, state_s.pulseWidth[pin]);
+	//ModelicaFormatMessage("digitalWrite(%d, %d) -> %f\n", pin, val, state_s.pulseWidth[pin]);
 
 }
 
@@ -235,7 +235,7 @@ void ModelicaArduino_close(void *externalObject) {
 
 }
 
-void ModelicaArduino_update(void *instance, double time, double *analog, double *digital, int *isInput, double *pulseWidth) {
+void ModelicaArduino_update(void *instance, double time, double *analog, int *portMode, double *pulseWidth) {
 
 	//*builtInLedOn = fmod(time, 1) > 0.5 ? 5 : 0;
 	//State_t *state = (State_t *)instance;
@@ -243,21 +243,13 @@ void ModelicaArduino_update(void *instance, double time, double *analog, double 
 	//*builtInLedOn = state->builtInLedOn;
 
 	state_s.time = time;
-	//*digitalPins = state_s.builtInLedOn;
 
 	for (int i = 0; i < 6; i++) {
 		state_s.analog[i] = analog[i];
 	}
 
-	for (int i = 0; i < 15; i++) {
-		state_s.digital[i] = i;
-	}
-
 	for (int i = 0; i < 14; i++) {
-		//state_s.portMode[i]   = OUTPUT;
-		//state_s.pulseWidth[i] = 100;
-		digital[i] = 5;
-		isInput[i] = state_s.portMode[i];
+		portMode[i] = state_s.portMode[i];
 		pulseWidth[i] = state_s.pulseWidth[i];
 	}
 

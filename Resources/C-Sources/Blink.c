@@ -27,6 +27,9 @@ void setup() {
   // initialize digital pin LED_BUILTIN as an output.
   pinMode(0, OUTPUT);
   pinMode(1, OUTPUT);
+  pinMode(2, OUTPUT);
+  pinMode(3, OUTPUT);
+  pinMode(4, OUTPUT);
 
   //pinMode(A0, INPUT);
   //pinMode(A1, OUTPUT);
@@ -37,6 +40,7 @@ void setup() {
 // the loop function runs over and over again forever
 void loop() {
 
+  /*
   int v;
 
   v = analogRead(A0); Serial.println(v);
@@ -52,7 +56,19 @@ void loop() {
   digitalWrite(1, HIGH);
 
   delay(1000);
+  */
 
+  for (int i = 0; i < 5; i++) {
+
+    int v = (analogRead(A0) / 1023.) * 5.5;
+
+    for (int j = 0; j < 5; j++) {
+      digitalWrite(j, j < v ? HIGH : LOW);
+    }
+  
+    delay(100);
+
+  }
   /*
   int v;
 
