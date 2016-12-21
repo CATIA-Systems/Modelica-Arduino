@@ -16,12 +16,7 @@ extern "C" {
 
 #include "ModelicaArduino.h"
 
-} 
-
-
-#define OUTPUT        0
-#define LOW           0
-#define HIGH          1
+}
 
 
 #include <stdint.h>
@@ -44,16 +39,16 @@ typedef uint64_t UINT64;
 
 
 // from pins_arduino.h
-#define LED_BUILTIN 13
+#define LED_BUILTIN 0
 
-#define PIN_A0   (14)
-#define PIN_A1   (15)
-#define PIN_A2   (16)
-#define PIN_A3   (17)
-#define PIN_A4   (18)
-#define PIN_A5   (19)
-#define PIN_A6   (20)
-#define PIN_A7   (21)
+#define PIN_A0   (0)
+#define PIN_A1   (1)
+#define PIN_A2   (2)
+#define PIN_A3   (3)
+#define PIN_A4   (4)
+#define PIN_A5   (5)
+#define PIN_A6   (6)
+#define PIN_A7   (7)
 
 static const uint8_t A0 = PIN_A0;
 static const uint8_t A1 = PIN_A1;
@@ -64,12 +59,24 @@ static const uint8_t A5 = PIN_A5;
 static const uint8_t A6 = PIN_A6;
 static const uint8_t A7 = PIN_A7;
 
+// from Arduino.h
+#define HIGH 0x1
+#define LOW  0x0
+
+#define INPUT 0x0
+#define OUTPUT 0x1
+#define INPUT_PULLUP 0x2
 
 typedef struct {
 
 	double time;
-	int builtInLedOn;
-	double analogInput[8];
+	//int builtInLedOn;
+	double analog[8];
+
+	// LED_BUILTIN, D0..D13
+	int digital[15];
+	int portMode[15]; // 0 = input, 1 = digital, 2 = PWM
+	double pulseWidth[15];
 
 } State_t;
 
@@ -94,18 +101,17 @@ static State_t state_s;
 //static long count;
 
 
-void pinMode(int a, int b) {
-	ModelicaFormatMessage("pinMode(%d, %d)\n", a, b);
+void pinMode(int pin, int mode) {
+	ModelicaFormatMessage("pinMode(%d, %d)\n", pin, mode);
+	state_s.portMode[pin] = mode;
 }
 
-void digitalWrite(int id, int value) {
+void digitalWrite(int pin, int val) {
 	
-	//ModelicaFormatMessage("digitalWrite(%d, %d)\n", id, value);
+	state_s.pulseWidth[pin] = (val == HIGH) ? 100 : 0;
 
-	switch(id) {
-	case LED_BUILTIN: state_s.builtInLedOn = value; break;
-	default: break;
-	}
+	ModelicaFormatMessage("digitalWrite(%d, %d) -> %f\n", pin, val, state_s.pulseWidth[pin]);
+
 }
 
 void delay(int ms) {
@@ -151,13 +157,16 @@ int analogRead(uint8_t pin) {
 */
 
 	// TODO: clip [0, 1023]
-	return (state_s.analogInput[pin - 14] / 5) * 1024;
+	return (state_s.analog[pin] / 5) * 1024;
 
 	// TODO: error?
 	//return 0;
 }
 
+
 void analogWrite(uint8_t pin, int val) {
+
+	state_s.pulseWidth[pin] = (100.0 * val) / 255;
 
 }
 
@@ -226,7 +235,7 @@ void ModelicaArduino_close(void *externalObject) {
 
 }
 
-void ModelicaArduino_update(void *instance, double time, double *analogInput, double *builtInLedOn) {
+void ModelicaArduino_update(void *instance, double time, double *analog, double *digital, int *isInput, double *pulseWidth) {
 
 	//*builtInLedOn = fmod(time, 1) > 0.5 ? 5 : 0;
 	//State_t *state = (State_t *)instance;
@@ -234,10 +243,22 @@ void ModelicaArduino_update(void *instance, double time, double *analogInput, do
 	//*builtInLedOn = state->builtInLedOn;
 
 	state_s.time = time;
-	*builtInLedOn = state_s.builtInLedOn;
+	//*digitalPins = state_s.builtInLedOn;
 
 	for (int i = 0; i < 6; i++) {
-		state_s.analogInput[i] = analogInput[i];
+		state_s.analog[i] = analog[i];
+	}
+
+	for (int i = 0; i < 15; i++) {
+		state_s.digital[i] = i;
+	}
+
+	for (int i = 0; i < 14; i++) {
+		//state_s.portMode[i]   = OUTPUT;
+		//state_s.pulseWidth[i] = 100;
+		digital[i] = 5;
+		isInput[i] = state_s.portMode[i];
+		pulseWidth[i] = state_s.pulseWidth[i];
 	}
 
 }
