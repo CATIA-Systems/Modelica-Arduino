@@ -16,6 +16,7 @@ package Arduino
 
   //protected
       Real builtInLedOn;
+      //Real digitalPortPulseWidts;
 
       function evaluate
       input Arduino.ExternalArduino instance;
@@ -90,13 +91,13 @@ package Arduino
             extent={{-22,100},{-18,104}})));
     Modelica.Electrical.Analog.Interfaces.Pin D13
       annotation (Placement(transformation(extent={{90,74},{110,94}}),
-          iconTransformation(extent={{96,-64},{104,-56}})));
+          iconTransformation(extent={{96,-12},{104,-4}})));
     Modelica.Electrical.Analog.Interfaces.Pin RST
       annotation (Placement(transformation(extent={{-110,62},{-90,82}}),
-          iconTransformation(extent={{96,-64},{104,-56}})));
-    Modelica.Electrical.Analog.Interfaces.Pin RST1
+          iconTransformation(extent={{-108,64},{-100,72}})));
+    Modelica.Electrical.Analog.Interfaces.Pin AREF
       annotation (Placement(transformation(extent={{-110,40},{-90,60}}),
-          iconTransformation(extent={{96,-64},{104,-56}})));
+          iconTransformation(extent={{-108,46},{-100,54}})));
     Modelica.Electrical.Analog.Interfaces.Pin A0 annotation (Placement(
           transformation(extent={{-110,-46},{-90,-26}}), iconTransformation(
             extent={{-104,-34},{-100,-30}})));
@@ -109,16 +110,20 @@ package Arduino
           extent={{-10,-10},{10,10}},
           rotation=180,
           origin={60,68})));
-    Modelica.Blocks.Sources.BooleanConstant booleanConstant
-      annotation (Placement(transformation(extent={{34,18},{54,38}})));
-    Modelica.Blocks.Sources.RealExpression realExpression1(y=60)
-      annotation (Placement(transformation(extent={{32,-14},{52,6}})));
+    Modelica.Blocks.Sources.RealExpression realExpression1(y=50)
+      annotation (Placement(transformation(extent={{26,-14},{52,6}})));
+    Modelica.Blocks.Sources.BooleanStep booleanStep(startTime=5)
+      annotation (Placement(transformation(extent={{24,20},{44,40}})));
   equation
 
     builtInLedOn =evaluate(
       externalArduino,
       time,
       {A0.v,A1.v,A2.v,A3.v,A4.v,A5.v});
+
+    //digitalPortPulseWidts = time * 10;
+
+
 
     connect(GND, ground.p)
       annotation (Line(points={{0,-180},{0,-180},{0,-142},{16,-142}},
@@ -158,18 +163,20 @@ package Arduino
             {-20,72},{-20,100},{-20,100}}, color={0,0,255}));
     connect(RST, ground.p) annotation (Line(points={{-100,72},{-50,72},{-50,62},
             {0,62},{0,-142},{16,-142}}, color={0,0,255}));
-    connect(RST1, ground.p) annotation (Line(points={{-100,50},{0,50},{0,-142},
+    connect(AREF, ground.p) annotation (Line(points={{-100,50},{0,50},{0,-142},
             {16,-142}}, color={0,0,255}));
     connect(resistor2.n, A0) annotation (Line(points={{-80,-36},{-100,-36},{-100,-36}},
           color={0,0,255}));
     connect(resistor2.p, ground.p) annotation (Line(points={{-60,-36},{-26,-36},
             {-26,-60},{-26,-142},{16,-142}},      color={0,0,255}));
-    connect(booleanConstant.y, digitalPort.isInput) annotation (Line(points={{
-            55,28},{65.2,28},{65.2,56}}, color={255,0,255}));
-    connect(realExpression1.y, digitalPort.pulseWidth) annotation (Line(points=
-            {{53,-4},{68,-4},{72,-4},{72,62}}, color={0,0,127}));
+    connect(realExpression1.y, digitalPort.pulseWidth) annotation (Line(points={{53.3,-4},
+            {53.3,-4},{72,-4},{72,62}},        color={0,0,127}));
     connect(digitalPort.pin, D13) annotation (Line(points={{70,74},{86,74},{86,
             84},{100,84}}, color={0,0,255}));
+    connect(booleanStep.y, digitalPort.isInput) annotation (Line(points={{45,30},{
+            66,30},{66,56},{65.2,56}}, color={255,0,255}));
+    connect(AREF, AREF) annotation (Line(points={{-100,50},{-100,50},{0,50},{-100,
+            50}}, color={0,0,255}));
     annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,
               -100},{100,100}}),                                  graphics={
             Rectangle(
@@ -259,7 +266,31 @@ package Arduino
             fillColor={136,172,188},
             fillPattern=FillPattern.Solid,
             lineColor={0,0,0},
-            textString="Power")}),                                 Diagram(
+            textString="Power"),
+          Text(
+            extent={{74,-4},{94,-14}},
+            pattern=LinePattern.None,
+            lineThickness=0.5,
+            fillColor={136,172,188},
+            fillPattern=FillPattern.Solid,
+            lineColor={0,0,0},
+            textString="D13"),
+          Text(
+            extent={{-96,72},{-76,62}},
+            pattern=LinePattern.None,
+            lineThickness=0.5,
+            fillColor={136,172,188},
+            fillPattern=FillPattern.Solid,
+            lineColor={0,0,0},
+            textString="RST"),
+          Text(
+            extent={{-94,54},{-74,44}},
+            pattern=LinePattern.None,
+            lineThickness=0.5,
+            fillColor={136,172,188},
+            fillPattern=FillPattern.Solid,
+            lineColor={0,0,0},
+            textString="AREF")}),                                  Diagram(
           coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
               100}})));
   end ArduinoUno;
@@ -352,8 +383,8 @@ package Arduino
       annotation (Placement(transformation(extent={{-140,40},{-100,80}})));
     VariablePulseVoltage variablePulseVoltage(V=5, period=1/480)
       annotation (Placement(transformation(extent={{-30,-30},{-10,-10}})));
-    Modelica.Electrical.Analog.Ideal.IdealOpeningSwitch idealOpeningSwitch(Goff
-        =1e-9)
+    Modelica.Electrical.Analog.Ideal.IdealOpeningSwitch idealOpeningSwitch(Goff=
+         1e-9)
       annotation (Placement(transformation(extent={{-82,-70},{-62,-50}})));
     Modelica.Electrical.Analog.Basic.Resistor resistor1(R=1e5) annotation (
         Placement(transformation(
@@ -698,7 +729,8 @@ The Real output y is a pulse signal:
     connect(digitalPortbla.isInput, digitalPort.isInput) annotation (Line(
           points={{-11.2,-32},{-6,24},{-6,12},{-5.2,12}}, color={255,0,255}));
     annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
-          coordinateSystem(preserveAspectRatio=false)));
+          coordinateSystem(preserveAspectRatio=false)),
+      experiment(StopTime=10));
   end DigitalPortTest;
 
   model DigitalPortbla
@@ -723,8 +755,8 @@ The Real output y is a pulse signal:
       width=50,
       period=1/10)
       annotation (Placement(transformation(extent={{-30,-30},{-10,-10}})));
-    Modelica.Electrical.Analog.Ideal.IdealOpeningSwitch idealOpeningSwitch(Goff
-        =1e-9)
+    Modelica.Electrical.Analog.Ideal.IdealOpeningSwitch idealOpeningSwitch(Goff=
+         1e-9)
       annotation (Placement(transformation(extent={{-82,-70},{-62,-50}})));
     Modelica.Electrical.Analog.Basic.Resistor resistor1(R=1e5) annotation (
         Placement(transformation(
