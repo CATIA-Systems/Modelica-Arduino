@@ -946,6 +946,13 @@ package Arduino
       Library="ModelicaArduino");
       end destructor;
 
+    annotation(Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={
+              Rectangle(
+                lineColor={160,160,164},
+                fillColor={160,160,164},
+                fillPattern=FillPattern.Solid,
+                extent={{-100.0,-100.0},{100.0,100.0}},
+                radius=25.0)}));
     end ExternalArduino;
 
     model VariablePulseVoltage "Pulse voltage source"
@@ -1144,80 +1151,6 @@ package Arduino
             coordinateSystem(preserveAspectRatio=false)));
     end DigitalPort;
 
-    model DigitalPortTest
-
-      Internal.DigitalPort digitalPort
-        annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
-      Modelica.Blocks.Sources.RealExpression realExpression(y=60)
-        annotation (Placement(transformation(extent={{-66,-4},{-46,16}})));
-      Modelica.Blocks.Sources.BooleanStep booleanStep(startTime=5)
-        annotation (Placement(transformation(extent={{-46,54},{-26,74}})));
-      DigitalPortbla digitalPortbla
-        annotation (Placement(transformation(extent={{-16,-54},{4,-34}})));
-    equation
-      connect(realExpression.y, digitalPort.pulseWidth)
-        annotation (Line(points={{-45,6},{-28,6},{-12,6}}, color={0,0,127}));
-      connect(booleanStep.y, digitalPort.isInput) annotation (Line(points={{-25,
-              64},{-6,64},{-6,12},{-5.2,12}}, color={255,0,255}));
-      connect(digitalPortbla.isInput, digitalPort.isInput) annotation (Line(
-            points={{-11.2,-32},{-6,24},{-6,12},{-5.2,12}}, color={255,0,255}));
-      annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
-            coordinateSystem(preserveAspectRatio=false)),
-        experiment(StopTime=10));
-    end DigitalPortTest;
-
-    model DigitalPortbla
-
-      Modelica.Blocks.Interfaces.RealOutput y
-        annotation (Placement(transformation(extent={{100,-10},{120,10}})));
-      Modelica.Blocks.Interfaces.BooleanInput isInput annotation (Placement(
-            transformation(
-            extent={{-20,-20},{20,20}},
-            rotation=270,
-            origin={-52,120})));
-      Modelica.Electrical.Analog.Interfaces.Pin pin
-        annotation (Placement(transformation(extent={{-110,-70},{-90,-50}})));
-      Modelica.Electrical.Analog.Basic.Ground ground1 annotation (Placement(
-            transformation(
-            extent={{-10,-10},{10,10}},
-            rotation=90,
-            origin={28,-20})));
-      Modelica.Electrical.Analog.Sensors.PotentialSensor potentialSensor
-        annotation (Placement(transformation(extent={{28,-98},{48,-78}})));
-      Modelica.Electrical.Analog.Sources.PulseVoltage variablePulseVoltage(
-        V=5,
-        width=50,
-        period=1/10)
-        annotation (Placement(transformation(extent={{-30,-30},{-10,-10}})));
-      Modelica.Electrical.Analog.Ideal.IdealOpeningSwitch idealOpeningSwitch(Goff=
-           1e-9)
-        annotation (Placement(transformation(extent={{-82,-70},{-62,-50}})));
-      Modelica.Electrical.Analog.Basic.Resistor resistor1(R=1e5) annotation (
-          Placement(transformation(
-            extent={{-10,-10},{10,10}},
-            rotation=90,
-            origin={18,-52})));
-    equation
-      connect(potentialSensor.phi, y) annotation (Line(points={{49,-88},{50,-88},
-              {50,0},{110,0}}, color={0,0,127}));
-      connect(ground1.p, variablePulseVoltage.n)
-        annotation (Line(points={{18,-20},{6,-20},{-10,-20}}, color={0,0,255}));
-      connect(idealOpeningSwitch.p, pin)
-        annotation (Line(points={{-82,-60},{-100,-60}}, color={0,0,255}));
-      connect(idealOpeningSwitch.n, variablePulseVoltage.p) annotation (Line(
-            points={{-62,-60},{-46,-60},{-46,-20},{-30,-20}}, color={0,0,255}));
-      connect(idealOpeningSwitch.control, isInput) annotation (Line(points={{-72,
-              -53},{-62,-53},{-62,120},{-52,120}}, color={255,0,255}));
-      connect(resistor1.n, ground1.p)
-        annotation (Line(points={{18,-42},{18,-42},{18,-20}}, color={0,0,255}));
-      connect(potentialSensor.p, pin) annotation (Line(points={{28,-88},{-34,-88},
-              {-100,-88},{-100,-60}}, color={0,0,255}));
-      connect(resistor1.p, potentialSensor.p) annotation (Line(points={{18,-62},{
-              18,-62},{18,-76},{18,-88},{28,-88}}, color={0,0,255}));
-      annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
-            coordinateSystem(preserveAspectRatio=false)));
-    end DigitalPortbla;
-
     block VariableWidthPulse "Generate pulse signal of type Real"
       parameter Real amplitude=1 "Amplitude of pulse";
 
@@ -1382,15 +1315,6 @@ The Real output y is a pulse signal:
 </html>"));
     end VariableWidthPulse;
 
-    model AnalogPort
-
-      Modelica.Electrical.Analog.Interfaces.Pin pin
-        annotation (Placement(transformation(extent={{-108,-10},{-88,10}})));
-    equation
-    pin.i=0;
-      annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
-            coordinateSystem(preserveAspectRatio=false)));
-    end AnalogPort;
   end Internal;
   annotation (uses(Modelica(version="3.2.2")), Icon(graphics={
         Ellipse(
