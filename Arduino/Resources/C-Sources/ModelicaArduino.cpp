@@ -39,7 +39,7 @@ typedef uint64_t UINT64;
 
 
 // from pins_arduino.h
-#define LED_BUILTIN 0
+#define LED_BUILTIN 13
 
 #define PIN_A0   (0)
 #define PIN_A1   (1)
@@ -67,6 +67,7 @@ static const uint8_t A7 = PIN_A7;
 #define OUTPUT 0x1
 #define INPUT_PULLUP 0x2
 
+/*
 typedef struct {
 
 	double time;
@@ -79,6 +80,36 @@ typedef struct {
 	double pulseWidth[15];
 
 } State_t;
+*/
+
+class Arduino {
+
+public:
+	double time;
+	double analog[8];
+	int portMode[15]; // 0 = input, 1 = digital, 2 = PWM
+	double pulseWidth[15];
+
+#include "Blink.ino"
+
+	void pinMode(int pin, int mode) {
+		ModelicaFormatMessage("pinMode(%d, %d)\n", pin, mode);
+		portMode[pin] = mode;
+	}
+
+	void digitalWrite(int pin, int val) {
+		pulseWidth[pin] = (val == HIGH) ? 100 : 0;
+		ModelicaFormatMessage("digitalWrite(%d, %d) -> %f\n", pin, val, pulseWidth[pin]);
+	}
+
+	void delay(int ms) {
+		double end_time = time + ms * 1e-3;
+		while (time < end_time) {
+			// idle
+		}
+	}
+
+};
 
 
 class SoftSerial {
@@ -96,16 +127,20 @@ public:
 
 SoftSerial Serial;
 
-static State_t state_s;
+//static Arduino state_s;
 
 //static long count;
 
-
-void pinMode(int pin, int mode) {
+/*
+void s_pinMode(int pin, int mode) {
 	ModelicaFormatMessage("pinMode(%d, %d)\n", pin, mode);
 	state_s.portMode[pin] = mode;
 }
+*/
 
+//#define pinMode(pin, mode) s_pinMode(pin, mode)
+
+/*
 void digitalWrite(int pin, int val) {
 	
 	state_s.pulseWidth[pin] = (val == HIGH) ? 100 : 0;
@@ -141,20 +176,8 @@ void analogReference(uint8_t mode)
 	//analog_reference = mode;
 }
 
-int analogRead(uint8_t pin) {
 
-/*
-	switch(pin) {
-	case A0: return state_s.analogInput[0];
-	case A1: return state_s.analogInput[1];
-	case A2: return state_s.analogInput[2];
-	case A3: return state_s.analogInput[3];
-	case A4: return state_s.analogInput[4];
-	case A5: return state_s.analogInput[5];
-	case A6: return state_s.analogInput[6];
-	case A7: return state_s.analogInput[7];
-	}
-*/
+int analogRead(uint8_t pin) {
 
 	// TODO: clip [0, 1023]
 	return (state_s.analog[pin] / 5) * 1024;
@@ -169,21 +192,22 @@ void analogWrite(uint8_t pin, int val) {
 	state_s.pulseWidth[pin] = (100.0 * val) / 255;
 
 }
+*/
 
-
-
-#include "Blink.c"
+//#include "Blink.ino"
 
 
 DWORD WINAPI MyThreadFunction(LPVOID lpParam) {
 
 	//State_t *state = (State_t *)lpParam;
 
+	Arduino *instance = reinterpret_cast<Arduino *>(lpParam);
+
 	//ModelicaFormatMessage("The parameter: %u.\n", *(DWORD*)lpParam);
 
 	for(;;) {
 		//state->builtInLedOn = fmod(state->time, 1) > 0.5 ? 5 : 0;
-		loop();
+		instance->loop();
 	}
 
 	return 0;
@@ -194,20 +218,22 @@ void * ModelicaArduino_open() {
 
 	DWORD dwThreadId, dwThrdParam = 1;
 	HANDLE hThread;
-	State_t *state;
+	//Arduino *state;
 	//count = 0;
 
 	//ModelicaMessage("ModelicaArduino_open()\n");
 
-	state = &state_s; //malloc(sizeof(State_t));
+	//state = &state_s; //malloc(sizeof(State_t));
 
-	setup();
+	Arduino *instance = new Arduino();
+
+	instance->setup();
  
 	hThread = CreateThread(
 	NULL, 				// default security attributes
 	0, 					// use default stack size
 	MyThreadFunction, 	// thread function
-	state, 		        // argument to thread function
+	instance, 		    // argument to thread function
 	0, 					// use default creation flags
 	&dwThreadId); 		// returns the thread identifier
 	 
@@ -225,13 +251,15 @@ void * ModelicaArduino_open() {
 
 	//return (void *)NULL;
 
-	return state;
+	return instance;
 }
 
 
 void ModelicaArduino_close(void *externalObject) {
 
 	//ModelicaMessage("ModelicaArduino_close()\n");
+
+	// TODO: clean up
 
 }
 
@@ -242,15 +270,17 @@ void ModelicaArduino_update(void *instance, double time, double *analog, int *po
 	//state->time = time;
 	//*builtInLedOn = state->builtInLedOn;
 
-	state_s.time = time;
+	Arduino *instance_ = reinterpret_cast<Arduino *>(instance);
+
+	instance_->time = time;
 
 	for (int i = 0; i < 6; i++) {
-		state_s.analog[i] = analog[i];
+		instance_->analog[i] = analog[i];
 	}
 
 	for (int i = 0; i < 14; i++) {
-		portMode[i] = state_s.portMode[i];
-		pulseWidth[i] = state_s.pulseWidth[i];
+		portMode[i] = instance_->portMode[i];
+		pulseWidth[i] = instance_->pulseWidth[i];
 	}
 
 }
