@@ -12,22 +12,6 @@ package Arduino
 
       Arduino.Internal.ExternalArduino externalArduino=Arduino.Internal.ExternalArduino();
 
-    protected
-        Integer portMode[15];
-        Real pulseWidth[15];
-
-       function evaluate
-        input Arduino.Internal.ExternalArduino instance;
-        input Modelica.SIunits.Time timeIn;
-        input Real analog[6];
-        output Integer portMode[15];
-        output Real pulseWidth[15];
-        external "C" ModelicaArduino_update(instance, timeIn, analog, portMode, pulseWidth) annotation (
-          Include="#include <ModelicaArduino.h>",
-          IncludeDirectory="modelica://Arduino/Resources/C-Sources",
-          Library="ModelicaArduino");
-       end evaluate;
-
       Modelica.Electrical.Analog.Interfaces.Pin A1 annotation (Placement(
             transformation(extent={{-170,-70},{-150,-50}}),iconTransformation(
               extent={{-168,-26},{-150,-8}})));
@@ -279,6 +263,23 @@ package Arduino
         annotation (Placement(transformation(extent={{-10,-10},{10,10}},
             rotation=270,
             origin={-28,70})));
+
+    protected
+        Integer portMode[15];
+        Real pulseWidth[15];
+
+       function evaluate
+        input Arduino.Internal.ExternalArduino instance;
+        input Modelica.SIunits.Time timeIn;
+        input Real analog[6];
+        output Integer portMode[15];
+        output Real pulseWidth[15];
+        external "C" ModelicaArduino_update(instance, timeIn, analog, portMode, pulseWidth) annotation (
+          Include="#include <ModelicaArduino.h>",
+          IncludeDirectory="modelica://Arduino/Resources/C-Sources",
+          Library="ModelicaArduino");
+       end evaluate;
+
     equation
 
       when sample(0, 0.001) then
@@ -436,30 +437,23 @@ package Arduino
               fillColor={136,172,188},
               fillPattern=FillPattern.Solid,
               lineColor={0,0,0},
-              fontName="Courier",
+              fontName="Consolas",
               textStyle={TextStyle.Bold},
-              textString="A0",
-              horizontalAlignment=TextAlignment.Left),
+              horizontalAlignment=TextAlignment.Left,
+              textString="A0"),
             Text(
-              extent={{-71.5,14.5},{71.5,-14.5}},
+              extent={{-72,12},{72,-12}},
               pattern=LinePattern.None,
               lineThickness=0.5,
               fillColor={136,172,188},
               fillPattern=FillPattern.Solid,
               lineColor={0,0,0},
-              origin={-76.5,-79.5},
+              origin={-78,-74},
               rotation=270,
-              fontName="Courier",
+              fontName="Consolas",
               textStyle={TextStyle.Bold},
-              textString="ANALOG IN"),
-            Text(
-              extent={{-20,12},{0,2}},
-              pattern=LinePattern.None,
-              lineThickness=0.5,
-              fillColor={136,172,188},
-              fillPattern=FillPattern.Solid,
-              lineColor={0,0,0},
-              textString="LED"),
+              textString="ANALOG IN",
+              horizontalAlignment=TextAlignment.Right),
             Line(
               points={{-64,-146},{-64,18}},
               color={0,0,0},
@@ -471,10 +465,10 @@ package Arduino
               fillColor={136,172,188},
               fillPattern=FillPattern.Solid,
               lineColor={0,0,0},
-              fontName="Courier",
+              fontName="Consolas",
               textStyle={TextStyle.Bold},
-              textString="A5",
-              horizontalAlignment=TextAlignment.Left),
+              horizontalAlignment=TextAlignment.Left,
+              textString="A5"),
             Text(
               extent={{-138,-8},{-104,-32}},
               pattern=LinePattern.None,
@@ -482,10 +476,10 @@ package Arduino
               fillColor={136,172,188},
               fillPattern=FillPattern.Solid,
               lineColor={0,0,0},
-              fontName="Courier",
+              fontName="Consolas",
               textStyle={TextStyle.Bold},
-              textString="A1",
-              horizontalAlignment=TextAlignment.Left),
+              horizontalAlignment=TextAlignment.Left,
+              textString="A1"),
             Text(
               extent={{-138,-38},{-104,-62}},
               pattern=LinePattern.None,
@@ -493,10 +487,10 @@ package Arduino
               fillColor={136,172,188},
               fillPattern=FillPattern.Solid,
               lineColor={0,0,0},
-              fontName="Courier",
+              fontName="Consolas",
               textStyle={TextStyle.Bold},
-              textString="A2",
-              horizontalAlignment=TextAlignment.Left),
+              horizontalAlignment=TextAlignment.Left,
+              textString="A2"),
             Text(
               extent={{-138,-66},{-104,-90}},
               pattern=LinePattern.None,
@@ -504,10 +498,10 @@ package Arduino
               fillColor={136,172,188},
               fillPattern=FillPattern.Solid,
               lineColor={0,0,0},
-              fontName="Courier",
+              fontName="Consolas",
               textStyle={TextStyle.Bold},
-              textString="A3",
-              horizontalAlignment=TextAlignment.Left),
+              horizontalAlignment=TextAlignment.Left,
+              textString="A3"),
             Text(
               extent={{-138,-96},{-104,-120}},
               pattern=LinePattern.None,
@@ -515,10 +509,10 @@ package Arduino
               fillColor={136,172,188},
               fillPattern=FillPattern.Solid,
               lineColor={0,0,0},
-              fontName="Courier",
+              fontName="Consolas",
               textStyle={TextStyle.Bold},
-              textString="A4",
-              horizontalAlignment=TextAlignment.Left),
+              horizontalAlignment=TextAlignment.Left,
+              textString="A4"),
             Text(
               extent={{98,-116},{138,-144}},
               pattern=LinePattern.None,
@@ -548,11 +542,12 @@ package Arduino
               fillColor={136,172,188},
               fillPattern=FillPattern.Solid,
               lineColor={0,0,0},
-              origin={65.5,-93.5},
+              origin={65.5,-99.5},
               rotation=270,
               fontName="Consolas",
               textStyle={TextStyle.Bold},
-              textString="DIGITAL (PWM~)"),
+              textString="DIGITAL (PWM~)",
+              horizontalAlignment=TextAlignment.Right),
             Line(
               points={{50,-168},{50,242}},
               color={0,0,0},
@@ -687,8 +682,8 @@ package Arduino
               lineColor={0,0,0},
               fontName="Consolas",
               textStyle={TextStyle.Bold},
-              textString="13",
-              horizontalAlignment=TextAlignment.Right),
+              horizontalAlignment=TextAlignment.Right,
+              textString="13"),
             Text(
               extent={{-20,-140},{16,-164}},
               pattern=LinePattern.None,
@@ -700,7 +695,7 @@ package Arduino
               textStyle={TextStyle.Bold},
               textString="GND"),
             Text(
-              extent={{-136,184},{-94,154}},
+              extent={{-138,182},{-96,156}},
               pattern=LinePattern.None,
               lineThickness=0.5,
               fillColor={136,172,188},
@@ -708,9 +703,10 @@ package Arduino
               lineColor={0,0,0},
               fontName="Consolas",
               textStyle={TextStyle.Bold},
-              textString="AREF"),
+              textString="AREF",
+              horizontalAlignment=TextAlignment.Left),
             Text(
-              extent={{-138,222},{-102,198}},
+              extent={{-138,226},{-86,194}},
               pattern=LinePattern.None,
               lineThickness=0.5,
               fillColor={136,172,188},
@@ -718,25 +714,26 @@ package Arduino
               lineColor={0,0,0},
               fontName="Consolas",
               textStyle={TextStyle.Bold},
-              textString="RESET"),
+              textString="RESET",
+              horizontalAlignment=TextAlignment.Left),
             Text(
-              extent={{-36,240},{-2,216}},
+              extent={{-14,242},{20,218}},
               pattern=LinePattern.None,
               lineThickness=0.5,
               fillColor={136,172,188},
               fillPattern=FillPattern.Solid,
               lineColor={0,0,0},
-              fontName="Courier",
+              fontName="Consolas",
               textStyle={TextStyle.Bold},
               textString="5V"),
             Text(
-              extent={{-60,160},{-26,136}},
+              extent={{-62,162},{-26,138}},
               pattern=LinePattern.None,
               lineThickness=0.5,
               fillColor={136,172,188},
               fillPattern=FillPattern.Solid,
               lineColor={0,0,0},
-              fontName="Courier",
+              fontName="Consolas",
               textStyle={TextStyle.Bold},
               horizontalAlignment=TextAlignment.Right,
               textString="L"),
@@ -748,24 +745,24 @@ package Arduino
               pattern=LinePattern.None,
               lineColor={0,0,0}),
             Text(
-              extent={{-60,134},{-26,110}},
+              extent={{-60,134},{-26,112}},
               pattern=LinePattern.None,
               lineThickness=0.5,
               fillColor={136,172,188},
               fillPattern=FillPattern.Solid,
               lineColor={0,0,0},
-              fontName="Courier",
+              fontName="Consolas",
               textStyle={TextStyle.Bold},
               horizontalAlignment=TextAlignment.Right,
               textString="RX"),
             Text(
-              extent={{-60,106},{-26,82}},
+              extent={{-60,108},{-26,84}},
               pattern=LinePattern.None,
               lineThickness=0.5,
               fillColor={136,172,188},
               fillPattern=FillPattern.Solid,
               lineColor={0,0,0},
-              fontName="Courier",
+              fontName="Consolas",
               textStyle={TextStyle.Bold},
               horizontalAlignment=TextAlignment.Right,
               textString="TX"),
@@ -811,7 +808,7 @@ package Arduino
                   extends Modelica.Icons.Example;
 
       Components.ArduinoUno arduinoUno
-        annotation (Placement(transformation(extent={{-38,-32},{40,64}})));
+        annotation (Placement(transformation(extent={{-40,-60},{40,60}})));
       Modelica.Electrical.Analog.Sources.SineVoltage sineVoltage(
         V=2.5,
         offset=2.5,
@@ -819,104 +816,112 @@ package Arduino
         annotation (Placement(transformation(
             extent={{-10,-10},{10,10}},
             rotation=270,
-            origin={-80,-34})));
+            origin={-80,-40})));
       Components.LED lED
-        annotation (Placement(transformation(extent={{70,-4},{80,6}})));
+        annotation (Placement(transformation(extent={{70,-24},{80,-14}})));
       Components.LED lED1
-        annotation (Placement(transformation(extent={{70,-10},{80,0}})));
+        annotation (Placement(transformation(extent={{70,-30},{80,-20}})));
       Components.LED lED2
-        annotation (Placement(transformation(extent={{70,-16},{80,-6}})));
+        annotation (Placement(transformation(extent={{70,-36},{80,-26}})));
       Components.LED lED3
-        annotation (Placement(transformation(extent={{70,-22},{80,-12}})));
+        annotation (Placement(transformation(extent={{70,-42},{80,-32}})));
       Components.LED lED4
-        annotation (Placement(transformation(extent={{70,-28},{80,-18}})));
+        annotation (Placement(transformation(extent={{70,-48},{80,-38}})));
       Components.LED lED5
-        annotation (Placement(transformation(extent={{70,2},{80,12}})));
+        annotation (Placement(transformation(extent={{70,-18},{80,-8}})));
       Components.LED lED6
-        annotation (Placement(transformation(extent={{70,8},{80,18}})));
+        annotation (Placement(transformation(extent={{70,-12},{80,-2}})));
       Components.LED lED7
-        annotation (Placement(transformation(extent={{70,14},{80,24}})));
+        annotation (Placement(transformation(extent={{70,-6},{80,4}})));
       Components.LED lED8
-        annotation (Placement(transformation(extent={{70,20},{80,30}})));
+        annotation (Placement(transformation(extent={{70,0},{80,10}})));
       Components.LED lED9
-        annotation (Placement(transformation(extent={{70,26},{80,36}})));
+        annotation (Placement(transformation(extent={{70,6},{80,16}})));
       Components.LED lED10
-        annotation (Placement(transformation(extent={{70,32},{80,42}})));
+        annotation (Placement(transformation(extent={{70,12},{80,22}})));
       Components.LED lED11
-        annotation (Placement(transformation(extent={{70,38},{80,48}})));
+        annotation (Placement(transformation(extent={{70,18},{80,28}})));
       Components.LED lED12
-        annotation (Placement(transformation(extent={{70,44},{80,54}})));
+        annotation (Placement(transformation(extent={{70,24},{80,34}})));
       Components.LED lED13
-        annotation (Placement(transformation(extent={{70,50},{80,60}})));
+        annotation (Placement(transformation(extent={{70,30},{80,40}})));
     equation
-      connect(sineVoltage.n, arduinoUno.GND) annotation (Line(points={{-80,-44},{-38,
-              -44},{-38,-54},{1,-54},{1,-32}},              color={0,0,255}));
-      connect(sineVoltage.p, arduinoUno.A0) annotation (Line(points={{-80,-24},
-              {-80,-24},{-80,9.67273},{-37.7563,9.67273}},
+      connect(sineVoltage.n, arduinoUno.GND) annotation (Line(points={{-80,-50},
+              {-80,-50},{-80,-70},{-80,-74},{0,-74},{0,-60}},
+                                                            color={0,0,255}));
+      connect(sineVoltage.p, arduinoUno.A0) annotation (Line(points={{-80,-30},
+              {-80,-30},{-80,-7.9091},{-39.75,-7.9091}},
                                                     color={0,0,255}));
-      connect(arduinoUno.D5, lED5.pin_p) annotation (Line(points={{40.4875,5.09091},
-              {55.2437,5.09091},{55.2437,7},{70,7}}, color={0,0,255}));
-      connect(arduinoUno.D6, lED6.pin_p) annotation (Line(points={{40.4875,
-              11.6364},{55.2437,11.6364},{55.2437,13},{70,13}},
+      connect(arduinoUno.D5, lED5.pin_p) annotation (Line(points={{40.5,
+              -13.6364},{55.2437,-13.6364},{55.2437,-13},{70,-13}},
+                                                     color={0,0,255}));
+      connect(arduinoUno.D6, lED6.pin_p) annotation (Line(points={{40.5,
+              -5.45455},{55.2437,-5.45455},{55.2437,-7},{70,-7}},
                                                        color={0,0,255}));
-      connect(arduinoUno.D7, lED7.pin_p) annotation (Line(points={{40.4875,
-              18.1818},{55.2437,18.1818},{55.2437,19},{70,19}},
+      connect(arduinoUno.D7, lED7.pin_p) annotation (Line(points={{40.5,2.72727},
+              {55.2437,2.72727},{55.2437,-1},{70,-1}}, color={0,0,255}));
+      connect(arduinoUno.D8, lED8.pin_p) annotation (Line(points={{40.5,11.1818},
+              {55.2437,11.1818},{55.2437,5},{70,5}},   color={0,0,255}));
+      connect(arduinoUno.D9, lED9.pin_p) annotation (Line(points={{40.5,19.3636},
+              {55.2437,19.3636},{55.2437,11},{70,11}}, color={0,0,255}));
+      connect(arduinoUno.D10, lED10.pin_p) annotation (Line(points={{40.5,
+              27.5455},{55.2437,27.5455},{55.2437,17},{70,17}},
                                                        color={0,0,255}));
-      connect(arduinoUno.D8, lED8.pin_p) annotation (Line(points={{40.4875,
-              24.9455},{55.2437,24.9455},{55.2437,25},{70,25}},
+      connect(arduinoUno.D11, lED11.pin_p) annotation (Line(points={{40.5,
+              35.7273},{55.2437,35.7273},{55.2437,23},{70,23}},
                                                        color={0,0,255}));
-      connect(arduinoUno.D9, lED9.pin_p) annotation (Line(points={{40.4875,31.4909},
-              {55.2437,31.4909},{55.2437,31},{70,31}}, color={0,0,255}));
-      connect(arduinoUno.D10, lED10.pin_p) annotation (Line(points={{40.4875,
-              38.0364},{55.2437,38.0364},{55.2437,37},{70,37}},
+      connect(arduinoUno.D12, lED12.pin_p) annotation (Line(points={{40.5,
+              43.9091},{55.2437,43.9091},{55.2437,29},{70,29}},
                                                        color={0,0,255}));
-      connect(arduinoUno.D11, lED11.pin_p) annotation (Line(points={{40.4875,
-              44.5818},{55.2437,44.5818},{55.2437,43},{70,43}},
-                                                       color={0,0,255}));
-      connect(arduinoUno.D12, lED12.pin_p) annotation (Line(points={{40.4875,
-              51.1273},{55.2437,51.1273},{55.2437,49},{70,49}},
-                                                       color={0,0,255}));
-      connect(arduinoUno.D13, lED13.pin_p) annotation (Line(points={{40.4875,
-              57.6727},{55.2437,57.6727},{55.2437,55},{70,55}},
+      connect(arduinoUno.D13, lED13.pin_p) annotation (Line(points={{40.5,
+              52.0909},{55.2437,52.0909},{55.2437,35},{70,35}},
                                                        color={0,0,255}));
       connect(lED11.pin_n, lED10.pin_n)
-        annotation (Line(points={{80,43},{80,37}}, color={0,0,255}));
+        annotation (Line(points={{80,23},{80,17}}, color={0,0,255}));
       connect(lED12.pin_n, lED11.pin_n)
-        annotation (Line(points={{80,49},{80,43}}, color={0,0,255}));
+        annotation (Line(points={{80,29},{80,23}}, color={0,0,255}));
       connect(lED13.pin_n, lED12.pin_n)
-        annotation (Line(points={{80,55},{80,49}}, color={0,0,255}));
+        annotation (Line(points={{80,35},{80,29}}, color={0,0,255}));
       connect(lED10.pin_n, lED9.pin_n)
-        annotation (Line(points={{80,37},{80,31}}, color={0,0,255}));
+        annotation (Line(points={{80,17},{80,11}}, color={0,0,255}));
       connect(lED9.pin_n, lED8.pin_n)
-        annotation (Line(points={{80,31},{80,25},{80,25}}, color={0,0,255}));
+        annotation (Line(points={{80,11},{80,5}},          color={0,0,255}));
       connect(lED8.pin_n, lED7.pin_n)
-        annotation (Line(points={{80,25},{80,19}}, color={0,0,255}));
+        annotation (Line(points={{80,5},{80,-1}},  color={0,0,255}));
       connect(lED7.pin_n, lED6.pin_n)
-        annotation (Line(points={{80,19},{80,13}}, color={0,0,255}));
+        annotation (Line(points={{80,-1},{80,-7}}, color={0,0,255}));
       connect(lED6.pin_n, lED5.pin_n)
-        annotation (Line(points={{80,13},{80,7}}, color={0,0,255}));
+        annotation (Line(points={{80,-7},{80,-13}},
+                                                  color={0,0,255}));
       connect(lED5.pin_n, lED.pin_n)
-        annotation (Line(points={{80,7},{80,1}}, color={0,0,255}));
+        annotation (Line(points={{80,-13},{80,-19}},
+                                                 color={0,0,255}));
       connect(lED.pin_n, lED1.pin_n)
-        annotation (Line(points={{80,1},{80,-5}}, color={0,0,255}));
+        annotation (Line(points={{80,-19},{80,-25}},
+                                                  color={0,0,255}));
       connect(lED1.pin_n, lED2.pin_n)
-        annotation (Line(points={{80,-5},{80,-11}}, color={0,0,255}));
+        annotation (Line(points={{80,-25},{80,-31}},color={0,0,255}));
       connect(lED2.pin_n, lED3.pin_n)
-        annotation (Line(points={{80,-11},{80,-17}}, color={0,0,255}));
+        annotation (Line(points={{80,-31},{80,-37}}, color={0,0,255}));
       connect(lED3.pin_n, lED4.pin_n)
-        annotation (Line(points={{80,-17},{80,-23}}, color={0,0,255}));
-      connect(lED4.pin_n, arduinoUno.GND) annotation (Line(points={{80,-23},{80,-46},
-              {1,-46},{1,-32}}, color={0,0,255}));
-      connect(lED4.pin_p, arduinoUno.D0) annotation (Line(points={{70,-23},{56,-23},
-              {56,-27.2},{40.4875,-27.2}}, color={0,0,255}));
-      connect(lED3.pin_p, arduinoUno.D1) annotation (Line(points={{70,-17},{56,-17},
-              {56,-21.0909},{40.4875,-21.0909}}, color={0,0,255}));
-      connect(lED2.pin_p, arduinoUno.D2) annotation (Line(points={{70,-11},{56,-11},
-              {56,-14.1091},{40.4875,-14.1091}}, color={0,0,255}));
-      connect(lED1.pin_p, arduinoUno.D3) annotation (Line(points={{70,-5},{56,-5},
-              {56,-8},{40.4875,-8}}, color={0,0,255}));
-      connect(lED.pin_p, arduinoUno.D4) annotation (Line(points={{70,1},{56,1},{56,
-              -1.45455},{40.4875,-1.45455}}, color={0,0,255}));
+        annotation (Line(points={{80,-37},{80,-43}}, color={0,0,255}));
+      connect(lED4.pin_n, arduinoUno.GND) annotation (Line(points={{80,-43},{80,
+              -74},{0,-74},{0,-60}},
+                                color={0,0,255}));
+      connect(lED4.pin_p, arduinoUno.D0) annotation (Line(points={{70,-43},{56,
+              -43},{56,-54},{40.5,-54}},   color={0,0,255}));
+      connect(lED3.pin_p, arduinoUno.D1) annotation (Line(points={{70,-37},{56,
+              -37},{56,-46.3636},{40.5,-46.3636}},
+                                                 color={0,0,255}));
+      connect(lED2.pin_p, arduinoUno.D2) annotation (Line(points={{70,-31},{56,
+              -31},{56,-37.6364},{40.5,-37.6364}},
+                                                 color={0,0,255}));
+      connect(lED1.pin_p, arduinoUno.D3) annotation (Line(points={{70,-25},{56,
+              -25},{56,-30},{40.5,-30}},
+                                     color={0,0,255}));
+      connect(lED.pin_p, arduinoUno.D4) annotation (Line(points={{70,-19},{56,
+              -19},{56,-21.8182},{40.5,-21.8182}},
+                                             color={0,0,255}));
       annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
             coordinateSystem(preserveAspectRatio=false)),
         experiment(StopTime=10));
