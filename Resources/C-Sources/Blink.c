@@ -25,11 +25,10 @@
 void setup() {
   
   // initialize digital pin LED_BUILTIN as an output.
-  pinMode(0, OUTPUT);
-  pinMode(1, OUTPUT);
-  pinMode(2, OUTPUT);
-  pinMode(3, OUTPUT);
-  pinMode(4, OUTPUT);
+
+  for (int i = 0; i < 14; i++) {
+    pinMode(0, OUTPUT);    
+  }
 
   //pinMode(A0, INPUT);
   //pinMode(A1, OUTPUT);
@@ -58,17 +57,17 @@ void loop() {
   delay(1000);
   */
 
-  for (int i = 0; i < 5; i++) {
+  //for (int i = 0; i < 14; i++) {
 
-    int v = (analogRead(A0) / 1023.) * 5.5;
+    int v = (analogRead(A0) / 1023.) * 14.5;
 
-    for (int j = 0; j < 5; j++) {
+    for (int j = 0; j < 14; j++) {
       digitalWrite(j, j < v ? HIGH : LOW);
     }
   
     delay(100);
 
-  }
+  //}
   /*
   int v;
 
