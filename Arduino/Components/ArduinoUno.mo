@@ -1,7 +1,7 @@
 ﻿within Arduino.Components;
 block ArduinoUno
 
-  parameter Real sampleRate = 0.1;
+  parameter Real sampleRate = 0.01;
 
   Modelica.Electrical.Analog.Basic.Ground ground
     annotation (Placement(transformation(extent={{10,-160},{30,-140}})));
@@ -292,8 +292,8 @@ public
         origin={34,-118})));
   Modelica.Electrical.Analog.Ideal.IdealOpeningSwitch idealOpeningSwitch
     annotation (Placement(transformation(extent={{12,-104},{32,-84}})));
-  Modelica.Blocks.Sources.BooleanExpression booleanExpression2(y=portMode[3]
-         == 0)
+  Modelica.Blocks.Sources.BooleanExpression booleanExpression2(y=portMode[3] ==
+        0)
     annotation (Placement(transformation(extent={{-24.5,-13.5},{24.5,13.5}},
         rotation=270,
         origin={26.5,-43.5})));
@@ -442,15 +442,15 @@ equation
           {0,82},{1.77636e-015,82}}, color={0,0,255}));
   connect(V5, V5) annotation (Line(points={{28,260},{26.5,260},{26.5,260},{28,260}},
         color={0,0,255}));
-  connect(resistor9.p, D2) annotation (Line(points={{44,-118},{44,-100},{160,
-          -100}}, color={0,0,255}));
+  connect(resistor9.p, D2) annotation (Line(points={{44,-118},{44,-100},{160,-100}},
+        color={0,0,255}));
   connect(resistor9.n, ground.p) annotation (Line(points={{24,-118},{0,-118},{0,
           -140},{20,-140}}, color={0,0,255}));
   connect(resistor9.p, idealOpeningSwitch.n) annotation (Line(points={{44,-118},
           {44,-110},{44,-94},{32,-94}}, color={0,0,255}));
   connect(idealOpeningSwitch.p, constantVoltage.p) annotation (Line(points={{12,
-          -94},{12,18},{44,18},{44,118},{28,118},{28,104},{0,104},{0,82},{
-          1.77636e-015,82}}, color={0,0,255}));
+          -94},{12,18},{44,18},{44,118},{28,118},{28,104},{0,104},{0,82},{1.77636e-015,
+          82}}, color={0,0,255}));
   connect(booleanExpression2.y, idealOpeningSwitch.control) annotation (Line(
         points={{26.5,-70.45},{26.5,-79.225},{22,-79.225},{22,-87}}, color={255,
           0,255}));
