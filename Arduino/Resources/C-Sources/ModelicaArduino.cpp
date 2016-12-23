@@ -67,20 +67,6 @@ static const uint8_t A7 = PIN_A7;
 #define OUTPUT 0x1
 #define INPUT_PULLUP 0x2
 
-/*
-typedef struct {
-
-	double time;
-	//int builtInLedOn;
-	double analog[8];
-
-	// LED_BUILTIN, D0..D13
-	//int digital[15];
-	int portMode[15]; // 0 = input, 1 = digital, 2 = PWM
-	double pulseWidth[15];
-
-} State_t;
-*/
 
 class Arduino {
 
@@ -208,86 +194,10 @@ public:
 
 SoftSerial Serial;
 
-//static Arduino state_s;
-
-//static long count;
-
-/*
-void s_pinMode(int pin, int mode) {
-	ModelicaFormatMessage("pinMode(%d, %d)\n", pin, mode);
-	state_s.portMode[pin] = mode;
-}
-*/
-
-//#define pinMode(pin, mode) s_pinMode(pin, mode)
-
-/*
-void digitalWrite(int pin, int val) {
-	
-	state_s.pulseWidth[pin] = (val == HIGH) ? 100 : 0;
-
-	//ModelicaFormatMessage("digitalWrite(%d, %d) -> %f\n", pin, val, state_s.pulseWidth[pin]);
-
-}
-
-void delay(int ms) {
-
-	double end_time = state_s.time + ms * 1e-3;
-	
-	//ModelicaFormatMessage("delay(%d)\n", ms);
-
-	while (state_s.time < end_time) {
-		// idle
-		// ModelicaFormatMessage("idle: %f < %f\n", state_s.time , end_time);
-		//count++;
-	}
-
-	//ModelicaFormatMessage("count: %d\n", count);
-
-}
-
-
-//uint8_t analog_reference = DEFAULT;
-
-void analogReference(uint8_t mode)
-{
-	// can't actually set the register here because the default setting
-	// will connect AVCC and the AREF pin, which would cause a short if
-	// there's something connected to AREF.
-	//analog_reference = mode;
-}
-
-
-int analogRead(uint8_t pin) {
-
-	// TODO: clip [0, 1023]
-	return (state_s.analog[pin] / 5) * 1024;
-
-	// TODO: error?
-	//return 0;
-}
-
-
-void analogWrite(uint8_t pin, int val) {
-
-	state_s.pulseWidth[pin] = (100.0 * val) / 255;
-
-}
-*/
-
-//#include "Blink.ino"
-
 
 DWORD WINAPI MyThreadFunction(LPVOID lpParam) {
 
-	//State_t *state = (State_t *)lpParam;
-
-	//Arduino *instance = reinterpret_cast<Arduino *>(lpParam);
-
-	//ModelicaFormatMessage("The parameter: %u.\n", *(DWORD*)lpParam);
-
 	for(;;) {
-		//state->builtInLedOn = fmod(state->time, 1) > 0.5 ? 5 : 0;
 		loop();
 	}
 
@@ -318,19 +228,18 @@ void * ModelicaArduino_open() {
 		ModelicaFormatError("Failed to create arduino thread. %d.\n", GetLastError());
 	}
 
-	//if (CloseHandle(hThread) != 0)
-	//	ModelicaFormatMessage("Handle to thread closed successfully.\n");
+
 
 	return &instance;
 }
-
 
 void ModelicaArduino_close(void *externalObject) {
 
 	//ModelicaMessage("ModelicaArduino_close()\n");
 
 	// TODO: clean up
-
+	//if (CloseHandle(hThread) != 0)
+	//	ModelicaFormatMessage("Handle to thread closed successfully.\n");
 }
 
 void ModelicaArduino_update(void *instance__, double time, double *analog, double *digital, int *portMode, double *pulseWidth) {
