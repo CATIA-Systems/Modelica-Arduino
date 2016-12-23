@@ -91,7 +91,9 @@ public:
 	int portMode[15];      // 0 = input, 1 = digital, 2 = PWM
 	double pulseWidth[15];
 
-	Arduino() : time(0) {
+	const char *error;
+
+	Arduino() : time(0), error(NULL) {
 
 	}
 
@@ -117,17 +119,18 @@ unsigned long pulseInLong(uint8_t pin, uint8_t state, unsigned long timeout);
 */
 
 void pinMode(int pin, int mode) {
-	ModelicaFormatMessage("pinMode(%d, %d)\n", pin, mode);
+	//ModelicaFormatMessage("pinMode(%d, %d)\n", pin, mode);
 	instance.portMode[pin] = mode;
 }
 
 void digitalWrite(int pin, int val) {
 	instance.pulseWidth[pin] = (val == HIGH) ? 100 : 0;
-	ModelicaFormatMessage("digitalWrite(%d, %d) -> %f\n", pin, val, instance.pulseWidth[pin]);
+	// ModelicaFormatMessage("digitalWrite(%d, %d) -> %f\n", pin, val, instance.pulseWidth[pin]);
 }
 
 int digitalRead(uint8_t pin) {
-	return instance.pulseWidth[pin] > 0 ? HIGH : LOW;
+	// ModelicaFormatMessage("digitalRead(%d) -> %f\n", pin, instance.digital[pin]);
+	return instance.digital[pin] > 2.5 ? HIGH : LOW;
 }
 
 int analogRead(uint8_t pin) {
@@ -140,6 +143,10 @@ void delay(int ms) {
 	while (instance.time < end_time) {
 		// idle
 	}
+}
+
+void analogWrite(uint8_t, int) {
+	instance.error = "analogWrite() is not supported";
 }
 
 unsigned long millis() {
@@ -183,11 +190,7 @@ unsigned int makeWord(unsigned char h, unsigned char l) { return (h << 8) | l; }
 // end WMath.cpp
 
 
-//#define pinMode(pin, mode) instance.pinMode(pin, mode)
-
-//#define setup() setup(Arduino *inst)
-
-#include "BlinkWithoutDelay.ino"
+#include "Button.ino"
 
 
 class SoftSerial {
@@ -279,7 +282,7 @@ DWORD WINAPI MyThreadFunction(LPVOID lpParam) {
 
 	//State_t *state = (State_t *)lpParam;
 
-	Arduino *instance = reinterpret_cast<Arduino *>(lpParam);
+	//Arduino *instance = reinterpret_cast<Arduino *>(lpParam);
 
 	//ModelicaFormatMessage("The parameter: %u.\n", *(DWORD*)lpParam);
 
@@ -296,17 +299,13 @@ void * ModelicaArduino_open() {
 
 	DWORD dwThreadId, dwThrdParam = 1;
 	HANDLE hThread;
-	//Arduino *state;
-	//count = 0;
-
-	//ModelicaMessage("ModelicaArduino_open()\n");
-
-	//state = &state_s; //malloc(sizeof(State_t));
-
-	//Arduino *instance = new Arduino();
-
+	
 	setup();
  
+	if (instance.error) {
+		ModelicaFormatError("Error in setup(): %s", instance.error);
+	}
+
 	hThread = CreateThread(
 	NULL, 				// default security attributes
 	0, 					// use default stack size
@@ -315,19 +314,12 @@ void * ModelicaArduino_open() {
 	0, 					// use default creation flags
 	&dwThreadId); 		// returns the thread identifier
 	 
-	ModelicaFormatMessage("The thread ID: %d.\n", dwThreadId);
-	 
-	// Check the return value for success. If something wrong...
-	if (hThread == NULL)
-		ModelicaFormatMessage("CreateThread() failed, error: %d.\n", GetLastError());
-	//else, gives some prompt...
-	else
-		ModelicaFormatMessage("It seems the CreateThread() is OK lol!\n");
+	if (hThread == NULL) {
+		ModelicaFormatError("Failed to create arduino thread. %d.\n", GetLastError());
+	}
 
-	if (CloseHandle(hThread) != 0)
-		ModelicaFormatMessage("Handle to thread closed successfully.\n");
-
-	//return (void *)NULL;
+	//if (CloseHandle(hThread) != 0)
+	//	ModelicaFormatMessage("Handle to thread closed successfully.\n");
 
 	return &instance;
 }
@@ -343,12 +335,10 @@ void ModelicaArduino_close(void *externalObject) {
 
 void ModelicaArduino_update(void *instance__, double time, double *analog, double *digital, int *portMode, double *pulseWidth) {
 
-	//*builtInLedOn = fmod(time, 1) > 0.5 ? 5 : 0;
-	//State_t *state = (State_t *)instance;
-	//state->time = time;
-	//*builtInLedOn = state->builtInLedOn;
-
-	//Arduino *instance_ = _instance//reinterpret_cast<Arduino *>(instance);
+	if (instance.error) {
+		ModelicaFormatError("Error in loop(): %s", instance.error);
+		return;
+	}
 
 	instance.time = time;
 

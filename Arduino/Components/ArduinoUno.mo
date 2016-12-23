@@ -97,14 +97,6 @@ block ArduinoUno
         transformation(extent={{150,-170},{170,-150}}),
                                                    iconTransformation(extent={{153,
             -167},{171,-149}})));
-  Internal.DigitalPort digitalPort2 annotation (Placement(transformation(
-        extent={{-10,-10},{10,10}},
-        rotation=0,
-        origin={120,-100})));
-  Modelica.Blocks.Sources.RealExpression realExpression2(y=pulseWidth[3])
-    annotation (Placement(transformation(extent={{62,-110},{92,-98}})));
-  Modelica.Blocks.Sources.BooleanExpression booleanExpression2(y=false)
-    annotation (Placement(transformation(extent={{62,-102},{92,-90}})));
   Modelica.Electrical.Analog.Interfaces.Pin D2 annotation (Placement(
         transformation(extent={{150,-110},{170,-90}}),
                                                    iconTransformation(extent={{153,
@@ -257,8 +249,7 @@ block ArduinoUno
         extent={{-10,-10},{10,10}},
         rotation=270,
         origin={0,72})));
-  Modelica.Electrical.Analog.Basic.Resistor resistor1(
-                                                     R=1e9)
+  Modelica.Electrical.Analog.Basic.Resistor resistor1(R=1e5)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},
         rotation=270,
         origin={30,70})));
@@ -294,6 +285,18 @@ public
   Modelica.Electrical.Analog.Interfaces.Pin V33 annotation (Placement(
         transformation(extent={{-40,250},{-20,270}}), iconTransformation(extent=
            {{-38,252},{-20,270}})));
+  Modelica.Electrical.Analog.Basic.Resistor resistor9(
+                                                     R=1e9)
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},
+        rotation=180,
+        origin={34,-118})));
+  Modelica.Electrical.Analog.Ideal.IdealOpeningSwitch idealOpeningSwitch
+    annotation (Placement(transformation(extent={{12,-104},{32,-84}})));
+  Modelica.Blocks.Sources.BooleanExpression booleanExpression2(y=portMode[3]
+         == 0)
+    annotation (Placement(transformation(extent={{-24.5,-13.5},{24.5,13.5}},
+        rotation=270,
+        origin={26.5,-43.5})));
 equation
 
   when sample(0, sampleRate) then
@@ -342,86 +345,84 @@ equation
           {160,-130}}, color={0,0,255}));
   connect(digitalPort1.pulseWidth, realExpression1.y) annotation (Line(points=
          {{108,-134},{108,-134},{93.5,-134}}, color={0,0,127}));
-  connect(digitalPort1.isInput, booleanExpression1.y) annotation (Line(points=
-         {{108,-126},{108,-126},{93.5,-126}}, color={255,0,255}));
+  connect(digitalPort1.isInput, booleanExpression1.y) annotation (Line(points={{108,
+          -120.8},{108,-126},{93.5,-126}},    color={255,0,255}));
   connect(digitalPort0.pin, D0) annotation (Line(points={{130,-160},{146,-160},
           {160,-160}}, color={0,0,255}));
   connect(digitalPort0.pulseWidth, realExpression0.y) annotation (Line(points=
          {{108,-164},{108,-164},{93.5,-164}}, color={0,0,127}));
-  connect(digitalPort0.isInput, booleanExpression0.y) annotation (Line(points=
-         {{108,-156},{108,-156},{93.5,-156}}, color={255,0,255}));
-  connect(digitalPort2.pin, D2) annotation (Line(points={{130,-100},{146,-100},
-          {160,-100}}, color={0,0,255}));
-  connect(digitalPort2.pulseWidth, realExpression2.y) annotation (Line(points=
-         {{108,-104},{108,-104},{93.5,-104}}, color={0,0,127}));
-  connect(digitalPort2.isInput, booleanExpression2.y) annotation (Line(points=
-         {{108,-96},{108,-96},{93.5,-96}}, color={255,0,255}));
+  connect(digitalPort0.isInput, booleanExpression0.y) annotation (Line(points={{108,
+          -150.8},{108,-156},{93.5,-156}},    color={255,0,255}));
   connect(digitalPort3.pin, D3) annotation (Line(points={{130,-70},{146,-70},{
           160,-70}}, color={0,0,255}));
   connect(digitalPort3.pulseWidth, realExpression3.y) annotation (Line(points=
          {{108,-74},{108,-74},{93.5,-74}}, color={0,0,127}));
-  connect(digitalPort3.isInput, booleanExpression3.y) annotation (Line(points=
-         {{108,-66},{108,-66},{93.5,-66}}, color={255,0,255}));
+  connect(digitalPort3.isInput, booleanExpression3.y) annotation (Line(points={{108,
+          -60.8},{108,-66},{93.5,-66}},    color={255,0,255}));
   connect(digitalPort4.pin, D4) annotation (Line(points={{130,-40},{146,-40},{
           160,-40}}, color={0,0,255}));
   connect(digitalPort4.pulseWidth, realExpression4.y) annotation (Line(points=
          {{108,-44},{108,-44},{93.5,-44}}, color={0,0,127}));
-  connect(digitalPort4.isInput, booleanExpression4.y) annotation (Line(points=
-         {{108,-36},{108,-36},{93.5,-36}}, color={255,0,255}));
+  connect(digitalPort4.isInput, booleanExpression4.y) annotation (Line(points={{108,
+          -30.8},{108,-36},{93.5,-36}},    color={255,0,255}));
   connect(digitalPort5.pin, D5) annotation (Line(points={{130,-10},{146,-10},{
           160,-10}}, color={0,0,255}));
   connect(digitalPort5.pulseWidth, realExpression5.y) annotation (Line(points=
          {{108,-14},{108,-14},{93.5,-14}}, color={0,0,127}));
-  connect(digitalPort5.isInput, booleanExpression5.y) annotation (Line(points=
-         {{108,-6},{108,-6},{93.5,-6}}, color={255,0,255}));
+  connect(digitalPort5.isInput, booleanExpression5.y) annotation (Line(points={{108,
+          -0.8},{108,-6},{93.5,-6}},    color={255,0,255}));
   connect(digitalPort6.pin, D6)
     annotation (Line(points={{130,20},{146,20},{160,20}}, color={0,0,255}));
   connect(digitalPort6.pulseWidth, realExpression6.y)
     annotation (Line(points={{108,16},{108,16},{93.5,16}}, color={0,0,127}));
-  connect(digitalPort6.isInput, booleanExpression6.y) annotation (Line(points=
-         {{108,24},{108,24},{93.5,24}}, color={255,0,255}));
+  connect(digitalPort6.isInput, booleanExpression6.y) annotation (Line(points={{108,
+          29.2},{108,24},{93.5,24}},    color={255,0,255}));
   connect(digitalPort7.pin, D7)
     annotation (Line(points={{130,50},{146,50},{160,50}}, color={0,0,255}));
   connect(digitalPort7.pulseWidth, realExpression7.y)
     annotation (Line(points={{108,46},{108,46},{93.5,46}}, color={0,0,127}));
-  connect(digitalPort7.isInput, booleanExpression7.y) annotation (Line(points=
-         {{108,54},{108,54},{93.5,54}}, color={255,0,255}));
+  connect(digitalPort7.isInput, booleanExpression7.y) annotation (Line(points={{108,
+          59.2},{108,54},{93.5,54}},    color={255,0,255}));
   connect(digitalPort8.pin, D8)
     annotation (Line(points={{130,80},{146,80},{160,80}}, color={0,0,255}));
   connect(digitalPort8.pulseWidth, realExpression8.y)
     annotation (Line(points={{108,76},{108,76},{93.5,76}}, color={0,0,127}));
-  connect(digitalPort8.isInput, booleanExpression8.y) annotation (Line(points=
-         {{108,84},{108,84},{93.5,84}}, color={255,0,255}));
+  connect(digitalPort8.isInput, booleanExpression8.y) annotation (Line(points={{108,
+          89.2},{108,84},{93.5,84}},    color={255,0,255}));
   connect(digitalPort9.pin, D9) annotation (Line(points={{130,110},{146,110},{
           160,110}}, color={0,0,255}));
   connect(digitalPort9.pulseWidth, realExpression9.y) annotation (Line(points=
          {{108,106},{108,106},{93.5,106}}, color={0,0,127}));
-  connect(digitalPort9.isInput, booleanExpression9.y) annotation (Line(points=
-         {{108,114},{108,114},{93.5,114}}, color={255,0,255}));
+  connect(digitalPort9.isInput, booleanExpression9.y) annotation (Line(points={{108,
+          119.2},{108,114},{93.5,114}},    color={255,0,255}));
   connect(digitalPort10.pin, D10) annotation (Line(points={{130,140},{146,140},
           {160,140}}, color={0,0,255}));
   connect(digitalPort10.pulseWidth, realExpression10.y) annotation (Line(
         points={{108,136},{108,136},{93.5,136}}, color={0,0,127}));
   connect(digitalPort10.isInput, booleanExpression10.y) annotation (Line(
-        points={{108,144},{108,144},{93.5,144}}, color={255,0,255}));
+        points={{108,149.2},{108,144},{93.5,144}},
+                                                 color={255,0,255}));
   connect(digitalPort11.pin, D11) annotation (Line(points={{130,170},{146,170},
           {160,170}}, color={0,0,255}));
   connect(digitalPort11.pulseWidth, realExpression11.y) annotation (Line(
         points={{108,166},{108,166},{93.5,166}}, color={0,0,127}));
   connect(digitalPort11.isInput, booleanExpression11.y) annotation (Line(
-        points={{108,174},{108,174},{93.5,174}}, color={255,0,255}));
+        points={{108,179.2},{108,174},{93.5,174}},
+                                                 color={255,0,255}));
   connect(digitalPort12.pin, D12) annotation (Line(points={{130,200},{146,200},
           {160,200}}, color={0,0,255}));
   connect(digitalPort12.pulseWidth, realExpression12.y) annotation (Line(
         points={{108,196},{108,196},{93.5,196}}, color={0,0,127}));
   connect(digitalPort12.isInput, booleanExpression12.y) annotation (Line(
-        points={{108,204},{108,204},{93.5,204}}, color={255,0,255}));
+        points={{108,209.2},{108,204},{93.5,204}},
+                                                 color={255,0,255}));
   connect(digitalPort13.pin, D13) annotation (Line(points={{130,230},{146,230},
           {160,230}}, color={0,0,255}));
   connect(digitalPort13.pulseWidth, realExpression13.y) annotation (Line(
         points={{108,226},{108,226},{93.5,226}}, color={0,0,127}));
   connect(digitalPort13.isInput, booleanExpression13.y) annotation (Line(
-        points={{108,234},{108,234},{93.5,234}}, color={255,0,255}));
+        points={{108,239.2},{108,234},{93.5,234}},
+                                                 color={255,0,255}));
   connect(constantVoltage.n, ground.p)
     annotation (Line(points={{-1.77636e-015,62},{-1.77636e-015,-140},{20,-140}},
                                                          color={0,0,255}));
@@ -441,6 +442,18 @@ equation
           {0,82},{1.77636e-015,82}}, color={0,0,255}));
   connect(V5, V5) annotation (Line(points={{28,260},{26.5,260},{26.5,260},{28,260}},
         color={0,0,255}));
+  connect(resistor9.p, D2) annotation (Line(points={{44,-118},{44,-100},{160,
+          -100}}, color={0,0,255}));
+  connect(resistor9.n, ground.p) annotation (Line(points={{24,-118},{0,-118},{0,
+          -140},{20,-140}}, color={0,0,255}));
+  connect(resistor9.p, idealOpeningSwitch.n) annotation (Line(points={{44,-118},
+          {44,-110},{44,-94},{32,-94}}, color={0,0,255}));
+  connect(idealOpeningSwitch.p, constantVoltage.p) annotation (Line(points={{12,
+          -94},{12,18},{44,18},{44,118},{28,118},{28,104},{0,104},{0,82},{
+          1.77636e-015,82}}, color={0,0,255}));
+  connect(booleanExpression2.y, idealOpeningSwitch.control) annotation (Line(
+        points={{26.5,-70.45},{26.5,-79.225},{22,-79.225},{22,-87}}, color={255,
+          0,255}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-160,-180},
             {160,260}}),                                        graphics={
           Rectangle(
