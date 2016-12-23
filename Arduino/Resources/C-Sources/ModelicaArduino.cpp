@@ -86,30 +86,108 @@ class Arduino {
 
 public:
 	double time;
-	double analog[8];
-	int portMode[15]; // 0 = input, 1 = digital, 2 = PWM
+	double analog[8];      // voltages of the analog pins
+	double digital[15];    // voltages of the digital pins
+	int portMode[15];      // 0 = input, 1 = digital, 2 = PWM
 	double pulseWidth[15];
 
-#include "Blink.ino"
+	Arduino() : time(0) {
 
-	void pinMode(int pin, int mode) {
-		ModelicaFormatMessage("pinMode(%d, %d)\n", pin, mode);
-		portMode[pin] = mode;
-	}
-
-	void digitalWrite(int pin, int val) {
-		pulseWidth[pin] = (val == HIGH) ? 100 : 0;
-		ModelicaFormatMessage("digitalWrite(%d, %d) -> %f\n", pin, val, pulseWidth[pin]);
-	}
-
-	void delay(int ms) {
-		double end_time = time + ms * 1e-3;
-		while (time < end_time) {
-			// idle
-		}
 	}
 
 };
+
+
+Arduino instance;
+
+/*
+void pinMode(uint8_t, uint8_t);
+void digitalWrite(uint8_t, uint8_t);
+int digitalRead(uint8_t);
+int analogRead(uint8_t);
+void analogReference(uint8_t mode);
+void analogWrite(uint8_t, int);
+
+unsigned long millis(void);
+unsigned long micros(void);
+void delay(unsigned long);
+void delayMicroseconds(unsigned int us);
+unsigned long pulseIn(uint8_t pin, uint8_t state, unsigned long timeout);
+unsigned long pulseInLong(uint8_t pin, uint8_t state, unsigned long timeout);
+*/
+
+void pinMode(int pin, int mode) {
+	ModelicaFormatMessage("pinMode(%d, %d)\n", pin, mode);
+	instance.portMode[pin] = mode;
+}
+
+void digitalWrite(int pin, int val) {
+	instance.pulseWidth[pin] = (val == HIGH) ? 100 : 0;
+	ModelicaFormatMessage("digitalWrite(%d, %d) -> %f\n", pin, val, instance.pulseWidth[pin]);
+}
+
+int digitalRead(uint8_t pin) {
+	return instance.pulseWidth[pin] > 0 ? HIGH : LOW;
+}
+
+int analogRead(uint8_t pin) {
+	// TODO: clip [0, 1023]
+	return (instance.analog[pin] / 5) * 1024;
+}
+
+void delay(int ms) {
+	double end_time = instance.time + ms * 1e-3;
+	while (instance.time < end_time) {
+		// idle
+	}
+}
+
+unsigned long millis() {
+	return instance.time * 1000;
+}
+
+// from WMath.cpp
+
+extern "C" {
+  #include "stdlib.h"
+}
+
+void randomSeed(unsigned long seed) {
+  if (seed != 0) {
+    srand(seed);
+  }
+}
+
+long random(long howbig) {
+  if (howbig == 0) {
+    return 0;
+  }
+  return rand() % howbig;
+}
+
+long random(long howsmall, long howbig) {
+  if (howsmall >= howbig) {
+    return howsmall;
+  }
+  long diff = howbig - howsmall;
+  return random(diff) + howsmall;
+}
+
+long map(long x, long in_min, long in_max, long out_min, long out_max) {
+  return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+}
+
+unsigned int makeWord(unsigned int w) { return w; }
+unsigned int makeWord(unsigned char h, unsigned char l) { return (h << 8) | l; }
+
+// end WMath.cpp
+
+
+//#define pinMode(pin, mode) instance.pinMode(pin, mode)
+
+//#define setup() setup(Arduino *inst)
+
+#include "BlinkWithoutDelay.ino"
 
 
 class SoftSerial {
@@ -207,7 +285,7 @@ DWORD WINAPI MyThreadFunction(LPVOID lpParam) {
 
 	for(;;) {
 		//state->builtInLedOn = fmod(state->time, 1) > 0.5 ? 5 : 0;
-		instance->loop();
+		loop();
 	}
 
 	return 0;
@@ -225,15 +303,15 @@ void * ModelicaArduino_open() {
 
 	//state = &state_s; //malloc(sizeof(State_t));
 
-	Arduino *instance = new Arduino();
+	//Arduino *instance = new Arduino();
 
-	instance->setup();
+	setup();
  
 	hThread = CreateThread(
 	NULL, 				// default security attributes
 	0, 					// use default stack size
 	MyThreadFunction, 	// thread function
-	instance, 		    // argument to thread function
+	&instance, 		    // argument to thread function
 	0, 					// use default creation flags
 	&dwThreadId); 		// returns the thread identifier
 	 
@@ -251,7 +329,7 @@ void * ModelicaArduino_open() {
 
 	//return (void *)NULL;
 
-	return instance;
+	return &instance;
 }
 
 
@@ -263,24 +341,25 @@ void ModelicaArduino_close(void *externalObject) {
 
 }
 
-void ModelicaArduino_update(void *instance, double time, double *analog, int *portMode, double *pulseWidth) {
+void ModelicaArduino_update(void *instance__, double time, double *analog, double *digital, int *portMode, double *pulseWidth) {
 
 	//*builtInLedOn = fmod(time, 1) > 0.5 ? 5 : 0;
 	//State_t *state = (State_t *)instance;
 	//state->time = time;
 	//*builtInLedOn = state->builtInLedOn;
 
-	Arduino *instance_ = reinterpret_cast<Arduino *>(instance);
+	//Arduino *instance_ = _instance//reinterpret_cast<Arduino *>(instance);
 
-	instance_->time = time;
+	instance.time = time;
 
 	for (int i = 0; i < 6; i++) {
-		instance_->analog[i] = analog[i];
+		instance.analog[i] = analog[i];
 	}
 
 	for (int i = 0; i < 14; i++) {
-		portMode[i] = instance_->portMode[i];
-		pulseWidth[i] = instance_->pulseWidth[i];
+		instance.digital[i] = digital[i];
+		portMode[i] = instance.portMode[i];
+		pulseWidth[i] = instance.pulseWidth[i];
 	}
 
 }

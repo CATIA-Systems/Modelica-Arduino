@@ -1,3 +1,6 @@
 
+# Dymola
+*.bak-mo
+
 *.lib
 *.obj

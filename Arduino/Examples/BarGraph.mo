@@ -1,5 +1,5 @@
 within Arduino.Examples;
-model Example
+model BarGraph
               extends Modelica.Icons.Example;
 
   Components.ArduinoUno arduinoUno
@@ -18,10 +18,6 @@ model Example
     annotation (Placement(transformation(extent={{70,-30},{80,-20}})));
   Components.LED lED2
     annotation (Placement(transformation(extent={{70,-36},{80,-26}})));
-  Components.LED lED3
-    annotation (Placement(transformation(extent={{70,-42},{80,-32}})));
-  Components.LED lED4
-    annotation (Placement(transformation(extent={{70,-48},{80,-38}})));
   Components.LED lED5
     annotation (Placement(transformation(extent={{70,-18},{80,-8}})));
   Components.LED lED6
@@ -36,10 +32,6 @@ model Example
     annotation (Placement(transformation(extent={{70,12},{80,22}})));
   Components.LED lED11
     annotation (Placement(transformation(extent={{70,18},{80,28}})));
-  Components.LED lED12
-    annotation (Placement(transformation(extent={{70,24},{80,34}})));
-  Components.LED lED13
-    annotation (Placement(transformation(extent={{70,30},{80,40}})));
 equation
   connect(sineVoltage.n, arduinoUno.GND) annotation (Line(points={{-80,-50},
           {-80,-50},{-80,-70},{-80,-74},{0,-74},{0,-60}},
@@ -63,16 +55,9 @@ equation
           {53.2437,27.5455},{53.2437,17},{70,17}}, color={0,0,255}));
   connect(arduinoUno.D11, lED11.pin_p) annotation (Line(points={{40.5,35.7273},
           {55.2437,35.7273},{55.2437,23},{70,23}}, color={0,0,255}));
-  connect(arduinoUno.D12, lED12.pin_p) annotation (Line(points={{40.5,43.9091},
-          {57.2437,43.9091},{57.2437,29},{70,29}}, color={0,0,255}));
-  connect(arduinoUno.D13, lED13.pin_p) annotation (Line(points={{40.5,52.0909},
-          {59.2437,52.0909},{59.2437,35},{70,35}}, color={0,0,255}));
   connect(lED11.pin_n, lED10.pin_n)
-    annotation (Line(points={{80,23},{80,17}}, color={0,0,255}));
-  connect(lED12.pin_n, lED11.pin_n)
-    annotation (Line(points={{80,29},{80,23}}, color={0,0,255}));
-  connect(lED13.pin_n, lED12.pin_n)
-    annotation (Line(points={{80,35},{80,29}}, color={0,0,255}));
+    annotation (Line(points={{80,23},{80,23},{80,17}},
+                                               color={0,0,255}));
   connect(lED10.pin_n, lED9.pin_n)
     annotation (Line(points={{80,17},{80,11}}, color={0,0,255}));
   connect(lED9.pin_n, lED8.pin_n)
@@ -92,17 +77,6 @@ equation
                                               color={0,0,255}));
   connect(lED1.pin_n, lED2.pin_n)
     annotation (Line(points={{80,-25},{80,-31}},color={0,0,255}));
-  connect(lED2.pin_n, lED3.pin_n)
-    annotation (Line(points={{80,-31},{80,-37}}, color={0,0,255}));
-  connect(lED3.pin_n, lED4.pin_n)
-    annotation (Line(points={{80,-37},{80,-43}}, color={0,0,255}));
-  connect(lED4.pin_n, arduinoUno.GND) annotation (Line(points={{80,-43},{80,
-          -74},{0,-74},{0,-60}},
-                            color={0,0,255}));
-  connect(lED4.pin_p, arduinoUno.D0) annotation (Line(points={{70,-43},{64,-43},
-          {64,-54},{40.5,-54}},        color={0,0,255}));
-  connect(lED3.pin_p, arduinoUno.D1) annotation (Line(points={{70,-37},{62,-37},
-          {62,-46.3636},{40.5,-46.3636}},    color={0,0,255}));
   connect(lED2.pin_p, arduinoUno.D2) annotation (Line(points={{70,-31},{58,-31},
           {58,-37.6364},{40.5,-37.6364}},    color={0,0,255}));
   connect(lED1.pin_p, arduinoUno.D3) annotation (Line(points={{70,-25},{56,
@@ -110,7 +84,9 @@ equation
                                  color={0,0,255}));
   connect(lED.pin_p, arduinoUno.D4) annotation (Line(points={{70,-19},{56,-19},
           {56,-21.8182},{40.5,-21.8182}},color={0,0,255}));
+  connect(lED2.pin_n, arduinoUno.GND) annotation (Line(points={{80,-31},{80,-74},
+          {0,-74},{0,-60}}, color={0,0,255}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
         coordinateSystem(preserveAspectRatio=false)),
     experiment(StopTime=10));
-end Example;
+end BarGraph;

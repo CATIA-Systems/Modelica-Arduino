@@ -1,6 +1,8 @@
 ﻿within Arduino.Components;
 block ArduinoUno
 
+  parameter Real sampleRate = 0.1;
+
   Modelica.Electrical.Analog.Basic.Ground ground
     annotation (Placement(transformation(extent={{10,-160},{30,-140}})));
   Modelica.Electrical.Analog.Interfaces.Pin GND
@@ -101,8 +103,7 @@ block ArduinoUno
         origin={120,-100})));
   Modelica.Blocks.Sources.RealExpression realExpression2(y=pulseWidth[3])
     annotation (Placement(transformation(extent={{62,-110},{92,-98}})));
-  Modelica.Blocks.Sources.BooleanExpression booleanExpression2(y=portMode[3] ==
-        0)
+  Modelica.Blocks.Sources.BooleanExpression booleanExpression2(y=false)
     annotation (Placement(transformation(extent={{62,-102},{92,-90}})));
   Modelica.Electrical.Analog.Interfaces.Pin D2 annotation (Placement(
         transformation(extent={{150,-110},{170,-90}}),
@@ -270,9 +271,10 @@ block ArduinoUno
     input Arduino.Internal.ExternalArduino instance;
     input Modelica.SIunits.Time timeIn;
     input Real analog[6];
+    input Real digital[15];
     output Integer portMode[15];
     output Real pulseWidth[15];
-    external "C" ModelicaArduino_update(instance, timeIn, analog, portMode, pulseWidth) annotation (
+    external "C" ModelicaArduino_update(instance, timeIn, analog, digital, portMode, pulseWidth) annotation (
       Include="#include <ModelicaArduino.h>",
       IncludeDirectory="modelica://Arduino/Resources/C-Sources",
       Library="ModelicaArduino");
@@ -294,11 +296,12 @@ public
            {{-38,252},{-20,270}})));
 equation
 
-  when sample(0, 0.001) then
+  when sample(0, sampleRate) then
   (portMode, pulseWidth) = evaluate(
     externalArduino,
     time,
-    {A0.v,A1.v,A2.v,A3.v,A4.v,A5.v});
+    {A0.v,A1.v,A2.v,A3.v,A4.v,A5.v},
+    {0,0,pre(D2.v),0,0,0,0,0,0,0,0,0,0,0,0});
   end when;
 
   //digitalPortPulseWidts[1] = time * 10;
