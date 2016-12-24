@@ -81,8 +81,8 @@ void yield(void);
 //#else
 //#define INTERNAL 3
 //#endif
-//#define DEFAULT 1
-//#define EXTERNAL 0
+#define DEFAULT 1
+#define EXTERNAL 0
 //#endif
 
 // undefine stdlib's abs if encountered

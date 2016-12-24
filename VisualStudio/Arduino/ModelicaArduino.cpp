@@ -130,6 +130,16 @@ int analogRead(uint8_t pin) {
 	return (instance.analog[pin - 14] / 5) * 1024;
 }
 
+void analogReference(uint8_t mode) {
+
+}
+
+
+void analogWrite(uint8_t, int) {
+	//instance.error = "analogWrite() is not supported";
+}
+
+
 void delay(int ms) {
 	ModelicaFormatMessage("delay at %f\n", instance.time);
 	double end_time = instance.time + ms * 1e-3;
@@ -138,9 +148,6 @@ void delay(int ms) {
 	}
 }
 
-void analogWrite(uint8_t, int) {
-	instance.error = "analogWrite() is not supported";
-}
 
 unsigned long millis() {
 	return instance.time * 1000;

@@ -7,7 +7,7 @@ class ExternalArduino "External object of Arduino"
   external"C" externalArduino =
         ModelicaArduino_open() annotation (
     Include="#include <ModelicaArduino.h>",
-    IncludeDirectory="modelica://Arduino/Resources/C-Sources",
+    IncludeDirectory="modelica://Arduino/Resources/Include",
     Library="ModelicaArduino");
   end constructor;
 
@@ -15,7 +15,7 @@ class ExternalArduino "External object of Arduino"
     input ExternalArduino externalArduino;
   external"C" ModelicaArduino_close(externalArduino) annotation (
   Include="#include <ModelicaArduino.h>",
-  IncludeDirectory="modelica://Arduino/Resources/C-Sources",
+  IncludeDirectory="modelica://Arduino/Resources/Include",
   Library="ModelicaArduino");
   end destructor;
 

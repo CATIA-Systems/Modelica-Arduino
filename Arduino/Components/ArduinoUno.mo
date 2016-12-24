@@ -267,7 +267,7 @@ block ArduinoUno
     output Real pulseWidth[15];
     external "C" ModelicaArduino_update(instance, timeIn, analog, digital, portMode, pulseWidth) annotation (
       Include="#include <ModelicaArduino.h>",
-      IncludeDirectory="modelica://Arduino/Resources/C-Sources",
+      IncludeDirectory="modelica://Arduino/Resources/Include",
       Library="ModelicaArduino");
    end evaluate;
 

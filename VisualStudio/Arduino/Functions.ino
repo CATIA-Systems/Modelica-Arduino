@@ -4,6 +4,38 @@ void setup() {
 
   pinMode(LED_BUILTIN, OUTPUT);
 
+  
+  Serial.println();
+  Serial.println("Digital I/O");
+  Serial.println();
+
+  Serial.println("pinMode(0, INPUT)");
+  pinMode(0, INPUT);
+
+  Serial.print("digitalRead(0) = ");
+  Serial.println(digitalRead(0));
+
+  Serial.println("pinMode(0, INPUT)");
+  pinMode(0, INPUT);
+
+  Serial.println("digitalWrite(0, HIGH)");
+  digitalWrite(0, HIGH);
+
+
+  Serial.println();
+  Serial.println("Analog I/O");
+  Serial.println();
+
+  Serial.println("analogReference(DEFAULT)");
+  analogReference(DEFAULT);
+
+  Serial.print("analogRead(A0)");
+  Serial.println(analogRead(A0));
+
+  Serial.println("analogWrite(9, 100)");
+  analogWrite(9, 100);
+
+
   Serial.println();
   Serial.println("Math");
   Serial.println();
@@ -28,6 +60,7 @@ void setup() {
 
   Serial.print("sqrt(81.) = ");
   Serial.println(sqrt(81.));
+
 
   Serial.println();
   Serial.println("Trigonometry");

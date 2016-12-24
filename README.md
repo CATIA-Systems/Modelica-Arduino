@@ -1,6 +1,6 @@
-# Simulate Arduino Sketches in Dymola
+# Simulate Arduino Sketches in Modelica
 
-With the Arduino Modelica library you can try out your sketches in a purely virtual environment.
+Simulate your circuits and sketches on a virtual [Arduino Uno](https://www.arduino.cc/en/Main/ArduinoBoardUno)
 
 ## Prerequistites
 
@@ -26,7 +26,7 @@ Functions that cannot be used in sketches are ~~striked through~~
 
 #### Digital I/O
 
-- ~~pinMode()~~
+- [pinMode()](https://www.arduino.cc/en/Reference/PinMode)
 - [digitalWrite()](https://www.arduino.cc/en/Reference/DigitalWrite)
 - [digitalRead()](https://www.arduino.cc/en/Reference/DigitalRead)
 
@@ -51,7 +51,7 @@ Functions that cannot be used in sketches are ~~striked through~~
 
 #### Time
 
-- millis()
+- [millis()](https://www.arduino.cc/en/Reference/Millis)
 - ~~micros()~~
 - [delay()](https://www.arduino.cc/en/Reference/Delay)
 - ~~delayMicroseconds()~~
