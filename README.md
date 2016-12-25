@@ -2,6 +2,9 @@
 
 Simulate your circuits and sketches on a virtual [Arduino Uno](https://www.arduino.cc/en/Main/ArduinoBoardUno)
 
+![alt text](Arduino/Button_Model3.png)
+
+
 ## Prerequistites
 
 - Dymola 2017 FD01 (Windows)
@@ -9,14 +12,28 @@ Simulate your circuits and sketches on a virtual [Arduino Uno](https://www.ardui
 
 ## Getting Started
 
-To simulate a sketch you have to perform following steps.
+To simulate a sketch named `Blink` you have to perform following steps.
 
-1. Save your sketch as `VisualStudio/Arduino/Sketch.ino`
-1. Open the Solution `VisualStudio/Arduino.sln` in Visual Studio
-2. Press `F7` to build the Arduino code
-2. Load the Modelica library `Arduino/package.mo` in Dymola
-3. Add an instance of `Arduino/Components/ArduinoUno` to your model
-4. Simulate your model
+1. Save your sketch as `VisualStudio/Arduino/Blink.ino`
+
+2. Open the Solution `VisualStudio/Arduino.sln` in Visual Studio
+
+3. Open `Arduino > Source Files > Sketch.cpp` and change the #include statement
+to include your sketch
+
+```C
+...
+// include your sketch here
+#include "Blink.ino"
+...```
+
+4. Press `F7` to build the Arduino code
+
+5. Load the Modelica library `Arduino/package.mo` in Dymola
+
+6. Add an instance of `Arduino/Components/ArduinoUno` to your model
+
+7. Simulate your model
 
 > If you change your sketch you have to re-build the Arduino code and model
 > for the change to take effect
