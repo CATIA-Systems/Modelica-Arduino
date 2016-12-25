@@ -117,7 +117,7 @@ void pinMode(int pin, int mode) {
 
 void digitalWrite(int pin, int val) {
 	instance.pulseWidth[pin] = (val == HIGH) ? 100 : 0;
-	ModelicaFormatMessage("digitalWrite(%d, %d) -> %f\n", pin, val, instance.pulseWidth[pin]);
+	//ModelicaFormatMessage("digitalWrite(%d, %d) -> %f\n", pin, val, instance.pulseWidth[pin]);
 }
 
 int digitalRead(uint8_t pin) {
@@ -135,8 +135,10 @@ void analogReference(uint8_t mode) {
 }
 
 
-void analogWrite(uint8_t, int) {
+void analogWrite(uint8_t pin, int val) {
 	//instance.error = "analogWrite() is not supported";
+	instance.portMode[pin] = OUTPUT;
+	instance.pulseWidth[pin] = 100. * (val / 255.); 
 }
 
 
@@ -210,7 +212,7 @@ public:
 SoftSerial Serial;
 
 
-#include "Functions.ino"
+#include "BarGraph.ino"
 
 
 DWORD WINAPI MyThreadFunction(LPVOID lpParam) {

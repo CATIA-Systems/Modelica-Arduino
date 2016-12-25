@@ -3,3 +3,5 @@ Blink
 Button
 BlinkWithoutDelay
 AnalogReadSerial
+AnalogWrite
+Fade

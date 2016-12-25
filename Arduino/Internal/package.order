@@ -2,3 +2,4 @@ ExternalArduino
 VariablePulseVoltage
 DigitalPort
 VariableWidthPulse
+DigitalPin
