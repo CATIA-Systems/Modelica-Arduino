@@ -591,7 +591,7 @@ equation
           textString="2",
           horizontalAlignment=TextAlignment.Right),
         Text(
-          extent={{102,-60},{138,-84}},
+          extent={{102,-58},{138,-82}},
           pattern=LinePattern.None,
           lineThickness=0.5,
           fillColor={136,172,188},
@@ -599,10 +599,10 @@ equation
           lineColor={0,0,0},
           fontName="Consolas",
           textStyle={TextStyle.Bold},
-          textString="3",
-          horizontalAlignment=TextAlignment.Right),
+          horizontalAlignment=TextAlignment.Right,
+          textString="~3"),
         Text(
-          extent={{102,-30},{138,-54}},
+          extent={{102,-28},{138,-52}},
           pattern=LinePattern.None,
           lineThickness=0.5,
           fillColor={136,172,188},
@@ -613,7 +613,7 @@ equation
           textString="4",
           horizontalAlignment=TextAlignment.Right),
         Text(
-          extent={{102,0},{138,-24}},
+          extent={{102,2},{138,-22}},
           pattern=LinePattern.None,
           lineThickness=0.5,
           fillColor={136,172,188},
@@ -621,8 +621,8 @@ equation
           lineColor={0,0,0},
           fontName="Consolas",
           textStyle={TextStyle.Bold},
-          textString="5",
-          horizontalAlignment=TextAlignment.Right),
+          horizontalAlignment=TextAlignment.Right,
+          textString="~5"),
         Text(
           extent={{102,32},{138,8}},
           pattern=LinePattern.None,
@@ -632,8 +632,8 @@ equation
           lineColor={0,0,0},
           fontName="Consolas",
           textStyle={TextStyle.Bold},
-          textString="6",
-          horizontalAlignment=TextAlignment.Right),
+          horizontalAlignment=TextAlignment.Right,
+          textString="~6"),
         Text(
           extent={{102,62},{138,38}},
           pattern=LinePattern.None,
@@ -744,7 +744,7 @@ equation
           textString="RESET",
           horizontalAlignment=TextAlignment.Left),
         Text(
-          extent={{12,242},{46,218}},
+          extent={{12,242},{48,218}},
           pattern=LinePattern.None,
           lineThickness=0.5,
           fillColor={136,172,188},
@@ -803,7 +803,7 @@ equation
           pattern=LinePattern.None,
           lineColor={0,0,0}),
         Text(
-          extent={{-50,246},{-8,212}},
+          extent={{-48,248},{-4,212}},
           pattern=LinePattern.None,
           lineThickness=0.5,
           fillColor={136,172,188},
