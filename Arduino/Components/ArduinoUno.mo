@@ -19,12 +19,13 @@ block ArduinoUno
         transformation(extent={{-170,-90},{-150,-70}}),iconTransformation(
           extent={{-168,-56},{-150,-38}})));
   Modelica.Electrical.Analog.Interfaces.Pin A3 annotation (Placement(
-        transformation(extent={{-170,-90},{-150,-70}}),iconTransformation(
-          extent={{-168,-88},{-150,-70}})));
-  Modelica.Electrical.Analog.Interfaces.Pin A4 annotation (Placement(
-        transformation(extent={{-170,-120},{-150,-100}}),
+        transformation(extent={{-170,-110},{-150,-90}}),
                                                        iconTransformation(
-          extent={{-168,-118},{-150,-100}})));
+          extent={{-168,-108},{-150,-90}})));
+  Modelica.Electrical.Analog.Interfaces.Pin A4 annotation (Placement(
+        transformation(extent={{-170,-130},{-150,-110}}),
+                                                       iconTransformation(
+          extent={{-168,-128},{-150,-110}})));
   Modelica.Electrical.Analog.Interfaces.Pin A5 annotation (Placement(
         transformation(extent={{-170,-150},{-150,-130}}),
                                                        iconTransformation(
@@ -61,20 +62,20 @@ block ArduinoUno
         transformation(extent={{150,-140},{170,-120}}),
                                                    iconTransformation(extent={{153,
             -139},{171,-121}})));
-  Modelica.Electrical.Analog.Interfaces.Pin RST
-    annotation (Placement(transformation(extent={{-170,198},{-150,218}}),
-        iconTransformation(extent={{-168,200},{-150,218}})));
+  Modelica.Electrical.Analog.Interfaces.Pin RESET annotation (Placement(
+        transformation(extent={{-170,198},{-150,218}}), iconTransformation(
+          extent={{-168,200},{-150,218}})));
   Modelica.Electrical.Analog.Interfaces.Pin AREF
     annotation (Placement(transformation(extent={{-170,158},{-150,178}}),
         iconTransformation(extent={{-168,160},{-150,178}})));
   Modelica.Electrical.Analog.Interfaces.Pin A0 annotation (Placement(
-        transformation(extent={{-170,-46},{-150,-26}}),iconTransformation(
+        transformation(extent={{-170,-50},{-150,-30}}),iconTransformation(
           extent={{-168,2},{-150,20}})));
   Modelica.Electrical.Analog.Basic.Resistor resistor2(
                                                      R=1e9)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},
         rotation=180,
-        origin={-130,-36})));
+        origin={-130,-40})));
   Modelica.Blocks.Sources.RealExpression realExpression1(y=pulseWidth[2])
     annotation (Placement(transformation(extent={{62,-140},{92,-128}})));
   Modelica.Blocks.Sources.BooleanExpression booleanExpression1(y=portMode[2] ==
@@ -294,6 +295,16 @@ public
     annotation (Placement(transformation(extent={{110,-110},{130,-90}})));
   Internal.DigitalPin digitalPin1
     annotation (Placement(transformation(extent={{110,-140},{130,-120}})));
+  Modelica.Electrical.Analog.Basic.Resistor resistorAREF(R=1e5) annotation (
+      Placement(transformation(
+        extent={{-10,-10},{10,10}},
+        rotation=0,
+        origin={-110,168})));
+  Modelica.Electrical.Analog.Basic.Resistor resistorRESET(R=1e5) annotation (
+      Placement(transformation(
+        extent={{-10,-10},{10,10}},
+        rotation=0,
+        origin={-110,208})));
 equation
 
   when sample(0, sampleRate) then
@@ -313,10 +324,10 @@ equation
           -60}},            color={0,0,255}));
   connect(resistor4.n, A2) annotation (Line(points={{-140,-80},{-150,-80},{-160,
           -80}}, color={0,0,255}));
-  connect(resistor5.n, A3) annotation (Line(points={{-140,-100},{-160,-100},{-160,
-          -80}},       color={0,0,255}));
-  connect(resistor6.n, A4) annotation (Line(points={{-140,-120},{-150,-120},{-150,
-          -110},{-160,-110}},     color={0,0,255}));
+  connect(resistor5.n, A3) annotation (Line(points={{-140,-100},{-160,-100}},
+                       color={0,0,255}));
+  connect(resistor6.n, A4) annotation (Line(points={{-140,-120},{-150,-120},{
+          -160,-120}},            color={0,0,255}));
   connect(resistor7.n, A5) annotation (Line(points={{-140,-140},{-160,-140}},
                        color={0,0,255}));
   connect(resistor3.p, ground.p) annotation (Line(points={{-120,-60},{-86,-60},
@@ -329,14 +340,10 @@ equation
           {-86,-140},{20,-140}},       color={0,0,255}));
   connect(resistor7.p, ground.p) annotation (Line(points={{-120,-140},{20,-140}},
                                        color={0,0,255}));
-  connect(RST, ground.p) annotation (Line(points={{-160,208},{-60,208},{-60,-86},
-          {-60,-86},{-60,-140},{20,-140}},
-                                      color={0,0,255}));
-  connect(AREF, ground.p) annotation (Line(points={{-160,168},{-60,168},{-60,-140},
-          {20,-140}}, color={0,0,255}));
-  connect(resistor2.n, A0) annotation (Line(points={{-140,-36},{-160,-36}},
+  connect(resistor2.n, A0) annotation (Line(points={{-140,-40},{-146,-40},{-150,
+          -40},{-160,-40}},
         color={0,0,255}));
-  connect(resistor2.p, ground.p) annotation (Line(points={{-120,-36},{-86,-36},
+  connect(resistor2.p, ground.p) annotation (Line(points={{-120,-40},{-86,-40},
           {-86,-60},{-86,-140},{20,-140}},      color={0,0,255}));
   connect(digitalPin0.pin, D0) annotation (Line(points={{130,-160},{146,-160},{
           160,-160}}, color={0,0,255}));
@@ -442,6 +449,14 @@ equation
           93.5,-134},{100.75,-134},{108,-134}}, color={0,0,127}));
   connect(digitalPin1.pin, D1) annotation (Line(points={{130,-130},{144,-130},{
           160,-130}}, color={0,0,255}));
+  connect(AREF, resistorAREF.p)
+    annotation (Line(points={{-160,168},{-120,168}}, color={0,0,255}));
+  connect(resistorAREF.n, ground.p) annotation (Line(points={{-100,168},{-60,
+          168},{-60,-140},{20,-140}}, color={0,0,255}));
+  connect(RESET, resistorRESET.p)
+    annotation (Line(points={{-160,208},{-120,208}}, color={0,0,255}));
+  connect(resistorRESET.n, ground.p) annotation (Line(points={{-100,208},{-60,
+          208},{-60,-140},{20,-140}}, color={0,0,255}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-160,-180},
             {160,260}}),                                        graphics={
           Rectangle(

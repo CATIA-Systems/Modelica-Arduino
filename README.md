@@ -7,14 +7,19 @@ Simulate your circuits and sketches on a virtual [Arduino Uno](https://www.ardui
 - Dymola 2017 FD01 (Windows)
 - Visual Studio 2012
 
-## Simulate a Sketch
+## Getting Started
 
-1. Save your sketch as `Arduino/Resources/C-Sources/sketch.ino`
-2. Load the Arduino library in Dymola
-3. Create an instance of `Arduino/Components/ArduinoUno` in your model
+To simulate a sketch you have to perform following steps.
+
+1. Save your sketch as `VisualStudio/Arduino/Sketch.ino`
+1. Open the Solution `VisualStudio/Arduino.sln` in Visual Studio
+2. Press `F7` to build the Arduino code
+2. Load the Modelica library `Arduino/package.mo` in Dymola
+3. Add an instance of `Arduino/Components/ArduinoUno` to your model
 4. Simulate your model
 
-> Hint: if you change your sketch you have to re-build the model
+> If you change your sketch you have to re-build the Arduino code and model
+> for the change to take effect
 
 ## Limitations
 
