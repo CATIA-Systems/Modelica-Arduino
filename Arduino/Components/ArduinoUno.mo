@@ -286,7 +286,7 @@ public
     annotation (Placement(transformation(extent={{-15.5,-6.5},{15.5,6.5}},
         rotation=0,
         origin={75.5,-92.5})));
-  Modelica.Blocks.Sources.RealExpression realExpression2(y=pulseWidth[3]/20)
+  Modelica.Blocks.Sources.RealExpression realExpression2(y=pulseWidth[3])
     annotation (Placement(transformation(extent={{-15,-6},{15,6}},
         rotation=0,
         origin={77,-104})));

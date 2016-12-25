@@ -12,43 +12,43 @@ model BarGraph
         extent={{-10,-10},{10,10}},
         rotation=270,
         origin={-80,-40})));
-  Modelica.Electrical.Analog.Basic.Resistor resistor
+  Modelica.Electrical.Analog.Basic.Resistor resistor(R=220)
     annotation (Placement(transformation(extent={{68,40},{78,50}})));
   Components.LED lED3
     annotation (Placement(transformation(extent={{48,40},{58,50}})));
-  Modelica.Electrical.Analog.Basic.Resistor resistor1
+  Modelica.Electrical.Analog.Basic.Resistor resistor1(R=220)
     annotation (Placement(transformation(extent={{68,30},{78,40}})));
   Components.LED lED4
     annotation (Placement(transformation(extent={{48,30},{58,40}})));
-  Modelica.Electrical.Analog.Basic.Resistor resistor2
+  Modelica.Electrical.Analog.Basic.Resistor resistor2(R=220)
     annotation (Placement(transformation(extent={{68,20},{78,30}})));
   Components.LED lED1
     annotation (Placement(transformation(extent={{48,20},{58,30}})));
-  Modelica.Electrical.Analog.Basic.Resistor resistor3
+  Modelica.Electrical.Analog.Basic.Resistor resistor3(R=220)
     annotation (Placement(transformation(extent={{68,10},{78,20}})));
   Components.LED lED2
     annotation (Placement(transformation(extent={{48,10},{58,20}})));
-  Modelica.Electrical.Analog.Basic.Resistor resistor4
+  Modelica.Electrical.Analog.Basic.Resistor resistor4(R=220)
     annotation (Placement(transformation(extent={{68,0},{78,10}})));
   Components.LED lED5
     annotation (Placement(transformation(extent={{48,0},{58,10}})));
-  Modelica.Electrical.Analog.Basic.Resistor resistor5
+  Modelica.Electrical.Analog.Basic.Resistor resistor5(R=220)
     annotation (Placement(transformation(extent={{68,-10},{78,0}})));
   Components.LED lED6
     annotation (Placement(transformation(extent={{48,-10},{58,0}})));
-  Modelica.Electrical.Analog.Basic.Resistor resistor6
+  Modelica.Electrical.Analog.Basic.Resistor resistor6(R=220)
     annotation (Placement(transformation(extent={{68,-20},{78,-10}})));
   Components.LED lED7
     annotation (Placement(transformation(extent={{48,-20},{58,-10}})));
-  Modelica.Electrical.Analog.Basic.Resistor resistor7
+  Modelica.Electrical.Analog.Basic.Resistor resistor7(R=220)
     annotation (Placement(transformation(extent={{68,-30},{78,-20}})));
   Components.LED lED8
     annotation (Placement(transformation(extent={{48,-30},{58,-20}})));
-  Modelica.Electrical.Analog.Basic.Resistor resistor8
+  Modelica.Electrical.Analog.Basic.Resistor resistor8(R=220)
     annotation (Placement(transformation(extent={{68,-40},{78,-30}})));
   Components.LED lED9
     annotation (Placement(transformation(extent={{48,-40},{58,-30}})));
-  Modelica.Electrical.Analog.Basic.Resistor resistor9
+  Modelica.Electrical.Analog.Basic.Resistor resistor9(R=220)
     annotation (Placement(transformation(extent={{68,-50},{78,-40}})));
   Components.LED lED10
     annotation (Placement(transformation(extent={{48,-50},{58,-40}})));
