@@ -55,7 +55,7 @@ Functions that cannot be used in sketches are ~~striked through~~
 
 - ~~analogReference()~~
 - [analogRead()](https://www.arduino.cc/en/Reference/AnalogRead)
-- ~~analogWrite() - PWM~~
+- [analogWrite() - PWM](https://www.arduino.cc/en/Reference/AnalogWrite)
 
 #### Due & Zero only
 
@@ -136,7 +136,7 @@ Functions that cannot be used in sketches are ~~striked through~~
 
 #### Communication
 
-- Serial
+- [Serial](https://www.arduino.cc/en/Reference/Serial) `only: print(), println(), write()`
 - ~~Stream~~
 
 #### USB (32u4 based boards and Due/Zero only)
