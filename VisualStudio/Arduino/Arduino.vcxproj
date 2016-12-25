@@ -85,7 +85,7 @@
     <ClCompile Include="ModelicaArduino.cpp" />
     <ClCompile Include="Print.cpp" />
     <ClCompile Include="Sketch.cpp" />
-    <ClCompile Include="Wiring.cpp" />
+    <ClCompile Include="SoftArduino.cpp" />
     <ClCompile Include="WMath.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -98,7 +98,7 @@
     <ClInclude Include="SoftSerial.h" />
     <ClInclude Include="stdbool.h" />
     <ClInclude Include="WCharacter.h" />
-    <ClInclude Include="Wiring.h" />
+    <ClInclude Include="SoftArduino.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

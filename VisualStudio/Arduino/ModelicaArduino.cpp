@@ -10,15 +10,8 @@
 #include "ModelicaArduino.h"
 
 #include "Arduino.h"
-//#include "SoftSerial.h"
 #include <stdint.h>
-#include "Wiring.h"
-
-
-//SoftSerial Serial;
-
-
-//#include "Fade.ino"
+#include "SoftArduino.h"
 
 
 DWORD WINAPI MyThreadFunction(LPVOID lpParam) {
@@ -38,15 +31,15 @@ void * ModelicaArduino_open() {
 	
 	setup();
  
-	if (ArduinoUno::instance.error) {
-		ModelicaFormatError("Error in setup(): %s", ArduinoUno::instance.error);
+	if (SoftArduino::instance.error) {
+		ModelicaFormatError("Error in setup(): %s", SoftArduino::instance.error);
 	}
 
 	hThread = CreateThread(
 	NULL, 				   // default security attributes
 	0, 					   // use default stack size
 	MyThreadFunction, 	   // thread function
-	&ArduinoUno::instance, // argument to thread function
+	&SoftArduino::instance, // argument to thread function
 	0, 					   // use default creation flags
 	&dwThreadId); 		   // returns the thread identifier
 	 
@@ -54,7 +47,7 @@ void * ModelicaArduino_open() {
 		ModelicaFormatError("Failed to create arduino thread. %d.\n", GetLastError());
 	}
 
-	return &ArduinoUno::instance;
+	return &SoftArduino::instance;
 }
 
 void ModelicaArduino_close(void *externalObject) {
@@ -68,21 +61,29 @@ void ModelicaArduino_close(void *externalObject) {
 
 void ModelicaArduino_update(void *instance__, double time, double *analog, double *digital, int *portMode, double *pulseWidth) {
 
-	if (ArduinoUno::instance.error) {
-		ModelicaFormatError("Error in loop(): %s", ArduinoUno::instance.error);
+	if (SoftArduino::instance.error) {
+		ModelicaFormatError("Error in loop(): %s", SoftArduino::instance.error);
 		return;
 	}
 
-	ArduinoUno::instance.time = time;
+	// update the time
+	SoftArduino::instance.time = time;
 
-	for (int i = 0; i < 6; i++) {
-		ArduinoUno::instance.analog[i] = analog[i];
+	for (int i = 0; i < NUM_ANALOG_INPUTS; i++) {
+
+		// map analog input from [0,5] to [0,1023]
+		SoftArduino::instance.analog[i] = (analog[i] / 5.) * 1023;
+
 	}
 
 	for (int i = 0; i < 14; i++) {
-		ArduinoUno::instance.digital[i] = digital[i];
-		portMode[i] = ArduinoUno::instance.portMode[i];
-		pulseWidth[i] = ArduinoUno::instance.pulseWidth[i];
+
+		// map digital input from [0,5] to LOW|HIGH using a threshold of 2.5
+		SoftArduino::instance.digital[i] = digital[i] > 2.5 ? HIGH : LOW;
+
+		portMode[i] = SoftArduino::instance.portMode[i];
+		
+		pulseWidth[i] = (SoftArduino::instance.pulseWidth[i] / 255.) * 100.;
 	}
 
 }

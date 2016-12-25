@@ -14,18 +14,17 @@ block ArduinoUno
 
   Modelica.Electrical.Analog.Interfaces.Pin A1 annotation (Placement(
         transformation(extent={{-170,-70},{-150,-50}}),iconTransformation(
-          extent={{-168,-26},{-150,-8}})));
+          extent={{-168,-28},{-150,-10}})));
   Modelica.Electrical.Analog.Interfaces.Pin A2 annotation (Placement(
         transformation(extent={{-170,-90},{-150,-70}}),iconTransformation(
           extent={{-168,-56},{-150,-38}})));
   Modelica.Electrical.Analog.Interfaces.Pin A3 annotation (Placement(
-        transformation(extent={{-170,-110},{-150,-90}}),
-                                                       iconTransformation(
-          extent={{-168,-108},{-150,-90}})));
+        transformation(extent={{-170,-90},{-150,-70}}),iconTransformation(
+          extent={{-168,-88},{-150,-70}})));
   Modelica.Electrical.Analog.Interfaces.Pin A4 annotation (Placement(
-        transformation(extent={{-170,-130},{-150,-110}}),
+        transformation(extent={{-170,-120},{-150,-100}}),
                                                        iconTransformation(
-          extent={{-168,-128},{-150,-110}})));
+          extent={{-168,-118},{-150,-100}})));
   Modelica.Electrical.Analog.Interfaces.Pin A5 annotation (Placement(
         transformation(extent={{-170,-150},{-150,-130}}),
                                                        iconTransformation(
@@ -70,7 +69,7 @@ block ArduinoUno
         iconTransformation(extent={{-168,160},{-150,178}})));
   Modelica.Electrical.Analog.Interfaces.Pin A0 annotation (Placement(
         transformation(extent={{-170,-50},{-150,-30}}),iconTransformation(
-          extent={{-168,2},{-150,20}})));
+          extent={{-168,0},{-150,18}})));
   Modelica.Electrical.Analog.Basic.Resistor resistor2(
                                                      R=1e9)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},
@@ -252,16 +251,18 @@ block ArduinoUno
         origin={30,70})));
 
 //protected
-    Integer portMode[15];
-    Real pulseWidth[15];
+    final constant Integer numAnalogInputs = 6;
+    final constant Integer numDigitalPins = 20;
+    Integer portMode[numDigitalPins];
+    discrete Real pulseWidth[numDigitalPins];
 
    function evaluate
     input Arduino.Internal.ExternalArduino instance;
     input Modelica.SIunits.Time timeIn;
-    input Real analog[6];
-    input Real digital[15];
-    output Integer portMode[15];
-    output Real pulseWidth[15];
+    input Real analog[numAnalogInputs];
+    input Real digital[numDigitalPins];
+    output Integer portMode[numDigitalPins];
+    output Real pulseWidth[numDigitalPins];
     external "C" ModelicaArduino_update(instance, timeIn, analog, digital, portMode, pulseWidth) annotation (
       Include="#include <ModelicaArduino.h>",
       IncludeDirectory="modelica://Arduino/Resources/Include",
@@ -312,10 +313,8 @@ equation
     externalArduino,
     time,
     {A0.v,A1.v,A2.v,A3.v,A4.v,A5.v},
-    {0,0,pre(D2.v),0,0,0,0,0,0,0,0,0,0,0,0});
+    {pre(D0.v),pre(D1.v),pre(D2.v),pre(D3.v),pre(D4.v),pre(D5.v),pre(D6.v),pre(D7.v),pre(D8.v),pre(D9.v),pre(D10.v),pre(D11.v),pre(D12.v),pre(D13.v),0,0,0,0,0,0});
   end when;
-
-  //digitalPortPulseWidts[1] = time * 10;
 
   connect(GND, ground.p)
     annotation (Line(points={{0,-180},{0,-180},{0,-140},{20,-140}},
@@ -324,10 +323,11 @@ equation
           -60}},            color={0,0,255}));
   connect(resistor4.n, A2) annotation (Line(points={{-140,-80},{-150,-80},{-160,
           -80}}, color={0,0,255}));
-  connect(resistor5.n, A3) annotation (Line(points={{-140,-100},{-160,-100}},
+  connect(resistor5.n, A3) annotation (Line(points={{-140,-100},{-150,-100},{
+          -150,-80},{-160,-80}},
                        color={0,0,255}));
-  connect(resistor6.n, A4) annotation (Line(points={{-140,-120},{-150,-120},{
-          -160,-120}},            color={0,0,255}));
+  connect(resistor6.n, A4) annotation (Line(points={{-140,-120},{-160,-120},{
+          -160,-110}},            color={0,0,255}));
   connect(resistor7.n, A5) annotation (Line(points={{-140,-140},{-160,-140}},
                        color={0,0,255}));
   connect(resistor3.p, ground.p) annotation (Line(points={{-120,-60},{-86,-60},
@@ -343,8 +343,8 @@ equation
   connect(resistor2.n, A0) annotation (Line(points={{-140,-40},{-146,-40},{-150,
           -40},{-160,-40}},
         color={0,0,255}));
-  connect(resistor2.p, ground.p) annotation (Line(points={{-120,-40},{-86,-40},
-          {-86,-60},{-86,-140},{20,-140}},      color={0,0,255}));
+  connect(resistor2.p, ground.p) annotation (Line(points={{-120,-40},{-86,-40},{
+          -86,-60},{-86,-140},{20,-140}},       color={0,0,255}));
   connect(digitalPin0.pin, D0) annotation (Line(points={{130,-160},{146,-160},{
           160,-160}}, color={0,0,255}));
   connect(digitalPin0.pulseWidth, realExpression0.y) annotation (Line(points={{
@@ -451,12 +451,12 @@ equation
           160,-130}}, color={0,0,255}));
   connect(AREF, resistorAREF.p)
     annotation (Line(points={{-160,168},{-120,168}}, color={0,0,255}));
-  connect(resistorAREF.n, ground.p) annotation (Line(points={{-100,168},{-60,
-          168},{-60,-140},{20,-140}}, color={0,0,255}));
+  connect(resistorAREF.n, ground.p) annotation (Line(points={{-100,168},{-60,168},
+          {-60,-140},{20,-140}}, color={0,0,255}));
   connect(RESET, resistorRESET.p)
     annotation (Line(points={{-160,208},{-120,208}}, color={0,0,255}));
-  connect(resistorRESET.n, ground.p) annotation (Line(points={{-100,208},{-60,
-          208},{-60,-140},{20,-140}}, color={0,0,255}));
+  connect(resistorRESET.n, ground.p) annotation (Line(points={{-100,208},{-60,208},
+          {-60,-140},{20,-140}}, color={0,0,255}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-160,-180},
             {160,260}}),                                        graphics={
           Rectangle(

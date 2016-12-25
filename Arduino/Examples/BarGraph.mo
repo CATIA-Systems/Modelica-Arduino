@@ -57,7 +57,8 @@ equation
           -80,-50},{-80,-70},{-80,-74},{-20,-74},{-20,-60}},
                                                         color={0,0,255}));
   connect(sineVoltage.p, arduinoUno.A0) annotation (Line(points={{-80,-30},{-80,
-          -30},{-80,-7.9091},{-59.75,-7.9091}}, color={0,0,255}));
+          -30},{-80,-8.45455},{-59.75,-8.45455}},
+                                                color={0,0,255}));
   connect(lED3.pin_n, resistor.p)
     annotation (Line(points={{58,45},{68,45}}, color={0,0,255}));
   connect(lED4.pin_n, resistor1.p)

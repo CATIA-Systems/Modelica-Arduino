@@ -1,3 +1,5 @@
+#pragma once
+
 #include "Print.h"
 #include "ModelicaUtilities.h"
 
