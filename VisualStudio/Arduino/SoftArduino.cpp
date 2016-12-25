@@ -62,6 +62,13 @@ void delay(unsigned long ms) {
 	}
 }
 
+void delayMicroseconds(unsigned int us) {
+	double end_time = SoftArduino::instance.time + us * 1e-6;
+	while (SoftArduino::instance.time < end_time) {
+		// idle
+	}
+}
+
 unsigned long millis() {
 	return SoftArduino::instance.time * 1000;
 }
