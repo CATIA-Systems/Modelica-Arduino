@@ -35,11 +35,21 @@ int analogRead(uint8_t pin) {
 }
 
 void analogReference(uint8_t mode) {
-
+	
+	switch(mode) {
+	case DEFAULT:
+	//case INTERNAL:
+	//case INTERNAL1V1:
+	case EXTERNAL:
+		SoftArduino::instance.analogReferenceMode = mode;
+		break;
+	default:
+		ModelicaFormatError("Illegal analog reference mode: %d\n", mode);
+		break;
+	}
 }
 
 void analogWrite(uint8_t pin, int val) {
-	//instance.error = "analogWrite() is not supported";
 	SoftArduino::instance.portMode[pin] = OUTPUT;
 	SoftArduino::instance.pulseWidth[pin] = val; 
 }

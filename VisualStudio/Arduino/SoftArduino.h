@@ -6,6 +6,7 @@ class SoftArduino {
 
 public:
 	volatile double time;
+	int analogReferenceMode;			 // analog reference mode [DEFAULT, INTERNAL, INTERNAL1V1 or EXTERNAL]
 	int analog[NUM_ANALOG_INPUTS];       // voltages of the analog pins
 	int digital[NUM_DIGITAL_PINS];       // voltages of the digital pins
 	int portMode[NUM_DIGITAL_PINS];		 // 0 = input, 1 = digital, 2 = PWM
@@ -15,7 +16,7 @@ public:
 
 	static SoftArduino instance;
 
-	SoftArduino() : time(0), error(NULL) {
+	SoftArduino() : time(0), analogReferenceMode(DEFAULT), error(NULL) {
 
 	}
 

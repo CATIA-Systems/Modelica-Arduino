@@ -25,16 +25,14 @@ equation
   connect(sineVoltage.n, arduinoUno.GND) annotation (Line(points={{-80,-60},{
           -80,-60},{-80,-80},{0,-80},{0,-60}},          color={0,0,255}));
   connect(sineVoltage.p, arduinoUno.A0) annotation (Line(points={{-80,-20},{-80,
-          -20},{-80,-7.9091},{-39.75,-7.9091}}, color={0,0,255}));
+          -20},{-80,-8.45455},{-39.75,-8.45455}},
+                                                color={0,0,255}));
   connect(resistor.n, LED.pin_p) annotation (Line(points={{80,-30},{80,-50}},
                           color={0,0,255}));
   connect(resistor.p, arduinoUno.D9) annotation (Line(points={{80,10},{80,
           19.3636},{40.5,19.3636}}, color={0,0,255}));
   connect(LED.pin_n, arduinoUno.GND) annotation (Line(points={{80,-70},{80,-70},
           {80,-80},{0,-80},{0,-60}}, color={0,0,255}));
-  connect(arduinoUno.AREF, arduinoUno.RESET) annotation (Line(points={{-39.75,
-          35.1818},{-39.75,39.5909},{-39.75,39.5909},{-39.75,46.0909}}, color={
-          0,0,255}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,
             -100},{100,80}})),                                   Diagram(
         coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,80}})),

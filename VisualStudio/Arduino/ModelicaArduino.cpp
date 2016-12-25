@@ -59,7 +59,13 @@ void ModelicaArduino_close(void *externalObject) {
 	//	ModelicaFormatMessage("Handle to thread closed successfully.\n");
 }
 
-void ModelicaArduino_update(void *instance__, double time, double *analog, double *digital, int *portMode, double *pulseWidth) {
+void ModelicaArduino_update(void *instance__, 
+							double time, 
+							double analogReference, 
+							double *analog, 
+							double *digital, 
+							int *portMode, 
+							double *pulseWidth) {
 
 	if (SoftArduino::instance.error) {
 		ModelicaFormatError("Error in loop(): %s", SoftArduino::instance.error);
@@ -69,10 +75,14 @@ void ModelicaArduino_update(void *instance__, double time, double *analog, doubl
 	// update the time
 	SoftArduino::instance.time = time;
 
+	const double vref = SoftArduino::instance.analogReferenceMode == EXTERNAL ? analogReference : 5.;
+
+	// TODO: assert vref != 0
+
 	for (int i = 0; i < NUM_ANALOG_INPUTS; i++) {
 
-		// map analog input from [0,5] to [0,1023]
-		SoftArduino::instance.analog[i] = (analog[i] / 5.) * 1023;
+		// map analog input from [0,V_ref] to [0,1023]
+		SoftArduino::instance.analog[i] = (analog[i] / vref) * 1023;
 
 	}
 

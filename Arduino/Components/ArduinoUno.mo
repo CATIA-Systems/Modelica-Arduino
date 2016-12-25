@@ -259,11 +259,12 @@ block ArduinoUno
    function evaluate
     input Arduino.Internal.ExternalArduino instance;
     input Modelica.SIunits.Time timeIn;
+    input Real analogReference;
     input Real analog[numAnalogInputs];
     input Real digital[numDigitalPins];
     output Integer portMode[numDigitalPins];
     output Real pulseWidth[numDigitalPins];
-    external "C" ModelicaArduino_update(instance, timeIn, analog, digital, portMode, pulseWidth) annotation (
+    external "C" ModelicaArduino_update(instance, timeIn, analogReference, analog, digital, portMode, pulseWidth) annotation (
       Include="#include <ModelicaArduino.h>",
       IncludeDirectory="modelica://Arduino/Resources/Include",
       Library="ModelicaArduino");
@@ -312,6 +313,7 @@ equation
   (portMode, pulseWidth) = evaluate(
     externalArduino,
     time,
+    5.0,
     {A0.v,A1.v,A2.v,A3.v,A4.v,A5.v},
     {pre(D0.v),pre(D1.v),pre(D2.v),pre(D3.v),pre(D4.v),pre(D5.v),pre(D6.v),pre(D7.v),pre(D8.v),pre(D9.v),pre(D10.v),pre(D11.v),pre(D12.v),pre(D13.v),0,0,0,0,0,0});
   end when;
@@ -323,11 +325,11 @@ equation
           -60}},            color={0,0,255}));
   connect(resistor4.n, A2) annotation (Line(points={{-140,-80},{-150,-80},{-160,
           -80}}, color={0,0,255}));
-  connect(resistor5.n, A3) annotation (Line(points={{-140,-100},{-150,-100},{
-          -150,-80},{-160,-80}},
+  connect(resistor5.n, A3) annotation (Line(points={{-140,-100},{-150,-100},{-150,
+          -80},{-160,-80}},
                        color={0,0,255}));
-  connect(resistor6.n, A4) annotation (Line(points={{-140,-120},{-160,-120},{
-          -160,-110}},            color={0,0,255}));
+  connect(resistor6.n, A4) annotation (Line(points={{-140,-120},{-160,-120},{-160,
+          -110}},                 color={0,0,255}));
   connect(resistor7.n, A5) annotation (Line(points={{-140,-140},{-160,-140}},
                        color={0,0,255}));
   connect(resistor3.p, ground.p) annotation (Line(points={{-120,-60},{-86,-60},
