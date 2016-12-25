@@ -14,26 +14,25 @@ Simulate your circuits and sketches on a virtual [Arduino Uno](https://www.ardui
 
 To simulate a sketch named `Blink` you have to perform following steps.
 
-1. Save your sketch as `VisualStudio/Arduino/Blink.ino`
+- Save your sketch as `VisualStudio/Arduino/Blink.ino`
 
-2. Open the Solution `VisualStudio/Arduino.sln` in Visual Studio
+- Open the Solution `VisualStudio/Arduino.sln` in Visual Studio
 
-3. Open `Arduino > Source Files > Sketch.cpp` and change the #include statement
+- Open `Arduino > Source Files > Sketch.cpp` and change the #include statement
 to include your sketch
 
 ```C
-...
 // include your sketch here
 #include "Blink.ino"
-...```
+```
 
-4. Press `F7` to build the Arduino code
+- Press `F7` to build the Arduino code
 
-5. Load the Modelica library `Arduino/package.mo` in Dymola
+- Load the Modelica library `Arduino/package.mo` in Dymola
 
-6. Add an instance of `Arduino/Components/ArduinoUno` to your model
+- Add an instance of `Arduino/Components/ArduinoUno` to your model
 
-7. Simulate your model
+- Simulate your model
 
 > If you change your sketch you have to re-build the Arduino code and model
 > for the change to take effect
