@@ -14,9 +14,11 @@ Simulate your circuits and sketches on a virtual [Arduino Uno](https://www.ardui
 
 To simulate a sketch named `Blink` you have to perform following steps.
 
-- Save your sketch as `VisualStudio/Arduino/Blink.ino`
+- Save your sketch as `Sketches/Blink.ino`
 
-- Open the Solution `VisualStudio/Arduino.sln` in Visual Studio
+- Open `VisualStudio/Arduino.sln` in Visual Studio
+
+- Set the solution configuration to `Release` and the platform to `win32`
 
 - Open `Arduino > Source Files > Sketch.cpp` and change the #include statement
 to include your sketch
