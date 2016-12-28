@@ -55,7 +55,7 @@ Functions that cannot be used in sketches are ~~striked through~~
 
 #### Analog I/O
 
-- ~~analogReference()~~
+- [analogReference()](https://www.arduino.cc/en/Reference/AnalogReference)
 - [analogRead()](https://www.arduino.cc/en/Reference/AnalogRead)
 - [analogWrite() - PWM](https://www.arduino.cc/en/Reference/AnalogWrite)
 
@@ -128,8 +128,8 @@ Functions that cannot be used in sketches are ~~striked through~~
 
 #### External Interrupts
 
-- ~~attachInterrupt()~~
-- ~~detachInterrupt()~~
+- [attachInterrupt()](https://www.arduino.cc/en/Reference/AttachInterrupt)
+- [detachInterrupt()](https://www.arduino.cc/en/Reference/DetachInterrupt)
 
 #### Interrupts
 

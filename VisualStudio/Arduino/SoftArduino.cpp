@@ -5,6 +5,39 @@ extern "C" {
 
 SoftArduino SoftArduino::instance;
 
+#define INSTANCE SoftArduino::instance
+
+
+void sayHello() {
+	ModelicaMessage("hello!\n");
+}
+
+
+void SoftInterrupt::update(int potential) {
+
+	bool executeISR = false;
+
+	switch(mode) {
+	case RISING:
+		executeISR = prePotential == LOW && potential == HIGH;
+		break;
+	case FALLING:
+		executeISR = prePotential == HIGH && potential == LOW;
+		break;
+	case CHANGE:
+		executeISR = prePotential != potential;
+		break;
+	}
+
+	prePotential = potential;
+
+	if (executeISR) {
+		// execute the service routine
+		isr();
+	}
+
+}
+
 
 void pinMode(uint8_t pin, uint8_t mode) {
 	//ModelicaFormatMessage("pinMode(%d, %d)\n", pin, mode);
@@ -13,7 +46,7 @@ void pinMode(uint8_t pin, uint8_t mode) {
 
 void digitalWrite(uint8_t pin, uint8_t val) {
 	SoftArduino::instance.pulseWidth[pin] = (val == HIGH) ? 255 : 0;
-	//ModelicaFormatMessage("digitalWrite(%d, %d) -> %f\n", pin, val, SoftArduino::instance.pulseWidth[pin]);
+	//ModelicaFormatMessage("digitalWrite(%d, %d) -> %d\n", pin, val, SoftArduino::instance.pulseWidth[pin]);
 }
 
 int digitalRead(uint8_t pin) {
@@ -72,5 +105,27 @@ void delayMicroseconds(unsigned int us) {
 unsigned long millis() {
 	return SoftArduino::instance.time * 1000;
 }
+
+
+void attachInterrupt(uint8_t interrupt, void (*isr)(void), int mode) {
+
+	ModelicaFormatMessage("attachInterrupt(%d, %d, %d)\n", interrupt, isr, mode);
+
+	if (interrupt != 0 && interrupt != 1) {
+		ModelicaFormatError("Illegal interrupt: %d", interrupt);
+	}
+
+	int pin = interruptToDigitalPin(interrupt);
+	int potential = INSTANCE.digital[pin];
+	INSTANCE.interrupts[interrupt] = new SoftInterrupt(isr, mode, potential);
+}
+
+
+void detachInterrupt(uint8_t interrupt) {
+	auto ir = INSTANCE.interrupts[interrupt];
+	INSTANCE.interrupts[interrupt] = nullptr;
+	delete ir;
+}
+
 
 }
