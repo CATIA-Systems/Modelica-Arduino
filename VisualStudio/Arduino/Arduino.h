@@ -105,8 +105,8 @@ void yield(void);
 #define degrees(rad) ((rad)*RAD_TO_DEG)
 #define sq(x) ((x)*(x))
 
-#define interrupts() sei()
-#define noInterrupts() cli()
+//#define interrupts() sei()
+//#define noInterrupts() cli()
 
 #define clockCyclesPerMicrosecond() ( F_CPU / 1000000L )
 #define clockCyclesToMicroseconds(a) ( (a) / clockCyclesPerMicrosecond() )
@@ -249,8 +249,8 @@ void loop(void);
 //
 //#define word(...) makeWord(__VA_ARGS__)
 //
-//unsigned long pulseIn(uint8_t pin, uint8_t state, unsigned long timeout = 1000000L);
-//unsigned long pulseInLong(uint8_t pin, uint8_t state, unsigned long timeout = 1000000L);
+unsigned long pulseIn(uint8_t pin, uint8_t state, unsigned long timeout = 1000000L);
+unsigned long pulseInLong(uint8_t pin, uint8_t state, unsigned long timeout = 1000000L);
 //
 //void tone(uint8_t _pin, unsigned int frequency, unsigned long duration = 0);
 //void noTone(uint8_t _pin);

@@ -8,11 +8,6 @@ SoftArduino SoftArduino::instance;
 #define INSTANCE SoftArduino::instance
 
 
-void sayHello() {
-	ModelicaMessage("hello!\n");
-}
-
-
 void SoftInterrupt::update(int potential) {
 
 	bool executeISR = false;
@@ -37,7 +32,6 @@ void SoftInterrupt::update(int potential) {
 	}
 
 }
-
 
 void pinMode(uint8_t pin, uint8_t mode) {
 	//ModelicaFormatMessage("pinMode(%d, %d)\n", pin, mode);
@@ -106,7 +100,6 @@ unsigned long millis() {
 	return SoftArduino::instance.time * 1000;
 }
 
-
 void attachInterrupt(uint8_t interrupt, void (*isr)(void), int mode) {
 
 	ModelicaFormatMessage("attachInterrupt(%d, %d, %d)\n", interrupt, isr, mode);
@@ -120,12 +113,45 @@ void attachInterrupt(uint8_t interrupt, void (*isr)(void), int mode) {
 	INSTANCE.interrupts[interrupt] = new SoftInterrupt(isr, mode, potential);
 }
 
-
 void detachInterrupt(uint8_t interrupt) {
 	auto ir = INSTANCE.interrupts[interrupt];
 	INSTANCE.interrupts[interrupt] = nullptr;
 	delete ir;
 }
 
+void interrupts() { 
+	INSTANCE.interruptsEnabled = true;
+}
+
+void noInterrupts() {
+	INSTANCE.interruptsEnabled = false;
+}
+
+unsigned long pulseIn(uint8_t pin, uint8_t state, unsigned long timeout) {
+
+	unsigned long currentTime = INSTANCE.time * 1e6;
+	const unsigned long startTime = currentTime;
+	const unsigned long endTime = startTime + timeout;
+	uint8_t preState = INSTANCE.digital[pin];
+
+	while(currentTime < endTime) {
+
+		const uint8_t currentState = INSTANCE.digital[pin];
+		currentTime = INSTANCE.time * 1e6;
+
+		if (preState != currentState && currentState == state) {
+			return currentTime - startTime;
+		}
+
+		preState = currentState;
+	}
+
+	// timed out
+	return 0;
+}
+
+unsigned long pulseInLong(uint8_t pin, uint8_t state, unsigned long timeout) {
+	return pulseIn(pin, state, timeout);
+}
 
 }

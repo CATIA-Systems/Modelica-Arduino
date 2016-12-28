@@ -102,9 +102,11 @@ void ModelicaArduino_update(void *instance__,
 	}
 
 	// interrupts
-	for (int i = 0; i < 2; i++) {
-		if (INSTANCE.interrupts[i]) {
-			INSTANCE.interrupts[i]->update(INSTANCE.digital[interruptToDigitalPin(i)]);
+	if (INSTANCE.interruptsEnabled) {
+		for (int i = 0; i < 2; i++) {
+			if (INSTANCE.interrupts[i]) {
+				INSTANCE.interrupts[i]->update(INSTANCE.digital[interruptToDigitalPin(i)]);
+			}
 		}
 	}
 

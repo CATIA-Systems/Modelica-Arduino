@@ -70,7 +70,7 @@ Functions that cannot be used in sketches are ~~striked through~~
 - ~~noTone()~~
 - ~~shiftOut()~~
 - ~~shiftIn()~~
-- ~~pulseIn()~~
+- [pulseIn()](https://www.arduino.cc/en/Reference/PulseIn)
 
 #### Time
 
@@ -133,8 +133,8 @@ Functions that cannot be used in sketches are ~~striked through~~
 
 #### Interrupts
 
-- ~~interrupts()~~
-- ~~noInterrupts()~~
+- [interrupts()](https://www.arduino.cc/en/Reference/Interrupts)
+- [noInterrupts()](https://www.arduino.cc/en/Reference/NoInterrupts)
 
 #### Communication
 
