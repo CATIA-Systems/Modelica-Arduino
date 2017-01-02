@@ -23,12 +23,12 @@ public:
 class SoftArduino {
 
 public:
-	volatile double time;
+	volatile unsigned long time;                // current time in micro seconds
 	volatile int analogReferenceMode;			// analog reference mode [DEFAULT, INTERNAL, INTERNAL1V1 or EXTERNAL]
-	volatile int analog[NUM_ANALOG_INPUTS];     // voltages of the analog pins
-	volatile int digital[NUM_DIGITAL_PINS];     // voltages of the digital pins
+	volatile int analog[NUM_ANALOG_INPUTS];     // voltages of the analog pins [0, 255]
+	volatile int digital[NUM_DIGITAL_PINS];     // voltages of the digital pins [0, 255]
 	volatile int portMode[NUM_DIGITAL_PINS];	// 0 = input, 1 = digital, 2 = PWM
-	volatile int pulseWidth[NUM_DIGITAL_PINS];  // pulse width [0,255]
+	volatile int pulseWidth[NUM_DIGITAL_PINS];  // pulse width [0, 255]
 	
 	volatile bool interruptsEnabled;
 	SoftInterrupt *interrupts[2];

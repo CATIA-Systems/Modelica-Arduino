@@ -82,22 +82,27 @@ void analogWrite(uint8_t pin, int val) {
 }
 
 void delay(unsigned long ms) {
-	//ModelicaFormatMessage("delay at %f\n", ArduinoUno::instance.time);
-	double end_time = SoftArduino::instance.time + ms * 1e-3;
+
+	//ModelicaFormatMessage("delay(%d) at %g s\n", ms, INSTANCE.time * 1e-6);
+	
+	const unsigned long end_time = SoftArduino::instance.time + ms * 1000;
+
 	while (SoftArduino::instance.time < end_time) {
 		// idle
 	}
 }
 
 void delayMicroseconds(unsigned int us) {
-	double end_time = SoftArduino::instance.time + us * 1e-6;
+	
+	const unsigned long end_time = SoftArduino::instance.time + us;
+	
 	while (SoftArduino::instance.time < end_time) {
 		// idle
 	}
 }
 
 unsigned long millis() {
-	return SoftArduino::instance.time * 1000;
+	return SoftArduino::instance.time / 1000;
 }
 
 void attachInterrupt(uint8_t interrupt, void (*isr)(void), int mode) {
@@ -129,7 +134,7 @@ void noInterrupts() {
 
 unsigned long pulseIn(uint8_t pin, uint8_t state, unsigned long timeout) {
 
-	unsigned long currentTime = INSTANCE.time * 1e6;
+	unsigned long currentTime = INSTANCE.time;
 	const unsigned long startTime = currentTime;
 	const unsigned long endTime = startTime + timeout;
 	uint8_t preState = INSTANCE.digital[pin];
@@ -137,7 +142,7 @@ unsigned long pulseIn(uint8_t pin, uint8_t state, unsigned long timeout) {
 	while(currentTime < endTime) {
 
 		const uint8_t currentState = INSTANCE.digital[pin];
-		currentTime = INSTANCE.time * 1e6;
+		currentTime = INSTANCE.time;
 
 		if (preState != currentState && currentState == state) {
 			return currentTime - startTime;

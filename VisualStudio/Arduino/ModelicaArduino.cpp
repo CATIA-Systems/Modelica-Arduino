@@ -76,7 +76,7 @@ void ModelicaArduino_update(void *instance__,
 	}
 
 	// update the time
-	INSTANCE.time = time;
+	INSTANCE.time = time * 1e6;
 
 	const double vref = INSTANCE.analogReferenceMode == EXTERNAL ? analogReference : 5.;
 
