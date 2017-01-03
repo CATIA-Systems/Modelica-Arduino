@@ -111,7 +111,7 @@ void delayMicroseconds(unsigned int us) {
 
 void attachInterrupt(uint8_t interrupt, void (*isr)(void), int mode) {
 
-	ModelicaFormatMessage("attachInterrupt(%d, %d, %d)\n", interrupt, isr, mode);
+	// ModelicaFormatMessage("attachInterrupt(%d, %d, %d)\n", interrupt, isr, mode);
 
 	if (interrupt != 0 && interrupt != 1) {
 		ModelicaFormatError("Illegal interrupt: %d", interrupt);
