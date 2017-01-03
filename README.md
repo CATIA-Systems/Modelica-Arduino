@@ -75,9 +75,9 @@ Functions that cannot be used in sketches are ~~striked through~~
 #### Time
 
 - [millis()](https://www.arduino.cc/en/Reference/Millis)
-- ~~micros()~~
+- [micros()](https://www.arduino.cc/en/Reference/Micros)
 - [delay()](https://www.arduino.cc/en/Reference/Delay)
-- ~~delayMicroseconds()~~
+- [delayMicroseconds()](https://www.arduino.cc/en/Reference/DelayMicroseconds)
 
 #### Math
 

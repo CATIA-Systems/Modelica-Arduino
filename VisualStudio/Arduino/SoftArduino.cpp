@@ -35,17 +35,17 @@ void SoftInterrupt::update(int potential) {
 
 void pinMode(uint8_t pin, uint8_t mode) {
 	//ModelicaFormatMessage("pinMode(%d, %d)\n", pin, mode);
-	SoftArduino::instance.portMode[pin] = mode;
+	INSTANCE.portMode[pin] = mode;
 }
 
 void digitalWrite(uint8_t pin, uint8_t val) {
-	SoftArduino::instance.pulseWidth[pin] = (val == HIGH) ? 255 : 0;
-	//ModelicaFormatMessage("digitalWrite(%d, %d) -> %d\n", pin, val, SoftArduino::instance.pulseWidth[pin]);
+	INSTANCE.pulseWidth[pin] = (val == HIGH) ? 255 : 0;
+	//ModelicaFormatMessage("digitalWrite(%d, %d) -> %d\n", pin, val, INSTANCE.pulseWidth[pin]);
 }
 
 int digitalRead(uint8_t pin) {
 	// ModelicaFormatMessage("digitalRead(%d) -> %f\n", pin, instance.digital[pin]);
-	return SoftArduino::instance.digital[pin] > 2.5 ? HIGH : LOW;
+	return INSTANCE.digital[pin] > 2.5 ? HIGH : LOW;
 }
 
 int analogRead(uint8_t pin) {
@@ -58,7 +58,7 @@ int analogRead(uint8_t pin) {
 
 	//ModelicaFormatMessage("analogRead(%d) -> %d\n", pin, val);
 	
-	return SoftArduino::instance.analog[pin - A0];
+	return INSTANCE.analog[pin - A0];
 }
 
 void analogReference(uint8_t mode) {
@@ -68,7 +68,7 @@ void analogReference(uint8_t mode) {
 	//case INTERNAL:
 	//case INTERNAL1V1:
 	case EXTERNAL:
-		SoftArduino::instance.analogReferenceMode = mode;
+		INSTANCE.analogReferenceMode = mode;
 		break;
 	default:
 		ModelicaFormatError("Illegal analog reference mode: %d\n", mode);
@@ -77,32 +77,36 @@ void analogReference(uint8_t mode) {
 }
 
 void analogWrite(uint8_t pin, int val) {
-	SoftArduino::instance.portMode[pin] = OUTPUT;
-	SoftArduino::instance.pulseWidth[pin] = val; 
+	INSTANCE.portMode[pin] = OUTPUT;
+	INSTANCE.pulseWidth[pin] = val; 
+}
+
+unsigned long millis() {
+	return INSTANCE.time / 1000;
+}
+
+unsigned long micros() {
+	return INSTANCE.time;
 }
 
 void delay(unsigned long ms) {
 
 	//ModelicaFormatMessage("delay(%d) at %g s\n", ms, INSTANCE.time * 1e-6);
 	
-	const unsigned long end_time = SoftArduino::instance.time + ms * 1000;
+	const unsigned long endTime = INSTANCE.time + ms * 1000;
 
-	while (SoftArduino::instance.time < end_time) {
+	while (INSTANCE.time < endTime) {
 		// idle
 	}
 }
 
 void delayMicroseconds(unsigned int us) {
 	
-	const unsigned long end_time = SoftArduino::instance.time + us;
+	const unsigned long endTime = INSTANCE.time + us;
 	
-	while (SoftArduino::instance.time < end_time) {
+	while (INSTANCE.time < endTime) {
 		// idle
 	}
-}
-
-unsigned long millis() {
-	return SoftArduino::instance.time / 1000;
 }
 
 void attachInterrupt(uint8_t interrupt, void (*isr)(void), int mode) {
