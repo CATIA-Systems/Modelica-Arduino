@@ -3,3 +3,7 @@ VariablePulseVoltage
 DigitalPort
 VariableWidthPulse
 DigitalPin
+RangeFinderTest
+BooleanSinglePulse
+DelayedPulse
+DelayedPulseTest
