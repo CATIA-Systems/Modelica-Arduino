@@ -15,8 +15,6 @@ model DelayedPulse
     annotation (Placement(transformation(extent={{-140,-20},{-100,20}})));
   Modelica.Blocks.Interfaces.BooleanOutput y
     annotation (Placement(transformation(extent={{100,-10},{120,10}})));
-  Modelica.Blocks.Logical.Pre pre1
-    annotation (Placement(transformation(extent={{-40,-10},{-20,10}})));
   parameter Real pulseLength=0 "Length of the pulse";
 equation
   connect(edge2.y, rSFlipFlop.R) annotation (Line(points={{81,0},{84,0},{84,60},
@@ -29,10 +27,6 @@ equation
           92},{8,92},{8,70},{-8,70}}, color={255,0,255}));
   connect(u, edge1.u)
     annotation (Line(points={{-120,0},{-120,0},{-82,0}}, color={255,0,255}));
-  connect(pre1.y, timer.u)
-    annotation (Line(points={{-19,0},{-14,0},{-14,0}}, color={255,0,255}));
-  connect(pre1.u, rSFlipFlop.Q) annotation (Line(points={{-42,0},{-48,0},{-48,
-          70},{-31,70}}, color={255,0,255}));
   connect(y, rSFlipFlop.Q) annotation (Line(points={{110,0},{92,0},{92,-40},{
           -48,-40},{-48,70},{-31,70}}, color={255,0,255}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
