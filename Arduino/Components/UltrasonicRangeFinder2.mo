@@ -47,32 +47,6 @@ equation
           {32,45},{2,45}},               color={0,0,255}));
   connect(idealCommutingSwitch.n2, gndPin) annotation (Line(points={{2,40},{8,40},
           {8,34},{8,-40},{-100,-40}},         color={0,0,255}));
-  annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,
-            -100},{200,100}}),                                  graphics={
-        Rectangle(
-          extent={{-100,100},{100,-100}},
-          lineColor={28,108,200},
-          fillColor={255,255,255},
-          fillPattern=FillPattern.Solid),
-        Text(
-          extent={{-80,52},{-30,28}},
-          lineColor={28,108,200},
-          textString="SIG",
-          horizontalAlignment=TextAlignment.Left),
-        Text(
-          extent={{-80,12},{-26,-12}},
-          lineColor={28,108,200},
-          horizontalAlignment=TextAlignment.Left,
-          textString="5V"),
-        Text(
-          extent={{-80,-30},{-22,-54}},
-          lineColor={28,108,200},
-          horizontalAlignment=TextAlignment.Left,
-          textString="GND"),
-        Ellipse(extent={{0,80},{60,20}}, lineColor={28,108,200}),
-        Ellipse(extent={{0,-20},{60,-80}}, lineColor={28,108,200})}), Diagram(
-        coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{200,
-            100}})));
   sigOut = delay(sigPin.v, delayTime, delayMax);
   sigOutBool = delay(sigPin.v, delayTime, delayMax) > 2.5;
 
@@ -102,4 +76,30 @@ equation
           90},{-58,64},{-28,64}}, color={255,0,255}));
   connect(edge1.y, rSFlipFlop.R) annotation (Line(points={{-5,64},{16,64},{114,
           64},{114,78},{90,78},{90,78}}, color={255,0,255}));
+  annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,
+            -100},{200,100}}),                                  graphics={
+        Rectangle(
+          extent={{-100,100},{100,-100}},
+          lineColor={28,108,200},
+          fillColor={255,255,255},
+          fillPattern=FillPattern.Solid),
+        Text(
+          extent={{-80,52},{-30,28}},
+          lineColor={28,108,200},
+          textString="SIG",
+          horizontalAlignment=TextAlignment.Left),
+        Text(
+          extent={{-80,12},{-26,-12}},
+          lineColor={28,108,200},
+          horizontalAlignment=TextAlignment.Left,
+          textString="5V"),
+        Text(
+          extent={{-80,-30},{-22,-54}},
+          lineColor={28,108,200},
+          horizontalAlignment=TextAlignment.Left,
+          textString="GND"),
+        Ellipse(extent={{0,80},{60,20}}, lineColor={28,108,200}),
+        Ellipse(extent={{0,-20},{60,-80}}, lineColor={28,108,200})}), Diagram(
+        coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{200,
+            100}})));
 end UltrasonicRangeFinder2;

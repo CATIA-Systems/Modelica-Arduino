@@ -7,6 +7,6 @@ void setup() {
 }
 
 void loop() {
-	duration = pulseIn(pin, HIGH, 2000000L);
+	duration = pulseIn(pin, HIGH);
 	Serial.println(duration);
 }

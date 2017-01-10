@@ -58,7 +58,7 @@ void loop() {
   digitalWrite(pingPin, LOW);
   delayMicroseconds(2);
   digitalWrite(pingPin, HIGH);
-  delayMicroseconds(5);
+  delayMicroseconds(50);
   digitalWrite(pingPin, LOW);
 
   // The same pin is used to read the signal from the PING))): a HIGH
@@ -70,6 +70,11 @@ void loop() {
   // convert the time into a distance
   inches = microsecondsToInches(duration);
   cm = microsecondsToCentimeters(duration);
+  
+  
+  Serial.print("duration: ");
+  Serial.print(duration);
+  Serial.println(" us");
 
   Serial.print(inches);
   Serial.print("in, ");

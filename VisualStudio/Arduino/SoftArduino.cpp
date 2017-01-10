@@ -139,19 +139,28 @@ void noInterrupts() {
 unsigned long pulseIn(uint8_t pin, uint8_t state, unsigned long timeout) {
 
 	unsigned long currentTime = INSTANCE.time;
-	const unsigned long startTime = currentTime;
-	const unsigned long endTime = startTime + timeout;
+	const unsigned long endTime = currentTime + timeout;
 	uint8_t preState = INSTANCE.digital[pin];
+	unsigned long startTime;
+
 
 	while(currentTime < endTime) {
 
 		const uint8_t currentState = INSTANCE.digital[pin];
 		currentTime = INSTANCE.time;
 
-		if (preState != currentState && currentState == state) {
+		if (preState != state && currentState == state) {
+
+			// start measurement
+			startTime = currentTime;
+
+		} else if (preState == state && currentState != state) {
+
+			// return the elapsed time
 			return currentTime - startTime;
 		}
 
+		// remember the state
 		preState = currentState;
 	}
 

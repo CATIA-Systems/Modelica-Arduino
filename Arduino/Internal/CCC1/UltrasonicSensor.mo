@@ -23,7 +23,7 @@ public
     annotation (Placement(transformation(extent={{46,-34},{66,-14}})));
   PulseEmission_FallingEdge pulseEmission_FallingEdge(pulseLength=5e-6)
     annotation (Placement(transformation(extent={{84,-34},{104,-14}})));
-  LogicalDelay logicalDelay1(delayTime=30e-6)
+  LogicalDelay logicalDelay1(delayTime=150e-6)
     annotation (Placement(transformation(extent={{104,8},{84,28}})));
   PulseEmission_FallingEdge pulseEmission_FallingEdge1(pulseLength=5e-6)
     annotation (Placement(transformation(extent={{56,8},{36,28}})));
@@ -56,8 +56,8 @@ equation
     annotation (Line(points={{37,-24},{40,-24},{44,-24}}, color={0,0,127}));
   connect(realToBoolean.y, pulseEmission_FallingEdge.u)
     annotation (Line(points={{67,-24},{80,-24}}, color={255,0,255}));
-  connect(pulseEmission_FallingEdge.y, logicalDelay1.u) annotation (Line(points
-        ={{106,-24},{112,-24},{116,-24},{116,18},{108,18}}, color={255,0,255}));
+  connect(pulseEmission_FallingEdge.y, logicalDelay1.u) annotation (Line(points=
+         {{106,-24},{112,-24},{116,-24},{116,18},{108,18}}, color={255,0,255}));
   connect(logicalDelay1.y, pulseEmission_FallingEdge1.u)
     annotation (Line(points={{82,18},{72,18},{60,18}}, color={255,0,255}));
   connect(pulseEmission_FallingEdge1.y, pulseGenerationSwitch.control)

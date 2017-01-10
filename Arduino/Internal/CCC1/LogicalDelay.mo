@@ -50,5 +50,4 @@ The usage is demonstrated, e.g., in example
 </p>
 
 </html>"));
-
 end LogicalDelay;

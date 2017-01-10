@@ -42,8 +42,8 @@ equation
     annotation (Line(points={{37,-24},{40,-24},{44,-24}}, color={0,0,127}));
   connect(realToBoolean.y, pulseEmission_FallingEdge.u)
     annotation (Line(points={{67,-24},{80,-24}}, color={255,0,255}));
-  connect(pulseEmission_FallingEdge.y, logicalDelay1.u) annotation (Line(points
-        ={{106,-24},{112,-24},{116,-24},{116,44},{108,44}}, color={255,0,255}));
+  connect(pulseEmission_FallingEdge.y, logicalDelay1.u) annotation (Line(points=
+         {{106,-24},{112,-24},{116,-24},{116,44},{108,44}}, color={255,0,255}));
   connect(logicalDelay1.y, pulseEmission_FallingEdge1.u)
     annotation (Line(points={{82,44},{72,44},{60,44}}, color={255,0,255}));
   connect(sensorGround5V.n1, resistor.p) annotation (Line(points={{-78,13},{-40,

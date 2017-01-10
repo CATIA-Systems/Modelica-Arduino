@@ -67,8 +67,8 @@ equation
     annotation (Line(points={{129,-24},{132,-24},{136,-24}}, color={0,0,127}));
   connect(realToBoolean.y, pulseEmission_FallingEdge.u)
     annotation (Line(points={{159,-24},{172,-24}}, color={255,0,255}));
-  connect(pulseEmission_FallingEdge.y, logicalDelay1.u) annotation (Line(points
-        ={{198,-24},{204,-24},{208,-24},{208,48},{200,48}}, color={255,0,255}));
+  connect(pulseEmission_FallingEdge.y, logicalDelay1.u) annotation (Line(points=
+         {{198,-24},{204,-24},{208,-24},{208,48},{200,48}}, color={255,0,255}));
   connect(logicalDelay1.y, pulseEmission_FallingEdge1.u)
     annotation (Line(points={{174,48},{174,48},{152,48}}, color={255,0,255}));
   connect(ArduinoEmitListen.n, SensorGround5V.p)

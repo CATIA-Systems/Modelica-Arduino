@@ -34,8 +34,8 @@ equation
     annotation (Line(points={{-57,40},{-46,40},{-46,15}}, color={255,0,255}));
   connect(ground.p, pulseVoltage.n)
     annotation (Line(points={{-46,-60},{-76,-60},{-76,-40}}, color={0,0,255}));
-  connect(arduinoEmitListen.n, ultrasonicSensor.pinSig) annotation (Line(points
-        ={{-36,8},{-20,8},{-20,7.88},{2,7.88}}, color={0,0,255}));
+  connect(arduinoEmitListen.n, ultrasonicSensor.pinSig) annotation (Line(points=
+         {{-36,8},{-20,8},{-20,7.88},{2,7.88}}, color={0,0,255}));
   connect(ground.p, ultrasonicSensor.ground) annotation (Line(points={{-46,-60},
           {-34,-60},{-20,-60},{-20,-33.6},{2,-33.6}}, color={0,0,255}));
   connect(constantVoltage.p, ultrasonicSensor.input5V)
