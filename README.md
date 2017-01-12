@@ -43,6 +43,11 @@ to include your sketch
 
 Currently you can use only one instance of ArduinoUno in your Modelica model.
 
+## Alternatives
+
+For simulating simple Arduino circuits online you might want to have a look at 
+Autodesk's [Electronics Lab](https://circuits.io/lab).
+
 ## Arduino API
 
 Functions that cannot be used in sketches are ~~striked through~~
