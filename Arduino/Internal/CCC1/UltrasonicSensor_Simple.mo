@@ -13,11 +13,11 @@ model UltrasonicSensor_Simple "Model of the UltraSonic Sensor"
         extent={{-10,10},{10,-10}},
         rotation=270,
         origin={-4,-24})));
-  Modelica.Blocks.Nonlinear.FixedDelay fixedDelay(delayTime=5e-6)
+  Modelica.Blocks.Nonlinear.FixedDelay fixedDelay(delayTime=10e-6)
     annotation (Placement(transformation(extent={{16,-34},{36,-14}})));
   Modelica.Blocks.Math.RealToBoolean realToBoolean(threshold=2.5)
     annotation (Placement(transformation(extent={{56,-34},{76,-14}})));
-  PulseEmission_FallingEdge startMeasurementFallingEdge(pulseLength=60e-6)
+  PulseEmission_FallingEdge startMeasurementFallingEdge(pulseLength=100e-6)
     annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=180,
