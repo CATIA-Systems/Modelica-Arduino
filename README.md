@@ -44,16 +44,14 @@ to include your sketch
 
 Currently you can use only one instance of ArduinoUno in your Modelica model.
 
-<<<<<<< Updated upstream
 ## Alternatives
 
 For simulating simple Arduino circuits online you might want to have a look at
 Autodesk's [Electronics Lab](https://circuits.io/lab).
-=======
+
 ## Using Libraries
 
 To use a library in your sketch copy its header files (`*.h`) and source files (`*.cpp`) to the `Libraries` folder. If the library contains `.cpp` files you have to add them to the `Arduino` project by dragging them from the `Libraries` folder in the file browser onto the `Source Files` folder in the solution explorer.
->>>>>>> Stashed changes
 
 ## Arduino API
 
