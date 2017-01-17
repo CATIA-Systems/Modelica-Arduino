@@ -2,7 +2,7 @@
 
 Simulate your circuits and sketches on a virtual [Arduino Uno](https://www.arduino.cc/en/Main/ArduinoBoardUno)
 
-![alt text](Arduino/Button_Model3.png)
+![Circuit w/ Arduino](Arduino/Resources/Images/led_circuit.png)
 
 
 ## Prerequistites
@@ -18,7 +18,9 @@ To simulate a sketch named `Blink` you have to perform following steps.
 
 - Open `VisualStudio/Arduino.sln` in Visual Studio
 
-- Set the solution configuration to `Release` and the platform to `win32`
+- In the top toolbar set the solution configuration to `Release` and the platform to `Win32`
+
+![Visual Studio Solution Configuration](Arduino/Resources/Images/solution_config.png)
 
 - Open `Arduino > Source Files > Sketch.cpp` and change the #include statement
 to include your sketch
@@ -28,7 +30,9 @@ to include your sketch
 #include "Blink.ino"
 ```
 
-- Press `F7` to build the Arduino code
+- Right-click on the solution in the Solution Explorer and select `Build Solution` to build the Arduino library. `NOTE: `You have to repeat this step every time you make changes to your sketch.
+
+![Solution Context Menu](Arduino/Resources/Images/build_solution.png)
 
 - Load the Modelica library `Arduino/package.mo` in Dymola
 
@@ -36,12 +40,18 @@ to include your sketch
 
 - Simulate your model
 
-> If you change your sketch you have to re-build the Arduino code and model
-> for the change to take effect
-
 ## Limitations
 
 Currently you can use only one instance of ArduinoUno in your Modelica model.
+
+## Alternatives
+
+For simulating simple Arduino circuits online you might want to have a look at
+Autodesk's [Electronics Lab](https://circuits.io/lab).
+
+## Using Libraries
+
+To use a library in your sketch copy its header files (`*.h`) and source files (`*.cpp`) to the `Libraries` folder. If the library contains `.cpp` files you have to add them to the `Arduino` project by dragging them from the `Libraries` folder in the file browser onto the `Source Files` folder in the solution explorer.
 
 ## Arduino API
 
