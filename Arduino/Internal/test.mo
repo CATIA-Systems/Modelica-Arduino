@@ -1,5 +1,0 @@
-within Arduino.Internal;
-model test
-  annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
-        coordinateSystem(preserveAspectRatio=false)));
-end test;

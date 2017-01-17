@@ -17,11 +17,6 @@ model DigitalPort
     annotation (Placement(transformation(extent={{-20,-20},{20,20}},
         rotation=0,
         origin={-120,-40})));
-  Internal.VariablePulseVoltage variablePulseVoltage(V=5, period=1/480)
-    annotation (Placement(transformation(
-        extent={{-10,10},{10,-10}},
-        rotation=180,
-        origin={-10,0})));
   Modelica.Electrical.Analog.Ideal.IdealOpeningSwitch idealOpeningSwitch(Goff=
        1e-9)
     annotation (Placement(transformation(extent={{-10,10},{10,-10}},
