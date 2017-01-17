@@ -17,11 +17,6 @@ model UltrasonicSensor_Simple "Model of the UltraSonic Sensor"
     annotation (Placement(transformation(extent={{16,-34},{36,-14}})));
   Modelica.Blocks.Math.RealToBoolean realToBoolean(threshold=2.5)
     annotation (Placement(transformation(extent={{56,-34},{76,-14}})));
-  PulseEmission_FallingEdge startMeasurementFallingEdge(pulseLength=100e-6)
-    annotation (Placement(transformation(
-        extent={{-10,-10},{10,10}},
-        rotation=180,
-        origin={56,48})));
   Modelica.Electrical.Analog.Interfaces.PositivePin pinSig
     annotation (Placement(transformation(extent={{-130,-2},{-110,18}})));
   Modelica.Electrical.Analog.Interfaces.PositivePin input5V
@@ -29,6 +24,27 @@ model UltrasonicSensor_Simple "Model of the UltraSonic Sensor"
     annotation (Placement(transformation(extent={{-130,-30},{-110,-10}})));
   Modelica.Electrical.Analog.Interfaces.NegativePin ground "Negative pin"
     annotation (Placement(transformation(extent={{-130,-70},{-110,-50}})));
+  Modelica.Blocks.MathBoolean.FallingEdge falling1
+    annotation (Placement(transformation(extent={{146,30},{130,46}})));
+  Modelica.Blocks.Logical.RSFlipFlop
+                     rSFlipFlop
+    annotation (Placement(transformation(extent={{100,50},{80,30}})));
+  Modelica.Blocks.Logical.Timer timer
+    annotation (Placement(transformation(extent={{20,30},{0,50}})));
+  Modelica.Blocks.Logical.Pre pre1
+    annotation (Placement(transformation(extent={{60,30},{40,50}})));
+  Modelica.Blocks.Logical.GreaterEqual greaterEqual annotation (Placement(
+        transformation(
+        extent={{10,-10},{-10,10}},
+        rotation=180,
+        origin={68,72})));
+  Modelica.Blocks.Interfaces.RealInput distance annotation (Placement(
+        transformation(
+        extent={{-20,-20},{20,20}},
+        rotation=270,
+        origin={0,120})));
+  Modelica.Blocks.Math.Gain metersToSeconds(k=2/340.29)
+    annotation (Placement(transformation(extent={{22,86},{42,106}})));
 equation
   connect(resistor.p,voltageSensor. p)
     annotation (Line(points={{-28,-12},{-4,-12},{-4,-14}},color={0,0,255}));
@@ -47,10 +63,25 @@ equation
           -46},{-28,-60},{-120,-60}}, color={0,0,255}));
   connect(input5V, sensorGround5V.n2) annotation (Line(points={{-120,-20},{-90,
           -20},{-60,-20},{-60,8},{-78,8}}, color={0,0,255}));
-  connect(startMeasurementFallingEdge.y, sensorGround5V.control) annotation (
-      Line(points={{44,48},{44,48},{-88,48},{-88,16}}, color={255,0,255}));
-  connect(realToBoolean.y, startMeasurementFallingEdge.u) annotation (Line(
-        points={{77,-24},{100,-24},{100,48},{70,48}}, color={255,0,255}));
+  connect(timer.u,pre1. y)
+    annotation (Line(points={{22,40},{24,40},{39,40}},
+                                               color={255,0,255}));
+  connect(falling1.y, rSFlipFlop.S) annotation (Line(points={{128.4,38},{116,38},
+          {116,34},{102,34}}, color={255,0,255}));
+  connect(pre1.u, rSFlipFlop.Q) annotation (Line(points={{62,40},{70,40},{70,34},
+          {79,34}}, color={255,0,255}));
+  connect(greaterEqual.y, rSFlipFlop.R) annotation (Line(points={{79,72},{79,78},
+          {52,78},{60,78},{116,78},{116,46},{102,46}}, color={255,0,255}));
+  connect(sensorGround5V.control, rSFlipFlop.Q) annotation (Line(points={{-88,
+          16},{-88,16},{70,16},{70,34},{79,34}}, color={255,0,255}));
+  connect(realToBoolean.y, falling1.u) annotation (Line(points={{77,-24},{122,
+          -24},{164,-24},{164,38},{149.2,38}}, color={255,0,255}));
+  connect(timer.y, greaterEqual.u1) annotation (Line(points={{-1,40},{-8,40},{
+          -12,40},{-12,72},{56,72}}, color={0,0,127}));
+  connect(greaterEqual.u2, metersToSeconds.y)
+    annotation (Line(points={{56,80},{56,96},{43,96}}, color={0,0,127}));
+  connect(metersToSeconds.u, distance)
+    annotation (Line(points={{20,96},{0,96},{0,120}}, color={0,0,127}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-120,
             -100},{120,100}}), graphics={
         Rectangle(
@@ -82,42 +113,5 @@ equation
           lineColor={255,255,255},
           fillColor={170,213,255},
           fillPattern=FillPattern.Solid,
-          textString="Sensor"),
-        Rectangle(
-          extent={{-106,20},{6,-66}},
-          fillColor={255,255,170},
-          fillPattern=FillPattern.Solid,
-          pattern=LinePattern.None),
-        Text(
-          extent={{-20,-54},{6,-62}},
-          pattern=LinePattern.None,
-          fillColor={255,255,170},
-          fillPattern=FillPattern.Solid,
-          textString="Analog",
-          lineColor={0,0,0}),
-        Rectangle(
-          extent={{10,74},{118,-66}},
-          fillColor={170,255,255},
-          fillPattern=FillPattern.Solid,
-          pattern=LinePattern.None),
-        Rectangle(
-          extent={{-106,74},{8,22}},
-          fillColor={255,213,170},
-          fillPattern=FillPattern.Solid,
-          pattern=LinePattern.None,
-          lineColor={0,0,0}),
-        Text(
-          extent={{14,-54},{42,-64}},
-          pattern=LinePattern.None,
-          fillColor={255,255,170},
-          fillPattern=FillPattern.Solid,
-          lineColor={0,0,0},
-          textString="Ultrasonic"),
-        Text(
-          extent={{-88,74},{-60,64}},
-          pattern=LinePattern.None,
-          fillColor={255,255,170},
-          fillPattern=FillPattern.Solid,
-          lineColor={0,0,0},
-          textString="Logical")}));
+          textString="Sensor")}));
 end UltrasonicSensor_Simple;
