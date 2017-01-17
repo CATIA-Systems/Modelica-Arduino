@@ -16,13 +16,12 @@ model UltrasonicSensor_Simple "Model of the UltraSonic Sensor"
   Modelica.Blocks.Nonlinear.FixedDelay fixedDelay(delayTime=5e-6)
     annotation (Placement(transformation(extent={{16,-34},{36,-14}})));
   Modelica.Blocks.Math.RealToBoolean realToBoolean(threshold=2.5)
-    annotation (Placement(transformation(extent={{46,-34},{66,-14}})));
-  PulseEmission_FallingEdge pulseEmission_FallingEdge(pulseLength=5e-6)
-    annotation (Placement(transformation(extent={{84,-34},{104,-14}})));
-  LogicalDelay logicalDelay1(delayTime=30e-6)
-    annotation (Placement(transformation(extent={{104,34},{84,54}})));
-  PulseEmission_FallingEdge pulseEmission_FallingEdge1(pulseLength=5e-6)
-    annotation (Placement(transformation(extent={{56,34},{36,54}})));
+    annotation (Placement(transformation(extent={{56,-34},{76,-14}})));
+  PulseEmission_FallingEdge startMeasurementFallingEdge(pulseLength=60e-6)
+    annotation (Placement(transformation(
+        extent={{-10,-10},{10,10}},
+        rotation=180,
+        origin={56,48})));
   Modelica.Electrical.Analog.Interfaces.PositivePin pinSig
     annotation (Placement(transformation(extent={{-130,-2},{-110,18}})));
   Modelica.Electrical.Analog.Interfaces.PositivePin input5V
@@ -39,13 +38,7 @@ equation
   connect(voltageSensor.v, fixedDelay.u)
     annotation (Line(points={{6,-24},{14,-24}}, color={0,0,127}));
   connect(fixedDelay.y, realToBoolean.u)
-    annotation (Line(points={{37,-24},{40,-24},{44,-24}}, color={0,0,127}));
-  connect(realToBoolean.y, pulseEmission_FallingEdge.u)
-    annotation (Line(points={{67,-24},{80,-24}}, color={255,0,255}));
-  connect(pulseEmission_FallingEdge.y, logicalDelay1.u) annotation (Line(points=
-         {{106,-24},{112,-24},{116,-24},{116,44},{108,44}}, color={255,0,255}));
-  connect(logicalDelay1.y, pulseEmission_FallingEdge1.u)
-    annotation (Line(points={{82,44},{72,44},{60,44}}, color={255,0,255}));
+    annotation (Line(points={{37,-24},{54,-24}},          color={0,0,127}));
   connect(sensorGround5V.n1, resistor.p) annotation (Line(points={{-78,13},{-40,
           13},{-40,14},{-28,14},{-28,-12}}, color={0,0,255}));
   connect(sensorGround5V.p, pinSig)
@@ -54,8 +47,10 @@ equation
           -46},{-28,-60},{-120,-60}}, color={0,0,255}));
   connect(input5V, sensorGround5V.n2) annotation (Line(points={{-120,-20},{-90,
           -20},{-60,-20},{-60,8},{-78,8}}, color={0,0,255}));
-  connect(pulseEmission_FallingEdge1.y, sensorGround5V.control)
-    annotation (Line(points={{34,44},{-88,44},{-88,16}}, color={255,0,255}));
+  connect(startMeasurementFallingEdge.y, sensorGround5V.control) annotation (
+      Line(points={{44,48},{44,48},{-88,48},{-88,16}}, color={255,0,255}));
+  connect(realToBoolean.y, startMeasurementFallingEdge.u) annotation (Line(
+        points={{77,-24},{100,-24},{100,48},{70,48}}, color={255,0,255}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-120,
             -100},{120,100}}), graphics={
         Rectangle(
