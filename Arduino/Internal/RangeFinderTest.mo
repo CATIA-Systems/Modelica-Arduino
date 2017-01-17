@@ -21,8 +21,6 @@ model RangeFinderTest
     annotation (Placement(transformation(extent={{-40,-2},{-20,18}})));
   Modelica.Blocks.Sources.BooleanExpression booleanExpression(y=time < 210e-6)
     annotation (Placement(transformation(extent={{-62,30},{-42,50}})));
-  Components.UltrasonicRangeFinder3 ultrasonicRangeFinder3_1
-    annotation (Placement(transformation(extent={{40,-20},{108,20}})));
 equation
   connect(ground.p, constantVoltage.n)
     annotation (Line(points={{0,-60},{-30,-60},{-30,-40}}, color={0,0,255}));

@@ -1,106 +1,124 @@
 within Arduino.Components;
-model UltrasonicRangeFinder
-  Modelica.Blocks.Logical.GreaterEqualThreshold greaterEqualThreshold(threshold
-      =2.5) annotation (Placement(transformation(
+model UltrasonicRangeFinder "An ultrasonic range finder"
+  Modelica.Electrical.Analog.Ideal.IdealCommutingSwitch sensorGround5V
+    "Ground if true, 5V if false"
+    annotation (Placement(transformation(extent={{-88,50},{-68,70}})));
+  Modelica.Electrical.Analog.Basic.Resistor resistor(R=100) annotation (
+      Placement(transformation(
         extent={{-10,-10},{10,10}},
-        rotation=180,
-        origin={40,74})));
-  Modelica.Electrical.Analog.Interfaces.Pin vPin
-    annotation (Placement(transformation(extent={{-110,-10},{-90,10}})));
-  Modelica.Electrical.Analog.Interfaces.Pin sigPin
-    annotation (Placement(transformation(extent={{-110,40},{-90,60}})));
-  Modelica.Electrical.Analog.Interfaces.Pin gndPin
-    annotation (Placement(transformation(extent={{-110,-60},{-90,-40}})));
-  Modelica.Electrical.Analog.Ideal.IdealCommutingSwitch idealCommutingSwitch
-    annotation (Placement(transformation(extent={{-80,30},{-60,50}})));
+        rotation=270,
+        origin={-52,-40})));
   Modelica.Electrical.Analog.Sensors.VoltageSensor voltageSensor annotation (
       Placement(transformation(
         extent={{-10,10},{10,-10}},
         rotation=270,
-        origin={-18,0})));
-  Modelica.Blocks.Nonlinear.FixedDelay fixedDelay(delayTime=30e-6)
-    annotation (Placement(transformation(extent={{36,-4},{56,16}})));
-  Modelica.Blocks.Logical.RSFlipFlop rSFlipFlop
-    annotation (Placement(transformation(extent={{-30,70},{-50,90}})));
-  Modelica.Electrical.Analog.Ideal.IdealCommutingSwitch idealCommutingSwitch1
-    annotation (Placement(transformation(
-        extent={{10,10},{-10,-10}},
-        rotation=90,
-        origin={-60,-2})));
-  Modelica.Blocks.Logical.GreaterEqualThreshold greaterEqualThreshold1(
-      threshold=2.5) annotation (Placement(transformation(
-        extent={{-10,-10},{10,10}},
+        origin={0,-50})));
+  Modelica.Blocks.Nonlinear.FixedDelay fixedDelay(delayTime=10e-6)
+    annotation (Placement(transformation(extent={{20,-60},{40,-40}})));
+  Modelica.Blocks.Math.RealToBoolean realToBoolean(threshold=2.5)
+    annotation (Placement(transformation(extent={{60,-60},{80,-40}})));
+  Modelica.Electrical.Analog.Interfaces.PositivePin pinSig
+    annotation (Placement(transformation(extent={{-110,40},{-90,60}}),
+        iconTransformation(extent={{-110,40},{-90,60}})));
+  Modelica.Electrical.Analog.Interfaces.PositivePin input5V
+    "Positive pin (potential p.v > n.v for positive voltage drop v)"
+    annotation (Placement(transformation(extent={{-110,-10},{-90,10}}),
+        iconTransformation(extent={{-110,-10},{-90,10}})));
+  Modelica.Electrical.Analog.Interfaces.NegativePin ground "Negative pin"
+    annotation (Placement(transformation(extent={{-110,-60},{-90,-40}}),
+        iconTransformation(extent={{-110,-60},{-90,-40}})));
+  Modelica.Blocks.MathBoolean.FallingEdge falling1
+    annotation (Placement(transformation(extent={{40,-20},{20,0}})));
+  Modelica.Blocks.Logical.RSFlipFlop
+                     rSFlipFlop
+    annotation (Placement(transformation(extent={{0,40},{-20,20}})));
+  Modelica.Blocks.Logical.Timer timer
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},
+        rotation=0,
+        origin={30,70})));
+  Modelica.Blocks.Logical.Pre pre1
+    annotation (Placement(transformation(extent={{-20,60},{0,80}})));
+  Modelica.Blocks.Logical.GreaterEqual greaterEqual annotation (Placement(
+        transformation(
+        extent={{10,-10},{-10,10}},
+        rotation=0,
+        origin={30,30})));
+  Modelica.Blocks.Interfaces.RealInput distance annotation (Placement(
+        transformation(
+        extent={{-20,-20},{20,20}},
         rotation=180,
-        origin={52,110})));
-  Modelica.Blocks.Logical.FallingEdge fallingEdge
-    annotation (Placement(transformation(extent={{10,64},{-10,84}})));
-  Modelica.Blocks.Logical.FallingEdge fallingEdge1
-    annotation (Placement(transformation(extent={{10,100},{-10,120}})));
-  Modelica.Blocks.Logical.Switch switch1
-    annotation (Placement(transformation(extent={{12,-2},{26,12}})));
-  Modelica.Blocks.Sources.Constant const(k=0)
-    annotation (Placement(transformation(extent={{-2,8},{4,14}})));
+        origin={120,0})));
+  Modelica.Blocks.Math.Gain metersToSeconds(k=2/340.29)
+    annotation (Placement(transformation(extent={{80,12},{60,32}})));
 equation
-  connect(voltageSensor.n, gndPin) annotation (Line(points={{-18,-10},{-18,-50},
-          {-100,-50}}, color={0,0,255}));
-  connect(idealCommutingSwitch.p, sigPin) annotation (Line(points={{-80,40},{
-          -90,40},{-90,50},{-100,50}}, color={0,0,255}));
-  connect(voltageSensor.p, idealCommutingSwitch.n1) annotation (Line(points={{
-          -18,10},{-18,10},{-18,45},{-60,45}}, color={0,0,255}));
-  connect(rSFlipFlop.Q, idealCommutingSwitch.control)
-    annotation (Line(points={{-51,86},{-70,86},{-70,48}}, color={255,0,255}));
-  connect(idealCommutingSwitch1.n1, gndPin) annotation (Line(points={{-55,-12},
-          {-54,-12},{-54,-50},{-100,-50}}, color={0,0,255}));
-  connect(idealCommutingSwitch1.n2, vPin) annotation (Line(points={{-60,-12},{
-          -60,-20},{-80,-20},{-80,0},{-100,0}}, color={0,0,255}));
-  connect(idealCommutingSwitch1.p, idealCommutingSwitch.n2)
-    annotation (Line(points={{-60,8},{-60,8},{-60,40}}, color={0,0,255}));
-  connect(greaterEqualThreshold1.u, voltageSensor.v) annotation (Line(points={{
-          64,110},{70,110},{70,-30},{0,-30},{0,-1.77636e-015},{-8,-1.77636e-015}},
-        color={0,0,127}));
-  connect(greaterEqualThreshold.y, fallingEdge.u)
-    annotation (Line(points={{29,74},{12,74}}, color={255,0,255}));
-  connect(fallingEdge.y, rSFlipFlop.R)
-    annotation (Line(points={{-11,74},{-28,74}}, color={255,0,255}));
-  connect(greaterEqualThreshold.y, idealCommutingSwitch1.control) annotation (
-      Line(points={{29,74},{20,74},{20,20},{-40,20},{-40,-2},{-52,-2}}, color={
-          255,0,255}));
-  connect(fixedDelay.y, greaterEqualThreshold.u)
-    annotation (Line(points={{57,6},{60,6},{60,74},{52,74}}, color={0,0,127}));
-  connect(fallingEdge1.u, greaterEqualThreshold1.y)
-    annotation (Line(points={{12,110},{28,110},{41,110}}, color={255,0,255}));
-  connect(fallingEdge1.y, rSFlipFlop.S) annotation (Line(points={{-11,110},{-20,
-          110},{-20,96},{-20,86},{-28,86}}, color={255,0,255}));
-  connect(switch1.u1, const.y) annotation (Line(points={{10.6,10.6},{10.55,10.6},
-          {10.55,11},{4.3,11}}, color={0,0,127}));
-  connect(switch1.u3, voltageSensor.v) annotation (Line(points={{10.6,-0.6},{0,
-          -0.6},{0,-1.77636e-015},{-8,-1.77636e-015}}, color={0,0,127}));
-  connect(fixedDelay.u, switch1.y)
-    annotation (Line(points={{34,6},{30,6},{30,5},{26.7,5}}, color={0,0,127}));
-  connect(switch1.u2, idealCommutingSwitch.control) annotation (Line(points={{
-          10.6,5},{-8,5},{-8,60},{-70,60},{-70,48}}, color={255,0,255}));
-  annotation (Icon(coordinateSystem(preserveAspectRatio=false), graphics={
+  connect(resistor.p,voltageSensor. p)
+    annotation (Line(points={{-52,-30},{-52,-20},{1.77636e-015,-20},{
+          1.77636e-015,-40}},                             color={0,0,255}));
+  connect(voltageSensor.n,resistor. n) annotation (Line(points={{0,-60},{-52,
+          -60},{-52,-50}},         color={0,0,255}));
+  connect(voltageSensor.v, fixedDelay.u)
+    annotation (Line(points={{10,-50},{10,-50},{18,-50}},
+                                                color={0,0,127}));
+  connect(fixedDelay.y, realToBoolean.u)
+    annotation (Line(points={{41,-50},{50,-50},{58,-50}}, color={0,0,127}));
+  connect(sensorGround5V.n1, resistor.p) annotation (Line(points={{-68,65},{-52,
+          65},{-52,-8},{-52,-30}},          color={0,0,255}));
+  connect(sensorGround5V.p, pinSig)
+    annotation (Line(points={{-88,60},{-88,50},{-100,50}},
+                                                         color={0,0,255}));
+  connect(resistor.n, ground) annotation (Line(points={{-52,-50},{-52,-60},{
+          -100,-50}},                 color={0,0,255}));
+  connect(input5V, sensorGround5V.n2) annotation (Line(points={{-100,0},{-120,0},
+          {-60,0},{-60,60},{-68,60}},      color={0,0,255}));
+  connect(timer.u,pre1. y)
+    annotation (Line(points={{18,70},{18,70},{1,70}},
+                                               color={255,0,255}));
+  connect(falling1.y, rSFlipFlop.S) annotation (Line(points={{18,-10},{18,-10},
+          {10,-10},{10,-10},{10,24},{2,24}}, color={255,0,255}));
+  connect(pre1.u, rSFlipFlop.Q) annotation (Line(points={{-22,70},{-40,70},{-40,
+          24},{-21,24}}, color={255,0,255}));
+  connect(realToBoolean.y, falling1.u) annotation (Line(points={{81,-50},{81,
+          -50},{90,-50},{90,-10},{44,-10}}, color={255,0,255}));
+  connect(timer.y, greaterEqual.u1) annotation (Line(points={{41,70},{60,70},{
+          60,30},{42,30}}, color={0,0,127}));
+  connect(metersToSeconds.u, distance) annotation (Line(points={{82,22},{90,22},
+          {90,0},{120,0}}, color={0,0,127}));
+  connect(sensorGround5V.control, rSFlipFlop.Q) annotation (Line(points={{-78,
+          68},{-78,80},{-20,80},{-20,24},{-21,24}}, color={255,0,255}));
+  connect(greaterEqual.u2, metersToSeconds.y)
+    annotation (Line(points={{42,22},{59,22}}, color={0,0,127}));
+  connect(rSFlipFlop.R, greaterEqual.y) annotation (Line(points={{2,36},{10,36},
+          {10,30},{19,30}}, color={255,0,255}));
+  annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,
+            -100},{100,100}}), graphics={
         Rectangle(
           extent={{-100,100},{100,-100}},
           lineColor={28,108,200},
           fillColor={255,255,255},
           fillPattern=FillPattern.Solid),
         Text(
-          extent={{-80,52},{-30,28}},
+          extent={{-78,-38},{-20,-62}},
           lineColor={28,108,200},
-          textString="SIG",
-          horizontalAlignment=TextAlignment.Left),
+          horizontalAlignment=TextAlignment.Left,
+          textString="GND"),
         Text(
-          extent={{-80,12},{-26,-12}},
+          extent={{-76,12},{-22,-12}},
           lineColor={28,108,200},
           horizontalAlignment=TextAlignment.Left,
           textString="5V"),
         Text(
-          extent={{-80,-30},{-22,-54}},
+          extent={{-78,60},{-28,36}},
           lineColor={28,108,200},
-          horizontalAlignment=TextAlignment.Left,
-          textString="GND"),
-        Ellipse(extent={{0,80},{60,20}}, lineColor={28,108,200}),
-        Ellipse(extent={{0,-20},{60,-80}}, lineColor={28,108,200})}), Diagram(
-        coordinateSystem(preserveAspectRatio=false)));
+          textString="SIG",
+          horizontalAlignment=TextAlignment.Left),
+        Ellipse(extent={{0,80},{70,10}}, lineColor={28,108,200}),
+        Ellipse(extent={{0,-10},{70,-80}}, lineColor={28,108,200})}), Diagram(
+        coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
+            100}}), graphics={
+        Text(
+          extent={{-36,-78},{36,-88}},
+          lineColor={255,255,255},
+          fillColor={170,213,255},
+          fillPattern=FillPattern.Solid,
+          textString="Sensor")}));
 end UltrasonicRangeFinder;
