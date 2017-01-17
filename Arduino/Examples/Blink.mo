@@ -4,8 +4,8 @@ model Blink
 
   Components.ArduinoUno arduinoUno
     annotation (Placement(transformation(extent={{-40,-50},{40,50}},
-        rotation=90,
-        origin={0,10})));
+        rotation=0,
+        origin={0,0})));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,
             -100},{100,100}})),                                  Diagram(
         coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
