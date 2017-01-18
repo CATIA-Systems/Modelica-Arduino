@@ -35,6 +35,7 @@ equation
           {0,-80},{0,-60}}, color={0,0,255}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,
             -100},{100,80}})),                                   Diagram(
-        coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,80}})),
+        coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
+            100}})),
     experiment(StopTime=10));
 end Fade;

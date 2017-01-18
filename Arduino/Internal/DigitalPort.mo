@@ -41,6 +41,26 @@ equation
           -30},{0,-30},{0,1.33227e-015},{40,1.33227e-015}}, color={0,0,255}));
   connect(variableWidthPulse.y, signalVoltage.v)
     annotation (Line(points={{-39,-40},{-7,-40}}, color={0,0,127}));
-  annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
+  annotation (Icon(coordinateSystem(preserveAspectRatio=false), graphics={
+                                         Rectangle(
+          extent={{-100,100},{100,-100}},
+          fillColor={210,210,210},
+          lineThickness=5.0,
+          fillPattern=FillPattern.Solid,
+          borderPattern=BorderPattern.Raised),
+        Line(points={{-80,66},{-80,-82}}, color={255,0,255}),
+        Polygon(
+          points={{-80,88},{-88,66},{-72,66},{-80,88}},
+          lineColor={255,0,255},
+          fillColor={255,0,255},
+          fillPattern=FillPattern.Solid),
+        Line(points={{-90,-70},{72,-70}}, color={255,0,255}),
+        Polygon(
+          points={{90,-70},{68,-62},{68,-78},{90,-70}},
+          lineColor={255,0,255},
+          fillColor={255,0,255},
+          fillPattern=FillPattern.Solid),
+                                 Line(points={{-80,-70},{-40,-70},{-40,44},{0,
+              44},{0,-70},{40,-70},{40,44},{79,44}})}),          Diagram(
         coordinateSystem(preserveAspectRatio=false)));
 end DigitalPort;

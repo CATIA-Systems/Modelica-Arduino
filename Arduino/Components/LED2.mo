@@ -4,7 +4,7 @@ model LED2
   Modelica.Electrical.Analog.Semiconductors.Diode2 diode(Vf=1.6, Ids(
         displayUnit="mA"))
     annotation (Placement(transformation(extent={{-40,-10},{-20,10}})));
-  Modelica.Blocks.Math.Mean mean(f=10)
+  Modelica.Blocks.Math.Mean mean(f=20)
     annotation (Placement(transformation(extent={{40,40},{60,60}})));
   Modelica.Electrical.Analog.Sensors.CurrentSensor currentSensor
     annotation (Placement(transformation(extent={{20,10},{40,-10}})));
@@ -20,8 +20,8 @@ equation
   annotation (Icon(graphics={
         Ellipse(
           extent={{-60,60},{60,-60}},
-          lineColor={0,0,0},
-          fillColor=DynamicSelect({100,0,0}, if mean.y > 0 then {100 + (mean.y / 0.02) * 155,0,0} else {100,0,0}),
+          fillColor=DynamicSelect({100,40,40}, if mean.y > 0 then {100 + (mean.y
+              /0.02)*155,40,40} else {100,40,40}),
           fillPattern=FillPattern.Solid),
         Polygon(
           points={{30,0},{-30,40},{-30,-40},{30,0}},
