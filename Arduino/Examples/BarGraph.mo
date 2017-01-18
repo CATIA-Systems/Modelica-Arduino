@@ -14,7 +14,7 @@ model BarGraph
         origin={-80,-40})));
   Modelica.Electrical.Analog.Basic.Resistor resistor(R=220)
     annotation (Placement(transformation(extent={{68,40},{78,50}})));
-  Components.LED2 lED3
+  Components.LED lED3
     annotation (Placement(transformation(extent={{48,40},{58,50}})));
   Modelica.Electrical.Analog.Basic.Resistor resistor1(R=220)
     annotation (Placement(transformation(extent={{68,30},{78,40}})));
@@ -34,30 +34,30 @@ model BarGraph
     annotation (Placement(transformation(extent={{68,-40},{78,-30}})));
   Modelica.Electrical.Analog.Basic.Resistor resistor9(R=220)
     annotation (Placement(transformation(extent={{68,-50},{78,-40}})));
-  Components.LED2 lED4
+  Components.LED lED4
     annotation (Placement(transformation(extent={{48,30},{58,40}})));
-  Components.LED2 lED1
+  Components.LED lED1
     annotation (Placement(transformation(extent={{48,20},{58,30}})));
-  Components.LED2 lED2
+  Components.LED lED2
     annotation (Placement(transformation(extent={{48,10},{58,20}})));
-  Components.LED2 lED5
+  Components.LED lED5
     annotation (Placement(transformation(extent={{48,0},{58,10}})));
-  Components.LED2 lED6
+  Components.LED lED6
     annotation (Placement(transformation(extent={{48,-10},{58,0}})));
-  Components.LED2 lED7
+  Components.LED lED7
     annotation (Placement(transformation(extent={{48,-20},{58,-10}})));
-  Components.LED2 lED8
+  Components.LED lED8
     annotation (Placement(transformation(extent={{48,-30},{58,-20}})));
-  Components.LED2 lED9
+  Components.LED lED9
     annotation (Placement(transformation(extent={{48,-40},{58,-30}})));
-  Components.LED2 lED10
+  Components.LED lED10
     annotation (Placement(transformation(extent={{48,-50},{58,-40}})));
 equation
   connect(sineVoltage.n, arduinoUno.GND) annotation (Line(points={{-80,-50},{
           -80,-50},{-80,-70},{-80,-74},{-20,-74},{-20,-60}},
                                                         color={0,0,255}));
   connect(sineVoltage.p, arduinoUno.A0) annotation (Line(points={{-80,-30},{-80,
-          -30},{-80,-8.45455},{-59.75,-8.45455}},
+          -30},{-80,-7.90909},{-59.75,-7.90909}},
                                                 color={0,0,255}));
   connect(arduinoUno.D11, lED3.p) annotation (Line(points={{20.5,35.7273},{
           30.25,35.7273},{30.25,45},{48,45}}, color={0,0,255}));

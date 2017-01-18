@@ -17,7 +17,7 @@ model Fade
         extent={{-10,-10},{10,10}},
         rotation=270,
         origin={80,-10})));
-  Components.LED2 lED2_1 annotation (Placement(transformation(
+  Components.LED lED2_1 annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=270,
         origin={80,-50})));
