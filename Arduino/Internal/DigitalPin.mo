@@ -32,7 +32,7 @@ equation
   connect(pin, idealOpeningSwitch.p)
     annotation (Line(points={{100,0},{76,0},{50,0}}, color={0,0,255}));
   connect(signalVoltage.p, idealOpeningSwitch.n)
-    annotation (Line(points={{-12,0},{30,0},{30,0}}, color={0,0,255}));
+    annotation (Line(points={{-12,0},{30,0}},        color={0,0,255}));
   connect(signalVoltage.n, ground1.p) annotation (Line(points={{-32,0},{-38,0},
           {-38,-18},{-42,-18}}, color={0,0,255}));
   connect(pulseWidth, gain.u) annotation (Line(points={{-120,-40},{-94,-40},{

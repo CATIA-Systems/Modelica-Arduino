@@ -16,7 +16,7 @@ protected
   Integer count "Period count";
 public
   Modelica.Blocks.Interfaces.RealInput width
-    annotation (Placement(transformation(extent={{-138,40},{-98,80}})));
+    annotation (Placement(transformation(extent={{-140,-20},{-100,20}})));
 initial algorithm
   count := integer((time - startTime)/period);
   T_start := startTime + count*period;

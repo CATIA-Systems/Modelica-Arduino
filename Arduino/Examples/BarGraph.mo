@@ -79,26 +79,26 @@ equation
     annotation (Line(points={{58,-35},{64,-35},{68,-35}}, color={0,0,255}));
   connect(lED10.pin_n, resistor9.p)
     annotation (Line(points={{58,-45},{64,-45},{68,-45}}, color={0,0,255}));
-  connect(arduinoUno.D11, lED3.pin_p) annotation (Line(points={{20.5,35.7273},{
+  connect(arduinoUno.D11, lED3.p) annotation (Line(points={{20.5,35.7273},{
           38.25,35.7273},{38.25,45},{48,45}}, color={0,0,255}));
-  connect(arduinoUno.D10, lED4.pin_p) annotation (Line(points={{20.5,27.5455},{
+  connect(arduinoUno.D10, lED4.p) annotation (Line(points={{20.5,27.5455},{
           38.25,27.5455},{38.25,35},{48,35}}, color={0,0,255}));
-  connect(arduinoUno.D9, lED1.pin_p) annotation (Line(points={{20.5,19.3636},{
-          38.25,19.3636},{38.25,25},{48,25}}, color={0,0,255}));
-  connect(arduinoUno.D8, lED2.pin_p) annotation (Line(points={{20.5,11.1818},{
-          38.25,11.1818},{38.25,15},{48,15}}, color={0,0,255}));
-  connect(arduinoUno.D7, lED5.pin_p) annotation (Line(points={{20.5,2.72727},{
-          38.25,2.72727},{38.25,5},{48,5}}, color={0,0,255}));
-  connect(arduinoUno.D6, lED6.pin_p) annotation (Line(points={{20.5,-5.45455},{
+  connect(arduinoUno.D9, lED1.p) annotation (Line(points={{20.5,19.3636},{38.25,
+          19.3636},{38.25,25},{48,25}}, color={0,0,255}));
+  connect(arduinoUno.D8, lED2.p) annotation (Line(points={{20.5,11.1818},{38.25,
+          11.1818},{38.25,15},{48,15}}, color={0,0,255}));
+  connect(arduinoUno.D7, lED5.p) annotation (Line(points={{20.5,2.72727},{38.25,
+          2.72727},{38.25,5},{48,5}}, color={0,0,255}));
+  connect(arduinoUno.D6, lED6.p) annotation (Line(points={{20.5,-5.45455},{
           38.25,-5.45455},{38.25,-5},{48,-5}}, color={0,0,255}));
-  connect(arduinoUno.D5, lED7.pin_p) annotation (Line(points={{20.5,-13.6364},{
+  connect(arduinoUno.D5, lED7.p) annotation (Line(points={{20.5,-13.6364},{
           39.25,-13.6364},{39.25,-15},{48,-15}}, color={0,0,255}));
-  connect(arduinoUno.D4, lED8.pin_p) annotation (Line(points={{20.5,-21.8182},{
+  connect(arduinoUno.D4, lED8.p) annotation (Line(points={{20.5,-21.8182},{
           38.25,-21.8182},{38.25,-25},{48,-25}}, color={0,0,255}));
-  connect(arduinoUno.D3, lED9.pin_p) annotation (Line(points={{20.5,-30},{38,
-          -30},{38,-35},{48,-35}}, color={0,0,255}));
-  connect(arduinoUno.D2, lED10.pin_p) annotation (Line(points={{20.5,-37.6364},
-          {38.25,-37.6364},{38.25,-45},{48,-45}}, color={0,0,255}));
+  connect(arduinoUno.D3, lED9.p) annotation (Line(points={{20.5,-30},{38,-30},{
+          38,-35},{48,-35}}, color={0,0,255}));
+  connect(arduinoUno.D2, lED10.p) annotation (Line(points={{20.5,-37.6364},{
+          38.25,-37.6364},{38.25,-45},{48,-45}}, color={0,0,255}));
   connect(resistor9.n, arduinoUno.GND) annotation (Line(points={{78,-45},{84,
           -45},{84,-44},{92,-44},{92,-74},{-20,-74},{-20,-60}}, color={0,0,255}));
   connect(resistor8.n, arduinoUno.GND) annotation (Line(points={{78,-35},{86,

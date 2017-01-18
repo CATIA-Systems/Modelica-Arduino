@@ -2,3 +2,6 @@ ExternalArduino
 DigitalPort
 VariableWidthPulse
 DigitalPin
+DigitalPortTest
+Average
+LEDTest

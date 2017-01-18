@@ -171,10 +171,6 @@ block ArduinoUno
   Modelica.Electrical.Analog.Interfaces.Pin D8 annotation (Placement(
         transformation(extent={{150,70},{170,90}}),iconTransformation(extent={{153,72},
             {171,90}})));
-  Internal.DigitalPin digitalPin9 annotation (Placement(transformation(
-        extent={{-10,-10},{10,10}},
-        rotation=0,
-        origin={120,110})));
   Modelica.Blocks.Sources.RealExpression realExpression9(y=pulseWidth[10])
     annotation (Placement(transformation(extent={{62,100},{92,112}})));
   Modelica.Blocks.Sources.BooleanExpression booleanExpression9(y=portMode[10] ==
@@ -307,6 +303,8 @@ public
         extent={{-10,-10},{10,10}},
         rotation=0,
         origin={-110,208})));
+  Internal.DigitalPort digitalPort
+    annotation (Placement(transformation(extent={{110,100},{130,120}})));
 equation
 
   when sample(0, sampleRate) then
@@ -389,12 +387,6 @@ equation
     annotation (Line(points={{108,76},{108,76},{93.5,76}}, color={0,0,127}));
   connect(digitalPin8.isInput, booleanExpression8.y) annotation (Line(points={{
           108,89.2},{108,84},{93.5,84}}, color={255,0,255}));
-  connect(digitalPin9.pin, D9)
-    annotation (Line(points={{130,110},{146,110},{160,110}}, color={0,0,255}));
-  connect(digitalPin9.pulseWidth, realExpression9.y) annotation (Line(points={{
-          108,106},{108,106},{93.5,106}}, color={0,0,127}));
-  connect(digitalPin9.isInput, booleanExpression9.y) annotation (Line(points={{
-          108,119.2},{108,114},{93.5,114}}, color={255,0,255}));
   connect(digitalPin10.pin, D10)
     annotation (Line(points={{130,140},{146,140},{160,140}}, color={0,0,255}));
   connect(digitalPin10.pulseWidth, realExpression10.y) annotation (Line(points=
@@ -459,6 +451,12 @@ equation
     annotation (Line(points={{-160,208},{-120,208}}, color={0,0,255}));
   connect(resistorRESET.n, ground.p) annotation (Line(points={{-100,208},{-60,208},
           {-60,-140},{20,-140}}, color={0,0,255}));
+  connect(booleanExpression9.y, digitalPort.isInput)
+    annotation (Line(points={{93.5,114},{108,114}}, color={255,0,255}));
+  connect(realExpression9.y, digitalPort.pulseWidth)
+    annotation (Line(points={{93.5,106},{108,106}}, color={0,0,127}));
+  connect(digitalPort.pin, D9)
+    annotation (Line(points={{130,110},{160,110}}, color={0,0,255}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-160,-180},
             {160,260}}),                                        graphics={
           Rectangle(
