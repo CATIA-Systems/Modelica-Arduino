@@ -1,7 +1,3 @@
-/********************************************************
- * PID Basic Example
- * Reading analog input 0 to control analog PWM output 3
- ********************************************************/
 
 #include <PID_v1.h>
 
@@ -10,12 +6,6 @@
 
 //Define Variables we'll be connecting to
 double Setpoint = 10000, Input, Output;
-
-//Specify the links and initial tuning parameters
-// Kp = 0...10	
-// Ki = 0...50
-// Kd = 0...1e-3
-// Setpoint = 0...12400
 
 
 const double Kp_max = 10;
@@ -43,12 +33,14 @@ void update() {
 void setup() {
 
 	myPID.SetMode(AUTOMATIC);
+
+	// set the sample rate to 1 ms
 	myPID.SetSampleTime(1);
 }
 
 void loop() {
 
-	ModelicaFormatMessage("Input=%g, Kp=%g, Ki=%g, Kd=%g, Setpoint=%g\n", Input, Kp, Ki, Kd, Setpoint);
+	//ModelicaFormatMessage("Input=%g, Kp=%g, Ki=%g, Kd=%g, Setpoint=%g\n", Input, Kp, Ki, Kd, Setpoint);
 
 	update();
 
