@@ -5,3 +5,5 @@ BlinkWithoutDelay
 AnalogReadSerial
 AnalogWrite
 Fade
+Ping
+ControlledDCMotor

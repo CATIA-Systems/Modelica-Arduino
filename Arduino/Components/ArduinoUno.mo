@@ -13,10 +13,10 @@ block ArduinoUno
       Arduino.Internal.ExternalArduino();
 
   Modelica.Electrical.Analog.Interfaces.Pin A1 annotation (Placement(
-        transformation(extent={{-170,-70},{-150,-50}}),iconTransformation(
+        transformation(extent={{-170,-30},{-150,-10}}),iconTransformation(
           extent={{-168,-28},{-150,-10}})));
   Modelica.Electrical.Analog.Interfaces.Pin A2 annotation (Placement(
-        transformation(extent={{-170,-90},{-150,-70}}),iconTransformation(
+        transformation(extent={{-170,-60},{-150,-40}}),iconTransformation(
           extent={{-168,-56},{-150,-38}})));
   Modelica.Electrical.Analog.Interfaces.Pin A3 annotation (Placement(
         transformation(extent={{-170,-90},{-150,-70}}),iconTransformation(
@@ -29,29 +29,24 @@ block ArduinoUno
         transformation(extent={{-170,-150},{-150,-130}}),
                                                        iconTransformation(
           extent={{-168,-149},{-148,-130}})));
-  Modelica.Electrical.Analog.Basic.Resistor resistor3(
-                                                     R=1e9)
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}},
+  Modelica.Electrical.Analog.Basic.Resistor resistorA1(R=1e5) annotation (
+      Placement(transformation(
+        extent={{-10,-10},{10,10}},
         rotation=180,
-        origin={-130,-60})));
-  Modelica.Electrical.Analog.Basic.Resistor resistor4(
-                                                     R=1e9)
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}},
+        origin={-130,-20})));
+  Modelica.Electrical.Analog.Basic.Resistor resistorA2(R=1e5) annotation (
+      Placement(transformation(
+        extent={{-10,-10},{10,10}},
         rotation=180,
-        origin={-130,-80})));
-  Modelica.Electrical.Analog.Basic.Resistor resistor5(
-                                                     R=1e9)
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}},
+        origin={-130,-50})));
+  Modelica.Electrical.Analog.Basic.Resistor resistorA4(R=1e5) annotation (
+      Placement(transformation(
+        extent={{-10,-10},{10,10}},
         rotation=180,
-        origin={-130,-100})));
-  Modelica.Electrical.Analog.Basic.Resistor resistor6(
-                                                     R=1e9)
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}},
-        rotation=180,
-        origin={-130,-120})));
-  Modelica.Electrical.Analog.Basic.Resistor resistor7(
-                                                     R=1e9)
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}},
+        origin={-130,-110})));
+  Modelica.Electrical.Analog.Basic.Resistor resistorA5(R=1e5) annotation (
+      Placement(transformation(
+        extent={{-10,-10},{10,10}},
         rotation=180,
         origin={-130,-140})));
   Modelica.Electrical.Analog.Interfaces.Pin V5 annotation (Placement(
@@ -68,27 +63,13 @@ block ArduinoUno
     annotation (Placement(transformation(extent={{-170,158},{-150,178}}),
         iconTransformation(extent={{-168,160},{-150,178}})));
   Modelica.Electrical.Analog.Interfaces.Pin A0 annotation (Placement(
-        transformation(extent={{-170,-50},{-150,-30}}),iconTransformation(
-          extent={{-168,0},{-150,18}})));
-  Modelica.Electrical.Analog.Basic.Resistor resistor2(
-                                                     R=1e9)
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}},
-        rotation=180,
-        origin={-130,-40})));
-  Modelica.Blocks.Sources.RealExpression realExpression1(y=pulseWidth[2])
-    annotation (Placement(transformation(extent={{62,-140},{92,-128}})));
-  Modelica.Blocks.Sources.BooleanExpression booleanExpression1(y=portMode[2] ==
-        0)
-    annotation (Placement(transformation(extent={{62,-132},{92,-120}})));
-  Internal.DigitalPin digitalPin0 annotation (Placement(transformation(
+        transformation(extent={{-170,0},{-150,20}}),   iconTransformation(
+          extent={{-168,2},{-150,20}})));
+  Modelica.Electrical.Analog.Basic.Resistor resistorA0(R=1e5) annotation (
+      Placement(transformation(
         extent={{-10,-10},{10,10}},
-        rotation=0,
-        origin={120,-160})));
-  Modelica.Blocks.Sources.RealExpression realExpression0(y=pulseWidth[1])
-    annotation (Placement(transformation(extent={{62,-170},{92,-158}})));
-  Modelica.Blocks.Sources.BooleanExpression booleanExpression0(y=portMode[1] ==
-        0)
-    annotation (Placement(transformation(extent={{62,-162},{92,-150}})));
+        rotation=180,
+        origin={-130,10})));
   Modelica.Electrical.Analog.Interfaces.Pin D0 annotation (Placement(
         transformation(extent={{150,-170},{170,-150}}),
                                                    iconTransformation(extent={{153,
@@ -97,144 +78,60 @@ block ArduinoUno
         transformation(extent={{150,-110},{170,-90}}),
                                                    iconTransformation(extent={{153,
             -107},{171,-89}})));
-  Internal.DigitalPin digitalPin3 annotation (Placement(transformation(
-        extent={{-10,-10},{10,10}},
-        rotation=0,
-        origin={120,-70})));
-  Modelica.Blocks.Sources.RealExpression realExpression3(y=pulseWidth[4])
-    annotation (Placement(transformation(extent={{62,-80},{92,-68}})));
-  Modelica.Blocks.Sources.BooleanExpression booleanExpression3(y=portMode[4] ==
-        0)
-    annotation (Placement(transformation(extent={{62,-72},{92,-60}})));
   Modelica.Electrical.Analog.Interfaces.Pin D3 annotation (Placement(
         transformation(extent={{150,-80},{170,-60}}),
                                                    iconTransformation(extent={{153,-79},
             {171,-61}})));
-  Internal.DigitalPin digitalPin4 annotation (Placement(transformation(
-        extent={{-10,-10},{10,10}},
-        rotation=0,
-        origin={120,-40})));
-  Modelica.Blocks.Sources.RealExpression realExpression4(y=pulseWidth[5])
-    annotation (Placement(transformation(extent={{62,-50},{92,-38}})));
-  Modelica.Blocks.Sources.BooleanExpression booleanExpression4(y=portMode[5] ==
-        0)
-    annotation (Placement(transformation(extent={{62,-42},{92,-30}})));
   Modelica.Electrical.Analog.Interfaces.Pin D4 annotation (Placement(
         transformation(extent={{150,-50},{170,-30}}),
                                                    iconTransformation(extent={{153,-49},
             {171,-31}})));
-  Internal.DigitalPin digitalPin5 annotation (Placement(transformation(
-        extent={{-10,-10},{10,10}},
-        rotation=0,
-        origin={120,-10})));
-  Modelica.Blocks.Sources.RealExpression realExpression5(y=pulseWidth[6])
-    annotation (Placement(transformation(extent={{62,-20},{92,-8}})));
-  Modelica.Blocks.Sources.BooleanExpression booleanExpression5(y=portMode[6] ==
-        0)
-    annotation (Placement(transformation(extent={{62,-12},{92,0}})));
   Modelica.Electrical.Analog.Interfaces.Pin D5 annotation (Placement(
         transformation(extent={{150,-20},{170,0}}),iconTransformation(extent={{153,-19},
             {171,-1}})));
-  Internal.DigitalPin digitalPin6 annotation (Placement(transformation(
-        extent={{-10,-10},{10,10}},
-        rotation=0,
-        origin={120,20})));
-  Modelica.Blocks.Sources.RealExpression realExpression6(y=pulseWidth[7])
-    annotation (Placement(transformation(extent={{62,10},{92,22}})));
-  Modelica.Blocks.Sources.BooleanExpression booleanExpression6(y=portMode[7] ==
-        0)
-    annotation (Placement(transformation(extent={{62,18},{92,30}})));
   Modelica.Electrical.Analog.Interfaces.Pin D6 annotation (Placement(
         transformation(extent={{150,10},{170,30}}),iconTransformation(extent={{153,11},
             {171,29}})));
-  Internal.DigitalPin digitalPin7 annotation (Placement(transformation(
-        extent={{-10,-10},{10,10}},
-        rotation=0,
-        origin={120,50})));
-  Modelica.Blocks.Sources.RealExpression realExpression7(y=pulseWidth[8])
-    annotation (Placement(transformation(extent={{62,40},{92,52}})));
-  Modelica.Blocks.Sources.BooleanExpression booleanExpression7(y=portMode[8] ==
-        0)
-    annotation (Placement(transformation(extent={{62,48},{92,60}})));
   Modelica.Electrical.Analog.Interfaces.Pin D7 annotation (Placement(
         transformation(extent={{150,40},{170,60}}),iconTransformation(extent={{153,41},
             {171,59}})));
-  Internal.DigitalPin digitalPin8 annotation (Placement(transformation(
-        extent={{-10,-10},{10,10}},
-        rotation=0,
-        origin={120,80})));
-  Modelica.Blocks.Sources.RealExpression realExpression8(y=pulseWidth[9])
-    annotation (Placement(transformation(extent={{62,70},{92,82}})));
-  Modelica.Blocks.Sources.BooleanExpression booleanExpression8(y=portMode[9] ==
-        0)
-    annotation (Placement(transformation(extent={{62,78},{92,90}})));
   Modelica.Electrical.Analog.Interfaces.Pin D8 annotation (Placement(
         transformation(extent={{150,70},{170,90}}),iconTransformation(extent={{153,72},
             {171,90}})));
-  Internal.DigitalPin digitalPin9 annotation (Placement(transformation(
-        extent={{-10,-10},{10,10}},
-        rotation=0,
-        origin={120,110})));
   Modelica.Blocks.Sources.RealExpression realExpression9(y=pulseWidth[10])
-    annotation (Placement(transformation(extent={{62,100},{92,112}})));
+    annotation (Placement(transformation(extent={{60,100},{102,112}})));
   Modelica.Blocks.Sources.BooleanExpression booleanExpression9(y=portMode[10] ==
         0)
-    annotation (Placement(transformation(extent={{62,108},{92,120}})));
+    annotation (Placement(transformation(extent={{60,108},{102,120}})));
   Modelica.Electrical.Analog.Interfaces.Pin D9 annotation (Placement(
         transformation(extent={{150,100},{170,120}}),
                                                    iconTransformation(extent={{153,102},
             {171,120}})));
-  Internal.DigitalPin digitalPin10 annotation (Placement(transformation(
-        extent={{-10,-10},{10,10}},
-        rotation=0,
-        origin={120,140})));
   Modelica.Blocks.Sources.RealExpression realExpression10(y=pulseWidth[11])
-    annotation (Placement(transformation(extent={{62,130},{92,142}})));
+    annotation (Placement(transformation(extent={{60,130},{102,142}})));
   Modelica.Blocks.Sources.BooleanExpression booleanExpression10(y=portMode[11]
          == 0)
-    annotation (Placement(transformation(extent={{62,138},{92,150}})));
+    annotation (Placement(transformation(extent={{60,138},{102,150}})));
   Modelica.Electrical.Analog.Interfaces.Pin D10
                                                annotation (Placement(
         transformation(extent={{150,130},{170,150}}),
                                                    iconTransformation(extent={{153,132},
             {171,150}})));
-  Internal.DigitalPin digitalPin11 annotation (Placement(transformation(
-        extent={{-10,-10},{10,10}},
-        rotation=0,
-        origin={120,170})));
   Modelica.Blocks.Sources.RealExpression realExpression11(y=pulseWidth[12])
-    annotation (Placement(transformation(extent={{62,160},{92,172}})));
+    annotation (Placement(transformation(extent={{60,160},{100,172}})));
   Modelica.Blocks.Sources.BooleanExpression booleanExpression11(y=portMode[12]
          == 0)
-    annotation (Placement(transformation(extent={{62,168},{92,180}})));
+    annotation (Placement(transformation(extent={{60,168},{100,180}})));
   Modelica.Electrical.Analog.Interfaces.Pin D11
                                                annotation (Placement(
         transformation(extent={{150,160},{170,180}}),
                                                    iconTransformation(extent={{153,162},
             {171,180}})));
-  Internal.DigitalPin digitalPin12 annotation (Placement(transformation(
-        extent={{-10,-10},{10,10}},
-        rotation=0,
-        origin={120,200})));
-  Modelica.Blocks.Sources.RealExpression realExpression12(y=pulseWidth[13])
-    annotation (Placement(transformation(extent={{62,190},{92,202}})));
-  Modelica.Blocks.Sources.BooleanExpression booleanExpression12(y=portMode[13]
-         == 0)
-    annotation (Placement(transformation(extent={{62,198},{92,210}})));
   Modelica.Electrical.Analog.Interfaces.Pin D12
                                                annotation (Placement(
         transformation(extent={{150,190},{170,210}}),
                                                    iconTransformation(extent={{153,192},
             {171,210}})));
-  Internal.DigitalPin digitalPin13 annotation (Placement(transformation(
-        extent={{-10,-10},{10,10}},
-        rotation=0,
-        origin={120,230})));
-  Modelica.Blocks.Sources.RealExpression realExpression13(y=pulseWidth[14])
-    annotation (Placement(transformation(extent={{62,220},{92,232}})));
-  Modelica.Blocks.Sources.BooleanExpression booleanExpression13(y=portMode[14]
-         == 0)
-    annotation (Placement(transformation(extent={{62,228},{92,240}})));
   Modelica.Electrical.Analog.Interfaces.Pin D13
                                                annotation (Placement(
         transformation(extent={{150,220},{170,240}}),
@@ -250,7 +147,7 @@ block ArduinoUno
         rotation=270,
         origin={30,70})));
 
-//protected
+protected
     final constant Integer numAnalogInputs = 6;
     final constant Integer numDigitalPins = 20;
     Integer portMode[numDigitalPins];
@@ -286,17 +183,9 @@ public
            {{-38,252},{-20,270}})));
   Modelica.Blocks.Sources.BooleanExpression booleanExpression2(y=portMode[3] ==
         0)
-    annotation (Placement(transformation(extent={{-15.5,-6.5},{15.5,6.5}},
+    annotation (Placement(transformation(extent={{-20.5,-6},{20.5,6}},
         rotation=0,
-        origin={75.5,-92.5})));
-  Modelica.Blocks.Sources.RealExpression realExpression2(y=pulseWidth[3])
-    annotation (Placement(transformation(extent={{-15,-6},{15,6}},
-        rotation=0,
-        origin={77,-104})));
-  Internal.DigitalPin digitalPin
-    annotation (Placement(transformation(extent={{110,-110},{130,-90}})));
-  Internal.DigitalPin digitalPin1
-    annotation (Placement(transformation(extent={{110,-140},{130,-120}})));
+        origin={80.5,-96})));
   Modelica.Electrical.Analog.Basic.Resistor resistorAREF(R=1e5) annotation (
       Placement(transformation(
         extent={{-10,-10},{10,10}},
@@ -307,6 +196,129 @@ public
         extent={{-10,-10},{10,10}},
         rotation=0,
         origin={-110,208})));
+  Internal.DigitalPort digitalPort9
+    annotation (Placement(transformation(extent={{120,100},{140,120}})));
+  Internal.DigitalPort digitalPort10
+    annotation (Placement(transformation(extent={{120,130},{140,150}})));
+  Internal.DigitalPort digitalPort1
+    annotation (Placement(transformation(extent={{120,160},{140,180}})));
+  Modelica.Electrical.Analog.Basic.Resistor resistorA3(R=1e5) annotation (
+      Placement(transformation(
+        extent={{-10,-10},{10,10}},
+        rotation=180,
+        origin={-130,-80})));
+  Internal.DigitalPinDriver digitalPinDriver
+    annotation (Placement(transformation(extent={{120,-110},{140,-90}})));
+  Modelica.Blocks.Sources.BooleanExpression booleanExpression14(y=pulseWidth[3] >
+        0)
+    annotation (Placement(transformation(extent={{-20.5,-6},{20.5,6}},
+        rotation=0,
+        origin={80.5,-104})));
+  Modelica.Blocks.Sources.BooleanExpression booleanExpression15(y=portMode[5] ==
+        0)
+    annotation (Placement(transformation(extent={{-20,-6},{20,6}},
+        rotation=0,
+        origin={80,-36})));
+  Internal.DigitalPinDriver digitalPinDriver1
+    annotation (Placement(transformation(extent={{120,-50},{140,-30}})));
+  Modelica.Blocks.Sources.BooleanExpression booleanExpression16(y=pulseWidth[5] >
+        0)
+    annotation (Placement(transformation(extent={{-20.5,-6},{20.5,6}},
+        rotation=0,
+        origin={80.5,-44})));
+  Modelica.Blocks.Sources.BooleanExpression booleanExpression4(y=portMode[8] ==
+        0)
+    annotation (Placement(transformation(extent={{-20,-6},{20,6}},
+        rotation=0,
+        origin={80,54})));
+  Internal.DigitalPinDriver digitalPinDriver2
+    annotation (Placement(transformation(extent={{120,40},{140,60}})));
+  Modelica.Blocks.Sources.BooleanExpression booleanExpression17(y=pulseWidth[8] >
+        0)
+    annotation (Placement(transformation(extent={{-20.5,-6},{20.5,6}},
+        rotation=0,
+        origin={80.5,46})));
+  Modelica.Blocks.Sources.BooleanExpression booleanExpression7(y=portMode[9] ==
+        0)
+    annotation (Placement(transformation(extent={{-20,-6},{20,6}},
+        rotation=0,
+        origin={80,84})));
+  Internal.DigitalPinDriver digitalPinDriver3
+    annotation (Placement(transformation(extent={{120,70},{140,90}})));
+  Modelica.Blocks.Sources.BooleanExpression booleanExpression18(y=pulseWidth[9] >
+        0)
+    annotation (Placement(transformation(extent={{-20.5,-6},{20.5,6}},
+        rotation=0,
+        origin={80.5,76})));
+  Modelica.Blocks.Sources.BooleanExpression booleanExpression8(y=portMode[2] ==
+        0)
+    annotation (Placement(transformation(extent={{-20.5,-6},{20.5,6}},
+        rotation=0,
+        origin={80.5,-126})));
+  Internal.DigitalPinDriver digitalPinDriver4
+    annotation (Placement(transformation(extent={{120,-140},{140,-120}})));
+  Modelica.Blocks.Sources.BooleanExpression booleanExpression19(y=pulseWidth[2] >
+        0)
+    annotation (Placement(transformation(extent={{-20.5,-6},{20.5,6}},
+        rotation=0,
+        origin={80.5,-134})));
+  Modelica.Blocks.Sources.BooleanExpression booleanExpression20(y=portMode[1] ==
+        0)
+    annotation (Placement(transformation(extent={{-20.5,-6},{20.5,6}},
+        rotation=0,
+        origin={80.5,-156})));
+  Internal.DigitalPinDriver digitalPinDriver5
+    annotation (Placement(transformation(extent={{120,-170},{140,-150}})));
+  Modelica.Blocks.Sources.BooleanExpression booleanExpression21(y=pulseWidth[1] >
+        0)
+    annotation (Placement(transformation(extent={{-20.5,-6},{20.5,6}},
+        rotation=0,
+        origin={80.5,-164})));
+  Modelica.Blocks.Sources.RealExpression realExpression1(y=pulseWidth[7])
+    annotation (Placement(transformation(extent={{60,10},{100,22}})));
+  Modelica.Blocks.Sources.BooleanExpression booleanExpression1(y=portMode[7] ==
+        0)
+    annotation (Placement(transformation(extent={{60,18},{100,30}})));
+  Internal.DigitalPort digitalPort2
+    annotation (Placement(transformation(extent={{120,10},{140,30}})));
+  Modelica.Blocks.Sources.RealExpression realExpression2(y=pulseWidth[6])
+    annotation (Placement(transformation(extent={{60,-20},{100,-8}})));
+  Modelica.Blocks.Sources.BooleanExpression booleanExpression6(y=portMode[6] ==
+        0)
+    annotation (Placement(transformation(extent={{60,-12},{100,0}})));
+  Internal.DigitalPort digitalPort3
+    annotation (Placement(transformation(extent={{120,-20},{140,0}})));
+  Modelica.Blocks.Sources.RealExpression realExpression4(y=pulseWidth[4])
+    annotation (Placement(transformation(extent={{60,-80},{100,-68}})));
+  Modelica.Blocks.Sources.BooleanExpression booleanExpression5(y=portMode[4] ==
+        0)
+    annotation (Placement(transformation(extent={{60,-72},{100,-60}})));
+  Internal.DigitalPort digitalPort4
+    annotation (Placement(transformation(extent={{120,-80},{140,-60}})));
+  Modelica.Blocks.Sources.BooleanExpression booleanExpression3(y=portMode[13] ==
+        0)
+    annotation (Placement(transformation(extent={{-20,-6},{20,6}},
+        rotation=0,
+        origin={80,204})));
+  Internal.DigitalPinDriver digitalPinDriver6
+    annotation (Placement(transformation(extent={{120,190},{140,210}})));
+  Modelica.Blocks.Sources.BooleanExpression booleanExpression22(y=pulseWidth[13] >
+        0)
+    annotation (Placement(transformation(extent={{-20,-6},{20,6}},
+        rotation=0,
+        origin={80,196})));
+  Modelica.Blocks.Sources.BooleanExpression booleanExpression23(y=portMode[14] ==
+        0)
+    annotation (Placement(transformation(extent={{-20,-6},{20,6}},
+        rotation=0,
+        origin={80,234})));
+  Internal.DigitalPinDriver digitalPinDriver7
+    annotation (Placement(transformation(extent={{120,220},{140,240}})));
+  Modelica.Blocks.Sources.BooleanExpression booleanExpression24(y=pulseWidth[14] >
+        0)
+    annotation (Placement(transformation(extent={{-20.5,-6},{20.5,6}},
+        rotation=0,
+        origin={80.5,226})));
 equation
 
   when sample(0, sampleRate) then
@@ -321,104 +333,26 @@ equation
   connect(GND, ground.p)
     annotation (Line(points={{0,-180},{0,-180},{0,-140},{20,-140}},
                                                           color={0,0,255}));
-  connect(resistor3.n, A1) annotation (Line(points={{-140,-60},{-150,-60},{-160,
-          -60}},            color={0,0,255}));
-  connect(resistor4.n, A2) annotation (Line(points={{-140,-80},{-150,-80},{-160,
-          -80}}, color={0,0,255}));
-  connect(resistor5.n, A3) annotation (Line(points={{-140,-100},{-150,-100},{-150,
-          -80},{-160,-80}},
-                       color={0,0,255}));
-  connect(resistor6.n, A4) annotation (Line(points={{-140,-120},{-160,-120},{-160,
-          -110}},                 color={0,0,255}));
-  connect(resistor7.n, A5) annotation (Line(points={{-140,-140},{-160,-140}},
-                       color={0,0,255}));
-  connect(resistor3.p, ground.p) annotation (Line(points={{-120,-60},{-86,-60},
+  connect(resistorA1.n, A1) annotation (Line(points={{-140,-20},{-150,-20},{-160,
+          -20}}, color={0,0,255}));
+  connect(resistorA2.n, A2) annotation (Line(points={{-140,-50},{-150,-50},{-160,
+          -50}}, color={0,0,255}));
+  connect(resistorA4.n, A4)
+    annotation (Line(points={{-140,-110},{-160,-110}}, color={0,0,255}));
+  connect(resistorA5.n, A5)
+    annotation (Line(points={{-140,-140},{-160,-140}}, color={0,0,255}));
+  connect(resistorA1.p, ground.p) annotation (Line(points={{-120,-20},{-86,-20},
           {-86,-140},{20,-140}}, color={0,0,255}));
-  connect(resistor4.p, ground.p) annotation (Line(points={{-120,-80},{-86,-80},
+  connect(resistorA2.p, ground.p) annotation (Line(points={{-120,-50},{-86,-50},
           {-86,-140},{20,-140}}, color={0,0,255}));
-  connect(resistor5.p, ground.p) annotation (Line(points={{-120,-100},{-86,-100},
-          {-86,-140},{20,-140}},       color={0,0,255}));
-  connect(resistor6.p, ground.p) annotation (Line(points={{-120,-120},{-86,-120},
-          {-86,-140},{20,-140}},       color={0,0,255}));
-  connect(resistor7.p, ground.p) annotation (Line(points={{-120,-140},{20,-140}},
-                                       color={0,0,255}));
-  connect(resistor2.n, A0) annotation (Line(points={{-140,-40},{-146,-40},{-150,
-          -40},{-160,-40}},
-        color={0,0,255}));
-  connect(resistor2.p, ground.p) annotation (Line(points={{-120,-40},{-86,-40},{
-          -86,-60},{-86,-140},{20,-140}},       color={0,0,255}));
-  connect(digitalPin0.pin, D0) annotation (Line(points={{130,-160},{146,-160},{
-          160,-160}}, color={0,0,255}));
-  connect(digitalPin0.pulseWidth, realExpression0.y) annotation (Line(points={{
-          108,-164},{108,-164},{93.5,-164}}, color={0,0,127}));
-  connect(digitalPin0.isInput, booleanExpression0.y) annotation (Line(points={{
-          108,-150.8},{108,-156},{93.5,-156}}, color={255,0,255}));
-  connect(digitalPin3.pin, D3)
-    annotation (Line(points={{130,-70},{146,-70},{160,-70}}, color={0,0,255}));
-  connect(digitalPin3.pulseWidth, realExpression3.y) annotation (Line(points={{
-          108,-74},{108,-74},{93.5,-74}}, color={0,0,127}));
-  connect(digitalPin3.isInput, booleanExpression3.y) annotation (Line(points={{
-          108,-60.8},{108,-66},{93.5,-66}}, color={255,0,255}));
-  connect(digitalPin4.pin, D4)
-    annotation (Line(points={{130,-40},{146,-40},{160,-40}}, color={0,0,255}));
-  connect(digitalPin4.pulseWidth, realExpression4.y) annotation (Line(points={{
-          108,-44},{108,-44},{93.5,-44}}, color={0,0,127}));
-  connect(digitalPin4.isInput, booleanExpression4.y) annotation (Line(points={{
-          108,-30.8},{108,-36},{93.5,-36}}, color={255,0,255}));
-  connect(digitalPin5.pin, D5)
-    annotation (Line(points={{130,-10},{146,-10},{160,-10}}, color={0,0,255}));
-  connect(digitalPin5.pulseWidth, realExpression5.y) annotation (Line(points={{
-          108,-14},{108,-14},{93.5,-14}}, color={0,0,127}));
-  connect(digitalPin5.isInput, booleanExpression5.y) annotation (Line(points={{
-          108,-0.8},{108,-6},{93.5,-6}}, color={255,0,255}));
-  connect(digitalPin6.pin, D6)
-    annotation (Line(points={{130,20},{146,20},{160,20}}, color={0,0,255}));
-  connect(digitalPin6.pulseWidth, realExpression6.y)
-    annotation (Line(points={{108,16},{108,16},{93.5,16}}, color={0,0,127}));
-  connect(digitalPin6.isInput, booleanExpression6.y) annotation (Line(points={{
-          108,29.2},{108,24},{93.5,24}}, color={255,0,255}));
-  connect(digitalPin7.pin, D7)
-    annotation (Line(points={{130,50},{146,50},{160,50}}, color={0,0,255}));
-  connect(digitalPin7.pulseWidth, realExpression7.y)
-    annotation (Line(points={{108,46},{108,46},{93.5,46}}, color={0,0,127}));
-  connect(digitalPin7.isInput, booleanExpression7.y) annotation (Line(points={{
-          108,59.2},{108,54},{93.5,54}}, color={255,0,255}));
-  connect(digitalPin8.pin, D8)
-    annotation (Line(points={{130,80},{146,80},{160,80}}, color={0,0,255}));
-  connect(digitalPin8.pulseWidth, realExpression8.y)
-    annotation (Line(points={{108,76},{108,76},{93.5,76}}, color={0,0,127}));
-  connect(digitalPin8.isInput, booleanExpression8.y) annotation (Line(points={{
-          108,89.2},{108,84},{93.5,84}}, color={255,0,255}));
-  connect(digitalPin9.pin, D9)
-    annotation (Line(points={{130,110},{146,110},{160,110}}, color={0,0,255}));
-  connect(digitalPin9.pulseWidth, realExpression9.y) annotation (Line(points={{
-          108,106},{108,106},{93.5,106}}, color={0,0,127}));
-  connect(digitalPin9.isInput, booleanExpression9.y) annotation (Line(points={{
-          108,119.2},{108,114},{93.5,114}}, color={255,0,255}));
-  connect(digitalPin10.pin, D10)
-    annotation (Line(points={{130,140},{146,140},{160,140}}, color={0,0,255}));
-  connect(digitalPin10.pulseWidth, realExpression10.y) annotation (Line(points=
-          {{108,136},{108,136},{93.5,136}}, color={0,0,127}));
-  connect(digitalPin10.isInput, booleanExpression10.y) annotation (Line(points=
-          {{108,149.2},{108,144},{93.5,144}}, color={255,0,255}));
-  connect(digitalPin11.pin, D11)
-    annotation (Line(points={{130,170},{146,170},{160,170}}, color={0,0,255}));
-  connect(digitalPin11.pulseWidth, realExpression11.y) annotation (Line(points=
-          {{108,166},{108,166},{93.5,166}}, color={0,0,127}));
-  connect(digitalPin11.isInput, booleanExpression11.y) annotation (Line(points=
-          {{108,179.2},{108,174},{93.5,174}}, color={255,0,255}));
-  connect(digitalPin12.pin, D12)
-    annotation (Line(points={{130,200},{146,200},{160,200}}, color={0,0,255}));
-  connect(digitalPin12.pulseWidth, realExpression12.y) annotation (Line(points=
-          {{108,196},{108,196},{93.5,196}}, color={0,0,127}));
-  connect(digitalPin12.isInput, booleanExpression12.y) annotation (Line(points=
-          {{108,209.2},{108,204},{93.5,204}}, color={255,0,255}));
-  connect(digitalPin13.pin, D13)
-    annotation (Line(points={{130,230},{146,230},{160,230}}, color={0,0,255}));
-  connect(digitalPin13.pulseWidth, realExpression13.y) annotation (Line(points=
-          {{108,226},{108,226},{93.5,226}}, color={0,0,127}));
-  connect(digitalPin13.isInput, booleanExpression13.y) annotation (Line(points=
-          {{108,239.2},{108,234},{93.5,234}}, color={255,0,255}));
+  connect(resistorA4.p, ground.p) annotation (Line(points={{-120,-110},{-86,-110},
+          {-86,-140},{20,-140}}, color={0,0,255}));
+  connect(resistorA5.p, ground.p)
+    annotation (Line(points={{-120,-140},{20,-140}}, color={0,0,255}));
+  connect(resistorA0.n, A0) annotation (Line(points={{-140,10},{-146,10},{-150,10},
+          {-160,10}}, color={0,0,255}));
+  connect(resistorA0.p, ground.p) annotation (Line(points={{-120,10},{-86,10},{-86,
+          -30},{-86,-140},{20,-140}}, color={0,0,255}));
   connect(constantVoltage.n, ground.p)
     annotation (Line(points={{-1.77636e-015,62},{-1.77636e-015,-140},{20,-140}},
                                                          color={0,0,255}));
@@ -428,8 +362,8 @@ equation
           156},{-44,156},{-32,156},{-32,-140},{20,-140}},   color={0,0,255}));
   connect(resistor8.p, constantVoltage1.p) annotation (Line(points={{-44,202},{-44,
           226},{-16,226},{-16,204}}, color={0,0,255}));
-  connect(V33, constantVoltage1.p) annotation (Line(points={{-30,260},{-20,260},
-          {-20,226},{-16,226},{-16,204}}, color={0,0,255}));
+  connect(V33, constantVoltage1.p) annotation (Line(points={{-30,260},{-30,260},
+          {-30,226},{-16,226},{-16,204}}, color={0,0,255}));
   connect(constantVoltage1.n, ground.p) annotation (Line(points={{-16,184},{-16,
           184},{-16,156},{-32,156},{-32,-140},{20,-140}}, color={0,0,255}));
   connect(resistor1.n, ground.p) annotation (Line(points={{30,60},{30,60},{30,28},
@@ -438,19 +372,6 @@ equation
           {0,82},{1.77636e-015,82}}, color={0,0,255}));
   connect(V5, V5) annotation (Line(points={{28,260},{26.5,260},{26.5,260},{28,260}},
         color={0,0,255}));
-  connect(digitalPin.pin, D2)
-    annotation (Line(points={{130,-100},{160,-100}}, color={0,0,255}));
-  connect(booleanExpression2.y, digitalPin.isInput) annotation (Line(points={{
-          92.55,-92.5},{100.275,-92.5},{100.275,-90.8},{108,-90.8}}, color={255,
-          0,255}));
-  connect(realExpression2.y, digitalPin.pulseWidth)
-    annotation (Line(points={{93.5,-104},{108,-104}}, color={0,0,127}));
-  connect(booleanExpression1.y, digitalPin1.isInput) annotation (Line(points={{
-          93.5,-126},{100,-126},{100,-120.8},{108,-120.8}}, color={255,0,255}));
-  connect(realExpression1.y, digitalPin1.pulseWidth) annotation (Line(points={{
-          93.5,-134},{100.75,-134},{108,-134}}, color={0,0,127}));
-  connect(digitalPin1.pin, D1) annotation (Line(points={{130,-130},{144,-130},{
-          160,-130}}, color={0,0,255}));
   connect(AREF, resistorAREF.p)
     annotation (Line(points={{-160,168},{-120,168}}, color={0,0,255}));
   connect(resistorAREF.n, ground.p) annotation (Line(points={{-100,168},{-60,168},
@@ -459,6 +380,94 @@ equation
     annotation (Line(points={{-160,208},{-120,208}}, color={0,0,255}));
   connect(resistorRESET.n, ground.p) annotation (Line(points={{-100,208},{-60,208},
           {-60,-140},{20,-140}}, color={0,0,255}));
+  connect(booleanExpression9.y, digitalPort9.isInput)
+    annotation (Line(points={{104.1,114},{118,114}}, color={255,0,255}));
+  connect(realExpression9.y, digitalPort9.pulseWidth) annotation (Line(points={{
+          104.1,106},{112,106},{118,106}}, color={0,0,127}));
+  connect(digitalPort9.pin, D9)
+    annotation (Line(points={{140,110},{160,110}}, color={0,0,255}));
+  connect(digitalPort10.pin, D10)
+    annotation (Line(points={{140,140},{140,140},{160,140}}, color={0,0,255}));
+  connect(digitalPort10.pulseWidth, realExpression10.y)
+    annotation (Line(points={{118,136},{104.1,136}}, color={0,0,127}));
+  connect(digitalPort10.isInput, booleanExpression10.y)
+    annotation (Line(points={{118,144},{104.1,144}}, color={255,0,255}));
+  connect(digitalPort1.pin, D11)
+    annotation (Line(points={{140,170},{140,170},{160,170}}, color={0,0,255}));
+  connect(digitalPort1.pulseWidth, realExpression11.y)
+    annotation (Line(points={{118,166},{102,166}}, color={0,0,127}));
+  connect(digitalPort1.isInput, booleanExpression11.y)
+    annotation (Line(points={{118,174},{102,174}}, color={255,0,255}));
+  connect(A3, resistorA3.n) annotation (Line(points={{-160,-80},{-140,-80},{-140,
+          -80}}, color={0,0,255}));
+  connect(resistorA3.p, ground.p) annotation (Line(points={{-120,-80},{-86,-80},
+          {-86,-140},{20,-140}}, color={0,0,255}));
+  connect(digitalPinDriver.y, D2) annotation (Line(points={{140,-100},{140,-100},
+          {160,-100}}, color={0,0,255}));
+  connect(booleanExpression2.y, digitalPinDriver.isInput) annotation (Line(
+        points={{103.05,-96},{103.05,-96},{118,-96}}, color={255,0,255}));
+  connect(booleanExpression14.y, digitalPinDriver.u) annotation (Line(points={{103.05,
+          -104},{110.375,-104},{118,-104}}, color={255,0,255}));
+  connect(booleanExpression15.y, digitalPinDriver1.isInput) annotation (Line(
+        points={{102,-36},{106,-36},{118,-36}}, color={255,0,255}));
+  connect(booleanExpression16.y, digitalPinDriver1.u) annotation (Line(points={{
+          103.05,-44},{103.05,-44},{118,-44}}, color={255,0,255}));
+  connect(digitalPinDriver1.y, D4)
+    annotation (Line(points={{140,-40},{160,-40}}, color={0,0,255}));
+  connect(booleanExpression4.y, digitalPinDriver2.isInput)
+    annotation (Line(points={{102,54},{102,54},{118,54}}, color={255,0,255}));
+  connect(booleanExpression17.y, digitalPinDriver2.u) annotation (Line(points={{
+          103.05,46},{103.05,46},{118,46}}, color={255,0,255}));
+  connect(digitalPinDriver2.y, D7)
+    annotation (Line(points={{140,50},{160,50},{160,50}}, color={0,0,255}));
+  connect(booleanExpression7.y, digitalPinDriver3.isInput)
+    annotation (Line(points={{102,84},{108,84},{118,84}}, color={255,0,255}));
+  connect(booleanExpression18.y, digitalPinDriver3.u) annotation (Line(points={{
+          103.05,76},{110.375,76},{118,76}}, color={255,0,255}));
+  connect(digitalPinDriver3.y, D8)
+    annotation (Line(points={{140,80},{150,80},{160,80}}, color={0,0,255}));
+  connect(booleanExpression8.y, digitalPinDriver4.isInput) annotation (Line(
+        points={{103.05,-126},{108,-126},{118,-126}}, color={255,0,255}));
+  connect(booleanExpression19.y, digitalPinDriver4.u) annotation (Line(points={{
+          103.05,-134},{110.375,-134},{118,-134}}, color={255,0,255}));
+  connect(booleanExpression20.y, digitalPinDriver5.isInput) annotation (Line(
+        points={{103.05,-156},{108,-156},{118,-156}}, color={255,0,255}));
+  connect(booleanExpression21.y, digitalPinDriver5.u) annotation (Line(points={{
+          103.05,-164},{110.375,-164},{118,-164}}, color={255,0,255}));
+  connect(digitalPinDriver4.y, D1) annotation (Line(points={{140,-130},{160,-130},
+          {160,-130}}, color={0,0,255}));
+  connect(digitalPinDriver5.y, D0) annotation (Line(points={{140,-160},{150,-160},
+          {160,-160}}, color={0,0,255}));
+  connect(booleanExpression1.y, digitalPort2.isInput)
+    annotation (Line(points={{102,24},{118,24}}, color={255,0,255}));
+  connect(realExpression1.y, digitalPort2.pulseWidth)
+    annotation (Line(points={{102,16},{118,16}}, color={0,0,127}));
+  connect(digitalPort2.pin, D6)
+    annotation (Line(points={{140,20},{160,20},{160,20}}, color={0,0,255}));
+  connect(booleanExpression6.y, digitalPort3.isInput)
+    annotation (Line(points={{102,-6},{118,-6}}, color={255,0,255}));
+  connect(realExpression2.y, digitalPort3.pulseWidth)
+    annotation (Line(points={{102,-14},{102,-14},{118,-14}}, color={0,0,127}));
+  connect(digitalPort3.pin, D5)
+    annotation (Line(points={{140,-10},{160,-10},{160,-10}}, color={0,0,255}));
+  connect(booleanExpression5.y, digitalPort4.isInput)
+    annotation (Line(points={{102,-66},{118,-66}}, color={255,0,255}));
+  connect(realExpression4.y, digitalPort4.pulseWidth)
+    annotation (Line(points={{102,-74},{118,-74}}, color={0,0,127}));
+  connect(digitalPort4.pin, D3)
+    annotation (Line(points={{140,-70},{150,-70},{160,-70}}, color={0,0,255}));
+  connect(booleanExpression3.y, digitalPinDriver6.isInput) annotation (Line(
+        points={{102,204},{102,204},{118,204}}, color={255,0,255}));
+  connect(booleanExpression22.y, digitalPinDriver6.u) annotation (Line(points={{
+          102,196},{110.375,196},{118,196}}, color={255,0,255}));
+  connect(booleanExpression23.y, digitalPinDriver7.isInput) annotation (Line(
+        points={{102,234},{102,234},{118,234}}, color={255,0,255}));
+  connect(booleanExpression24.y, digitalPinDriver7.u) annotation (Line(points={{
+          103.05,226},{110.375,226},{118,226}}, color={255,0,255}));
+  connect(digitalPinDriver7.y, D13)
+    annotation (Line(points={{140,230},{160,230},{160,230}}, color={0,0,255}));
+  connect(digitalPinDriver6.y, D12)
+    annotation (Line(points={{140,200},{150,200},{160,200}}, color={0,0,255}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-160,-180},
             {160,260}}),                                        graphics={
           Rectangle(
@@ -475,7 +484,7 @@ equation
           pattern=LinePattern.None,
           lineColor={0,0,0}),
         Text(
-          extent={{-138,20},{-104,-4}},
+          extent={{-138,24},{-104,0}},
           pattern=LinePattern.None,
           lineThickness=0.5,
           fillColor={136,172,188},
@@ -503,7 +512,7 @@ equation
           color={0,0,0},
           thickness=0.5),
         Text(
-          extent={{-138,-126},{-104,-150}},
+          extent={{-138,-128},{-104,-152}},
           pattern=LinePattern.None,
           lineThickness=0.5,
           fillColor={136,172,188},
@@ -514,7 +523,7 @@ equation
           horizontalAlignment=TextAlignment.Left,
           textString="A5"),
         Text(
-          extent={{-138,-8},{-104,-32}},
+          extent={{-138,-6},{-104,-30}},
           pattern=LinePattern.None,
           lineThickness=0.5,
           fillColor={136,172,188},
@@ -525,7 +534,7 @@ equation
           horizontalAlignment=TextAlignment.Left,
           textString="A1"),
         Text(
-          extent={{-138,-38},{-104,-62}},
+          extent={{-138,-36},{-104,-60}},
           pattern=LinePattern.None,
           lineThickness=0.5,
           fillColor={136,172,188},
@@ -536,7 +545,7 @@ equation
           horizontalAlignment=TextAlignment.Left,
           textString="A2"),
         Text(
-          extent={{-138,-66},{-104,-90}},
+          extent={{-138,-68},{-104,-92}},
           pattern=LinePattern.None,
           lineThickness=0.5,
           fillColor={136,172,188},
@@ -547,7 +556,7 @@ equation
           horizontalAlignment=TextAlignment.Left,
           textString="A3"),
         Text(
-          extent={{-138,-96},{-104,-120}},
+          extent={{-138,-98},{-104,-122}},
           pattern=LinePattern.None,
           lineThickness=0.5,
           fillColor={136,172,188},

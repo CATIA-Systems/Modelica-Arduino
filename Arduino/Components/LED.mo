@@ -1,25 +1,45 @@
 within Arduino.Components;
 model LED
-
-  Modelica.Electrical.Analog.Semiconductors.Diode diode(Ids(displayUnit="mA")=
-         0.02)
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
-  Modelica.Electrical.Analog.Interfaces.PositivePin pin_p
-    annotation (Placement(transformation(extent={{-110,-10},{-90,10}})));
-  Modelica.Electrical.Analog.Interfaces.NegativePin pin_n
-    annotation (Placement(transformation(extent={{90,-10},{110,10}})));
+  extends Modelica.Electrical.Analog.Interfaces.TwoPin;
+  Modelica.Electrical.Analog.Semiconductors.Diode2 diode(Vf=1.6, Ids(
+        displayUnit="mA"))
+    annotation (Placement(transformation(extent={{-40,-10},{-20,10}})));
+  Modelica.Blocks.Math.Mean mean(f=20)
+    annotation (Placement(transformation(extent={{40,40},{60,60}})));
+  Modelica.Electrical.Analog.Sensors.CurrentSensor currentSensor
+    annotation (Placement(transformation(extent={{20,10},{40,-10}})));
 equation
-  connect(diode.p, pin_p)
-    annotation (Line(points={{-10,0},{-100,0}},          color={0,0,255}));
-  connect(diode.n, pin_n)
-    annotation (Line(points={{10,0},{100,0}},         color={0,0,255}));
-  annotation (Icon(coordinateSystem(preserveAspectRatio=false), graphics={Line(
-          points={{-100,0},{100,0}},
-          color={0,0,255},
-          thickness=0.5), Ellipse(
+  connect(diode.p, p)
+    annotation (Line(points={{-40,0},{-100,0}}, color={0,0,255}));
+  connect(diode.n,currentSensor. p)
+    annotation (Line(points={{-20,0},{20,0}}, color={0,0,255}));
+  connect(currentSensor.i,mean. u) annotation (Line(points={{30,10},{30,24},{30,
+          50},{38,50}},    color={0,0,127}));
+  connect(currentSensor.n, n)
+    annotation (Line(points={{40,0},{70,0},{100,0}}, color={0,0,255}));
+  annotation (Icon(graphics={
+        Ellipse(
           extent={{-60,60},{60,-60}},
-          fillColor=DynamicSelect({100,0,0}, if diode.i > 0 then {100 + (diode.i / 0.02) * 155,0,0} else {100,0,0}),
+          fillColor=DynamicSelect({100,40,40}, if mean.y > 0 then {100 + (mean.y
+              /0.02)*155,40,40} else {100,40,40}),
           fillPattern=FillPattern.Solid,
-          pattern=LinePattern.None)}), Diagram(coordinateSystem(
-          preserveAspectRatio=false)));
+          pattern=LinePattern.None),
+        Polygon(
+          points={{30,0},{-30,40},{-30,-40},{30,0}},
+          lineColor={0,0,0}),
+        Line(points={{-90,0},{-30,0}},color={0,0,255}),
+        Line(points={{30,0},{90,0}}, color={0,0,255}),
+        Line(points={{30,40},{30,-40}}, color={0,0,255}),
+        Line(points={{38,52},{58,72}}, color={28,108,200}),
+        Polygon(
+          points={{52,73},{59,73},{59,66},{52,73}},
+          lineColor={0,0,255},
+          fillPattern=FillPattern.Solid,
+          fillColor={0,0,255}),
+        Polygon(
+          points={{68,59},{75,59},{75,52},{68,59}},
+          lineColor={0,0,255},
+          fillPattern=FillPattern.Solid,
+          fillColor={0,0,255}),
+        Line(points={{54,38},{74,58}}, color={28,108,200})}));
 end LED;

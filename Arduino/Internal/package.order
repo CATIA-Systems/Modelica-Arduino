@@ -1,5 +1,4 @@
 ExternalArduino
-VariablePulseVoltage
 DigitalPort
 VariableWidthPulse
-DigitalPin
+DigitalPinDriver

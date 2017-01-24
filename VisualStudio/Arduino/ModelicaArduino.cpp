@@ -14,6 +14,9 @@
 #include "SoftArduino.h"
 
 
+#define INSTANCE SoftArduino::instance
+
+
 DWORD WINAPI MyThreadFunction(LPVOID lpParam) {
 
 	for(;;) {
@@ -31,15 +34,15 @@ void * ModelicaArduino_open() {
 	
 	setup();
  
-	if (SoftArduino::instance.error) {
-		ModelicaFormatError("Error in setup(): %s", SoftArduino::instance.error);
+	if (INSTANCE.error) {
+		ModelicaFormatError("Error in setup(): %s", INSTANCE.error);
 	}
 
 	hThread = CreateThread(
 	NULL, 				   // default security attributes
 	0, 					   // use default stack size
 	MyThreadFunction, 	   // thread function
-	&SoftArduino::instance, // argument to thread function
+	&INSTANCE, // argument to thread function
 	0, 					   // use default creation flags
 	&dwThreadId); 		   // returns the thread identifier
 	 
@@ -47,7 +50,7 @@ void * ModelicaArduino_open() {
 		ModelicaFormatError("Failed to create arduino thread. %d.\n", GetLastError());
 	}
 
-	return &SoftArduino::instance;
+	return &INSTANCE;
 }
 
 void ModelicaArduino_close(void *externalObject) {
@@ -67,33 +70,44 @@ void ModelicaArduino_update(void *instance__,
 							int *portMode, 
 							double *pulseWidth) {
 
-	if (SoftArduino::instance.error) {
-		ModelicaFormatError("Error in loop(): %s", SoftArduino::instance.error);
+	if (INSTANCE.error) {
+		ModelicaFormatError("Error in loop(): %s", INSTANCE.error);
 		return;
 	}
 
 	// update the time
-	SoftArduino::instance.time = time;
+	INSTANCE.time = time * 1e6;
 
-	const double vref = SoftArduino::instance.analogReferenceMode == EXTERNAL ? analogReference : 5.;
+	const double vref = INSTANCE.analogReferenceMode == EXTERNAL ? analogReference : 5.;
 
 	// TODO: assert vref != 0
 
 	for (int i = 0; i < NUM_ANALOG_INPUTS; i++) {
 
 		// map analog input from [0,V_ref] to [0,1023]
-		SoftArduino::instance.analog[i] = (analog[i] / vref) * 1023;
+		INSTANCE.analog[i] = (analog[i] / vref) * 1023;
 
 	}
 
 	for (int i = 0; i < 14; i++) {
 
 		// map digital input from [0,5] to LOW|HIGH using a threshold of 2.5
-		SoftArduino::instance.digital[i] = digital[i] > 2.5 ? HIGH : LOW;
+		// TODO: add hysteresis
+		INSTANCE.digital[i] = digital[i] > 2.5 ? HIGH : LOW;
 
-		portMode[i] = SoftArduino::instance.portMode[i];
+		portMode[i] = INSTANCE.portMode[i];
 		
-		pulseWidth[i] = (SoftArduino::instance.pulseWidth[i] / 255.) * 100.;
+		pulseWidth[i] = INSTANCE.pulseWidth[i] * 100. / 255.;
+
+	}
+
+	// interrupts
+	if (INSTANCE.interruptsEnabled) {
+		for (int i = 0; i < 2; i++) {
+			if (INSTANCE.interrupts[i]) {
+				INSTANCE.interrupts[i]->update(INSTANCE.digital[interruptToDigitalPin(i)]);
+			}
+		}
 	}
 
 }
