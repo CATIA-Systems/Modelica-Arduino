@@ -12,7 +12,7 @@ Simulate your circuits and sketches on a virtual [Arduino Uno](https://www.ardui
 
 ## Getting Started
 
-To simulate a sketch named `Blink` you have to perform following steps.
+To simulate a sketch named `Blink` you have to perform the following steps.
 
 - Save your sketch as `Sketches/Blink.ino`
 
