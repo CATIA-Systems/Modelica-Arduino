@@ -5,7 +5,7 @@ package Arduino
 
 
 
-  annotation (uses(Modelica(version="3.2.2")), version="0.0.0", Icon(graphics={
+  annotation (uses(Modelica(version="3.2.2")), version="0.0.1", Icon(graphics={
         Ellipse(
           extent={{-80,38},{4,-34}},
           lineColor={0,135,143},
