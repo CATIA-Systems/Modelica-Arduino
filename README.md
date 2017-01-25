@@ -1,9 +1,8 @@
 # Simulate Arduino Sketches in Modelica
 
-Simulate your circuits and sketches on a virtual [Arduino Uno](https://www.arduino.cc/en/Main/ArduinoBoardUno)
+The Arduino Modelica library lets you simulate your circuits and sketches on a virtual [Arduino Uno](https://www.arduino.cc/en/Main/ArduinoBoardUno)
 
 ![Circuit w/ Arduino](Arduino/Resources/Images/led_circuit.png)
-
 
 ## Prerequistites
 
