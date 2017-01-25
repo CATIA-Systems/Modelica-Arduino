@@ -1,3 +1,6 @@
 # distribution folder & files
 dist/
 *.zip
+
+# generated files
+README.html

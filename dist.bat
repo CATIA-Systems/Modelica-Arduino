@@ -13,10 +13,12 @@ mkdir dist\Libraries
 mkdir dist\Sketches
 mkdir dist\VisualStudio
 
+rem Generate the documentation
+python md2html.py
+
 rem Create the distribution directories
-copy CHANGELOG.md dist\CHANGELOG.md
 copy LICENSE dist\LICENSE
-copy README.md dist\README.md
+copy README.html dist\README.html
 xcopy Arduino dist\Arduino /s /e
 xcopy VisualStudio dist\VisualStudio /s /e
 xcopy Sketches dist\Sketches /s /e
