@@ -1,9 +1,8 @@
 # Simulate Arduino Sketches in Modelica
 
-Simulate your circuits and sketches on a virtual [Arduino Uno](https://www.arduino.cc/en/Main/ArduinoBoardUno)
+The Arduino Modelica library lets you simulate your circuits and sketches on a virtual [Arduino Uno](https://www.arduino.cc/en/Main/ArduinoBoardUno)
 
 ![Circuit w/ Arduino](Arduino/Resources/Images/led_circuit.png)
-
 
 ## Prerequistites
 
@@ -42,116 +41,30 @@ to include your sketch
 
 ## Limitations
 
-Currently you can use only one instance of ArduinoUno in your Modelica model.
+- Currently you can use only one instance of ArduinoUno in your Modelica model
 
-## Alternatives
+- The whole [Arduino API](https://www.arduino.cc/en/Reference/HomePage) is supported except for the following functions
 
-For simulating simple Arduino circuits online you might want to have a look at
-Autodesk's [Electronics Lab](https://circuits.io/lab).
+	- [analogReadResolution()](https://www.arduino.cc/en/Reference/AnalogReadResolution)
+	- [analogWriteResolution()](https://www.arduino.cc/en/Reference/AnalogWriteResolution)
+	- [tone()](https://www.arduino.cc/en/Reference/Tone)
+	- [noTone()](https://www.arduino.cc/en/Reference/NoTone)
+	- [shiftOut()](https://www.arduino.cc/en/Reference/ShiftOut)
+	- [shiftIn()](https://www.arduino.cc/en/Reference/ShiftIn)
+	- [isWhitespace()](https://www.arduino.cc/en/Reference/IsWhitespace)
+	- [Serial](https://www.arduino.cc/en/Reference/Serial) `print(), println() and write() are supported`
+	- [Stream](https://www.arduino.cc/en/Reference/Stream)
+	- [Keyboard](https://www.arduino.cc/en/Reference/MouseKeyboard)
+	- [Mouse](https://www.arduino.cc/en/Reference/MouseKeyboard)
 
 ## Using Libraries
 
 To use a library in your sketch copy its header files (`*.h`) and source files (`*.cpp`) to the `Libraries` folder. If the library contains `.cpp` files you have to add them to the `Arduino` project by dragging them from the `Libraries` folder in the file browser onto the `Source Files` folder in the solution explorer.
 
-## Arduino API
+## License
 
-Functions that cannot be used in sketches are ~~striked through~~
+The code is licensed [GPLv3](https://www.gnu.org/licenses/gpl-3.0.en.html), the documentation [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
 
-#### Digital I/O
+----------------------------
 
-- [pinMode()](https://www.arduino.cc/en/Reference/PinMode)
-- [digitalWrite()](https://www.arduino.cc/en/Reference/DigitalWrite)
-- [digitalRead()](https://www.arduino.cc/en/Reference/DigitalRead)
-
-#### Analog I/O
-
-- [analogReference()](https://www.arduino.cc/en/Reference/AnalogReference)
-- [analogRead()](https://www.arduino.cc/en/Reference/AnalogRead)
-- [analogWrite() - PWM](https://www.arduino.cc/en/Reference/AnalogWrite)
-
-#### Due & Zero only
-
-- ~~analogReadResolution()~~
-- ~~analogWriteResolution()~~
-
-#### Advanced I/O
-
-- ~~tone()~~
-- ~~noTone()~~
-- ~~shiftOut()~~
-- ~~shiftIn()~~
-- [pulseIn()](https://www.arduino.cc/en/Reference/PulseIn)
-
-#### Time
-
-- [millis()](https://www.arduino.cc/en/Reference/Millis)
-- [micros()](https://www.arduino.cc/en/Reference/Micros)
-- [delay()](https://www.arduino.cc/en/Reference/Delay)
-- [delayMicroseconds()](https://www.arduino.cc/en/Reference/DelayMicroseconds)
-
-#### Math
-
-- [min()](https://www.arduino.cc/en/Reference/Min)
-- [max()](https://www.arduino.cc/en/Reference/Max)
-- [abs()](https://www.arduino.cc/en/Reference/Abs)
-- [constrain()](https://www.arduino.cc/en/Reference/Constrain)
-- [map()](https://www.arduino.cc/en/Reference/Map)
-- [pow()](https://www.arduino.cc/en/Reference/Pow)
-- [sqrt()](https://www.arduino.cc/en/Reference/Sqrt)
-
-#### Trigonometry
-
-- [sin()](https://www.arduino.cc/en/Reference/Sin)
-- [cos()](https://www.arduino.cc/en/Reference/Cos)
-- [tan()](https://www.arduino.cc/en/Reference/Tan)
-
-#### Characters
-
-- [isAlphaNumeric()](https://www.arduino.cc/en/Reference/IsAlphaNumeric)
-- [isAlpha()](https://www.arduino.cc/en/Reference/IsAlpha)
-- [isAscii()](https://www.arduino.cc/en/Reference/IsAscii)
-- ~~[isWhitespace()](https://www.arduino.cc/en/Reference/IsWhitespace)~~
-- [isControl()](https://www.arduino.cc/en/Reference/IsControl)
-- [isDigit()](https://www.arduino.cc/en/Reference/IsDigit)
-- [isGraph()](https://www.arduino.cc/en/Reference/IsGraph)
-- [isLowerCase()](https://www.arduino.cc/en/Reference/IsLowerCase)
-- [isPrintable()](https://www.arduino.cc/en/Reference/IsPrintable)
-- [isPunct()](https://www.arduino.cc/en/Reference/IsPunct)
-- [isSpace()](https://www.arduino.cc/en/Reference/IsSpace)
-- [isUpperCase()](https://www.arduino.cc/en/Reference/IsUpperCase)
-- [isHexadecimalDigit()](https://www.arduino.cc/en/Reference/IsHexadecimalDigit)
-
-#### Random Numbers
-
-- [randomSeed()](https://www.arduino.cc/en/Reference/RandomSeed)
-- [random()](https://www.arduino.cc/en/Reference/Random)
-
-#### Bits and Bytes
-
-- [lowByte()](https://www.arduino.cc/en/Reference/LowByte)
-- [highByte()](https://www.arduino.cc/en/Reference/HighByte)
-- [bitRead()](https://www.arduino.cc/en/Reference/BitRead)
-- [bitWrite()](https://www.arduino.cc/en/Reference/BitWrite)
-- [bitSet()](https://www.arduino.cc/en/Reference/BitSet)
-- [bitClear()](https://www.arduino.cc/en/Reference/BitClear)
-- [bit()](https://www.arduino.cc/en/Reference/Bit)
-
-#### External Interrupts
-
-- [attachInterrupt()](https://www.arduino.cc/en/Reference/AttachInterrupt)
-- [detachInterrupt()](https://www.arduino.cc/en/Reference/DetachInterrupt)
-
-#### Interrupts
-
-- [interrupts()](https://www.arduino.cc/en/Reference/Interrupts)
-- [noInterrupts()](https://www.arduino.cc/en/Reference/NoInterrupts)
-
-#### Communication
-
-- [Serial](https://www.arduino.cc/en/Reference/Serial) `only: print(), println(), write()`
-- ~~Stream~~
-
-#### USB (32u4 based boards and Due/Zero only)
-
-- ~~Keyboard~~
-- ~~Mouse~~
+Developed by Torsten Sommer at [Dassault Systèmes](https://www.3ds.com/). Copyright &copy; 2017 Dassault Systèmes.

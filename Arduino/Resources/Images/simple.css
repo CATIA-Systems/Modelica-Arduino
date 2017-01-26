@@ -1,0 +1,84 @@
+body {
+	margin: 20px 20px 20px 30px;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+	font-size: 14px;
+}
+
+p code, li code {
+    padding: 2px 4px;
+    font-size: 90%;
+    color: #c7254e;
+    background-color: #f9f2f4;
+    border-radius: 3px;
+}
+
+p {
+	margin: 6px 0 0;
+}
+
+h1, h2, h3, h4, h5 {
+    margin: 16px 0 10px;
+}
+
+a {
+    color: #3777b0;
+    text-decoration: none;
+}
+
+ol, ul {
+	padding: 0;
+    margin: 3px 0 3px 28px !important;
+}
+
+li {
+    line-height: 1.6em;
+    display: list-item;
+}
+
+li p {
+	margin: 0;
+}
+
+.codehilite {
+    background-color: #fff;
+    color: #333;
+    border: 1px solid rgb(229, 229, 229);
+    padding: 9.5px;
+}
+
+.codehilite pre {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.6em;
+    overflow-x: auto;
+    border-radius: 2px;
+}
+
+.highlight {
+    text-shadow: none;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    overflow-x: scroll;
+}
+
+table {
+    display: table;
+    border-collapse: separate;
+    border-spacing: 2px;
+    border-color: grey;
+}
+
+table td, table th {
+    text-align: left;
+    padding: 5px 10px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid #e5e5e5;
+    margin: 1em 0 1em 0;
+}

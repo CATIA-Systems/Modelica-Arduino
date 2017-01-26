@@ -25,7 +25,7 @@ equation
   connect(sineVoltage.n, arduinoUno.GND) annotation (Line(points={{-80,-50},{
           -80,-50},{-80,-80},{0,-80},{0,-60}},          color={0,0,255}));
   connect(sineVoltage.p, arduinoUno.A0) annotation (Line(points={{-80,-30},{-80,
-          -30},{-80,-8.45455},{-39.75,-8.45455}},
+          -30},{-80,-7.90909},{-39.75,-7.90909}},
                                                 color={0,0,255}));
   connect(resistor.p, arduinoUno.D9) annotation (Line(points={{80,0},{80,
           19.3636},{40.5,19.3636}}, color={0,0,255}));
@@ -36,6 +36,13 @@ equation
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,
             -100},{100,80}})),                                   Diagram(
         coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
-            100}})),
+            100}}), graphics={Text(
+          extent={{8,94},{92,80}},
+          lineColor={28,108,200},
+          textString="Use the sketch \"Fade.ino\" for this model.
+
+See https://www.arduino.cc/en/Tutorial/Fade 
+for a description of the sketch and the circuit."), Rectangle(extent={{0,100},{
+              100,74}}, lineColor={28,108,200})}),
     experiment(StopTime=10));
 end Fade;

@@ -196,11 +196,11 @@ public
         extent={{-10,-10},{10,10}},
         rotation=0,
         origin={-110,208})));
-  Internal.DigitalPort digitalPort9
+  Internal.PulseWidthModulationPinDriver digitalPort9
     annotation (Placement(transformation(extent={{120,100},{140,120}})));
-  Internal.DigitalPort digitalPort10
+  Internal.PulseWidthModulationPinDriver digitalPort10
     annotation (Placement(transformation(extent={{120,130},{140,150}})));
-  Internal.DigitalPort digitalPort1
+  Internal.PulseWidthModulationPinDriver digitalPort1
     annotation (Placement(transformation(extent={{120,160},{140,180}})));
   Modelica.Electrical.Analog.Basic.Resistor resistorA3(R=1e5) annotation (
       Placement(transformation(
@@ -279,21 +279,21 @@ public
   Modelica.Blocks.Sources.BooleanExpression booleanExpression1(y=portMode[7] ==
         0)
     annotation (Placement(transformation(extent={{60,18},{100,30}})));
-  Internal.DigitalPort digitalPort2
+  Internal.PulseWidthModulationPinDriver digitalPort2
     annotation (Placement(transformation(extent={{120,10},{140,30}})));
   Modelica.Blocks.Sources.RealExpression realExpression2(y=pulseWidth[6])
     annotation (Placement(transformation(extent={{60,-20},{100,-8}})));
   Modelica.Blocks.Sources.BooleanExpression booleanExpression6(y=portMode[6] ==
         0)
     annotation (Placement(transformation(extent={{60,-12},{100,0}})));
-  Internal.DigitalPort digitalPort3
+  Internal.PulseWidthModulationPinDriver digitalPort3
     annotation (Placement(transformation(extent={{120,-20},{140,0}})));
   Modelica.Blocks.Sources.RealExpression realExpression4(y=pulseWidth[4])
     annotation (Placement(transformation(extent={{60,-80},{100,-68}})));
   Modelica.Blocks.Sources.BooleanExpression booleanExpression5(y=portMode[4] ==
         0)
     annotation (Placement(transformation(extent={{60,-72},{100,-60}})));
-  Internal.DigitalPort digitalPort4
+  Internal.PulseWidthModulationPinDriver digitalPort4
     annotation (Placement(transformation(extent={{120,-80},{140,-60}})));
   Modelica.Blocks.Sources.BooleanExpression booleanExpression3(y=portMode[13] ==
         0)

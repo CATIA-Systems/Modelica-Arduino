@@ -1,5 +1,5 @@
 within Arduino.Internal;
-model DigitalPort
+model PulseWidthModulationPinDriver
 
   Modelica.Blocks.Interfaces.BooleanInput isInput annotation (Placement(
         transformation(
@@ -63,4 +63,4 @@ equation
                                  Line(points={{-80,-70},{-40,-70},{-40,44},{0,
               44},{0,-70},{40,-70},{40,44},{79,44}})}),          Diagram(
         coordinateSystem(preserveAspectRatio=false)));
-end DigitalPort;
+end PulseWidthModulationPinDriver;
