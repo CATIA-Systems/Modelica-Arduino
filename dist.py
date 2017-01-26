@@ -5,8 +5,10 @@ import shutil
 from datetime import date
 
 
-if os.path.exists('dist'):
-    shutil.rmtree('dist')
+# clean up
+for path in ['dist']:
+    if os.path.exists(path):
+        shutil.rmtree(path)
 
 obsolete = []
 
@@ -45,7 +47,7 @@ with open('README.html', 'w') as html_file:
     html_file.write(html)
 
 
-ignore = shutil.ignore_patterns('.*', '*.suo')
+ignore = shutil.ignore_patterns('.*', '*.suo', '*.sdf', 'Debug', 'Release')
 
 # copy the code
 for folder in ['Arduino', 'Sketches', 'VisualStudio']:
@@ -56,6 +58,6 @@ for f in ['LICENSE', 'README.html']:
     shutil.copyfile(f, os.path.join('dist', f))
 
 # create the archive
-build_time = date.today().strftime('%Y%m%d%H%M')
+build_time = date.today().strftime('%Y%m%d')
 
 os.system(r'"C:\Program Files\7-Zip\7z.exe" a ModelicaArduino-SNAPSHOT+' + build_time + '.zip .\dist\*')
