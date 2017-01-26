@@ -67,4 +67,4 @@ The code is licensed [GPLv3](https://www.gnu.org/licenses/gpl-3.0.en.html), the 
 
 ----------------------------
 
-Developed by Torsten Sommer at [Dassault Systèmes](https://www.3ds.com/). Copyright 2017 Dassault Systèmes.
+Developed by Torsten Sommer at [Dassault Systèmes](https://www.3ds.com/). Copyright &copy; 2017 Dassault Systèmes.

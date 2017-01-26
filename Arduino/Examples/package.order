@@ -1,9 +1,8 @@
+AnalogReadSerial
 BarGraph
 Blink
-Button
 BlinkWithoutDelay
-AnalogReadSerial
-AnalogWrite
+Button
+ControlledDCMotor
 Fade
 Ping
-ControlledDCMotor

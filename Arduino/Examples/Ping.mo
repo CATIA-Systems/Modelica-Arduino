@@ -16,15 +16,22 @@ model Ping
 equation
   connect(ultrasonicRangeFinder.distance, ramp.y)
     annotation (Line(points={{56,-10},{56,-10},{69,-10}}, color={0,0,127}));
-  connect(ultrasonicRangeFinder.ground, arduinoUno.GND) annotation (Line(points
-        ={{12,-20},{0,-20},{0,-62},{-50,-62},{-50,-40}}, color={0,0,255}));
-  connect(ultrasonicRangeFinder.input5V, arduinoUno.V5) annotation (Line(points
-        ={{12,-10},{0,-10},{0,50},{-44.5625,50},{-44.5625,40.1818}}, color={0,0,
+  connect(ultrasonicRangeFinder.ground, arduinoUno.GND) annotation (Line(points=
+         {{12,-20},{0,-20},{0,-62},{-50,-62},{-50,-40}}, color={0,0,255}));
+  connect(ultrasonicRangeFinder.input5V, arduinoUno.V5) annotation (Line(points={{12,-10},
+          {0,-10},{0,50},{-44.5625,50},{-44.5625,40.1818}},          color={0,0,
           255}));
   connect(ultrasonicRangeFinder.pinSig, arduinoUno.D7) annotation (Line(points=
           {{12,0},{-2,0},{-10,0},{-10,1.81818},{-19.625,1.81818}}, color={0,0,
           255}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
-        coordinateSystem(preserveAspectRatio=false)),
+        coordinateSystem(preserveAspectRatio=false), graphics={Text(
+          extent={{8,94},{92,80}},
+          lineColor={28,108,200},
+          textString="Use the sketch \"Ping.ino\" for this model.
+
+See https://www.arduino.cc/en/Tutorial/Ping 
+for a description of the sketch and the circuit."), Rectangle(extent={{0,100},{
+              100,74}}, lineColor={28,108,200})}),
     experiment(StopTime=0.21));
 end Ping;

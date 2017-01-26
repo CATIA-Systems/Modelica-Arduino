@@ -120,6 +120,13 @@ equation
   connect(arduinoUno.D2, lED10.p) annotation (Line(points={{20.5,-37.6364},{
           32.25,-37.6364},{32.25,-45},{48,-45}}, color={0,0,255}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
-        coordinateSystem(preserveAspectRatio=false)),
+        coordinateSystem(preserveAspectRatio=false), graphics={Text(
+          extent={{6,96},{94,78}},
+          lineColor={28,108,200},
+          textString="Use the sketch \"BarGraph.ino\" for this model.
+
+See https://www.arduino.cc/en/Tutorial/BarGraph 
+for a description of the sketch and the circuit."), Rectangle(extent={{0,100},{
+              100,74}}, lineColor={28,108,200})}),
     experiment(StopTime=10));
 end BarGraph;

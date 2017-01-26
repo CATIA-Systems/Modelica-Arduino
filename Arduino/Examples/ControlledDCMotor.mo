@@ -39,7 +39,7 @@ model ControlledDCMotor
         rotation=270,
         origin={160,10})));
   Modelica.Blocks.Sources.BooleanPulse booleanPulse(period=0.2, startTime=0.1)
-    annotation (Placement(transformation(extent={{110,80},{130,100}})));
+    annotation (Placement(transformation(extent={{120,50},{140,70}})));
   Modelica.Electrical.Machines.BasicMachines.DCMachines.DC_PermanentMagnet dcpm(
     VaNominal=24,
     IaNominal=0.87,
@@ -59,18 +59,18 @@ model ControlledDCMotor
         extent={{10,-10},{-10,10}},
         rotation=90,
         origin={-220,10})));
-  Modelica.Electrical.Analog.Basic.Potentiometer Kd(rConstant=0.01) annotation
-    (Placement(transformation(
+  Modelica.Electrical.Analog.Basic.Potentiometer Kd(rConstant=0.01) annotation (
+     Placement(transformation(
         extent={{10,-10},{-10,10}},
         rotation=90,
         origin={-200,30})));
-  Modelica.Electrical.Analog.Basic.Potentiometer Ki(rConstant=0.08) annotation
-    (Placement(transformation(
+  Modelica.Electrical.Analog.Basic.Potentiometer Ki(rConstant=0.08) annotation (
+     Placement(transformation(
         extent={{10,-10},{-10,10}},
         rotation=90,
         origin={-180,50})));
-  Modelica.Electrical.Analog.Basic.Potentiometer Kp(rConstant=0.01) annotation
-    (Placement(transformation(
+  Modelica.Electrical.Analog.Basic.Potentiometer Kp(rConstant=0.01) annotation (
+     Placement(transformation(
         extent={{10,-10},{-10,10}},
         rotation=90,
         origin={-160,70})));
@@ -93,9 +93,6 @@ equation
           40},{200,40}},                                                              color={0,0,255}));
   connect(idealClosingSwitch.p, resistor.p) annotation (Line(points={{160,20},{
           160,40},{180,40}},                                                                      color={0,0,255}));
-  connect(booleanPulse.y, idealClosingSwitch.control)
-    annotation (Line(points={{131,90},{131,90},{140,90},{140,10},{153,10}},
-                                                                        color={255,0,255}));
   connect(dcpm.pin_an, arduinoUno.GND) annotation (Line(points={{18,-20},{18,
           -20},{-70,-20},{-70,0}},                                                                        color={0,0,255}));
   connect(signalVoltage1.n, dcpm.pin_an)
@@ -149,6 +146,8 @@ equation
           -58,-100},{100,-100},{100,-71}}, color={0,0,127}));
   connect(dcpm1.pin_an, resistor.n) annotation (Line(points={{200,-20},{202,-20},
           {202,-12},{220,-12},{220,40},{200,40}}, color={0,0,255}));
+  connect(idealClosingSwitch.control, booleanPulse.y) annotation (Line(points={
+          {153,10},{150,10},{150,60},{141,60}}, color={255,0,255}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,
             -100},{100,100}})),                                  Diagram(
         coordinateSystem(preserveAspectRatio=false, extent={{-260,-140},{260,
@@ -164,6 +163,16 @@ equation
           fillColor={235,235,225},
           fillPattern=FillPattern.Solid,
           textString="Actuator",
-          lineColor={0,0,0})}),
+          lineColor={0,0,0}),
+        Text(
+          extent={{106,136},{254,90}},
+          lineColor={28,108,200},
+          textString="Use the sketch \"ControlledDCMotor.ino\" for this model.
+
+The sketch requires the Arduino PID Library from 
+https://github.com/br3ttb/Arduino-PID-Library/.
+See README.html for more information on how 
+to use external libraries."),
+        Rectangle(extent={{100,140},{260,88}}, lineColor={28,108,200})}),
     experiment(StopTime=0.5, __Dymola_NumberOfIntervals=10000));
 end ControlledDCMotor;

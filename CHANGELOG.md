@@ -1,4 +1,9 @@
 
+## 0.0.2 (2017-01-26)
+
+- HTML documentation added
+- Help boxes added to examples
+
 ## 0.0.1 (2017-01-24)
 
 - Arduino API support extended
