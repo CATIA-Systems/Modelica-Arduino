@@ -11,7 +11,7 @@ The Arduino Modelica library lets you simulate your circuits and sketches on a v
 
 ## Getting Started
 
-To simulate a sketch named `Blink` you have to perform the following steps.
+To simulate the sketch `Blink` you have to perform the following steps.
 
 - Save your sketch as `Sketches/Blink.ino`
 
@@ -35,9 +35,9 @@ to include your sketch
 
 - Load the Modelica library `Arduino/package.mo` in Dymola
 
-- Add an instance of `Arduino/Components/ArduinoUno` to your model
+- Open `Arduino > Examples > Blink` and simulate the model
 
-- Simulate your model
+- To view the animation click the play button on the animation toolbar (`Window > Tools > Animation`)
 
 ## Limitations
 
