@@ -58,6 +58,5 @@ for f in ['LICENSE', 'README.html']:
     shutil.copyfile(f, os.path.join('dist', f))
 
 # create the archive
-build_time = date.today().strftime('%Y%m%d')
-
-os.system(r'"C:\Program Files\7-Zip\7z.exe" a ModelicaArduino-SNAPSHOT+' + build_time + '.zip .\dist\*')
+#build_time = date.today().strftime('%Y%m%d')
+#os.system(r'"C:\Program Files\7-Zip\7z.exe" a ModelicaArduino.zip .\dist\*')

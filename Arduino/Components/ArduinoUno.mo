@@ -359,7 +359,7 @@ equation
   connect(resistor1.p, constantVoltage.p) annotation (Line(points={{30,80},{30,104},
           {0,104},{0,82},{1.77636e-015,82}},      color={0,0,255}));
   connect(resistor8.n, ground.p) annotation (Line(points={{-44,182},{-44,182},{-44,
-          156},{-44,156},{-32,156},{-32,-140},{20,-140}},   color={0,0,255}));
+          156},{-32,156},{-32,-140},{20,-140}},             color={0,0,255}));
   connect(resistor8.p, constantVoltage1.p) annotation (Line(points={{-44,202},{-44,
           226},{-16,226},{-16,204}}, color={0,0,255}));
   connect(V33, constantVoltage1.p) annotation (Line(points={{-30,260},{-30,260},
@@ -478,7 +478,7 @@ equation
           Rectangle(
           extent={{-18,158},{12,144}},
           lineThickness=0.5,
-          fillColor=DynamicSelect({100,100,0}, if pulseWidth[14] > 0 then {255,
+          fillColor=DynamicSelect({100,100,0}, if D13.v > 2.5 then {255,
               255,0} else {100,100,0}),
           fillPattern=FillPattern.Solid,
           pattern=LinePattern.None,
@@ -793,7 +793,7 @@ equation
           Rectangle(
           extent={{-18,130},{12,116}},
           lineThickness=0.5,
-          fillColor=DynamicSelect({100,100,0}, if pulseWidth[1] > 0 then {255,
+          fillColor=DynamicSelect({100,100,0}, if D0.v > 2.5 then {255,
               255,0} else {100,100,0}),
           fillPattern=FillPattern.Solid,
           pattern=LinePattern.None,
@@ -823,7 +823,7 @@ equation
           Rectangle(
           extent={{-18,102},{12,88}},
           lineThickness=0.5,
-          fillColor=DynamicSelect({100,100,0}, if pulseWidth[2] > 0 then {255,
+          fillColor=DynamicSelect({100,100,0}, if D1.v > 2.5 then {255,
               255,0} else {100,100,0}),
           fillPattern=FillPattern.Solid,
           pattern=LinePattern.None,

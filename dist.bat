@@ -1,2 +1,0 @@
-python dist.py
-pause

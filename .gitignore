@@ -4,3 +4,17 @@ dist/
 
 # generated files
 README.html
+
+# IDEA files
+.idea/
+
+# Dymola files
+Arduino/*.txt
+Arduino/*.c
+Arduino/*.mat
+Arduino/*.exe
+Arduino/*.exp
+Arduino/*.png
+
+# Temp folder
+Temp/
