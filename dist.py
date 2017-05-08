@@ -1,28 +1,56 @@
 import markdown2
 import os
-import sys
-import shutil
-from datetime import date
+import zipfile
 
 
-# clean up
-for path in ['dist']:
-    if os.path.exists(path):
-        shutil.rmtree(path)
+archive_name = 'Modelica-Arduino.zip'
 
-obsolete = []
+# remove the build directory
+if os.path.exists(archive_name):
+    os.remove(archive_name)
 
-for root, dirs, files in os.walk('.'):
+dist_files = []
 
-    if root.endswith('.git'):
-        continue
+input = [('Arduino', ('.mo', '.order', '.png', '.css', '.h')),
+         ('Sketches', '.ino'),
+         ('VisualStudio', ('.cpp', '.h', '.vcxproj', '.vcxproj.filters', '.sln'))]
 
-    for f in files:
-        if f.endswith('.bak-mo') or f.endswith('.lib'):
-            obsolete += [os.path.join(root, f)]
+for folder, suffix in input:
+    for root, dirs, files in os.walk(folder):
+        for f in files:
+            if f.endswith(suffix):
+                dist_files += [os.path.join(root, f)]
 
-for path in obsolete:
-    os.remove(path)
+# for root, dirs, files in os.walk('Arduino'):
+#     for f in files:
+#         if f.endswith(('.mo', '.order', '.png', '.css', '.h')):
+#             dist_files += [os.path.join(root, f)]
+#
+# for root, dirs, files in os.walk('Sketches'):
+#     for f in files:
+#         if f.endswith('.ino'):
+#             dist_files += [os.path.join(root, f)]
+#
+# for root, dirs, files in os.walk('VisualStudio'):
+#     for f in files:
+#         if f.endswith(('.cpp', '.h', '.vcxproj', '.vcxproj.filters', '.sln')):
+#             dist_files += [os.path.join(root, f)]
+
+dist_files += ['Libraries', 'build_sketch.bat', 'LICENSE', 'README.html']
+
+# obsolete = []
+#
+# for root, dirs, files in os.walk('.'):
+#
+#     if root.endswith('.git'):
+#         continue
+#
+#     for f in files:
+#         if f.endswith(('.bak-mo', '.lib')):
+#             obsolete += [os.path.join(root, f)]
+#
+# for path in obsolete:
+#     os.remove(path)
 
 html = """<!DOCTYPE html>
 <html lang="en">
@@ -40,23 +68,10 @@ html += """</body>
 </html>
 """
 
-if not os.path.exists('dist/Libraries'):
-    os.makedirs('dist/Libraries')
-
 with open('README.html', 'w') as html_file:
     html_file.write(html)
 
-
-ignore = shutil.ignore_patterns('.*', '*.suo', '*.sdf', 'Debug', 'Release')
-
-# copy the code
-for folder in ['Arduino', 'Sketches', 'VisualStudio']:
-    shutil.copytree(folder, os.path.join('dist', folder), ignore=ignore)
-
-# copy the docs
-for f in ['LICENSE', 'README.html']:
-    shutil.copyfile(f, os.path.join('dist', f))
-
 # create the archive
-#build_time = date.today().strftime('%Y%m%d')
-#os.system(r'"C:\Program Files\7-Zip\7z.exe" a ModelicaArduino.zip .\dist\*')
+with zipfile.ZipFile(archive_name, 'w', zipfile.ZIP_DEFLATED) as zipf:
+    for name in dist_files:
+        zipf.write(filename=name)
