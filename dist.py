@@ -15,42 +15,16 @@ input = [('Arduino', ('.mo', '.order', '.png', '.css', '.h')),
          ('Sketches', '.ino'),
          ('VisualStudio', ('.cpp', '.h', '.vcxproj', '.vcxproj.filters', '.sln'))]
 
+# collect the distribution files
 for folder, suffix in input:
     for root, dirs, files in os.walk(folder):
         for f in files:
             if f.endswith(suffix):
                 dist_files += [os.path.join(root, f)]
 
-# for root, dirs, files in os.walk('Arduino'):
-#     for f in files:
-#         if f.endswith(('.mo', '.order', '.png', '.css', '.h')):
-#             dist_files += [os.path.join(root, f)]
-#
-# for root, dirs, files in os.walk('Sketches'):
-#     for f in files:
-#         if f.endswith('.ino'):
-#             dist_files += [os.path.join(root, f)]
-#
-# for root, dirs, files in os.walk('VisualStudio'):
-#     for f in files:
-#         if f.endswith(('.cpp', '.h', '.vcxproj', '.vcxproj.filters', '.sln')):
-#             dist_files += [os.path.join(root, f)]
 
-dist_files += ['Libraries', 'build_sketch.bat', 'LICENSE', 'README.html']
+dist_files += ['Arduino/Resources/Library/win32', 'Libraries', 'build_sketch.bat', 'LICENSE', 'README.html']
 
-# obsolete = []
-#
-# for root, dirs, files in os.walk('.'):
-#
-#     if root.endswith('.git'):
-#         continue
-#
-#     for f in files:
-#         if f.endswith(('.bak-mo', '.lib')):
-#             obsolete += [os.path.join(root, f)]
-#
-# for path in obsolete:
-#     os.remove(path)
 
 html = """<!DOCTYPE html>
 <html lang="en">

@@ -12,7 +12,7 @@ rmdir /s /q Temp
 set RESULT=0
 
 echo Extract the ZIP archive
-%SEVENZIP% x Arduino-Modelica.zip -oTemp
+%SEVENZIP% x Modelica-Arduino.zip -oTemp
 
 echo Copy the test script to the Temp folder
 copy test.py Temp\
