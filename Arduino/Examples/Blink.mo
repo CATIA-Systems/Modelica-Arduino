@@ -2,7 +2,7 @@ within Arduino.Examples;
 model Blink
               extends Modelica.Icons.Example;
 
-  Components.ArduinoUno arduinoUno
+  Components.ArduinoUno arduinoUno(sketch="Blink.ino")
     annotation (Placement(transformation(extent={{-40,-50},{40,50}},
         rotation=0,
         origin={0,0})));

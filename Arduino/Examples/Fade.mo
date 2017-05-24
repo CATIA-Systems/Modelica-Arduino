@@ -2,7 +2,7 @@ within Arduino.Examples;
 model Fade
               extends Modelica.Icons.Example;
 
-  Components.ArduinoUno arduinoUno
+  Components.ArduinoUno arduinoUno(sketch="Fade.ino")
     annotation (Placement(transformation(extent={{-40,-60},{40,60}})));
   Modelica.Electrical.Analog.Basic.Resistor resistor(R=220) annotation (
       Placement(transformation(

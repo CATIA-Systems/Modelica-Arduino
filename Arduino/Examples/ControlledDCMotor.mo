@@ -2,7 +2,8 @@ within Arduino.Examples;
 model ControlledDCMotor
               extends Modelica.Icons.Example;
 
-  Components.ArduinoUno arduinoUno(sampleRate=1e-3)
+  Components.ArduinoUno arduinoUno(sampleRate=1e-3, sketch=
+        "ControlledDCMotor.ino")
     annotation (Placement(transformation(extent={{-40,-50},{40,50}},
         rotation=0,
         origin={-70,50})));

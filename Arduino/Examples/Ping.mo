@@ -2,7 +2,7 @@ within Arduino.Examples;
 model Ping
               extends Modelica.Icons.Example;
 
-  Components.ArduinoUno arduinoUno(sampleRate=1e-6)
+  Components.ArduinoUno arduinoUno(sampleRate=1e-6, sketch="Ping.ino")
     annotation (Placement(transformation(extent={{-80,-40},{-20,40}})));
   Modelica.Blocks.Sources.Ramp ramp(
     duration=0.2,

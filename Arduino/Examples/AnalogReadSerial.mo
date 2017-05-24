@@ -2,7 +2,7 @@ within Arduino.Examples;
 model AnalogReadSerial
               extends Modelica.Icons.Example;
 
-  Components.ArduinoUno arduinoUno
+  Components.ArduinoUno arduinoUno(sketch="AnalogReadSignal.ino")
     annotation (Placement(transformation(extent={{-10,-72},{70,48}})));
   Modelica.Electrical.Analog.Basic.Potentiometer potentiometer(rConstant=0.01,
       useRinput=true) annotation (Placement(transformation(

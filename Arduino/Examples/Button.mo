@@ -2,7 +2,7 @@ within Arduino.Examples;
 model Button
               extends Modelica.Icons.Example;
 
-  Components.ArduinoUno arduinoUno
+  Components.ArduinoUno arduinoUno(sketch="Button.ino")
     annotation (Placement(transformation(extent={{-72,-60},{8,40}})));
   Modelica.Electrical.Analog.Basic.Resistor resistor(R=1e4) annotation (
       Placement(transformation(

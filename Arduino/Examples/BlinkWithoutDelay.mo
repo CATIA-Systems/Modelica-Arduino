@@ -2,7 +2,7 @@ within Arduino.Examples;
 model BlinkWithoutDelay
               extends Modelica.Icons.Example;
 
-  Components.ArduinoUno arduinoUno
+  Components.ArduinoUno arduinoUno(sketch="BlinkWithoutDelay.ino")
     annotation (Placement(transformation(extent={{-40,-60},{40,40}})));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
         coordinateSystem(preserveAspectRatio=false), graphics={Text(

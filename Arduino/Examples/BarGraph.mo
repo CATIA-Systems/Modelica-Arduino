@@ -2,7 +2,7 @@ within Arduino.Examples;
 model BarGraph
               extends Modelica.Icons.Example;
 
-  Components.ArduinoUno arduinoUno
+  Components.ArduinoUno arduinoUno(sketch="BarGraph.ino")
     annotation (Placement(transformation(extent={{-50,-60},{30,60}})));
   Modelica.Electrical.Analog.Basic.Resistor resistor(R=220)
     annotation (Placement(transformation(extent={{70,40},{80,50}})));
