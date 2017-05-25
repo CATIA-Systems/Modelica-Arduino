@@ -2,7 +2,7 @@ within Arduino.Examples;
 model Ping
               extends Modelica.Icons.Example;
 
-  Components.ArduinoUno arduinoUno(sampleRate=1e-6)
+  Components.ArduinoUno arduinoUno(sampleRate=1e-6, sketch="Ping.ino")
     annotation (Placement(transformation(extent={{-80,-40},{-20,40}})));
   Modelica.Blocks.Sources.Ramp ramp(
     duration=0.2,
@@ -26,12 +26,10 @@ equation
           255}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
         coordinateSystem(preserveAspectRatio=false), graphics={Text(
-          extent={{8,94},{92,80}},
+          extent={{8,98},{92,84}},
           lineColor={28,108,200},
-          textString="Use the sketch \"Ping.ino\" for this model.
-
-See https://www.arduino.cc/en/Tutorial/Ping 
+          textString="See https://www.arduino.cc/en/Tutorial/Ping 
 for a description of the sketch and the circuit."), Rectangle(extent={{0,100},{
-              100,74}}, lineColor={28,108,200})}),
+              100,80}}, lineColor={28,108,200})}),
     experiment(StopTime=0.21));
 end Ping;

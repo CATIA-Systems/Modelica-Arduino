@@ -1,6 +1,7 @@
 ﻿within Arduino.Components;
 block ArduinoUno
 
+  parameter String sketch;
   parameter Real sampleRate = 0.01;
 
   Modelica.Electrical.Analog.Basic.Ground ground
@@ -468,7 +469,8 @@ equation
     annotation (Line(points={{140,230},{160,230},{160,230}}, color={0,0,255}));
   connect(digitalPinDriver6.y, D12)
     annotation (Line(points={{140,200},{150,200},{160,200}}, color={0,0,255}));
-  annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-160,-180},
+  annotation (preInstantiate=Arduino.Internal.buildSketch(Modelica.Utilities.Files.loadResource(
+        "modelica://Arduino/"), sketch), Icon(coordinateSystem(preserveAspectRatio=false, extent={{-160,-180},
             {160,260}}),                                        graphics={
           Rectangle(
           extent={{-160,260},{160,-180}},

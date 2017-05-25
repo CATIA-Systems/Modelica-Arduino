@@ -6,38 +6,28 @@ The Arduino Modelica library lets you simulate your circuits and sketches on a v
 
 ## Prerequistites
 
-- Dymola 2017 FD01 (Windows)
+- [Dymola](https://www.3ds.com/products-services/catia/products/dymola) 2017 FD01 or 2018
 - Visual Studio 2012
 
 ## Getting Started
 
-To simulate the sketch `Blink` you have to perform the following steps.
+- Download and extract the Modelica-Arduino archive
+- Start Dymola, select `File > Open...` and open `Arduino/package.mo`
+- Open `Arduino.Examples.Blink`
+- Right-click on the toolbar and check `Simulation` and `Animation`
+- Click ![Simulate Button](Arduino/Resources/Images/simulate_button.png) to run the Simulation
+- After the simulation has finished click ![Run Button](Arduino/Resources/Images/run_button.png) and watch the LED `L` blink
+- Try the other examples in `Arduino.Examples`
 
-- Save your sketch as `Sketches/Blink.ino`
 
-- Open `VisualStudio/Arduino.sln` in Visual Studio
+## Simulate your Sketch
 
-- In the top toolbar set the solution configuration to `Release` and the platform to `Win32`
+To simulate your sketch `MySketch` you have to perform the following steps.
 
-![Visual Studio Solution Configuration](Arduino/Resources/Images/solution_config.png)
+- Save your sketch as `Sketches/MySketch.ino`
+- Add the block `Arduino.Components.ArduinoUno` to your model
+- Double-click the block and set the parameter `sketch` to `"MySketch.ino"`
 
-- Open `Arduino > Source Files > Sketch.cpp` and change the #include statement
-to include your sketch
-
-```C
-// include your sketch here
-#include "Blink.ino"
-```
-
-- Right-click on the solution in the Solution Explorer and select `Build Solution` to build the Arduino library. `NOTE: `You have to repeat this step every time you make changes to your sketch.
-
-![Solution Context Menu](Arduino/Resources/Images/build_solution.png)
-
-- Load the Modelica library `Arduino/package.mo` in Dymola
-
-- Open `Arduino > Examples > Blink` and simulate the model
-
-- To view the animation click the play button on the animation toolbar (`Window > Tools > Animation`)
 
 ## Limitations
 
