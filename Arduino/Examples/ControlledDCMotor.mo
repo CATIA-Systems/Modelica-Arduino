@@ -166,14 +166,12 @@ equation
           textString="Actuator",
           lineColor={0,0,0}),
         Text(
-          extent={{106,136},{254,90}},
+          extent={{106,136},{254,104}},
           lineColor={28,108,200},
-          textString="Use the sketch \"ControlledDCMotor.ino\" for this model.
-
-The sketch requires the Arduino PID Library from 
+          textString="The sketch uses the Arduino PID Library from 
 https://github.com/br3ttb/Arduino-PID-Library/.
 See README.html for more information on how 
 to use external libraries."),
-        Rectangle(extent={{100,140},{260,88}}, lineColor={28,108,200})}),
+        Rectangle(extent={{100,140},{260,100}},lineColor={28,108,200})}),
     experiment(StopTime=0.5, __Dymola_NumberOfIntervals=10000));
 end ControlledDCMotor;
