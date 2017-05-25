@@ -2,3 +2,4 @@ ExternalArduino
 PulseWidthModulationPinDriver
 VariableWidthPulse
 DigitalPinDriver
+buildSketch

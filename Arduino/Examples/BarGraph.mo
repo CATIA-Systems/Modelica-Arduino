@@ -2,7 +2,7 @@ within Arduino.Examples;
 model BarGraph
               extends Modelica.Icons.Example;
 
-  Components.ArduinoUno arduinoUno
+  Components.ArduinoUno arduinoUno(sketch="BarGraph.ino")
     annotation (Placement(transformation(extent={{-50,-60},{30,60}})));
   Modelica.Electrical.Analog.Basic.Resistor resistor(R=220)
     annotation (Placement(transformation(extent={{70,40},{80,50}})));
@@ -127,12 +127,10 @@ equation
             -100},{100,100}})),                                  Diagram(
         coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
             100}}),                                  graphics={Text(
-          extent={{6,96},{94,78}},
+          extent={{4,98},{96,82}},
           lineColor={28,108,200},
-          textString="Use the sketch \"BarGraph.ino\" for this model.
-
-See https://www.arduino.cc/en/Tutorial/BarGraph 
+          textString="See https://www.arduino.cc/en/Tutorial/BarGraph 
 for a description of the sketch and the circuit."), Rectangle(extent={{0,100},{
-              100,74}}, lineColor={28,108,200})}),
+              100,80}}, lineColor={28,108,200})}),
     experiment(StopTime=10));
 end BarGraph;

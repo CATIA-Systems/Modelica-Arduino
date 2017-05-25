@@ -2,7 +2,7 @@ within Arduino.Examples;
 model Button
               extends Modelica.Icons.Example;
 
-  Components.ArduinoUno arduinoUno
+  Components.ArduinoUno arduinoUno(sketch="Button.ino")
     annotation (Placement(transformation(extent={{-72,-60},{8,40}})));
   Modelica.Electrical.Analog.Basic.Resistor resistor(R=1e4) annotation (
       Placement(transformation(
@@ -32,12 +32,10 @@ equation
     annotation (Line(points={{63,0},{47,0}},   color={255,0,255}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
         coordinateSystem(preserveAspectRatio=false), graphics={Text(
-          extent={{8,94},{92,80}},
+          extent={{6,98},{94,82}},
           lineColor={28,108,200},
-          textString="Use the sketch \"Button.ino\" for this model.
-
-See https://www.arduino.cc/en/Tutorial/Button 
+          textString="See https://www.arduino.cc/en/Tutorial/Button 
 for a description of the sketch and the circuit."), Rectangle(extent={{0,100},{
-              100,74}}, lineColor={28,108,200})}),
+              100,80}}, lineColor={28,108,200})}),
     experiment(StopTime=10));
 end Button;

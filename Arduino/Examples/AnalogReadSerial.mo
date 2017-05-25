@@ -2,7 +2,7 @@ within Arduino.Examples;
 model AnalogReadSerial
               extends Modelica.Icons.Example;
 
-  Components.ArduinoUno arduinoUno
+  Components.ArduinoUno arduinoUno(sketch="AnalogReadSerial.ino")
     annotation (Placement(transformation(extent={{-10,-72},{70,48}})));
   Modelica.Electrical.Analog.Basic.Potentiometer potentiometer(rConstant=0.01,
       useRinput=true) annotation (Placement(transformation(
@@ -25,12 +25,10 @@ equation
           -20},{-40,-20},{-40,-19.9091},{-9.75,-19.9091}}, color={0,0,255}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
         coordinateSystem(preserveAspectRatio=false), graphics={Text(
-          extent={{4,96},{96,78}},
+          extent={{6,96},{96,84}},
           lineColor={28,108,200},
-          textString="Use the sketch \"AnalogReadSerial.ino\" for this model.
-
-See https://www.arduino.cc/en/Tutorial/AnalogReadSerial 
+          textString="See https://www.arduino.cc/en/Tutorial/AnalogReadSerial 
 for a description of the sketch and the circuit."), Rectangle(extent={{0,100},{
-              100,74}}, lineColor={28,108,200})}),
+              100,80}}, lineColor={28,108,200})}),
     experiment);
 end AnalogReadSerial;

@@ -2,6 +2,8 @@ from dymola.dymola_interface import DymolaInterface
 from dymola.dymola_exception import DymolaException
 import os
 import unittest
+import zipfile
+import shutil
 
 
 class ExamplesTest(unittest.TestCase):
@@ -10,7 +12,18 @@ class ExamplesTest(unittest.TestCase):
     def setUpClass(cls):
 
         cls.project_dir, _ = os.path.split(__file__)
-        package_file = os.path.join(cls.project_dir, 'Arduino', 'package.mo')
+
+        temp_dir = os.path.join(cls.project_dir, 'Temp')
+
+        # clean up
+        if os.path.isdir(temp_dir):
+            shutil.rmtree(temp_dir)
+
+        # extract the distribution file
+        with zipfile.ZipFile("Modelica-Arduino.zip", "r") as zip_ref:
+            zip_ref.extractall("Temp")
+
+        package_file = os.path.join(temp_dir, 'Arduino', 'package.mo')
 
         print("Starting Dymola")
         cls.dymola = DymolaInterface(showwindow=False)
@@ -39,27 +52,10 @@ class ExamplesTest(unittest.TestCase):
 
         for name, stop_time, signals in examples:
 
-            sketch_file = os.path.join(self.project_dir, 'VisualStudio', 'Arduino', 'Sketch.cpp')
+            model = 'Arduino.Examples.' + name
 
-            print("Writing %s" % sketch_file)
-            with open(sketch_file, 'w') as f:
-                code = '''#include "Sketch.h"
-#include "Arduino.h"
-#include "SoftSerial.h"
-
-SoftSerial Serial;
-
-// include your sketch here
-#include "%s.ino"
-''' % name
-                f.write(code)
-
-            print("Building static library")
-            command = os.path.join(self.project_dir, 'build_sketch')
-            os.system(command)
-
-            print("Simulating " + name)
-            success = self.dymola.simulateModel('Arduino.Examples.' + name, stopTime=stop_time)
+            print("Simulating %s" % model)
+            success = self.dymola.simulateModel(model, stopTime=stop_time)
 
             self.assertTrue(success, "Simulation failed")
 
