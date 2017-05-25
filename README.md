@@ -4,19 +4,19 @@ The Arduino Modelica library lets you simulate your circuits and sketches on a v
 
 ![Circuit w/ Arduino](Arduino/Resources/Images/led_circuit.png)
 
-## Prerequistites
+## Prerequisites
 
 - [Dymola](https://www.3ds.com/products-services/catia/products/dymola) 2017 FD01 or 2018
 - Visual Studio 2012
 
 ## Getting Started
 
-- Download and extract the Modelica-Arduino archive
-- Start Dymola, select `File > Open...` and open `Arduino/package.mo`
-- Open `Arduino.Examples.Blink`
-- Right-click on the toolbar and check `Simulation` and `Animation`
+- Download the [latest release](releases/latest) and extract the archive
+- In Dymola select `File > Open...` and open `Arduino/package.mo` from the extracted files
+- In the package browser double-click `Arduino.Examples.Blink`
+- Right-click on the toolbar and check `Simulation` and `Animation` to view the simulation and animation toolbars
 - Click ![Simulate Button](Arduino/Resources/Images/simulate_button.png) to run the Simulation
-- After the simulation has finished click ![Run Button](Arduino/Resources/Images/run_button.png) and watch the LED `L` blink
+- After the simulation has finished click ![Run Button](Arduino/Resources/Images/run_button.png) in the animation toolbar and watch the LED `L` blink
 - Try the other examples in `Arduino.Examples`
 
 
