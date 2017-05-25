@@ -18,3 +18,6 @@ Arduino/*.png
 
 # Temp folder
 Temp/
+
+# Windows icon cache files
+Thumbs.db
