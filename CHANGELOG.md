@@ -1,10 +1,10 @@
 # Changelog
 
-## [Unreleased]
+## [0.0.3] (2017-05-25)
 
 ### Added
 - Automatic build of the sketch
-
+- 
 
 ## [0.0.2] (2017-01-26)
 
