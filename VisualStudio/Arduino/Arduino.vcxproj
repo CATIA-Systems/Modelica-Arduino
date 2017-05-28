@@ -166,6 +166,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Libraries\PID_v1.cpp" />
     <ClCompile Include="ModelicaArduino.cpp" />
     <ClCompile Include="Print.cpp" />
     <ClCompile Include="Sketch.cpp" />
