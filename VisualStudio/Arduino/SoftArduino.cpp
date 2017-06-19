@@ -39,7 +39,7 @@ void pinMode(uint8_t pin, uint8_t mode) {
 }
 
 void digitalWrite(uint8_t pin, uint8_t val) {
-	INSTANCE.pulseWidth[pin] = (val == HIGH) ? 255 : 0;
+	INSTANCE.pulseWidth[pin] = (val == HIGH) ? DEFAULT_PULSE_WIDTH : 0;
 	//ModelicaFormatMessage("digitalWrite(%d, %d) -> %d\n", pin, val, INSTANCE.pulseWidth[pin]);
 }
 
@@ -78,7 +78,9 @@ void analogReference(uint8_t mode) {
 
 void analogWrite(uint8_t pin, int val) {
 	INSTANCE.portMode[pin] = OUTPUT;
-	INSTANCE.pulseWidth[pin] = val; 
+	INSTANCE.pulseWidth[pin] = int((val / 255.) * DEFAULT_PULSE_WIDTH);
+
+	//ModelicaFormatMessage("analogWrite(%d, %d) -> %d\n", pin, val, INSTANCE.pulseWidth[pin]);
 }
 
 unsigned long millis() {
@@ -171,5 +173,13 @@ unsigned long pulseIn(const uint8_t pin, const uint8_t state, unsigned long time
 unsigned long pulseInLong(uint8_t pin, uint8_t state, unsigned long timeout) {
 	return pulseIn(pin, state, timeout);
 }
+
+}
+
+SoftArduino::SoftArduino() {
+
+	for (int i = 0; i < NUM_DIGITAL_PINS; i++) {
+		pulsePeriod[i] = DEFAULT_PULSE_WIDTH;
+	}
 
 }

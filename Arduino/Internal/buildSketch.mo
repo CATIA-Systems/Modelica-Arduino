@@ -6,7 +6,7 @@ encapsulated function buildSketch
   output Boolean success;
 protected
   String cppFile;
-  String mscver = "11";
+  String mscver = "14";
 algorithm
 
   cppFile := path + "../VisualStudio/Arduino/Sketch.cpp";

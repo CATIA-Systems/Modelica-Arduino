@@ -14,7 +14,8 @@ void ModelicaArduino_update(void *instance,
 							/*in*/ double *analog, 
 							/*in*/ double *digital, 
 							/*out*/ int *portMode, 
-							/*out*/ double *pulseWidth);
+							/*out*/ double *pulseWidth,
+							/*out*/ int *pulsePeriod);
 
 #ifdef __cplusplus
 } // extern "C"

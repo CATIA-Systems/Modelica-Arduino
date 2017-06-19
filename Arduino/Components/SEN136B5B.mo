@@ -1,5 +1,5 @@
 within Arduino.Components;
-model UltrasonicRangeFinder "An ultrasonic range finder"
+model SEN136B5B "SEN136B5B Ultrasonic Range Finder"
   Modelica.Electrical.Analog.Ideal.IdealCommutingSwitch sensorGround5V
     "Ground if true, 5V if false"
     annotation (Placement(transformation(extent={{-90,40},{-70,60}})));
@@ -89,30 +89,33 @@ equation
           {10,30},{19,30}}, color={255,0,255}));
   connect(ground, resistor.n)
     annotation (Line(points={{-100,-50},{-50,-50}}, color={0,0,255}));
-  annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,
+  annotation (Icon(coordinateSystem(preserveAspectRatio=true, extent={{-100,
             -100},{100,100}}), graphics={
         Rectangle(
-          extent={{-100,100},{100,-100}},
+          extent={{-60,100},{100,-100}},
           lineColor={28,108,200},
           fillColor={255,255,255},
           fillPattern=FillPattern.Solid),
         Text(
-          extent={{-78,-38},{-20,-62}},
+          extent={{-52,-38},{20,-62}},
           lineColor={28,108,200},
           horizontalAlignment=TextAlignment.Left,
           textString="GND"),
         Text(
-          extent={{-76,12},{-22,-12}},
+          extent={{-52,12},{6,-12}},
           lineColor={28,108,200},
           horizontalAlignment=TextAlignment.Left,
           textString="5V"),
         Text(
-          extent={{-78,60},{-28,36}},
+          extent={{-52,62},{16,38}},
           lineColor={28,108,200},
           textString="SIG",
           horizontalAlignment=TextAlignment.Left),
-        Ellipse(extent={{0,80},{70,10}}, lineColor={28,108,200}),
-        Ellipse(extent={{0,-10},{70,-80}}, lineColor={28,108,200})}), Diagram(
+        Ellipse(extent={{20,80},{80,20}},lineColor={28,108,200}),
+        Ellipse(extent={{20,-20},{80,-80}},lineColor={28,108,200}),
+        Line(points={{-100,50},{-60,50}}, color={28,108,200}),
+        Line(points={{-100,0},{-60,0}}, color={28,108,200}),
+        Line(points={{-100,-50},{-60,-50}}, color={28,108,200})}),    Diagram(
         coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
             100}}), graphics={
         Text(
@@ -121,4 +124,4 @@ equation
           fillColor={170,213,255},
           fillPattern=FillPattern.Solid,
           textString="Sensor")}));
-end UltrasonicRangeFinder;
+end SEN136B5B;

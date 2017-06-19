@@ -11,7 +11,7 @@ if os.path.exists(archive_name):
 
 dist_files = []
 
-input = [('Arduino', ('.mo', '.order', '.png', '.css', '.h')),
+input = [('Arduino', ('.mo', '.order', '.png', '.css', '.h', '.c', '.dll')),
          ('Libraries', ('.cpp', '.h')),
          ('Sketches', '.ino'),
          ('VisualStudio', ('.cpp', '.h', '.vcxproj', '.vcxproj.filters', '.sln'))]
