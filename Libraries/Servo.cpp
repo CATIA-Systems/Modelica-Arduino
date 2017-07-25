@@ -8,9 +8,9 @@
 
 uint8_t Servo::attach(int pin) {
 
-	ModelicaFormatMessage("Servo::attach(%d)\n", pin);
+	//ModelicaFormatMessage("Servo::attach(%d)\n", pin);
 	
-	// Check pin >= 0 && pin < NUM_PINS
+	// TODO: Check pin >= 0 && pin < NUM_PINS
 
 	m_pin = pin;
 
@@ -38,7 +38,7 @@ void Servo::detach() {
 
 void Servo::write(int value) {
 
-	ModelicaFormatMessage("Servo::write(%d)\n", value);
+	//ModelicaFormatMessage("Servo::write(%d)\n", value);
 
 	if (value < 200) {
 		int pulseWidth = m_minPulseWidth + (m_maxPulseWidth - m_minPulseWidth) * (value / 180.);

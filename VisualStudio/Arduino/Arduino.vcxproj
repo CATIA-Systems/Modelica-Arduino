@@ -166,6 +166,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Libraries\Braccio.cpp" />
     <ClCompile Include="..\..\Libraries\PID_v1.cpp" />
     <ClCompile Include="..\..\Libraries\Servo.cpp" />
     <ClCompile Include="ModelicaArduino.cpp" />
@@ -175,6 +176,7 @@
     <ClCompile Include="WMath.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Libraries\Braccio.h" />
     <ClInclude Include="..\..\Libraries\Servo.h" />
     <ClInclude Include="Arduino.h" />
     <ClInclude Include="binary.h" />
