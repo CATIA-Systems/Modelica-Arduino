@@ -3,134 +3,158 @@ model BarGraph
               extends Modelica.Icons.Example;
 
   Components.ArduinoUno arduinoUno(sketch="BarGraph.ino")
-    annotation (Placement(transformation(extent={{-50,-60},{30,60}})));
+    annotation (Placement(transformation(extent={{-40,-50},{40,50}},
+        rotation=0,
+        origin={10,-10})));
   Modelica.Electrical.Analog.Basic.Resistor resistor(R=220)
-    annotation (Placement(transformation(extent={{70,40},{80,50}})));
+    annotation (Placement(transformation(extent={{94,34},{106,46}})));
   Components.LED lED3
-    annotation (Placement(transformation(extent={{50,40},{60,50}})));
-  Modelica.Electrical.Analog.Basic.Resistor resistor1(R=220)
-    annotation (Placement(transformation(extent={{70,30},{80,40}})));
-  Modelica.Electrical.Analog.Basic.Resistor resistor2(R=220)
-    annotation (Placement(transformation(extent={{70,20},{80,30}})));
-  Modelica.Electrical.Analog.Basic.Resistor resistor3(R=220)
-    annotation (Placement(transformation(extent={{70,10},{80,20}})));
-  Modelica.Electrical.Analog.Basic.Resistor resistor4(R=220)
-    annotation (Placement(transformation(extent={{70,0},{80,10}})));
-  Modelica.Electrical.Analog.Basic.Resistor resistor5(R=220)
-    annotation (Placement(transformation(extent={{70,-10},{80,0}})));
-  Modelica.Electrical.Analog.Basic.Resistor resistor6(R=220)
-    annotation (Placement(transformation(extent={{70,-20},{80,-10}})));
-  Modelica.Electrical.Analog.Basic.Resistor resistor7(R=220)
-    annotation (Placement(transformation(extent={{70,-30},{80,-20}})));
-  Modelica.Electrical.Analog.Basic.Resistor resistor8(R=220)
-    annotation (Placement(transformation(extent={{70,-40},{80,-30}})));
-  Modelica.Electrical.Analog.Basic.Resistor resistor9(R=220)
-    annotation (Placement(transformation(extent={{70,-50},{80,-40}})));
-  Components.LED lED4
-    annotation (Placement(transformation(extent={{50,30},{60,40}})));
+    annotation (Placement(transformation(extent={{74,34},{86,46}})));
+  Modelica.Electrical.Analog.Basic.Resistor resistor1(
+                                                     R=220)
+    annotation (Placement(transformation(extent={{94,24},{106,36}})));
   Components.LED lED1
-    annotation (Placement(transformation(extent={{50,20},{60,30}})));
+    annotation (Placement(transformation(extent={{74,24},{86,36}})));
+  Modelica.Electrical.Analog.Basic.Resistor resistor2(
+                                                     R=220)
+    annotation (Placement(transformation(extent={{94,14},{106,26}})));
   Components.LED lED2
-    annotation (Placement(transformation(extent={{50,10},{60,20}})));
+    annotation (Placement(transformation(extent={{74,14},{86,26}})));
+  Modelica.Electrical.Analog.Basic.Resistor resistor3(
+                                                     R=220)
+    annotation (Placement(transformation(extent={{94,4},{106,16}})));
+  Components.LED lED4
+    annotation (Placement(transformation(extent={{74,4},{86,16}})));
+  Modelica.Electrical.Analog.Basic.Resistor resistor4(
+                                                     R=220)
+    annotation (Placement(transformation(extent={{94,-6},{106,6}})));
   Components.LED lED5
-    annotation (Placement(transformation(extent={{50,0},{60,10}})));
-  Components.LED lED6
-    annotation (Placement(transformation(extent={{50,-10},{60,0}})));
-  Components.LED lED7
-    annotation (Placement(transformation(extent={{50,-20},{60,-10}})));
-  Components.LED lED8
-    annotation (Placement(transformation(extent={{50,-30},{60,-20}})));
-  Components.LED lED9
-    annotation (Placement(transformation(extent={{50,-40},{60,-30}})));
-  Components.LED lED10
-    annotation (Placement(transformation(extent={{50,-50},{60,-40}})));
+    annotation (Placement(transformation(extent={{74,-6},{86,6}})));
+  Modelica.Electrical.Analog.Basic.Resistor resistor10(
+                                                     R=220)
+    annotation (Placement(transformation(extent={{94,-16},{106,-4}})));
+  Components.LED lED11
+    annotation (Placement(transformation(extent={{74,-16},{86,-4}})));
+  Modelica.Electrical.Analog.Basic.Resistor resistor11(
+                                                     R=220)
+    annotation (Placement(transformation(extent={{94,-26},{106,-14}})));
+  Components.LED lED12
+    annotation (Placement(transformation(extent={{74,-26},{86,-14}})));
+  Modelica.Electrical.Analog.Basic.Resistor resistor12(
+                                                     R=220)
+    annotation (Placement(transformation(extent={{94,-36},{106,-24}})));
+  Components.LED lED13
+    annotation (Placement(transformation(extent={{74,-36},{86,-24}})));
+  Modelica.Electrical.Analog.Basic.Resistor resistor13(
+                                                     R=220)
+    annotation (Placement(transformation(extent={{94,-46},{106,-34}})));
+  Components.LED lED14
+    annotation (Placement(transformation(extent={{74,-46},{86,-34}})));
+  Modelica.Electrical.Analog.Basic.Resistor resistor14(
+                                                     R=220)
+    annotation (Placement(transformation(extent={{94,-56},{106,-44}})));
+  Components.LED lED15
+    annotation (Placement(transformation(extent={{74,-56},{86,-44}})));
   Modelica.Electrical.Analog.Basic.Potentiometer potentiometer(rConstant=0.01,
       useRinput=true) annotation (Placement(transformation(
         extent={{10,-10},{-10,10}},
         rotation=90,
-        origin={-90,2})));
+        origin={-70,2})));
   Modelica.Blocks.Sources.Sine sine(
     amplitude=0.5,
     freqHz=0.5,
     offset=0.5)
-    annotation (Placement(transformation(extent={{-60,6},{-72,18}})));
+    annotation (Placement(transformation(extent={{-40,6},{-52,18}})));
+  Modelica.Electrical.Analog.Sources.ConstantVoltage constantVoltage(V=5)
+    annotation (Placement(transformation(
+        extent={{-10,-10},{10,10}},
+        rotation=270,
+        origin={-100,0})));
+  Modelica.Electrical.Analog.Basic.Ground ground
+    annotation (Placement(transformation(extent={{0,-100},{20,-80}})));
 equation
-  connect(arduinoUno.D11, lED3.p) annotation (Line(points={{30.5,35.7273},{
-          40.25,35.7273},{40.25,45},{50,45}}, color={0,0,255}));
-  connect(resistor9.n, arduinoUno.GND) annotation (Line(points={{80,-45},{90,
-          -45},{90,-44},{90,-74},{-10,-74},{-10,-60}},          color={0,0,255}));
-  connect(resistor8.n, arduinoUno.GND) annotation (Line(points={{80,-35},{90,
-          -35},{90,-36},{90,-74},{-10,-74},{-10,-60}},          color={0,0,255}));
-  connect(resistor7.n, arduinoUno.GND) annotation (Line(points={{80,-25},{90,
-          -25},{90,-26},{90,-74},{-10,-74},{-10,-60}},          color={0,0,255}));
-  connect(resistor6.n, arduinoUno.GND) annotation (Line(points={{80,-15},{90,
-          -15},{90,-16},{90,-74},{-10,-74},{-10,-60}},          color={0,0,255}));
-  connect(resistor5.n, arduinoUno.GND) annotation (Line(points={{80,-5},{90,-5},
-          {90,-6},{90,-74},{-10,-74},{-10,-60}},         color={0,0,255}));
-  connect(resistor4.n, arduinoUno.GND) annotation (Line(points={{80,5},{90,5},{
-          90,4},{90,-74},{-10,-74},{-10,-60}},        color={0,0,255}));
-  connect(resistor3.n, arduinoUno.GND) annotation (Line(points={{80,15},{90,15},
-          {90,14},{90,-74},{-10,-74},{-10,-60}},         color={0,0,255}));
-  connect(resistor2.n, arduinoUno.GND) annotation (Line(points={{80,25},{90,25},
-          {90,24},{90,-74},{-10,-74},{-10,-60}},         color={0,0,255}));
-  connect(resistor1.n, arduinoUno.GND) annotation (Line(points={{80,35},{90,35},
-          {90,34},{90,-74},{-10,-74},{-10,-60}},         color={0,0,255}));
-  connect(resistor.n, arduinoUno.GND) annotation (Line(points={{80,45},{90,45},
-          {90,44},{90,-74},{-10,-74},{-10,-60}},         color={0,0,255}));
-  connect(lED3.n, resistor.p) annotation (Line(points={{60,45},{66,45},{70,45}},
+  connect(lED3.n,resistor. p) annotation (Line(points={{86,40},{94,40}},
                     color={0,0,255}));
-  connect(lED4.n, resistor1.p) annotation (Line(points={{60,35},{66,35},{70,35}},
-                    color={0,0,255}));
-  connect(lED1.n, resistor2.p) annotation (Line(points={{60,25},{66,25},{70,25}},
-                    color={0,0,255}));
-  connect(lED1.p, arduinoUno.D9) annotation (Line(points={{50,25},{44,25},{44,
-          19.3636},{30.5,19.3636}}, color={0,0,255}));
-  connect(arduinoUno.D10, lED4.p) annotation (Line(points={{30.5,27.5455},{
-          42.25,27.5455},{42.25,35},{50,35}}, color={0,0,255}));
-  connect(lED2.n, resistor3.p) annotation (Line(points={{60,15},{66,15},{70,15}},
-                    color={0,0,255}));
-  connect(lED5.n, resistor4.p)
-    annotation (Line(points={{60,5},{66,5},{70,5}},        color={0,0,255}));
-  connect(lED6.n, resistor5.p) annotation (Line(points={{60,-5},{66,-5},{70,-5}},
-                    color={0,0,255}));
-  connect(lED7.n, resistor6.p) annotation (Line(points={{60,-15},{66,-15},{70,
-          -15}},          color={0,0,255}));
-  connect(lED8.n, resistor7.p) annotation (Line(points={{60,-25},{66,-25},{70,
-          -25}},          color={0,0,255}));
-  connect(lED9.n, resistor8.p) annotation (Line(points={{60,-35},{66,-35},{70,
-          -35}},          color={0,0,255}));
-  connect(lED10.n, resistor9.p) annotation (Line(points={{60,-45},{66,-45},{70,
-          -45}},          color={0,0,255}));
-  connect(arduinoUno.D8, lED2.p) annotation (Line(points={{30.5,11.1818},{46.25,
-          11.1818},{46.25,15},{50,15}}, color={0,0,255}));
-  connect(arduinoUno.D7, lED5.p) annotation (Line(points={{30.5,2.72727},{48.25,
-          2.72727},{48.25,5},{50,5}}, color={0,0,255}));
-  connect(arduinoUno.D6, lED6.p) annotation (Line(points={{30.5,-5.45455},{
-          44.25,-5.45455},{44.25,-5},{50,-5}}, color={0,0,255}));
-  connect(arduinoUno.D5, lED7.p) annotation (Line(points={{30.5,-13.6364},{
-          44.25,-13.6364},{44.25,-15},{50,-15}}, color={0,0,255}));
-  connect(arduinoUno.D4, lED8.p) annotation (Line(points={{30.5,-21.8182},{
-          44.25,-21.8182},{44.25,-25},{50,-25}}, color={0,0,255}));
-  connect(arduinoUno.D3, lED9.p) annotation (Line(points={{30.5,-30},{44,-30},{
-          44,-35},{50,-35}}, color={0,0,255}));
-  connect(arduinoUno.D2, lED10.p) annotation (Line(points={{30.5,-37.6364},{
-          42.25,-37.6364},{42.25,-45},{50,-45}}, color={0,0,255}));
-  connect(potentiometer.pin_p, arduinoUno.V5) annotation (Line(points={{-90,12},
-          {-90,12},{-90,84},{-2.75,84},{-2.75,60.2727}}, color={0,0,255}));
-  connect(potentiometer.pin_n, arduinoUno.GND) annotation (Line(points={{-90,-8},
-          {-90,-74},{-10,-74},{-10,-60}}, color={0,0,255}));
-  connect(sine.y, potentiometer.r) annotation (Line(points={{-72.6,12},{-72.6,
-          12},{-79,12}}, color={0,0,127}));
-  connect(potentiometer.contact, arduinoUno.A0) annotation (Line(points={{-80,
-          -8},{-72,-8},{-72,-7.90909},{-49.75,-7.90909}}, color={0,0,255}));
-  annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,
-            -100},{100,100}})),                                  Diagram(
-        coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
-            100}}),                                  graphics={Text(
-          extent={{4,98},{96,82}},
+  connect(lED1.n,resistor1. p)
+    annotation (Line(points={{86,30},{94,30}}, color={0,0,255}));
+  connect(lED2.n,resistor2. p)
+    annotation (Line(points={{86,20},{94,20}}, color={0,0,255}));
+  connect(lED4.n,resistor3. p)
+    annotation (Line(points={{86,10},{94,10}}, color={0,0,255}));
+  connect(lED5.n,resistor4. p)
+    annotation (Line(points={{86,0},{94,0}}, color={0,0,255}));
+  connect(lED11.n,resistor10. p)
+    annotation (Line(points={{86,-10},{94,-10}}, color={0,0,255}));
+  connect(lED12.n,resistor11. p)
+    annotation (Line(points={{86,-20},{94,-20}}, color={0,0,255}));
+  connect(lED13.n,resistor12. p)
+    annotation (Line(points={{86,-30},{94,-30}}, color={0,0,255}));
+  connect(lED14.n,resistor13. p)
+    annotation (Line(points={{86,-40},{94,-40}}, color={0,0,255}));
+  connect(lED15.n,resistor14. p)
+    annotation (Line(points={{86,-50},{94,-50}}, color={0,0,255}));
+  connect(resistor.n, arduinoUno.GND) annotation (Line(points={{106,40},{112,40},
+          {112,-60},{10,-60}}, color={0,0,255}));
+  connect(resistor1.n, arduinoUno.GND) annotation (Line(points={{106,30},{112,30},
+          {112,-60},{10,-60}}, color={0,0,255}));
+  connect(resistor2.n, arduinoUno.GND) annotation (Line(points={{106,20},{112,20},
+          {112,-60},{10,-60}}, color={0,0,255}));
+  connect(resistor3.n, arduinoUno.GND) annotation (Line(points={{106,10},{112,10},
+          {112,-60},{10,-60}}, color={0,0,255}));
+  connect(resistor4.n, arduinoUno.GND) annotation (Line(points={{106,0},{112,0},
+          {112,-60},{10,-60}},color={0,0,255}));
+  connect(resistor10.n, arduinoUno.GND) annotation (Line(points={{106,-10},{112,
+          -10},{112,-60},{10,-60}}, color={0,0,255}));
+  connect(resistor11.n, arduinoUno.GND) annotation (Line(points={{106,-20},{112,
+          -20},{112,-60},{10,-60}}, color={0,0,255}));
+  connect(resistor12.n, arduinoUno.GND) annotation (Line(points={{106,-30},{112,
+          -30},{112,-60},{10,-60}}, color={0,0,255}));
+  connect(resistor13.n, arduinoUno.GND) annotation (Line(points={{106,-40},{112,
+          -40},{112,-60},{10,-60}}, color={0,0,255}));
+  connect(resistor14.n, arduinoUno.GND) annotation (Line(points={{106,-50},{112,
+          -50},{112,-60},{10,-60}}, color={0,0,255}));
+  connect(sine.y,potentiometer. r) annotation (Line(points={{-52.6,12},{-59,12}},
+                         color={0,0,127}));
+  connect(potentiometer.contact, arduinoUno.A0) annotation (Line(points={{-60,-8},
+          {-60,-12},{-30,-12},{-30,-12.5}},               color={0,0,255}));
+  connect(potentiometer.pin_n, arduinoUno.GND)
+    annotation (Line(points={{-70,-8},{-70,-60},{10,-60}},  color={0,0,255}));
+  connect(ground.p, arduinoUno.GND)
+    annotation (Line(points={{10,-80},{10,-60}},             color={0,0,255}));
+  connect(constantVoltage.n, arduinoUno.GND) annotation (Line(points={{-100,-10},
+          {-100,-70},{10,-70},{10,-60}},             color={0,0,255}));
+  connect(constantVoltage.p, arduinoUno.Vin) annotation (Line(points={{-100,10},
+          {-100,72},{10,72},{10,40}},   color={0,0,255}));
+  connect(potentiometer.pin_p, arduinoUno.Vin) annotation (Line(points={{-70,12},
+          {-70,72},{10,72},{10,40}},   color={0,0,255}));
+  connect(lED15.p, arduinoUno.D2) annotation (Line(points={{74,-50},{56,-50},{56,
+          -32.5},{50,-32.5}},    color={0,0,255}));
+  connect(lED14.p, arduinoUno.D3) annotation (Line(points={{74,-40},{60,-40},{60,
+          -27.5},{50,-27.5}},    color={0,0,255}));
+  connect(lED13.p, arduinoUno.D4) annotation (Line(points={{74,-30},{64,-30},{64,
+          -22.5},{50,-22.5}},    color={0,0,255}));
+  connect(lED12.p, arduinoUno.D5) annotation (Line(points={{74,-20},{66,-20},{66,
+          -17.5},{50,-17.5}},    color={0,0,255}));
+  connect(lED11.p, arduinoUno.D6) annotation (Line(points={{74,-10},{66,-10},{66,
+          -12.5},{50,-12.5}},    color={0,0,255}));
+  connect(lED5.p, arduinoUno.D7) annotation (Line(points={{74,0},{64,0},{64,-7.5},
+          {50,-7.5}},       color={0,0,255}));
+  connect(arduinoUno.D8, lED4.p) annotation (Line(points={{50,-2.5},{56,-2.5},{56,
+          -2},{60,-2},{60,10},{74,10}},    color={0,0,255}));
+  connect(arduinoUno.D9, lED2.p) annotation (Line(points={{50,2.5},{54,2.5},{54,
+          2},{58,2},{58,20},{74,20}}, color={0,0,255}));
+  connect(arduinoUno.D10, lED1.p) annotation (Line(points={{50,7.5},{54,7.5},{54,
+          8},{56,8},{56,30},{74,30}},    color={0,0,255}));
+  connect(arduinoUno.D11, lED3.p) annotation (Line(points={{50,12.5},{52,12.5},{
+          52,12},{54,12},{54,40},{74,40}},  color={0,0,255}));
+  annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
+            {100,100}})),                                        Diagram(
+        coordinateSystem(preserveAspectRatio=false, extent={{-120,-100},{120,100}}),
+                    graphics={Text(
+          extent={{26,96},{114,82}},
           lineColor={28,108,200},
           textString="See https://www.arduino.cc/en/Tutorial/BarGraph 
-for a description of the sketch and the circuit."), Rectangle(extent={{0,100},{
-              100,80}}, lineColor={28,108,200})}),
+for a description of the sketch and the circuit."), Rectangle(extent={{20,100},{
+              120,80}}, lineColor={28,108,200})}),
     experiment(StopTime=10));
 end BarGraph;

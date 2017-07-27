@@ -3,27 +3,39 @@ model Ping
               extends Modelica.Icons.Example;
 
   Components.ArduinoUno arduinoUno(sampleRate=1e-6, sketch="Ping.ino")
-    annotation (Placement(transformation(extent={{-80,-40},{-20,40}})));
+    annotation (Placement(transformation(extent={{-60,-50},{20,50}})));
   Modelica.Blocks.Sources.Ramp ramp(
     duration=0.2,
     height=0.02,
     offset=0.01) annotation (Placement(transformation(
-        extent={{10,-10},{-10,10}},
+        extent={{6,-6},{-6,6}},
         rotation=0,
-        origin={80,-10})));
-  Components.UltrasonicRangeFinder ultrasonicRangeFinder
-    annotation (Placement(transformation(extent={{12,-30},{52,10}})));
+        origin={90,-6})));
+  Components.SEN136B5B ultrasonicRangeFinder
+    annotation (Placement(transformation(extent={{38,-22},{70,10}})));
+  Modelica.Electrical.Analog.Basic.Ground ground
+    annotation (Placement(transformation(extent={{-30,-100},{-10,-80}})));
+  Modelica.Electrical.Analog.Sources.ConstantVoltage constantVoltage(V=5)
+    annotation (Placement(transformation(
+        extent={{-10,-10},{10,10}},
+        rotation=270,
+        origin={-80,0})));
 equation
   connect(ultrasonicRangeFinder.distance, ramp.y)
-    annotation (Line(points={{56,-10},{56,-10},{69,-10}}, color={0,0,127}));
-  connect(ultrasonicRangeFinder.ground, arduinoUno.GND) annotation (Line(points=
-         {{12,-20},{0,-20},{0,-62},{-50,-62},{-50,-40}}, color={0,0,255}));
-  connect(ultrasonicRangeFinder.input5V, arduinoUno.V5) annotation (Line(points={{12,-10},
-          {0,-10},{0,50},{-44.5625,50},{-44.5625,40.1818}},          color={0,0,
+    annotation (Line(points={{73.2,-6},{83.4,-6}},        color={0,0,127}));
+  connect(ultrasonicRangeFinder.ground, arduinoUno.GND) annotation (Line(points={{38,-14},
+          {38,-60},{-20,-60},{-20,-50}},                 color={0,0,255}));
+  connect(ultrasonicRangeFinder.pinSig, arduinoUno.D7) annotation (Line(points={{38,2},{
+          20,2},{20,2.5}},                                         color={0,0,
           255}));
-  connect(ultrasonicRangeFinder.pinSig, arduinoUno.D7) annotation (Line(points=
-          {{12,0},{-2,0},{-10,0},{-10,1.81818},{-19.625,1.81818}}, color={0,0,
-          255}));
+  connect(constantVoltage.p, arduinoUno.Vin) annotation (Line(points={{-80,10},
+          {-80,60},{-20,60},{-20,50}}, color={0,0,255}));
+  connect(ultrasonicRangeFinder.input5V, arduinoUno.Vin) annotation (Line(
+        points={{38,-6},{30,-6},{30,60},{-20,60},{-20,50}},   color={0,0,255}));
+  connect(ground.p, arduinoUno.GND)
+    annotation (Line(points={{-20,-80},{-20,-50}}, color={0,0,255}));
+  connect(constantVoltage.n, arduinoUno.GND) annotation (Line(points={{-80,-10},
+          {-80,-60},{-20,-60},{-20,-50}}, color={0,0,255}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
         coordinateSystem(preserveAspectRatio=false), graphics={Text(
           extent={{8,98},{92,84}},

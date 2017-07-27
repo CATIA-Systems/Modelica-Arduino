@@ -1,5 +1,4 @@
 ExternalArduino
-PulseWidthModulationPinDriver
-VariableWidthPulse
-DigitalPinDriver
 buildSketch
+VariableBooleanPulse
+PinDriver

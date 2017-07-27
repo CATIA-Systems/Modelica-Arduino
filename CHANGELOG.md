@@ -1,10 +1,21 @@
 # Changelog
 
+## [0.0.4] (2017-07-27)
+
+### Added
+- Servo library and models
+- Braccio library and examples
+- Firmata package to connect Modelica models to the real world
+
+### Changed
+- Arduino block changed to schematic design
+
+
 ## [0.0.3] (2017-05-25)
 
 ### Added
 - Automatic build of the sketch
-- 
+
 
 ## [0.0.2] (2017-01-26)
 
@@ -22,6 +33,7 @@
 - Documentation extended
 - Digital pins changed from analog voltage to PWM
 - Ultrasonic range finder model added
+
 
 ## [0.0.0] (2016-12-26)
 
