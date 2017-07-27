@@ -7,7 +7,7 @@ package Arduino
 
 
 
-  annotation (uses(Modelica(version="3.2.2"), Modelica_DeviceDrivers(version=
+  annotation (version="0.0.4", uses(Modelica(version="3.2.2"), Modelica_DeviceDrivers(version=
           "1.4.4")),                           version="0.0.1", Icon(graphics={
         Ellipse(
           extent={{-80,38},{4,-38}},
