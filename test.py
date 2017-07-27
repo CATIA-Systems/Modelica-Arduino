@@ -52,16 +52,15 @@ class ExamplesTest(unittest.TestCase):
             ('Arduino.Examples.Fade', 10, ['arduinoUno.A0.v', 'arduinoUno.D9.v']),
             ('Arduino.Examples.Ping', 0.21, ['arduinoUno.D7.v']),
             ('Arduino.Examples.Sweep', 1, ['arduinoUno.D9.v']),
-            ('Arduino.Firmata.Examples.Blink', 10, ['Blink.digitalOutput.value']),
-            ('Arduino.Firmata.Examples.Fade', 10, ['Fade.pwmOutput.pinConnector']),
-            ('Arduino.Firmata.Examples.AnalogInput', 10, ['AnalogInput.analogInput.y']),
-            ('Arduino.Firmata.Examples.Button', 10, ['Button.digitalInput.y']),
-            ('Arduino.Firmata.Examples.Sweep', 10, ['Sweep.servo.u']),
+            ('Arduino.Examples.RobotArm', 15, ['baseServo.flange.phi']),
+            ('Arduino.Firmata.Examples.Blink', 10, ['digitalOutput.value']),
+            ('Arduino.Firmata.Examples.Fade', 10, ['pwmOutput.pinConnector']),
+            ('Arduino.Firmata.Examples.AnalogInput', 10, ['analogInput.y']),
+            ('Arduino.Firmata.Examples.Button', 10, ['digitalInput.y']),
+            ('Arduino.Firmata.Examples.Sweep', 10, ['servo.u']),
         ]
 
         for model, stop_time, signals in examples:
-
-            # model = 'Arduino.Examples.' + name
 
             print("Simulating %s" % model)
             success = self.dymola.simulateModel(model, stopTime=stop_time)
