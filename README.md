@@ -1,6 +1,6 @@
 # Simulate Arduino Sketches in Modelica
 
-With the Arduino Modelica library you can simulate your circuits and sketches on a virtual [Arduino Uno](https://www.arduino.cc/en/Main/ArduinoBoardUno) and connect your Modelica models to real-world circuits using the [Firmata protocol](http://www.firmata.org/).
+With the Arduino Modelica library you can simulate your circuits and sketches on a virtual [Arduino Uno](https://www.arduino.cc/en/Main/ArduinoBoardUno) and connect your [Modelica](https://www.modelica.org/) models to real-world circuits using the [Firmata protocol](http://www.firmata.org/).
 
 
 ## Prerequisites
@@ -24,16 +24,16 @@ With the Arduino Modelica library you can simulate your circuits and sketches on
 
 To simulate your sketch `MySketch` you have to perform the following steps.
 
-- Save your sketch as `Sketches/MySketch.ino`
-- Add the block `Arduino.Components.ArduinoUno` to your model
-- Double-click the block and set the parameter `sketch` to `"MySketch.ino"`
+- save your sketch as `Sketches/MySketch.ino`
+- add the block `Arduino.Components.ArduinoUno` to your model
+- double-click the block and set the parameter `sketch` to `"MySketch.ino"`
 
 
 ## Limitations
 
-- Currently you can use only one instance of ArduinoUno in your Modelica model
+- currently you can use only one instance of ArduinoUno in your Modelica model
 
-- The whole [Arduino API](https://www.arduino.cc/en/Reference/HomePage) is supported except for the following functions
+- the whole [Arduino API](https://www.arduino.cc/en/Reference/HomePage) is supported except for the following functions
 
 	- [analogReadResolution()](https://www.arduino.cc/en/Reference/AnalogReadResolution)
 	- [analogWriteResolution()](https://www.arduino.cc/en/Reference/AnalogWriteResolution)
@@ -47,9 +47,19 @@ To simulate your sketch `MySketch` you have to perform the following steps.
 	- [Keyboard](https://www.arduino.cc/en/Reference/MouseKeyboard)
 	- [Mouse](https://www.arduino.cc/en/Reference/MouseKeyboard)
 
-## Using Libraries
 
-To use a library in your sketch copy its header files (`*.h`) and source files (`*.cpp`) to the `Libraries` folder. If the library contains `.cpp` files you have to add them to the `Arduino` project by dragging them from the `Libraries` folder in the file browser onto the `Source Files` folder in the solution explorer.
+## Arduino Libraries
+
+The following libraries are included and can be used directly.
+
+| Name                            | Description |
+|---------------------------------|-------------|
+|[Servo.h](Libraries/Servo.h)     | [Servo library](https://www.arduino.cc/en/Reference/Servo) to control RC (hobby) servo motors |
+|[Braccio.h](Libraries/Braccio.h) | control the [Braccio](http://www.arduino.org/products/tinkerkit/arduino-tinkerkit-braccio) robot arm |
+|[PID_v1.h](Libraries/PID_v1.h)   | PID controller library for Arduino |
+
+To use an external library in your sketch copy its header files (`*.h`) and source files (`*.cpp`) to the `Libraries` folder. If the library contains `.cpp` files you have to add them to the `Arduino` project by dragging them from the `Libraries` folder in the file browser onto the `Source Files` folder in the solution explorer.
+
 
 ## License
 
