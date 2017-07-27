@@ -37,8 +37,7 @@ model Servo
     annotation (Placement(transformation(extent={{-80,60},{-60,80}})));
   Modelica.Blocks.Sources.Constant const(k=minPulseWidth)
     annotation (Placement(transformation(extent={{-120,60},{-100,80}})));
-  Modelica.Mechanics.Rotational.Interfaces.Flange_b flange1
-                  "Flange of shaft"
+  Modelica.Mechanics.Rotational.Interfaces.Flange_b flange "Flange of shaft"
     annotation (Placement(transformation(extent={{150,-10},{170,10}}),
         iconTransformation(extent={{88,-12},{110,10}})));
   Modelica.Blocks.Math.Add add1
@@ -81,7 +80,7 @@ equation
                      color={0,0,127}));
   connect(limiter.y, gain1.u)
     annotation (Line(points={{21,70},{38,70}}, color={0,0,127}));
-  connect(position.flange, flange1)
+  connect(position.flange, flange)
     annotation (Line(points={{140,0},{160,0}}, color={0,0,0}));
   connect(const1.y, add1.u2) annotation (Line(points={{61,-10},{78,-10},{78,-6},
           {84,-6}}, color={0,0,127}));
