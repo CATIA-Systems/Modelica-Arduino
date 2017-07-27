@@ -1,6 +1,6 @@
 # Changelog
 
-## [0.0.4] (unreleased)
+## [0.0.4] (2017-07-27)
 
 ### Added
 - Servo library and models
