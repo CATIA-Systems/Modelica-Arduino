@@ -10,9 +10,9 @@ model Ping
     offset=0.01) annotation (Placement(transformation(
         extent={{6,-6},{-6,6}},
         rotation=0,
-        origin={90,-10})));
+        origin={90,-6})));
   Components.SEN136B5B ultrasonicRangeFinder
-    annotation (Placement(transformation(extent={{38,-26},{70,6}})));
+    annotation (Placement(transformation(extent={{38,-22},{70,10}})));
   Modelica.Electrical.Analog.Basic.Ground ground
     annotation (Placement(transformation(extent={{-30,-100},{-10,-80}})));
   Modelica.Electrical.Analog.Sources.ConstantVoltage constantVoltage(V=5)
@@ -22,16 +22,16 @@ model Ping
         origin={-80,0})));
 equation
   connect(ultrasonicRangeFinder.distance, ramp.y)
-    annotation (Line(points={{73.2,-10},{83.4,-10}},      color={0,0,127}));
-  connect(ultrasonicRangeFinder.ground, arduinoUno.GND) annotation (Line(points={{38,-18},
+    annotation (Line(points={{73.2,-6},{83.4,-6}},        color={0,0,127}));
+  connect(ultrasonicRangeFinder.ground, arduinoUno.GND) annotation (Line(points={{38,-14},
           {38,-60},{-20,-60},{-20,-50}},                 color={0,0,255}));
-  connect(ultrasonicRangeFinder.pinSig, arduinoUno.D7) annotation (Line(points={{38,-2},
-          {20,-2},{20,-2.5}},                                      color={0,0,
+  connect(ultrasonicRangeFinder.pinSig, arduinoUno.D7) annotation (Line(points={{38,2},{
+          20,2},{20,2.5}},                                         color={0,0,
           255}));
   connect(constantVoltage.p, arduinoUno.Vin) annotation (Line(points={{-80,10},
           {-80,60},{-20,60},{-20,50}}, color={0,0,255}));
   connect(ultrasonicRangeFinder.input5V, arduinoUno.Vin) annotation (Line(
-        points={{38,-10},{30,-10},{30,60},{-20,60},{-20,50}}, color={0,0,255}));
+        points={{38,-6},{30,-6},{30,60},{-20,60},{-20,50}},   color={0,0,255}));
   connect(ground.p, arduinoUno.GND)
     annotation (Line(points={{-20,-80},{-20,-50}}, color={0,0,255}));
   connect(constantVoltage.n, arduinoUno.GND) annotation (Line(points={{-80,-10},

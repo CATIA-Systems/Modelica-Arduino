@@ -5,7 +5,7 @@ block ArduinoUno
   parameter Real sampleRate = 0.01;
 
   Modelica.Electrical.Analog.Interfaces.Pin GND
-    annotation (Placement(transformation(extent={{-16,-216},{4,-196}}),
+    annotation (Placement(transformation(extent={{-10,-170},{10,-150}}),
         iconTransformation(extent={{-4,-204},{4,-196}})));
 
   Arduino.Internal.ExternalArduino externalArduino=
@@ -15,17 +15,16 @@ block ArduinoUno
         transformation(extent={{-170,-30},{-150,-10}}),iconTransformation(
           extent={{-164,-34},{-156,-26}})));
   Modelica.Electrical.Analog.Interfaces.Pin A2 annotation (Placement(
-        transformation(extent={{-176,-66},{-156,-46}}),iconTransformation(
+        transformation(extent={{-170,-50},{-150,-30}}),iconTransformation(
           extent={{-164,-54},{-156,-46}})));
   Modelica.Electrical.Analog.Interfaces.Pin A3 annotation (Placement(
-        transformation(extent={{-176,-86},{-156,-66}}),iconTransformation(
+        transformation(extent={{-170,-70},{-150,-50}}),iconTransformation(
           extent={{-164,-74},{-156,-66}})));
   Modelica.Electrical.Analog.Interfaces.Pin A4 annotation (Placement(
-        transformation(extent={{-176,-106},{-156,-86}}),
-                                                       iconTransformation(
+        transformation(extent={{-170,-90},{-150,-70}}),iconTransformation(
           extent={{-164,-94},{-156,-86}})));
   Modelica.Electrical.Analog.Interfaces.Pin A5 annotation (Placement(
-        transformation(extent={{-170,-150},{-150,-130}}),
+        transformation(extent={{-170,-110},{-150,-90}}),
                                                        iconTransformation(
           extent={{-164,-114},{-156,-106}})));
   Modelica.Electrical.Analog.Basic.Resistor resistorA1(R=1e5) annotation (
@@ -37,89 +36,87 @@ block ArduinoUno
       Placement(transformation(
         extent={{-10,10},{10,-10}},
         rotation=180,
-        origin={-80,-50})));
+        origin={-80,-40})));
   Modelica.Electrical.Analog.Basic.Resistor resistorA4(R=1e5) annotation (
       Placement(transformation(
         extent={{-10,10},{10,-10}},
         rotation=180,
-        origin={-80,-110})));
+        origin={-78,-80})));
   Modelica.Electrical.Analog.Basic.Resistor resistorA5(R=1e5) annotation (
       Placement(transformation(
         extent={{-10,10},{10,-10}},
         rotation=180,
-        origin={-80,-140})));
+        origin={-80,-100})));
   Modelica.Electrical.Analog.Interfaces.Pin D1 annotation (Placement(
-        transformation(extent={{150,-160},{170,-140}}),
-                                                   iconTransformation(extent={{156,106},
-            {164,114}})));
+        transformation(extent={{150,90},{170,110}}),
+                                                   iconTransformation(extent={{156,
+            -114},{164,-106}})));
   Modelica.Electrical.Analog.Interfaces.Pin RESET annotation (Placement(
-        transformation(extent={{-170,130},{-150,150}}), iconTransformation(
+        transformation(extent={{-170,90},{-150,110}}),  iconTransformation(
           extent={{-164,106},{-156,114}})));
   Modelica.Electrical.Analog.Interfaces.Pin AREF
-    annotation (Placement(transformation(extent={{-176,74},{-156,94}}),
+    annotation (Placement(transformation(extent={{-170,70},{-150,90}}),
         iconTransformation(extent={{-164,86},{-156,94}})));
   Modelica.Electrical.Analog.Interfaces.Pin A0 annotation (Placement(
-        transformation(extent={{-170,0},{-150,20}}),   iconTransformation(
+        transformation(extent={{-170,-10},{-150,10}}), iconTransformation(
           extent={{-164,-14},{-156,-6}})));
   Modelica.Electrical.Analog.Basic.Resistor resistorA0(R=1e5) annotation (
       Placement(transformation(
         extent={{-10,10},{10,-10}},
         rotation=180,
-        origin={-80,10})));
+        origin={-80,0})));
   Modelica.Electrical.Analog.Interfaces.Pin D0 annotation (Placement(
-        transformation(extent={{150,-190},{170,-170}}),
-                                                   iconTransformation(extent={{156,126},
-            {164,134}})));
+        transformation(extent={{150,110},{170,130}}),
+                                                   iconTransformation(extent={{156,
+            -134},{164,-126}})));
   Modelica.Electrical.Analog.Interfaces.Pin D2 annotation (Placement(
-        transformation(extent={{150,-130},{170,-110}}),
-                                                   iconTransformation(extent={{156,86},
-            {164,94}})));
+        transformation(extent={{150,70},{170,90}}),iconTransformation(extent={{156,-94},
+            {164,-86}})));
   Modelica.Electrical.Analog.Interfaces.Pin D3 annotation (Placement(
-        transformation(extent={{150,-100},{170,-80}}),
-                                                   iconTransformation(extent={{156,66},
-            {164,74}})));
+        transformation(extent={{150,50},{170,70}}),iconTransformation(extent={{156,-74},
+            {164,-66}})));
   Modelica.Electrical.Analog.Interfaces.Pin D4 annotation (Placement(
+        transformation(extent={{150,30},{170,50}}),iconTransformation(extent={{156,-54},
+            {164,-46}})));
+  Modelica.Electrical.Analog.Interfaces.Pin D5 annotation (Placement(
+        transformation(extent={{150,10},{170,30}}),iconTransformation(extent={{156,-34},
+            {164,-26}})));
+  Modelica.Electrical.Analog.Interfaces.Pin D6 annotation (Placement(
+        transformation(extent={{150,-10},{170,10}}),
+                                                   iconTransformation(extent={{156,-14},
+            {164,-6}})));
+  Modelica.Electrical.Analog.Interfaces.Pin D7 annotation (Placement(
+        transformation(extent={{150,-30},{170,-10}}),
+                                                   iconTransformation(extent={{156,6},
+            {164,14}})));
+  Modelica.Electrical.Analog.Interfaces.Pin D8 annotation (Placement(
+        transformation(extent={{150,-50},{170,-30}}),
+                                                   iconTransformation(extent={{156,26},
+            {164,34}})));
+  Modelica.Electrical.Analog.Interfaces.Pin D9 annotation (Placement(
         transformation(extent={{150,-70},{170,-50}}),
                                                    iconTransformation(extent={{156,46},
             {164,54}})));
-  Modelica.Electrical.Analog.Interfaces.Pin D5 annotation (Placement(
-        transformation(extent={{150,-40},{170,-20}}),
-                                                   iconTransformation(extent={{156,26},
-            {164,34}})));
-  Modelica.Electrical.Analog.Interfaces.Pin D6 annotation (Placement(
-        transformation(extent={{150,-10},{170,10}}),
-                                                   iconTransformation(extent={{156,6},
-            {164,14}})));
-  Modelica.Electrical.Analog.Interfaces.Pin D7 annotation (Placement(
-        transformation(extent={{150,20},{170,40}}),iconTransformation(extent={{156,-14},
-            {164,-6}})));
-  Modelica.Electrical.Analog.Interfaces.Pin D8 annotation (Placement(
-        transformation(extent={{150,50},{170,70}}),iconTransformation(extent={{156,-34},
-            {164,-26}})));
-  Modelica.Electrical.Analog.Interfaces.Pin D9 annotation (Placement(
-        transformation(extent={{150,80},{170,100}}),
-                                                   iconTransformation(extent={{156,-54},
-            {164,-46}})));
   Modelica.Electrical.Analog.Interfaces.Pin D10
                                                annotation (Placement(
-        transformation(extent={{150,110},{170,130}}),
-                                                   iconTransformation(extent={{156,-74},
-            {164,-66}})));
+        transformation(extent={{150,-90},{170,-70}}),
+                                                   iconTransformation(extent={{156,66},
+            {164,74}})));
   Modelica.Electrical.Analog.Interfaces.Pin D11
                                                annotation (Placement(
-        transformation(extent={{150,140},{170,160}}),
-                                                   iconTransformation(extent={{156,-94},
-            {164,-86}})));
+        transformation(extent={{150,-110},{170,-90}}),
+                                                   iconTransformation(extent={{156,86},
+            {164,94}})));
   Modelica.Electrical.Analog.Interfaces.Pin D12
                                                annotation (Placement(
-        transformation(extent={{150,170},{170,190}}),
-                                                   iconTransformation(extent={{156,
-            -114},{164,-106}})));
+        transformation(extent={{150,-130},{170,-110}}),
+                                                   iconTransformation(extent={{156,106},
+            {164,114}})));
   Modelica.Electrical.Analog.Interfaces.Pin D13
                                                annotation (Placement(
         transformation(extent={{150,220},{170,240}}),
-                                                   iconTransformation(extent={{156,
-            -134},{164,-126}})));
+                                                   iconTransformation(extent={{156,126},
+            {164,134}})));
 
 protected
     final constant Integer numAnalogInputs = 6;
@@ -148,17 +145,17 @@ public
       Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=0,
-        origin={-80,110})));
+        origin={-80,80})));
   Modelica.Electrical.Analog.Basic.Resistor resistorRESET(R=1e5) annotation (
       Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=0,
-        origin={-80,140})));
+        origin={-80,100})));
   Modelica.Electrical.Analog.Basic.Resistor resistorA3(R=1e5) annotation (
       Placement(transformation(
         extent={{-10,10},{10,-10}},
         rotation=180,
-        origin={-80,-80})));
+        origin={-80,-60})));
   Modelica.Electrical.Analog.Interfaces.Pin Vin "5V power supply" annotation (
       Placement(transformation(extent={{-10,190},{10,210}}),iconTransformation(
           extent={{-4,196},{4,204}})));
@@ -188,23 +185,20 @@ equation
 
   connect(resistorA1.n, A1) annotation (Line(points={{-90,-20},{-160,-20}},
                  color={0,0,255}));
-  connect(resistorA2.n, A2) annotation (Line(points={{-90,-50},{-128,-50},{-128,
-          -56},{-166,-56}},
+  connect(resistorA2.n, A2) annotation (Line(points={{-90,-40},{-160,-40}},
                  color={0,0,255}));
   connect(resistorA4.n, A4)
-    annotation (Line(points={{-90,-110},{-128,-110},{-128,-96},{-166,-96}},
-                                                       color={0,0,255}));
+    annotation (Line(points={{-88,-80},{-160,-80}},    color={0,0,255}));
   connect(resistorA5.n, A5)
-    annotation (Line(points={{-90,-140},{-160,-140}},  color={0,0,255}));
-  connect(resistorA0.n, A0) annotation (Line(points={{-90,10},{-160,10}},
+    annotation (Line(points={{-90,-100},{-160,-100}},  color={0,0,255}));
+  connect(resistorA0.n, A0) annotation (Line(points={{-90,1.33227e-015},{-126,1.33227e-015},
+          {-126,0},{-160,0}},
                       color={0,0,255}));
   connect(AREF, resistorAREF.p)
-    annotation (Line(points={{-166,84},{-128,84},{-128,110},{-90,110}},
-                                                     color={0,0,255}));
+    annotation (Line(points={{-160,80},{-90,80}},    color={0,0,255}));
   connect(RESET, resistorRESET.p)
-    annotation (Line(points={{-160,140},{-90,140}},  color={0,0,255}));
-  connect(A3, resistorA3.n) annotation (Line(points={{-166,-76},{-128,-76},{
-          -128,-80},{-90,-80}},
+    annotation (Line(points={{-160,100},{-90,100}},  color={0,0,255}));
+  connect(A3, resistorA3.n) annotation (Line(points={{-160,-60},{-90,-60}},
                  color={0,0,255}));
 
   // connect the digital pins
@@ -223,22 +217,22 @@ equation
   connect(pinDriver[13].y, D12);
   connect(pinDriver[14].y, D13);
 
-  connect(resistorA0.p, GND) annotation (Line(points={{-70,10},{-6,10},{-6,-206}},
+  connect(resistorA0.p, GND) annotation (Line(points={{-70,-1.33227e-015},{0,-1.33227e-015},
+          {0,-160}},  color={0,0,255}));
+  connect(resistorA1.p, GND) annotation (Line(points={{-70,-20},{0,-20},{0,-160}},
                       color={0,0,255}));
-  connect(resistorA1.p, GND) annotation (Line(points={{-70,-20},{-6,-20},{-6,
-          -206}},     color={0,0,255}));
-  connect(resistorA2.p, GND) annotation (Line(points={{-70,-50},{-6,-50},{-6,
-          -206}},     color={0,0,255}));
-  connect(resistorA3.p, GND) annotation (Line(points={{-70,-80},{-6,-80},{-6,
-          -206}},                             color={0,0,255}));
-  connect(resistorA4.p, GND) annotation (Line(points={{-70,-110},{-6,-110},{-6,
-          -206}},                               color={0,0,255}));
-  connect(resistorA5.p, GND) annotation (Line(points={{-70,-140},{-6,-140},{-6,
-          -206}},                               color={0,0,255}));
-  connect(resistorAREF.n, GND) annotation (Line(points={{-70,110},{-6,110},{-6,
-          -206}},                                             color={0,0,255}));
-  connect(resistorRESET.n, GND) annotation (Line(points={{-70,140},{-6,140},{-6,
-          -206}},                                               color={0,0,255}));
+  connect(resistorA2.p, GND) annotation (Line(points={{-70,-40},{0,-40},{0,-160}},
+                      color={0,0,255}));
+  connect(resistorA3.p, GND) annotation (Line(points={{-70,-60},{0,-60},{0,-160}},
+                                              color={0,0,255}));
+  connect(resistorA4.p, GND) annotation (Line(points={{-68,-80},{0,-80},{0,-160}},
+                                                color={0,0,255}));
+  connect(resistorA5.p, GND) annotation (Line(points={{-70,-100},{0,-100},{0,-160}},
+                                                color={0,0,255}));
+  connect(resistorAREF.n, GND) annotation (Line(points={{-70,80},{0,80},{0,-160}},
+                                                              color={0,0,255}));
+  connect(resistorRESET.n, GND) annotation (Line(points={{-70,100},{0,100},{0,-160}},
+                                                                color={0,0,255}));
   annotation (preInstantiate=Arduino.Internal.buildSketch(Modelica.Utilities.Files.loadResource(
         "modelica://Arduino/"), sketch), Icon(coordinateSystem(preserveAspectRatio=true, extent={{-160,
             -200},{160,200}}),
@@ -248,7 +242,7 @@ equation
           fillColor={255,255,255},
           fillPattern=FillPattern.Solid),
           Rectangle(
-          extent={{16,100},{26,82}},
+          extent={{-4,100},{6,82}},
           lineThickness=0.5,
           fillColor=DynamicSelect({100,100,0}, if D13.v > 2.5 then {255,
               255,0} else {100,100,0}),
@@ -261,72 +255,72 @@ equation
           horizontalAlignment=TextAlignment.Left,
           textString="RESET"),
         Text(
-          extent={{32,138},{126,122}},
+          extent={{2,-122},{126,-138}},
           lineColor={28,108,200},
           horizontalAlignment=TextAlignment.Right,
           textString="D0 / RX"),
         Text(
-          extent={{32,118},{126,102}},
+          extent={{2,-102},{126,-118}},
           lineColor={28,108,200},
           horizontalAlignment=TextAlignment.Right,
           textString="D1 / TX"),
         Text(
-          extent={{66,98},{126,82}},
+          extent={{2,-82},{126,-98}},
           lineColor={28,108,200},
           horizontalAlignment=TextAlignment.Right,
           textString="D2"),
         Text(
-          extent={{32,78},{126,62}},
+          extent={{2,-62},{126,-78}},
           lineColor={28,108,200},
           horizontalAlignment=TextAlignment.Right,
           textString="D3 PWM"),
         Text(
-          extent={{66,58},{126,42}},
+          extent={{2,-42},{126,-58}},
           lineColor={28,108,200},
           horizontalAlignment=TextAlignment.Right,
           textString="D4"),
         Text(
-          extent={{66,38},{126,22}},
+          extent={{2,-22},{126,-38}},
           lineColor={28,108,200},
           horizontalAlignment=TextAlignment.Right,
           textString="D5 PWM"),
         Text(
-          extent={{66,18},{126,2}},
+          extent={{2,-2},{126,-18}},
           lineColor={28,108,200},
           horizontalAlignment=TextAlignment.Right,
           textString="D6 PWM"),
         Text(
-          extent={{6,-102},{126,-118}},
+          extent={{2,118},{126,102}},
           lineColor={28,108,200},
           horizontalAlignment=TextAlignment.Right,
           textString="D12/MISO"),
         Text(
-          extent={{6,-82},{126,-98}},
+          extent={{2,98},{126,82}},
           lineColor={28,108,200},
           horizontalAlignment=TextAlignment.Right,
           textString="D11 PWM/MOSI"),
         Text(
-          extent={{6,-62},{126,-78}},
+          extent={{2,78},{126,62}},
           lineColor={28,108,200},
           horizontalAlignment=TextAlignment.Right,
           textString="D10 PWM/SS"),
         Text(
-          extent={{66,-22},{126,-38}},
+          extent={{2,38},{126,22}},
           lineColor={28,108,200},
           horizontalAlignment=TextAlignment.Right,
           textString="D8"),
         Text(
-          extent={{66,-2},{126,-18}},
+          extent={{2,18},{126,2}},
           lineColor={28,108,200},
           horizontalAlignment=TextAlignment.Right,
           textString="D7"),
         Text(
-          extent={{66,-42},{126,-58}},
+          extent={{2,58},{126,42}},
           lineColor={28,108,200},
           horizontalAlignment=TextAlignment.Right,
           textString="D9 PWM"),
         Text(
-          extent={{6,-122},{126,-138}},
+          extent={{2,138},{126,122}},
           lineColor={28,108,200},
           horizontalAlignment=TextAlignment.Right,
           textString="D13/SCK"),
@@ -372,29 +366,29 @@ equation
           lineColor={28,108,200},
           horizontalAlignment=TextAlignment.Left,
           textString="A4/SDA"),
-        Line(points={{130,130},{160,130}},
-                                         color={0,0,255}),
-        Line(points={{130,110},{160,110}},
-                                         color={0,0,255}),
-        Line(points={{130,90},{160,90}}, color={0,0,255}),
-        Line(points={{130,70},{160,70}}, color={0,0,255}),
-        Line(points={{130,10},{160,10}}, color={0,0,255}),
-        Line(points={{130,-10},{160,-10}},
-                                         color={0,0,255}),
-        Line(points={{130,50},{160,50}}, color={0,0,255}),
-        Line(points={{130,30},{160,30}}, color={0,0,255}),
-        Line(points={{130,-110},{160,-110}},
-                                         color={0,0,255}),
         Line(points={{130,-130},{160,-130}},
+                                         color={0,0,255}),
+        Line(points={{130,-110},{160,-110}},
                                          color={0,0,255}),
         Line(points={{130,-90},{160,-90}},
                                          color={0,0,255}),
         Line(points={{130,-70},{160,-70}},
                                          color={0,0,255}),
+        Line(points={{130,-10},{160,-10}},
+                                         color={0,0,255}),
+        Line(points={{130,10},{160,10}}, color={0,0,255}),
         Line(points={{130,-50},{160,-50}},
                                          color={0,0,255}),
         Line(points={{130,-30},{160,-30}},
                                          color={0,0,255}),
+        Line(points={{130,110},{160,110}},
+                                         color={0,0,255}),
+        Line(points={{130,130},{160,130}},
+                                         color={0,0,255}),
+        Line(points={{130,90},{160,90}}, color={0,0,255}),
+        Line(points={{130,70},{160,70}}, color={0,0,255}),
+        Line(points={{130,50},{160,50}}, color={0,0,255}),
+        Line(points={{130,30},{160,30}}, color={0,0,255}),
         Line(points={{0,-200},{0,-170}}, color={0,0,255}),
         Line(points={{-160,110},{-130,110}},
                                          color={0,0,255}),
@@ -426,7 +420,7 @@ equation
           extent={{-9,8},{9,-8}},
           lineColor={28,108,200},
           horizontalAlignment=TextAlignment.Right,
-          origin={22,113},
+          origin={2,113},
           rotation=270,
           textString="L"),
         Text(
@@ -437,6 +431,6 @@ equation
           rotation=90,
           textString="Vin"),
         Line(points={{0,168},{0,200}},   color={0,0,255})}),     Diagram(
-        coordinateSystem(preserveAspectRatio=true, extent={{-160,-200},{160,200}})),
+        coordinateSystem(preserveAspectRatio=true, extent={{-160,-160},{160,160}})),
     experiment(StopTime=10));
 end ArduinoUno;

@@ -94,7 +94,7 @@ model ControlledDCMotor
         origin={-240,50})));
 equation
   connect(voltageSensor.p, arduinoUno.D3)
-    annotation (Line(points={{10,30},{10,68},{-16,68},{-16,67.5},{-20,67.5}}, color={0,0,255}));
+    annotation (Line(points={{10,30},{10,42},{-14,42},{-14,32.5},{-20,32.5}}, color={0,0,255}));
   connect(actuator.u, voltageSensor.v) annotation (Line(points={{40,20},{40,20},
           {20,20}},                                                                          color={0,0,127}));
   connect(ground.p, resistor.n) annotation (Line(points={{228,40},{224,40},{220,

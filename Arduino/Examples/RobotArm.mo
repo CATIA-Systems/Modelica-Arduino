@@ -126,18 +126,18 @@ equation
   connect(constantVoltage.p,arduinoUno. Vin)
     annotation (Line(points={{-120,20},{-120,70},{-40,70},{-40,60}},
                                                             color={0,0,255}));
-  connect(baseServo.SIG, arduinoUno.D11) annotation (Line(points={{40,-66},{8,-66},
-          {8,-12.5},{0,-12.5}},                    color={0,0,255}));
-  connect(shoulderServo.SIG, arduinoUno.D10) annotation (Line(points={{40,-36},{
-          14,-36},{14,-7.5},{0,-7.5}},                     color={0,0,255}));
-  connect(wristRotServo.SIG, arduinoUno.D6) annotation (Line(points={{40,24},{40,
-          24},{28,24},{28,24},{18,24},{18,12.5},{0,12.5}},        color={0,0,
+  connect(baseServo.SIG, arduinoUno.D11) annotation (Line(points={{40,-66},{8,
+          -66},{8,32.5},{0,32.5}},                 color={0,0,255}));
+  connect(shoulderServo.SIG, arduinoUno.D10) annotation (Line(points={{40,-36},
+          {6,-36},{6,27.5},{0,27.5}},                      color={0,0,255}));
+  connect(wristRotServo.SIG, arduinoUno.D6) annotation (Line(points={{40,24},{
+          40,24},{28,24},{28,24},{18,24},{18,7.5},{0,7.5}},       color={0,0,
           255}));
-  connect(arduinoUno.D5, wristVerServo.SIG) annotation (Line(points={{0,17.5},{2,
-          17.5},{2,18},{12,18},{12,54},{40,54}},                   color={0,0,
+  connect(arduinoUno.D5, wristVerServo.SIG) annotation (Line(points={{0,2.5},{2,
+          2.5},{2,2},{12,2},{12,54},{40,54}},                      color={0,0,
           255}));
-  connect(gipperServo.SIG, arduinoUno.D3) annotation (Line(points={{40,84},{6,84},
-          {6,27.5},{0,27.5}},                                     color={0,0,
+  connect(gipperServo.SIG, arduinoUno.D3) annotation (Line(points={{40,84},{10,
+          84},{10,-6},{10,-7.5},{6,-7.5},{0,-7.5}},               color={0,0,
           255}));
   connect(shoulderServo.flange1, mechanics.axis2) annotation (Line(points={{59.9,
           -40.1},{74,-40.1},{74,-12},{80,-12},{80,-11},{89,-11}},
@@ -150,10 +150,12 @@ equation
           74,7},{74,49.9},{59.9,49.9}},               color={0,0,0}));
   connect(mechanics.axis6, gipperServo.flange1) annotation (Line(points={{89,13},
           {80,13},{80,79.9},{59.9,79.9}},               color={0,0,0}));
-  connect(baseServo.flange1, mechanics.axis1) annotation (Line(points={{59.9,-70.1},
-          {80,-70.1},{80,-17},{89,-17}}, color={0,0,0}));
-  connect(elbowServo.SIG, arduinoUno.D9) annotation (Line(points={{40,-6},{18,-6},
-          {18,-2.5},{0,-2.5}}, color={0,0,255}));
+  connect(baseServo.flange1, mechanics.axis1) annotation (Line(points={{59.9,
+          -70.1},{80,-70.1},{80,-17},{89,-17}},
+                                         color={0,0,0}));
+  connect(elbowServo.SIG, arduinoUno.D9) annotation (Line(points={{40,-6},{4,-6},
+          {4,22},{2,22},{2,22.5},{0,22.5}},
+                               color={0,0,255}));
   connect(baseServo.GND, arduinoUno.GND) annotation (Line(points={{40,-74},{26,-74},
           {26,-60},{-40,-60},{-40,-40}}, color={0,0,255}));
   connect(shoulderServo.GND, arduinoUno.GND) annotation (Line(points={{40,-44},{

@@ -8,11 +8,11 @@ model Fade
       Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=270,
-        origin={60,-20})));
+        origin={60,-10})));
   Components.LED lED2_1 annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=270,
-        origin={60,-50})));
+        origin={60,-40})));
   Modelica.Blocks.Sources.Sine sine(
     amplitude=0.5,
     freqHz=0.5,
@@ -31,11 +31,11 @@ model Fade
   Modelica.Electrical.Analog.Basic.Ground ground
     annotation (Placement(transformation(extent={{-10,-100},{10,-80}})));
 equation
-  connect(resistor.p, arduinoUno.D9) annotation (Line(points={{60,-10},{60,-2.5},
-          {40,-2.5}},               color={0,0,255}));
+  connect(resistor.p, arduinoUno.D9) annotation (Line(points={{60,0},{60,22.5},
+          {40,22.5}},               color={0,0,255}));
   connect(lED2_1.p, resistor.n)
-    annotation (Line(points={{60,-40},{60,-30}},          color={0,0,255}));
-  connect(lED2_1.n, arduinoUno.GND) annotation (Line(points={{60,-60},{60,-70},
+    annotation (Line(points={{60,-30},{60,-20}},          color={0,0,255}));
+  connect(lED2_1.n, arduinoUno.GND) annotation (Line(points={{60,-50},{60,-70},
           {0,-70},{0,-40}}, color={0,0,255}));
   connect(arduinoUno.A0, potentiometer.contact) annotation (Line(points={{-40,7.5},
           {-58.875,7.5},{-58.875,0},{-78,0}},                         color={0,

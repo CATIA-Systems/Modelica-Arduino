@@ -14,7 +14,7 @@ model Sweep
   Modelica.Electrical.Analog.Basic.Ground ground
     annotation (Placement(transformation(extent={{-10,-100},{10,-80}})));
   Components.Servo servo
-    annotation (Placement(transformation(extent={{64,-66},{92,-38}})));
+    annotation (Placement(transformation(extent={{60,-12},{80,8}})));
 equation
   connect(ground.p, arduinoUno.GND)
     annotation (Line(points={{0,-80},{0,-60}}, color={0,0,255}));
@@ -23,10 +23,10 @@ equation
   connect(constantVoltage.p, arduinoUno.Vin)
     annotation (Line(points={{-80,10},{-80,60},{0,60},{0,40}},
                                                             color={0,0,255}));
-  connect(servo.SIG, arduinoUno.D9) annotation (Line(points={{64,-44},{62,-44},
-          {62,-22.5},{40,-22.5}}, color={0,0,255}));
-  connect(servo.GND, arduinoUno.GND) annotation (Line(points={{64,-60},{32,-60},
-          {32,-70},{0,-70},{0,-60}}, color={0,0,255}));
+  connect(servo.SIG, arduinoUno.D9) annotation (Line(points={{60,2},{60,2.5},{
+          40,2.5}},               color={0,0,255}));
+  connect(servo.GND, arduinoUno.GND) annotation (Line(points={{60,-6},{60,-6},{
+          60,-70},{0,-70},{0,-60}},  color={0,0,255}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,
             -100},{100,100}})),                                  Diagram(
         coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
