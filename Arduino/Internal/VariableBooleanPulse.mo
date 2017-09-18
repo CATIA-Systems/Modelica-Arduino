@@ -9,9 +9,9 @@ protected
     annotation (HideResult=true);
 
 public
-  Modelica.Blocks.Interfaces.IntegerInput period "Pulse time in microseconds"
+  Modelica.Blocks.Interfaces.IntegerInput period(start=0, fixed=true) "Pulse time in microseconds"
     annotation (Placement(transformation(extent={{-140,20},{-100,60}})));
-  Modelica.Blocks.Interfaces.IntegerInput width "Pulse width in microseconds"
+  Modelica.Blocks.Interfaces.IntegerInput width(start=0, fixed=true) "Pulse width in microseconds"
     annotation (Placement(transformation(extent={{-140,-60},{-100,-20}})));
 
 initial equation
