@@ -1,5 +1,5 @@
 within Arduino.Examples;
-model Blink
+model Blink "An Arduino with a blinking LED"
               extends Modelica.Icons.Example;
 
   Components.ArduinoUno arduinoUno(sketch="Blink.ino")

@@ -1,5 +1,5 @@
 within ;
-package Arduino
+package Arduino "Library to simulate sketches on a virtual Arduino Uno and to connect models to real-world circuits using the Firmata protocol"
 
   extends Modelica.Icons.Package;
 
@@ -30,5 +30,8 @@ package Arduino
           color={0,135,143},
           smooth=Smooth.Bezier,
           origin={46,4},
-          rotation=90)}));
+          rotation=90)}),
+  Documentation(info="<html>
+<p>For updates and tutorials visit <a href=\"https://github.com/CATIA-Systems/Modelica-Arduino\">https://github.com/CATIA-Systems/Modelica-Arduino</a></p>
+</html>"));
 end Arduino;

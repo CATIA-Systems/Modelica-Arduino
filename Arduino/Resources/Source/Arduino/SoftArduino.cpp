@@ -1,7 +1,7 @@
 #include "SoftArduino.h"
 #include "ModelicaUtilities.h"
 
-extern "C" {
+//extern "C" {
 
 SoftArduino SoftArduino::instance;
 
@@ -174,7 +174,7 @@ unsigned long pulseInLong(uint8_t pin, uint8_t state, unsigned long timeout) {
 	return pulseIn(pin, state, timeout);
 }
 
-}
+//} // extern "C"
 
 SoftArduino::SoftArduino() {
 

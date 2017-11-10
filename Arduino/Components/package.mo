@@ -1,5 +1,5 @@
 within Arduino;
-package Components
+package Components "Library to simulate sketches on a virtual Arduino Uno"
 
 
 

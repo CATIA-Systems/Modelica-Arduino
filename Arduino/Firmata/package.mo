@@ -1,5 +1,5 @@
 within Arduino;
-package Firmata
+package Firmata "Library to connect models to real-world circuits using the Firmata protocol"
   extends Modelica.Icons.Package;
 
 annotation (         Icon(graphics={

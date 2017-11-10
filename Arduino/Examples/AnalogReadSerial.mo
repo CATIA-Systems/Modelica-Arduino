@@ -1,5 +1,5 @@
 within Arduino.Examples;
-model AnalogReadSerial
+model AnalogReadSerial "An Arduino reading a potentiometer"
               extends Modelica.Icons.Example;
 
   Components.ArduinoUno arduinoUno(sketch="AnalogReadSerial.ino")

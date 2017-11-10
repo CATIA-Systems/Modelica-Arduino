@@ -48,7 +48,9 @@
 #ifndef Servo_h
 #define Servo_h
 
+#ifdef _MSC_VER
 #include <inttypes.h>
+#endif
 
 
 #define MIN_PULSE_WIDTH       544     // the shortest pulse sent to a servo  

@@ -156,14 +156,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Arduino\Resources\Source\FirmataConnection.cpp" />
-    <ClCompile Include="..\..\Arduino\Resources\Source\ModelicaFirmata.cpp" />
-    <ClCompile Include="..\..\Arduino\Resources\Source\serial.cpp" />
+    <ClCompile Include="..\..\Arduino\Resources\Source\Firmata\FirmataConnection.cpp" />
+    <ClCompile Include="..\..\Arduino\Resources\Source\Firmata\ModelicaFirmata.cpp" />
+    <ClCompile Include="..\..\Arduino\Resources\Source\Firmata\serial.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Arduino\Resources\Source\FirmataConnection.h" />
-    <ClInclude Include="..\..\Arduino\Resources\Source\ModelicaFirmata.h" />
-    <ClInclude Include="..\..\Arduino\Resources\Source\serial.h" />
+    <ClInclude Include="..\..\Arduino\Resources\Source\Firmata\FirmataConnection.h" />
+    <ClInclude Include="..\..\Arduino\Resources\Source\Firmata\ModelicaFirmata.h" />
+    <ClInclude Include="..\..\Arduino\Resources\Source\Firmata\serial.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

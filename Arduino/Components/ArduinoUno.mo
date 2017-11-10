@@ -1,5 +1,5 @@
 within Arduino.Components;
-model ArduinoUno
+model ArduinoUno "Virtual Arduino Uno"
 
   parameter String sketch;
   parameter Real sampleRate = 0.01;

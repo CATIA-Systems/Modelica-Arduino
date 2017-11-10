@@ -1,5 +1,5 @@
 within Arduino.Examples;
-model Fade
+model Fade "An Arduino dimming an LED"
               extends Modelica.Icons.Example;
 
   Components.ArduinoUno arduinoUno(sketch="Fade.ino")

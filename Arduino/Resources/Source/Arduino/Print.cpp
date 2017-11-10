@@ -2,8 +2,13 @@
 
 #include <float.h> // for isnan(), isinf()
 
+#ifndef isnan
 #define isnan(x) _isnan(x)
+#endif
+
+#ifndef isinf
 #define isinf(x) (!_finite(x))
+#endif
 
 /* default implementation: may be overridden */
 size_t Print::write(const uint8_t *buffer, size_t size)

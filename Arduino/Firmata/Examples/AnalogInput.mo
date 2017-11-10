@@ -1,5 +1,5 @@
 within Arduino.Firmata.Examples;
-model AnalogInput
+model AnalogInput "Read a connected potentiometer"
   import Arduino.Firmata;
   extends Modelica.Icons.Example;
 

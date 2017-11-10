@@ -1,10 +1,10 @@
 within Arduino.Components;
-model Servo
+model Servo "Ideal pulse width controlled servo motor"
 
   parameter Modelica.SIunits.Time minPulseWidth = 544e-6  "The pulse width corresponding to the minimum (0-degree) angle on the servo";
   parameter Modelica.SIunits.Time maxPulseWidth = 2400e-6 "The pulse width corresponding to the maximum (180-degree) angle on the servo";
-  parameter Modelica.SIunits.Angle minAngle = Modelica.Constants.pi / 2;
-  parameter Modelica.SIunits.Angle maxAngle = -Modelica.Constants.pi / 2;
+  parameter Modelica.SIunits.Angle minAngle = Modelica.Constants.pi / 2 "Minimum rotation angle";
+  parameter Modelica.SIunits.Angle maxAngle = -Modelica.Constants.pi / 2 "Maximum rotation angle";
 
   Modelica.Electrical.Analog.Sensors.VoltageSensor voltageSensor annotation (
       Placement(transformation(

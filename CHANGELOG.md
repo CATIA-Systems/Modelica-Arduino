@@ -1,5 +1,17 @@
 # Changelog
 
+## unreleased
+
+### Added
+- Experimental support for 3DEXPERIENCE DBM
+- documentation strings in models
+
+### Changed
+- Arduino.Components.ArduinoUno changed from block to model to avoid warnings
+- source code moved to Arduino/Resources to support import into DBM
+- sketch is now built with nmake insteaad of msbuild
+
+
 ## [0.0.4] (2017-07-27)
 
 ### Added

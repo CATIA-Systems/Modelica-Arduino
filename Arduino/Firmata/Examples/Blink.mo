@@ -1,5 +1,5 @@
 within Arduino.Firmata.Examples;
-model Blink
+model Blink "Control the LED 'L' on a connected Arduino"
   extends Modelica.Icons.Example;
 
   Port port annotation (Placement(transformation(extent={{-24,0},{-4,20}})));

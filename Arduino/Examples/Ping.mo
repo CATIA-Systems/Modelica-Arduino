@@ -1,5 +1,5 @@
 within Arduino.Examples;
-model Ping
+model Ping "An Arduino controlling an ultra-sonic range finder"
               extends Modelica.Icons.Example;
 
   Components.ArduinoUno arduinoUno(sampleRate=1e-6, sketch="Ping.ino")

@@ -1,5 +1,5 @@
 within Arduino.Examples;
-model Button
+model Button "An Arduino connected to a button"
               extends Modelica.Icons.Example;
 
   Components.ArduinoUno arduinoUno(sketch="Button.ino")
