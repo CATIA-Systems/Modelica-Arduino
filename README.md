@@ -5,7 +5,7 @@ With the Arduino Modelica library you can simulate your circuits and sketches on
 
 ## Prerequisites
 
-- [Dymola](https://www.3ds.com/products-services/catia/products/dymola) 2017 FD01 or 2018
+- [Dymola](https://www.3ds.com/products-services/catia/products/dymola) 2017 FD01 or later
 - Visual Studio 2015
 
 
@@ -15,8 +15,12 @@ With the Arduino Modelica library you can simulate your circuits and sketches on
 - in Dymola select `File > Open...` and open `Arduino/package.mo` from the extracted files
 - in the package browser double-click `Arduino.Examples.Blink`
 - right-click on the toolbar and check `Simulation` and `Animation` to view the simulation and animation toolbars
+- open the `Simulation Setup` ![Setup Button](Arduino/Resources/Images/setup_button.png) and on the `Compiler` tab select `Visual Studio 2015/Visual Studio C++ Express Edition (14.0)` 
 - click ![Simulate Button](Arduino/Resources/Images/simulate_button.png) to run the Simulation
 - after the simulation has finished click ![Run Button](Arduino/Resources/Images/run_button.png) in the animation toolbar and watch the LED `L` blink
+
+![Arduino.Examples.Blink](Arduino/Resources/Images/blink_example.png)
+
 - try the other examples in `Arduino.Examples`
 
 
@@ -24,9 +28,10 @@ With the Arduino Modelica library you can simulate your circuits and sketches on
 
 To simulate your sketch `MySketch` you have to perform the following steps.
 
-- save your sketch as `Sketches/MySketch.ino`
+- save your sketch as `Arduino/Resources/Sketches/MySketch.ino`
 - add the block `Arduino.Components.ArduinoUno` to your model
 - double-click the block and set the parameter `sketch` to `"MySketch.ino"`
+- click ![Translate Button](Arduino/Resources/Images/translate_button.png) to re-translate the model when the sketch has changed
 
 
 ## Limitations

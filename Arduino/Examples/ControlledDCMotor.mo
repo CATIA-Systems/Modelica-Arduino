@@ -1,5 +1,5 @@
 within Arduino.Examples;
-model ControlledDCMotor
+model ControlledDCMotor "An Arduino controlling a motor with a variable load"
               extends Modelica.Icons.Example;
 
   Components.ArduinoUno arduinoUno(sampleRate=1e-3, sketch=

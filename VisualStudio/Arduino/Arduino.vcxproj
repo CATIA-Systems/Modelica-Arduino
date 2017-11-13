@@ -89,7 +89,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;ARDUINO=100;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>.;..\..\Arduino\Resources\Include;..\..\Libraries;..\..\Sketches</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;..\..\Arduino\Resources\Include;..\..\Arduino\Resources\Source\Arduino;..\..\Arduino\Resources\Sketches</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -107,7 +107,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;ARDUINO=100;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>.;..\..\Arduino\Resources\Include;..\..\Libraries;..\..\Sketches</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;..\..\Arduino\Resources\Include;..\..\Arduino\Resources\Source\Arduino;..\..\Arduino\Resources\Sketches</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -127,7 +127,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;ARDUINO=100;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>.;..\..\Arduino\Resources\Include;..\..\Libraries;..\..\Sketches</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;..\..\Arduino\Resources\Include;..\..\Arduino\Resources\Source\Arduino;..\..\Arduino\Resources\Sketches</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -139,6 +139,9 @@
       <Command>
       </Command>
     </PostBuildEvent>
+    <Lib>
+      <SuppressStartupBanner>false</SuppressStartupBanner>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -149,7 +152,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;ARDUINO=100;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>.;..\..\Arduino\Resources\Include;..\..\Libraries;..\..\Sketches</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;..\..\Arduino\Resources\Include;..\..\Arduino\Resources\Source\Arduino;..\..\Arduino\Resources\Sketches</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -166,27 +169,30 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Libraries\Braccio.cpp" />
-    <ClCompile Include="..\..\Libraries\PID_v1.cpp" />
-    <ClCompile Include="..\..\Libraries\Servo.cpp" />
-    <ClCompile Include="ModelicaArduino.cpp" />
-    <ClCompile Include="Print.cpp" />
-    <ClCompile Include="Sketch.cpp" />
-    <ClCompile Include="SoftArduino.cpp" />
-    <ClCompile Include="WMath.cpp" />
+    <ClCompile Include="..\..\Arduino\Resources\Source\Arduino\Braccio.cpp" />
+    <ClCompile Include="..\..\Arduino\Resources\Source\Arduino\ModelicaArduino.cpp" />
+    <ClCompile Include="..\..\Arduino\Resources\Source\Arduino\PID_v1.cpp" />
+    <ClCompile Include="..\..\Arduino\Resources\Source\Arduino\Print.cpp" />
+    <ClCompile Include="..\..\Arduino\Resources\Source\Arduino\Servo.cpp" />
+    <ClCompile Include="..\..\Arduino\Resources\Source\Arduino\Sketch.cpp" />
+    <ClCompile Include="..\..\Arduino\Resources\Source\Arduino\SoftArduino.cpp" />
+    <ClCompile Include="..\..\Arduino\Resources\Source\Arduino\WMath.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Libraries\Braccio.h" />
-    <ClInclude Include="..\..\Libraries\Servo.h" />
-    <ClInclude Include="Arduino.h" />
-    <ClInclude Include="binary.h" />
-    <ClInclude Include="pins_arduino.h" />
-    <ClInclude Include="Print.h" />
-    <ClInclude Include="Sketch.h" />
-    <ClInclude Include="SoftSerial.h" />
-    <ClInclude Include="stdbool.h" />
-    <ClInclude Include="WCharacter.h" />
-    <ClInclude Include="SoftArduino.h" />
+    <ClInclude Include="..\..\Arduino\Resources\Source\Arduino\Arduino.h" />
+    <ClInclude Include="..\..\Arduino\Resources\Source\Arduino\binary.h" />
+    <ClInclude Include="..\..\Arduino\Resources\Source\Arduino\Braccio.h" />
+    <ClInclude Include="..\..\Arduino\Resources\Source\Arduino\inttypes.h" />
+    <ClInclude Include="..\..\Arduino\Resources\Source\Arduino\ModelicaUtilities.h" />
+    <ClInclude Include="..\..\Arduino\Resources\Source\Arduino\PID_v1.h" />
+    <ClInclude Include="..\..\Arduino\Resources\Source\Arduino\pins_arduino.h" />
+    <ClInclude Include="..\..\Arduino\Resources\Source\Arduino\Print.h" />
+    <ClInclude Include="..\..\Arduino\Resources\Source\Arduino\Servo.h" />
+    <ClInclude Include="..\..\Arduino\Resources\Source\Arduino\Sketch.h" />
+    <ClInclude Include="..\..\Arduino\Resources\Source\Arduino\SoftArduino.h" />
+    <ClInclude Include="..\..\Arduino\Resources\Source\Arduino\SoftSerial.h" />
+    <ClInclude Include="..\..\Arduino\Resources\Source\Arduino\stdbool.h" />
+    <ClInclude Include="..\..\Arduino\Resources\Source\Arduino\WCharacter.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,5 +1,5 @@
 within Arduino.Examples;
-model Sweep
+model Sweep "An Arduino controlling a servo"
               extends Modelica.Icons.Example;
 
   Components.ArduinoUno arduinoUno(sketch="Sweep.ino")

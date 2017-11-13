@@ -1,5 +1,5 @@
 within Arduino.Firmata.Examples;
-model Sweep
+model Sweep "Control a connected servo"
   extends Modelica.Icons.Example;
 
   Port port annotation (Placement(transformation(extent={{-20,0},{0,20}})));

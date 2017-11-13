@@ -11,10 +11,10 @@ if os.path.exists(archive_name):
 
 dist_files = []
 
-input = [('Arduino', ('.mo', '.order', '.png', '.css', '.h', '.c', '.dll')),
-         ('Libraries', ('.cpp', '.h')),
-         ('Sketches', '.ino'),
-         ('VisualStudio', ('.cpp', '.h', '.vcxproj', '.vcxproj.filters', '.sln'))]
+input = [('Arduino', ('.mo', '.order', '.png', '.css', '.h', '.c', '.cpp', '.ino', '.bat', 'makefile', '.dll'))]
+         #('Libraries', ('.cpp', '.h')),
+         #('Sketches', '.ino'),
+         #('VisualStudio', ('.cpp', '.h', '.vcxproj', '.vcxproj.filters', '.sln'))]
 
 # collect the distribution files
 for folder, suffix in input:
@@ -24,7 +24,7 @@ for folder, suffix in input:
                 dist_files += [os.path.join(root, f)]
 
 
-dist_files += ['Arduino/Resources/Library/win32', 'Libraries', 'LICENSE', 'README.html']
+dist_files += ['Arduino/Resources/Library/win32', 'LICENSE', 'README.html']
 
 
 html = """<!DOCTYPE html>

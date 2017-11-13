@@ -1,5 +1,5 @@
 within Arduino.Components;
-block ArduinoUno
+model ArduinoUno "Virtual Arduino Uno"
 
   parameter String sketch;
   parameter Real sampleRate = 0.01;
@@ -121,9 +121,9 @@ block ArduinoUno
 protected
     final constant Integer numAnalogInputs = 6;
     final constant Integer numDigitalPins = 20;
-    Integer portMode[numDigitalPins];
-    Integer pulsePeriod[numDigitalPins]; // = fill(2000, numDigitalPins) "Pulse period in microseconds";
-    discrete Real pulseWidth[numDigitalPins];
+    Integer portMode[numDigitalPins](each start=0, fixed=true);
+    Integer pulsePeriod[numDigitalPins](each start=0, fixed=true);
+    discrete Real pulseWidth[numDigitalPins](each start=0.0, fixed=true);
 
    function evaluate
     input Arduino.Internal.ExternalArduino instance;

@@ -1,5 +1,5 @@
 within Arduino.Examples;
-model BarGraph
+model BarGraph "An Arduino reading a potentiometer and controlling 10 LEDs"
               extends Modelica.Icons.Example;
 
   Components.ArduinoUno arduinoUno(sketch="BarGraph.ino")

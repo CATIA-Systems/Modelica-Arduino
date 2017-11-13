@@ -1,5 +1,5 @@
 within Arduino.Firmata.Examples;
-model Button
+model Button "Read a connected button"
   extends Modelica.Icons.Example;
 
   Port port annotation (Placement(transformation(extent={{30,-40},{10,-20}})));

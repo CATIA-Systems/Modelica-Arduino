@@ -16,6 +16,12 @@ Arduino/*.exe
 Arduino/*.exp
 Arduino/*.png
 
+# build artefacts
+*.a
+*.o
+*.obj
+*.lib
+
 # Temp folder
 Temp/
 

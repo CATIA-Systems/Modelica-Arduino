@@ -1,5 +1,5 @@
 within Arduino.Examples;
-model BlinkWithoutDelay
+model BlinkWithoutDelay "An Arduino with a blinking LED w/o using delay()"
               extends Modelica.Icons.Example;
 
   Components.ArduinoUno arduinoUno(sketch="BlinkWithoutDelay.ino")

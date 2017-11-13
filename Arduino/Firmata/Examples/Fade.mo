@@ -1,5 +1,5 @@
 within Arduino.Firmata.Examples;
-model Fade
+model Fade "Dim a connected LED"
   extends Modelica.Icons.Example;
 
   Port port annotation (Placement(transformation(extent={{-20,-20},{0,0}})));

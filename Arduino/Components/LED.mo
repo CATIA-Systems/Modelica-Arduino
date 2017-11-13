@@ -1,5 +1,5 @@
 within Arduino.Components;
-model LED
+model LED "Light emitting diode with animation"
   extends Modelica.Electrical.Analog.Interfaces.TwoPin;
   Modelica.Electrical.Analog.Semiconductors.Diode2 diode(Vf=1.6, Ids(
         displayUnit="mA"))

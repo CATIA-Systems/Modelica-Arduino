@@ -1,5 +1,5 @@
 within Arduino.Examples;
-model RobotArm "Arduino with a 6 degree of freedom robot arm"
+model RobotArm "An Arduino controlling a robot arm"
   extends Modelica.Icons.Example;
 
   parameter Modelica.SIunits.Mass mLoad(min=0)=15 "Mass of load";
@@ -168,23 +168,6 @@ equation
           76},{26,-60},{-40,-60},{-40,-40}}, color={0,0,255}));
   annotation (
     experiment(StopTime=15),
-    __Dymola_Commands(
-      file="modelica://Modelica/Resources/Scripts/Dymola/Mechanics/MultiBody/Examples/Systems/Run.mos"
-        "Simulate",
-      file="modelica://Modelica/Resources/Scripts/Dymola/Mechanics/MultiBody/Examples/Systems/fullRobotPlot.mos"
-        "Plot result of axis 3 + animate"),
-    Documentation(info="<html>
-<p>
-This is a detailed model of the robot. For animation CAD data
-is used. Translate and simulate with the default settings
-(default simulation time = 3 s). Use command script \"modelica://Modelica/Resources/Scripts/Dymola/Mechanics/MultiBody/Examples/Systems/fullRobotPlot.mos\"
-to plot variables.
-</p>
-
-<p>
-<IMG src=\"modelica://Modelica/Resources/Images/Mechanics/MultiBody/Examples/Systems/r3_fullRobot.png\" ALT=\"model Examples.Loops.Systems.RobotR3.fullRobot\">
-</p>
-</html>"),
     Diagram(coordinateSystem(extent={{-140,-100},{140,100}})),
     Icon(coordinateSystem(extent={{-100,-100},{100,100}})));
 end RobotArm;
