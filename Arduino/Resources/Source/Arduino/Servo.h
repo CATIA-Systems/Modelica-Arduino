@@ -50,6 +50,8 @@
 
 #ifdef _MSC_VER
 #include <inttypes.h>
+#else
+#include <cstdint>
 #endif
 
 
