@@ -431,6 +431,5 @@ equation
           rotation=90,
           textString="Vin"),
         Line(points={{0,168},{0,200}},   color={0,0,255})}),     Diagram(
-        coordinateSystem(preserveAspectRatio=true, extent={{-160,-160},{160,160}})),
-    experiment(StopTime=10));
+        coordinateSystem(preserveAspectRatio=true, extent={{-160,-160},{160,160}})));
 end ArduinoUno;
