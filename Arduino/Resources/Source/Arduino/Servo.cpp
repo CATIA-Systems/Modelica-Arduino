@@ -1,7 +1,7 @@
 #include "Servo.h"
+#include "SoftArduino.h"
 #include "ModelicaUtilities.h"
 
-#include "SoftArduino.h"
 
 #define INSTANCE SoftArduino::instance
 
@@ -14,6 +14,7 @@ uint8_t Servo::attach(int pin) {
 
 	m_pin = pin;
 
+	INSTANCE.portMode[pin] = SoftArduino::PORT_MODE_PWM;
 	INSTANCE.pulsePeriod[pin] = REFRESH_INTERVAL;
 
 	return 1;
@@ -31,7 +32,8 @@ uint8_t Servo::attach(int pin, int min, int max) {
 
 void Servo::detach() {
 
-	INSTANCE.pulsePeriod[m_pin] = DEFAULT_PULSE_WIDTH;
+	INSTANCE.portMode[m_pin] = SoftArduino::PORT_MODE_DIGITAL;
+	INSTANCE.pulsePeriod[m_pin] = SoftArduino::DEFAULT_PULSE_PERIOD;
 
 	m_pin = -1;
 }
@@ -41,7 +43,7 @@ void Servo::write(int value) {
 	//ModelicaFormatMessage("Servo::write(%d)\n", value);
 
 	if (value < 200) {
-		int pulseWidth = m_minPulseWidth + (m_maxPulseWidth - m_minPulseWidth) * (value / 180.);
+		int pulseWidth = static_cast<int>(m_minPulseWidth + (m_maxPulseWidth - m_minPulseWidth) * (value / 180.));
 		writeMicroseconds(pulseWidth);
 	} else {
 		writeMicroseconds(value);

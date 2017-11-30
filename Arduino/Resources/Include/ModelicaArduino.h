@@ -1,21 +1,28 @@
 #pragma once
 
+#ifdef _MSC_VER
+#define EXPORT __declspec(dllexport)
+#else
+#define EXPORT __attribute__((visibility("default")))
+#endif
+
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-void * ModelicaArduino_open();
+EXPORT void * ModelicaArduino_open(void *callbacks);
 
-void ModelicaArduino_close(void *externalObject);
+EXPORT void ModelicaArduino_close(void *externalObject);
 
-void ModelicaArduino_update(void *instance, 
+EXPORT void ModelicaArduino_update(void *instance,
 							double time, 
 							double analogReference, 
 							/*in*/ double *analog, 
 							/*in*/ double *digital, 
 							/*out*/ int *portMode, 
-							/*out*/ double *pulseWidth,
-							/*out*/ int *pulsePeriod);
+							/*out*/ int *pulseWidth,
+							/*out*/ int *pulsePeriod,
+							/*out*/ int *outputVoltage /* TODO: remove (obsolete) */);
 
 #ifdef __cplusplus
 } // extern "C"

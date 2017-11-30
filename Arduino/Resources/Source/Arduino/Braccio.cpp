@@ -21,19 +21,20 @@
 
 #include "Braccio.h"
 
-extern Servo base;
-extern Servo shoulder;
-extern Servo elbow;
-extern Servo wrist_rot;
-extern Servo wrist_ver;
-extern Servo gripper;
 
-extern int step_base = 0;
-extern int step_shoulder = 45;
-extern int step_elbow = 180;
-extern int step_wrist_rot = 180;
-extern int step_wrist_ver = 90;
-extern int step_gripper = 10;
+static Servo base;
+static Servo shoulder;
+static Servo elbow;
+static Servo wrist_rot;
+static Servo wrist_ver;
+static Servo gripper;
+
+static int step_base = 0;
+static int step_shoulder = 45;
+static int step_elbow = 180;
+static int step_wrist_rot = 180;
+static int step_wrist_ver = 90;
+static int step_gripper = 10;
  
 
 _Braccio Braccio;

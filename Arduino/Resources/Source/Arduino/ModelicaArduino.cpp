@@ -1,13 +1,10 @@
-#ifndef MODELICA_ARDUINO_C
-#define MODELICA_ARDUINO_C
-
 #include <windows.h>
 #include <stdio.h>
 #include <conio.h>
 
-#include "ModelicaUtilities.h"
-
 #include "ModelicaArduino.h"
+#include "ModelicaUtilities.h"
+#include "ModelicaUtilityFunctions.h"
 
 #include "Arduino.h"
 #include <stdint.h>
@@ -26,8 +23,10 @@ DWORD WINAPI MyThreadFunction(LPVOID lpParam) {
 	return 0;
 }
 
+/** Constructor function of the external object */
+void * ModelicaArduino_open(void *callbacks) {
 
-void * ModelicaArduino_open() {
+	setModelicaUtilityFunctions(reinterpret_cast<ModelicaUtilityFunctions_t *>(callbacks));
 
 	DWORD dwThreadId, dwThrdParam = 1;
 	HANDLE hThread;
@@ -42,7 +41,7 @@ void * ModelicaArduino_open() {
 	NULL, 				   // default security attributes
 	0, 					   // use default stack size
 	MyThreadFunction, 	   // thread function
-	&INSTANCE, // argument to thread function
+	&INSTANCE,             // argument to thread function
 	0, 					   // use default creation flags
 	&dwThreadId); 		   // returns the thread identifier
 	 
@@ -53,6 +52,7 @@ void * ModelicaArduino_open() {
 	return &INSTANCE;
 }
 
+/** Destructor function of the external object */
 void ModelicaArduino_close(void *externalObject) {
 
 	//ModelicaMessage("ModelicaArduino_close()\n");
@@ -62,14 +62,15 @@ void ModelicaArduino_close(void *externalObject) {
 	//	ModelicaFormatMessage("Handle to thread closed successfully.\n");
 }
 
-void ModelicaArduino_update(void *instance__, 
+void ModelicaArduino_update(void *instance__,
 							double time, 
 							double analogReference, 
 							double *analog, 
 							double *digital, 
 							int *portMode, 
-							double *pulseWidth,
-							int *pulsePeriod) {
+							int *pulseWidth,
+							int *pulsePeriod,
+							int *outputVoltage) {
 
 	if (INSTANCE.error) {
 		ModelicaFormatError("Error in loop(): %s", INSTANCE.error);
@@ -77,31 +78,27 @@ void ModelicaArduino_update(void *instance__,
 	}
 
 	// update the time
-	INSTANCE.time = time * 1e6;
+	INSTANCE.time = static_cast<unsigned long>(time * 1e6);
 
 	const double vref = INSTANCE.analogReferenceMode == EXTERNAL ? analogReference : 5.;
 
 	// TODO: assert vref != 0
 
 	for (int i = 0; i < NUM_ANALOG_INPUTS; i++) {
-
 		// map analog input from [0,V_ref] to [0,1023]
-		INSTANCE.analog[i] = (analog[i] / vref) * 1023;
-
+		INSTANCE.analog[i] = static_cast<int>((analog[i] / vref) * 1023);
 	}
 
 	for (int i = 0; i < 14; i++) {
-
 		// map digital input from [0,5] to LOW|HIGH using a threshold of 2.5
 		// TODO: add hysteresis
 		INSTANCE.digital[i] = digital[i] > 2.5 ? HIGH : LOW;
 
-		portMode[i] = INSTANCE.portMode[i];
-		
-		pulseWidth[i] = INSTANCE.pulseWidth[i]; // *100. / 255.;
-
+		portMode[i]    = INSTANCE.portMode[i];
+		pulseWidth[i]  = INSTANCE.pulseWidth[i];
 		pulsePeriod[i] = INSTANCE.pulsePeriod[i];
 
+		outputVoltage[i] = (INSTANCE.time % INSTANCE.pulsePeriod[i]) < INSTANCE.pulseWidth[i] ? 1 : 0;
 	}
 
 	// interrupts
@@ -114,5 +111,3 @@ void ModelicaArduino_update(void *instance__,
 	}
 
 }
-
-#endif // MODELICA_ARDUINO_C

@@ -5,22 +5,21 @@ INCLUDE_DIRS = \
 
 SRC_FILES = \
 	Braccio.cpp \
-	PID_v1.cpp \
-	Servo.cpp \
 	ModelicaArduino.cpp \
+	ModelicaUtilities.cpp \
+	PID_v1.cpp \
 	Print.cpp \
+	Servo.cpp \
 	Sketch.cpp \
 	SoftArduino.cpp \
 	WMath.cpp
 
-OBJ_FILES = $(SRC_FILES:.cpp=.obj)
-
-TARGET = "..\..\Library\win32\ModelicaArduino.lib"
+# default target
+TARGET = "..\..\Library\win32\ModelicaArduino.dll"
 
 clean:
 	del *.obj
 	del $(TARGET)
 
 build:
-	cl /c /D "WIN32" /D "ARDUINO=100" /D "NDEBUG" /D "_LIB" $(INCLUDE_DIRS) $(SRC_FILES)
-	lib /out:$(TARGET) *.obj
+	cl /D "WIN32" /D "ARDUINO=100" /D "NDEBUG" $(INCLUDE_DIRS) $(SRC_FILES) /link /DLL /out:$(TARGET)

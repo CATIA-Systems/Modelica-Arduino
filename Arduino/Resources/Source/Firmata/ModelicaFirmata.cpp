@@ -20,9 +20,7 @@
 #include "ModelicaFirmata.h"
 #include "FirmataConnection.h"
 
-extern "C" {
 #include "ModelicaUtilityFunctions.h"
-}
 
 
 /** Clamps value between 0 and 1 and returns value. */
@@ -32,7 +30,10 @@ inline double clamp01(double value) {
 
 
 void *createFirmataConnection(const char *port, int showCapabilitites, int samplingMs, int baudRate, int dtr, void *callbacks) {
-	return new FirmataConnection(port, showCapabilitites, samplingMs, baudRate, reinterpret_cast<Callbacks_t *>(callbacks));
+	
+	auto cb = reinterpret_cast<ModelicaUtilityFunctions_t *>(callbacks);
+	setModelicaUtilityFunctions(cb);
+	return new FirmataConnection(port, showCapabilitites, samplingMs, baudRate, cb->ModelicaVFormatMessage, cb->ModelicaVFormatError);
 }
 
 

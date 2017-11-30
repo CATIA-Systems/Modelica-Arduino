@@ -3,19 +3,16 @@ class ExternalArduino "External object of Arduino"
   extends ExternalObject;
 
   function constructor "Open Arduino"
-      output ExternalArduino externalArduino;
+    input Arduino.Internal.ModelicaFunctions callbacks;
+    output ExternalArduino externalArduino;
   external"C" externalArduino =
-        ModelicaArduino_open() annotation (
-    Include="#include <ModelicaArduino.h>",
-    IncludeDirectory="modelica://Arduino/Resources/Include",
+        ModelicaArduino_open(callbacks) annotation (
     Library="ModelicaArduino");
   end constructor;
 
   function destructor "Close Arduino"
     input ExternalArduino externalArduino;
   external"C" ModelicaArduino_close(externalArduino) annotation (
-  Include="#include <ModelicaArduino.h>",
-  IncludeDirectory="modelica://Arduino/Resources/Include",
   Library="ModelicaArduino");
   end destructor;
 

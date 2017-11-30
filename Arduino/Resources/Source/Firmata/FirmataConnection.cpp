@@ -80,7 +80,14 @@ int FirmataConnection::read(void *ptr, int count, int timeout){
 	return 0;
 }
 
-FirmataConnection::FirmataConnection(std::string port, bool showCapabilitites, int samplingInterval, int baudRate, Callbacks_t *callbacks) :
+FirmataConnection::FirmataConnection(
+	std::string port, 
+	bool showCapabilitites, 
+	int samplingInterval, 
+	int baudRate, 
+	vFormatMessageTYPE *vFormatMessage,
+	vFormatErrorTYPE *vFormatError) :
+
 	m_showCapabilities(showCapabilitites),
 	m_samplingInterval(samplingInterval),
 	m_baudRate(baudRate) {
@@ -96,10 +103,8 @@ FirmataConnection::FirmataConnection(std::string port, bool showCapabilitites, i
 	}
 
 	// set the callback functions
-	if (callbacks) {
-		cb_vFormatMessage = callbacks->vFormatMessage;
-		cb_vFormatError = callbacks->vFormatError;
-	}
+	m_vFormatMessage = vFormatMessage;
+	m_vFormatError = vFormatError;
 
 	const auto availablePorts = getPortList();
 
@@ -574,8 +579,8 @@ void FirmataConnection::info(const char * format, ...) {
 	va_list vl;
 	va_start(vl, format);
 
-	if (cb_vFormatMessage) {
-		cb_vFormatMessage(format, vl);
+	if (m_vFormatMessage) {
+		m_vFormatMessage(format, vl);
 	} else {
 		vprintf(format, vl);
 	}
@@ -588,8 +593,8 @@ void FirmataConnection::error(const char * format, ...) {
 	va_list vl;
 	va_start(vl, format);
 
-	if (cb_vFormatError) {
-		cb_vFormatError(format, vl);
+	if (m_vFormatError) {
+		m_vFormatError(format, vl);
 	} else {
 		vprintf(format, vl);
 	}

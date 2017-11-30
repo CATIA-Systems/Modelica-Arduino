@@ -9,7 +9,7 @@ model ArduinoUno "Virtual Arduino Uno"
         iconTransformation(extent={{-4,-204},{4,-196}})));
 
   Arduino.Internal.ExternalArduino externalArduino=
-      Arduino.Internal.ExternalArduino();
+      Arduino.Internal.ExternalArduino(Arduino.Internal.ModelicaFunctions());
 
   Modelica.Electrical.Analog.Interfaces.Pin A1 annotation (Placement(
         transformation(extent={{-170,-30},{-150,-10}}),iconTransformation(
@@ -122,8 +122,9 @@ protected
     final constant Integer numAnalogInputs = 6;
     final constant Integer numDigitalPins = 20;
     Integer portMode[numDigitalPins](each start=0, fixed=true);
-    Integer pulsePeriod[numDigitalPins](each start=0, fixed=true);
-    discrete Real pulseWidth[numDigitalPins](each start=0.0, fixed=true);
+    Integer pulsePeriod[numDigitalPins](each start=2000, fixed=true);
+    Integer pulseWidth[numDigitalPins](each start=0, fixed=true);
+    Integer outputVoltage[numDigitalPins](each start=0, fixed=true);
 
    function evaluate
     input Arduino.Internal.ExternalArduino instance;
@@ -132,11 +133,10 @@ protected
     input Real analog[numAnalogInputs];
     input Real digital[numDigitalPins];
     output Integer portMode[numDigitalPins];
-    output Real pulseWidth[numDigitalPins];
+    output Integer pulseWidth[numDigitalPins];
     output Integer pulsePeriod[numDigitalPins];
-    external "C" ModelicaArduino_update(instance, timeIn, analogReference, analog, digital, portMode, pulseWidth, pulsePeriod) annotation (
-      Include="#include <ModelicaArduino.h>",
-      IncludeDirectory="modelica://Arduino/Resources/Include",
+    output Integer outputVoltage[numDigitalPins];
+    external "C" ModelicaArduino_update(instance, timeIn, analogReference, analog, digital, portMode, pulseWidth, pulsePeriod, outputVoltage) annotation (
       Library="ModelicaArduino");
    end evaluate;
 
@@ -160,22 +160,22 @@ public
       Placement(transformation(extent={{-10,190},{10,210}}),iconTransformation(
           extent={{-4,196},{4,204}})));
 
-  Internal.PinDriver pinDriver[14];
+  Internal.PinDriver pinDriver[14](each sampleInterval=sampleRate);
 
 equation
 
   // wire the digital pin drivers
   for i in 1:14 loop
-    pinDriver[i].isInput = portMode[i] == 0;
+    pinDriver[i].portMode = portMode[i];
     pinDriver[i].pulsePeriod = pulsePeriod[i];
-    //pinDriver[i].pulseWidth = if pulseWidth[i] > 0 then pulsePeriod[i] else 0;
-    pinDriver[i].pulseWidth = integer(pulseWidth[i]); //integer((pulseWidth[i] / 100) * pulsePeriod[i]);
+    pinDriver[i].pulseWidth = pulseWidth[i];
+    //pinDriver[i].outputVoltage = outputVoltage[i];
     connect(pinDriver[i].v_in, Vin);
     connect(pinDriver[i].ground, GND);
   end for;
 
   when sample(0, sampleRate) then
-  (portMode, pulseWidth, pulsePeriod) = evaluate(
+  (portMode, pulseWidth, pulsePeriod, outputVoltage) = evaluate(
     externalArduino,
     time,
     5.0,

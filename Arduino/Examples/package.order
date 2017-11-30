@@ -3,8 +3,8 @@ BarGraph
 Blink
 BlinkWithoutDelay
 Button
-ControlledDCMotor
 Fade
 Ping
 Sweep
+ControlledDCMotor
 RobotArm

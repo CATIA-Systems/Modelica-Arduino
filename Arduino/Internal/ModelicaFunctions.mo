@@ -1,19 +1,19 @@
-within Arduino.Firmata.Internal;
+within Arduino.Internal;
 class ModelicaFunctions
   extends ExternalObject;
 
   function constructor "Function that call the external constructor"
     output ModelicaFunctions functions;
 
-    external "C" functions = ModelicaFirmata_getModelicaFunctions() annotation (
-      Include = "#include \"ModelicaFirmata.c\"",
+    external "C" functions = ModelicaUtilityFunctions_getModelicaUtilityFunctions() annotation (
+      Include = "#include \"ModelicaUtilityFunctions.c\"",
       IncludeDirectory="modelica://Arduino/Resources/Include");
   end constructor;
 
   function destructor
     input ModelicaFunctions functions;
-  external "C" ModelicaFirmata_freeModelicaFunctions(functions) annotation (
-      Include = "#include \"ModelicaFirmata.c\"",
+  external "C" ModelicaUtilityFunctions_freeModelicaUtilityFunctions(functions) annotation (
+      Include = "#include \"ModelicaUtilityFunctions.c\"",
       IncludeDirectory="modelica://Arduino/Resources/Include");
   end destructor;
 
