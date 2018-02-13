@@ -1,6 +1,6 @@
 # Simulate Arduino Sketches in Modelica
 
-With the Arduino Modelica library you can simulate your circuits and sketches on a virtual [Arduino Uno](https://www.arduino.cc/en/Main/ArduinoBoardUno) and connect your [Modelica](https://www.modelica.org/) models to real-world circuits using the [Firmata protocol](http://www.firmata.org/).
+With the Arduino Modelica library you can simulate your circuits and [sketches](https://www.arduino.cc/en/Tutorial/Sketch) on a virtual [Arduino Uno](https://www.arduino.cc/en/Main/ArduinoBoardUno) and connect your [Modelica](https://www.modelica.org/) models to real-world circuits using the [Firmata protocol](http://www.firmata.org/).
 
 
 ## Prerequisites
@@ -15,7 +15,7 @@ With the Arduino Modelica library you can simulate your circuits and sketches on
 - in Dymola select `File > Open...` and open `Arduino/package.mo` from the extracted files
 - in the package browser double-click `Arduino.Examples.Blink`
 - right-click on the toolbar and check `Simulation` and `Animation` to view the simulation and animation toolbars
-- open the `Simulation Setup` ![Setup Button](Arduino/Resources/Images/setup_button.png) and on the `Compiler` tab select `Visual Studio 2015/Visual Studio C++ Express Edition (14.0)` 
+- open the `Simulation Setup` ![Setup Button](Arduino/Resources/Images/setup_button.png) and on the `Compiler` tab select `Visual Studio 2015/Visual Studio C++ Express Edition (14.0)`
 - click ![Simulate Button](Arduino/Resources/Images/simulate_button.png) to run the Simulation
 - after the simulation has finished click ![Run Button](Arduino/Resources/Images/run_button.png) in the animation toolbar and watch the LED `L` blink
 
@@ -60,10 +60,30 @@ The following libraries are included and can be used directly.
 | Name                            | Description |
 |---------------------------------|-------------|
 |[Servo.h](Libraries/Servo.h)     | [Servo library](https://www.arduino.cc/en/Reference/Servo) to control RC (hobby) servo motors |
-|[Braccio.h](Libraries/Braccio.h) | control the [Braccio](http://www.arduino.org/products/tinkerkit/arduino-tinkerkit-braccio) robot arm |
 |[PID_v1.h](Libraries/PID_v1.h)   | PID controller library for Arduino |
 
 To use an external library in your sketch copy its header files (`*.h`) and source files (`*.cpp`) to the `Libraries` folder. If the library contains `.cpp` files you have to add them to the `Arduino` project by dragging them from the `Libraries` folder in the file browser onto the `Source Files` folder in the solution explorer.
+
+
+## How does it work?
+
+The ArduinoUno model is driven by an `ExternalObject` that contains the compiled sketch and an implementation of the Arduino API. The external object is synchronized at every sample interval with the Modelica model.
+
+When a model that contains the `ArduinoUno` block is translated the external object is automatically re-built through the `preInstantiate=Arduino.Internal.buildSketch(...)` directive in its annotation.
+
+This function writes a new `Sketch.cpp` to `Arduino/Resources/Source/Arduino` that includes the sketch currently selected in the ArduinoUno component and calls the build script `build_sketch.bat`.
+
+This script re-builds the shared libraries `Arduino/Resources/Library/win32/ModelicaArduino.dll` and `win64/ModelicaArduino.dll` that contain the implementation of the external object.
+
+
+## Debugging a Sketch
+
+- translate and simulate the model you want to debug
+- open `VisualStudio/Arduino.sln` in VisualStudio
+- select `Debug` as configuration and the platform that matches your Dymola model (`x64` if `Advanced.CompileWith64 = 2` otherwise `Win32`)
+- open the project settings and under `Debug` set `Command` to `dymosim.exe` and `Working Directory` to your current Dymola working directory
+- open the sketch in VisualStudio and set a breakpoint
+- start debugging
 
 
 ## License
