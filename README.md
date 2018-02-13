@@ -86,10 +86,6 @@ This script re-builds the shared libraries `Arduino/Resources/Library/win32/Mode
 - start debugging
 
 
-## License
+## Copyright and License
 
-The code is licensed [GPLv3](https://www.gnu.org/licenses/gpl-3.0.en.html), the documentation [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
-
-----------------------------
-
-Developed by Torsten Sommer at [Dassault Systèmes](https://www.3ds.com/). Copyright &copy; 2017 Dassault Systèmes.
+Copyright &copy; 2018 [Dassault Systèmes](https://www.3ds.com/). The code is licensed [GPLv3](https://www.gnu.org/licenses/gpl-3.0.en.html), the documentation [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
