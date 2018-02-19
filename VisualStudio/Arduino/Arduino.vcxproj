@@ -170,7 +170,6 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Arduino\Resources\Source\Arduino\Braccio.cpp" />
     <ClCompile Include="..\..\Arduino\Resources\Source\Arduino\ModelicaArduino.cpp" />
     <ClCompile Include="..\..\Arduino\Resources\Source\Arduino\ModelicaUtilities.cpp" />
     <ClCompile Include="..\..\Arduino\Resources\Source\Arduino\PID_v1.cpp" />
@@ -185,7 +184,6 @@
     <ClInclude Include="..\..\Arduino\Resources\Include\ModelicaUtilityFunctions.h" />
     <ClInclude Include="..\..\Arduino\Resources\Source\Arduino\Arduino.h" />
     <ClInclude Include="..\..\Arduino\Resources\Source\Arduino\binary.h" />
-    <ClInclude Include="..\..\Arduino\Resources\Source\Arduino\Braccio.h" />
     <ClInclude Include="..\..\Arduino\Resources\Source\Arduino\inttypes.h" />
     <ClInclude Include="..\..\Arduino\Resources\Source\Arduino\ModelicaUtilities.h" />
     <ClInclude Include="..\..\Arduino\Resources\Source\Arduino\PID_v1.h" />
