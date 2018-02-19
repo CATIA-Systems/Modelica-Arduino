@@ -169,7 +169,6 @@ equation
     pinDriver[i].portMode = portMode[i];
     pinDriver[i].pulsePeriod = pulsePeriod[i];
     pinDriver[i].pulseWidth = pulseWidth[i];
-    //pinDriver[i].outputVoltage = outputVoltage[i];
     connect(pinDriver[i].v_in, Vin);
     connect(pinDriver[i].ground, GND);
   end for;
