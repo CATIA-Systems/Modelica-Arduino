@@ -124,7 +124,6 @@ protected
     Integer portMode[numDigitalPins](each start=0, fixed=true);
     Integer pulsePeriod[numDigitalPins](each start=2000, fixed=true);
     Integer pulseWidth[numDigitalPins](each start=0, fixed=true);
-    Integer outputVoltage[numDigitalPins](each start=0, fixed=true);
 
    function evaluate
     input Arduino.Internal.ExternalArduino instance;
@@ -135,8 +134,7 @@ protected
     output Integer portMode[numDigitalPins];
     output Integer pulseWidth[numDigitalPins];
     output Integer pulsePeriod[numDigitalPins];
-    output Integer outputVoltage[numDigitalPins];
-    external "C" ModelicaArduino_update(instance, timeIn, analogReference, analog, digital, portMode, pulseWidth, pulsePeriod, outputVoltage) annotation (
+    external "C" ModelicaArduino_update(instance, timeIn, analogReference, analog, digital, portMode, pulseWidth, pulsePeriod) annotation (
       Library="ModelicaArduino");
    end evaluate;
 
@@ -174,7 +172,7 @@ equation
   end for;
 
   when sample(0, sampleRate) then
-  (portMode, pulseWidth, pulsePeriod, outputVoltage) = evaluate(
+  (portMode, pulseWidth, pulsePeriod) = evaluate(
     externalArduino,
     time,
     5.0,

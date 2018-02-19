@@ -21,8 +21,7 @@ EXPORT void ModelicaArduino_update(void *instance,
 							/*in*/ double *digital, 
 							/*out*/ int *portMode, 
 							/*out*/ int *pulseWidth,
-							/*out*/ int *pulsePeriod,
-							/*out*/ int *outputVoltage /* TODO: remove (obsolete) */);
+							/*out*/ int *pulsePeriod);
 
 #ifdef __cplusplus
 } // extern "C"

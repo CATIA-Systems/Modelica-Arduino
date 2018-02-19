@@ -69,8 +69,7 @@ void ModelicaArduino_update(void *instance__,
 							double *digital, 
 							int *portMode, 
 							int *pulseWidth,
-							int *pulsePeriod,
-							int *outputVoltage) {
+							int *pulsePeriod) {
 
 	if (INSTANCE.error) {
 		ModelicaFormatError("Error in loop(): %s", INSTANCE.error);
@@ -97,8 +96,6 @@ void ModelicaArduino_update(void *instance__,
 		portMode[i]    = INSTANCE.portMode[i];
 		pulseWidth[i]  = INSTANCE.pulseWidth[i];
 		pulsePeriod[i] = INSTANCE.pulsePeriod[i];
-
-		outputVoltage[i] = (INSTANCE.time % INSTANCE.pulsePeriod[i]) < INSTANCE.pulseWidth[i] ? 1 : 0;
 	}
 
 	// interrupts
