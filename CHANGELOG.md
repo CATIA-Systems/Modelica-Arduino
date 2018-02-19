@@ -3,7 +3,7 @@
 ## [0.1.0] (2018-02-19)
 
 ### Added
-- 6 degree-of-freedom robot arm model w/ 3-d animation
+- 6 degree-of-freedom robot arm model w/ 3-d animation (replaces Braccio)
 
 ### Changed
 - PWM signals are now generated w/o sample() operator for Modelica compliance

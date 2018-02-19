@@ -4,7 +4,6 @@ INCLUDE_DIRS = \
 	/I"..\..\Sketches"
 
 SRC_FILES = \
-	Braccio.cpp \
 	ModelicaArduino.cpp \
 	ModelicaUtilities.cpp \
 	PID_v1.cpp \
