@@ -67,7 +67,7 @@ To use an external library in your sketch copy its header files (`*.h`) and sour
 
 ## How does it work?
 
-The ArduinoUno model is driven by an `ExternalObject` that contains the compiled sketch and an implementation of the Arduino API. The external object is synchronized at every sample interval with the Modelica model.
+The ArduinoUno model is driven by an [`ExternalObject`](Arduino/Internal/ExternalArduino.mo) that contains the compiled sketch and an implementation of the Arduino API. The external object is synchronized at every sample step with the Modelica model.
 
 When a model that contains the `ArduinoUno` block is translated the external object is automatically re-built through the `preInstantiate=Arduino.Internal.buildSketch(...)` directive in its annotation.
 
