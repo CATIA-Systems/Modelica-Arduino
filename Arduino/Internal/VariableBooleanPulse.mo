@@ -1,28 +1,45 @@
 within Arduino.Internal;
 block VariableBooleanPulse "Generate pulse signal of type Boolean"
-
-  parameter Modelica.SIunits.Time startTime=0 "Time instant of first pulse";
   extends Modelica.Blocks.Interfaces.partialBooleanSource;
 
-protected
-  discrete Modelica.SIunits.Time pulsStart "Start time of pulse"
-    annotation (HideResult=true);
+  parameter Modelica.SIunits.Time startTime=0 "Time instant of first pulse";
+
+  parameter Modelica.SIunits.Time sampleInterval(fixed=true) = 1e-2;
 
 public
-  Modelica.Blocks.Interfaces.IntegerInput period(start=0, fixed=true) "Pulse time in microseconds"
-    annotation (Placement(transformation(extent={{-140,20},{-100,60}})));
-  Modelica.Blocks.Interfaces.IntegerInput width(start=0, fixed=true) "Pulse width in microseconds"
-    annotation (Placement(transformation(extent={{-140,-60},{-100,-20}})));
+  Modelica.Blocks.Interfaces.BooleanInput pwm(start=false) annotation (Placement(transformation(extent={{-140,40},{-100,80}})));
+  Modelica.Blocks.Interfaces.IntegerInput period(start=2000, fixed=true)
+    "Pulse time in microseconds"
+    annotation (Placement(transformation(extent={{-140,-20},{-100,20}})));
+  Modelica.Blocks.Interfaces.IntegerInput width(start=100, fixed=true) "Pulse width in microseconds"
+    annotation (Placement(transformation(extent={{-140,-80},{-100,-40}})));
 
-initial equation
-  pulsStart = startTime;
+protected
+  discrete Modelica.SIunits.Time nextTimeEvent(start=0, fixed=true) "Next time event instant";
 
 equation
-  when sample(startTime, period*1e-6) or not (period == pre(period)) or not (width == pre(width)) then
-    pulsStart = time;
-  end when;
 
-  y = time >= pulsStart and time < pulsStart + width * 1e-6;
+  when {time >= pre(nextTimeEvent),initial()} then
+
+    if pwm then
+
+      if width == 0 then
+        nextTimeEvent = time + period * 1e-6;
+      elseif mod(time * 1e6, period) < width then
+        nextTimeEvent = time + (width) * 1e-6;
+      else
+        nextTimeEvent = time + (period-width) * 1e-6;
+      end if;
+
+    else
+      nextTimeEvent = time + sampleInterval;
+    end if;
+
+    //nextTimeEvent = time + 100 * 1e-6;
+    //Modelica.Utilities.Streams.print(String(pre(time)) + " -> " + String(time));
+    //nextTimeEvent = time + 100 * 1e-6;
+    y = mod(time * 1e6 + 1, period) < width;
+  end when;
 
   annotation (
     Icon(coordinateSystem(

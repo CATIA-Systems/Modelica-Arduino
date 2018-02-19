@@ -13,7 +13,7 @@ model Port
       integer(sampleInterval*1000),
       baudRate,
       false,
-      Firmata.Internal.ModelicaFunctions());
+      Arduino.Internal.ModelicaFunctions());
    Integer numSentMessages;
    Integer numReceivedMessages;
 

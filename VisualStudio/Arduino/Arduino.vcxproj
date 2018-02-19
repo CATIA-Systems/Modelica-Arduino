@@ -22,29 +22,30 @@
     <ProjectGuid>{8674E4DE-665E-485F-A872-2BAE3E832C56}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>Arduino</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>NotSet</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>NotSet</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>NotSet</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -169,8 +170,8 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Arduino\Resources\Source\Arduino\Braccio.cpp" />
     <ClCompile Include="..\..\Arduino\Resources\Source\Arduino\ModelicaArduino.cpp" />
+    <ClCompile Include="..\..\Arduino\Resources\Source\Arduino\ModelicaUtilities.cpp" />
     <ClCompile Include="..\..\Arduino\Resources\Source\Arduino\PID_v1.cpp" />
     <ClCompile Include="..\..\Arduino\Resources\Source\Arduino\Print.cpp" />
     <ClCompile Include="..\..\Arduino\Resources\Source\Arduino\Servo.cpp" />
@@ -179,9 +180,10 @@
     <ClCompile Include="..\..\Arduino\Resources\Source\Arduino\WMath.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Arduino\Resources\Include\ModelicaArduino.h" />
+    <ClInclude Include="..\..\Arduino\Resources\Include\ModelicaUtilityFunctions.h" />
     <ClInclude Include="..\..\Arduino\Resources\Source\Arduino\Arduino.h" />
     <ClInclude Include="..\..\Arduino\Resources\Source\Arduino\binary.h" />
-    <ClInclude Include="..\..\Arduino\Resources\Source\Arduino\Braccio.h" />
     <ClInclude Include="..\..\Arduino\Resources\Source\Arduino\inttypes.h" />
     <ClInclude Include="..\..\Arduino\Resources\Source\Arduino\ModelicaUtilities.h" />
     <ClInclude Include="..\..\Arduino\Resources\Source\Arduino\PID_v1.h" />

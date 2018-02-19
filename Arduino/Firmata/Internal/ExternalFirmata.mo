@@ -3,12 +3,13 @@ class ExternalFirmata
   extends ExternalObject;
 
   function constructor
+    import Arduino;
     input String port;
     input Boolean showCapabilities;
     input Integer samplingMs;
     input Integer baudRate;
     input Boolean useDTR;
-    input Firmata.Internal.ModelicaFunctions callbacks;
+    input Arduino.Internal.ModelicaFunctions callbacks;
     output ExternalFirmata externalFirmata;
   external"C" externalFirmata = createFirmataConnection(port, showCapabilities, samplingMs, baudRate, useDTR, callbacks) annotation (
     Library={"ModelicaFirmata"},

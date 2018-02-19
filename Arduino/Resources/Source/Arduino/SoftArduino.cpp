@@ -1,12 +1,17 @@
 #include "SoftArduino.h"
 #include "ModelicaUtilities.h"
 
-//extern "C" {
 
 SoftArduino SoftArduino::instance;
 
 #define INSTANCE SoftArduino::instance
 
+
+static void assertPin(uint8_t pin) {
+	if (pin >= NUM_DIGITAL_PINS) {
+		ModelicaFormatError("Pin must be < NUM_DIGITAL_PINS = %d but was %d.", NUM_DIGITAL_PINS, pin);
+	}
+}
 
 void SoftInterrupt::update(int potential) {
 
@@ -35,20 +40,41 @@ void SoftInterrupt::update(int potential) {
 
 void pinMode(uint8_t pin, uint8_t mode) {
 	//ModelicaFormatMessage("pinMode(%d, %d)\n", pin, mode);
-	INSTANCE.portMode[pin] = mode;
+
+	assertPin(pin);
+
+	switch (mode) {
+	case INPUT:
+	case INPUT_PULLUP:
+		INSTANCE.portMode[pin] = SoftArduino::PORT_MODE_INPUT;
+		break;
+	case OUTPUT:
+		INSTANCE.portMode[pin] = SoftArduino::PORT_MODE_DIGITAL;
+		break;
+	default:
+		ModelicaFormatError("Error calling pinMode(). Mode must be one of INPUT = 0, OUTPUT = 1 or INPUT_PULLUP = 2 but was %d.", mode);
+	}
 }
 
 void digitalWrite(uint8_t pin, uint8_t val) {
-	INSTANCE.pulseWidth[pin] = (val == HIGH) ? DEFAULT_PULSE_WIDTH : 0;
+
+	assertPin(pin);
+
+	INSTANCE.pulseWidth[pin] = (val == HIGH) ? SoftArduino::DEFAULT_PULSE_PERIOD : 0;
 	//ModelicaFormatMessage("digitalWrite(%d, %d) -> %d\n", pin, val, INSTANCE.pulseWidth[pin]);
 }
 
 int digitalRead(uint8_t pin) {
+
+	assertPin(pin);
+
 	// ModelicaFormatMessage("digitalRead(%d) -> %f\n", pin, instance.digital[pin]);
-	return INSTANCE.digital[pin] > 2.5 ? HIGH : LOW;
+	return INSTANCE.digital[pin] > 0 ? HIGH : LOW;
 }
 
 int analogRead(uint8_t pin) {
+
+	assertPin(pin);
 
 	if (pin < A0 || pin > A7) {
 		ModelicaFormatError("Illegal analog pin: %d\n", pin);
@@ -77,8 +103,11 @@ void analogReference(uint8_t mode) {
 }
 
 void analogWrite(uint8_t pin, int val) {
-	INSTANCE.portMode[pin] = OUTPUT;
-	INSTANCE.pulseWidth[pin] = int((val / 255.) * DEFAULT_PULSE_WIDTH);
+
+	assertPin(pin);
+
+	INSTANCE.portMode[pin] = SoftArduino::PORT_MODE_PWM;
+	INSTANCE.pulseWidth[pin] = int((val / 255.) * SoftArduino::DEFAULT_PULSE_PERIOD);
 
 	//ModelicaFormatMessage("analogWrite(%d, %d) -> %d\n", pin, val, INSTANCE.pulseWidth[pin]);
 }
@@ -140,6 +169,8 @@ void noInterrupts() {
 
 unsigned long pulseIn(const uint8_t pin, const uint8_t state, unsigned long timeout) {
 
+	assertPin(pin);
+
 	unsigned long currentTime = INSTANCE.time;
 	const unsigned long endTime = currentTime + timeout;
 	uint8_t preState = INSTANCE.digital[pin];
@@ -174,12 +205,11 @@ unsigned long pulseInLong(uint8_t pin, uint8_t state, unsigned long timeout) {
 	return pulseIn(pin, state, timeout);
 }
 
-//} // extern "C"
-
 SoftArduino::SoftArduino() {
 
+	// intialize pulsePeriod
 	for (int i = 0; i < NUM_DIGITAL_PINS; i++) {
-		pulsePeriod[i] = DEFAULT_PULSE_WIDTH;
+		pulsePeriod[i] = DEFAULT_PULSE_PERIOD;
 	}
 
 }

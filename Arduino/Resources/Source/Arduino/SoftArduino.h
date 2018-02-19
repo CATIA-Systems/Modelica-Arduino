@@ -6,8 +6,6 @@ typedef void (*InterruptSeriveRoutine)();
 
 #define interruptToDigitalPin(i)  ((i) == 0 ? 2 : ((i) == 1 ? 3 : NOT_A_PIN))
 
-#define DEFAULT_PULSE_WIDTH 2000  // default pulse width in microseconds 
-
 
 class SoftInterrupt {
 
@@ -26,10 +24,15 @@ public:
 class SoftArduino {
 
 public:
+	static const int PORT_MODE_INPUT      = 0;
+	static const int PORT_MODE_DIGITAL    = 1;
+	static const int PORT_MODE_PWM        = 2;
+	static const int DEFAULT_PULSE_PERIOD = 2000;    // default pulse period in microseconds 
+
 	volatile unsigned long time = 0;                 // current time in micro seconds
 	volatile int analogReferenceMode = DEFAULT;      // analog reference mode [DEFAULT, INTERNAL, INTERNAL1V1 or EXTERNAL]
 	volatile int analog[NUM_ANALOG_INPUTS] = {};     // voltages of the analog pins [0, 255]
-	volatile int digital[NUM_DIGITAL_PINS] = {};     // voltages of the digital pins [0, 255]
+	volatile int digital[NUM_DIGITAL_PINS] = {};     // voltages of the digital pins [0, 255];  TODO: change to "State of digital pins (bool)" 
 	volatile int portMode[NUM_DIGITAL_PINS] = {};	 // 0 = input, 1 = digital, 2 = PWM
 	volatile int pulseWidth[NUM_DIGITAL_PINS] = {};  // pulse width in microseconds
 	volatile int pulsePeriod[NUM_DIGITAL_PINS] = {}; // pulse period in microseconds

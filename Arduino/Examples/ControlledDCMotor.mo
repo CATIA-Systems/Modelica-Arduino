@@ -2,7 +2,7 @@ within Arduino.Examples;
 model ControlledDCMotor "An Arduino controlling a motor with a variable load"
               extends Modelica.Icons.Example;
 
-  Components.ArduinoUno arduinoUno(sampleRate=1e-3, sketch=
+  Components.ArduinoUno arduinoUno(sampleInterval=1e-3, sketch=
         "ControlledDCMotor.ino")
     annotation (Placement(transformation(extent={{-40,-50},{40,50}},
         rotation=0,

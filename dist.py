@@ -11,10 +11,7 @@ if os.path.exists(archive_name):
 
 dist_files = []
 
-input = [('Arduino', ('.mo', '.order', '.png', '.css', '.h', '.c', '.cpp', '.ino', '.bat', 'makefile', '.dll'))]
-         #('Libraries', ('.cpp', '.h')),
-         #('Sketches', '.ino'),
-         #('VisualStudio', ('.cpp', '.h', '.vcxproj', '.vcxproj.filters', '.sln'))]
+input = [('Arduino', ('.mo', '.order', '.png', '.css', '.h', '.c', '.cpp', '.ino', '.bat', 'makefile', 'ModelicaFirmata.dll', '.wrl'))]
 
 # collect the distribution files
 for folder, suffix in input:

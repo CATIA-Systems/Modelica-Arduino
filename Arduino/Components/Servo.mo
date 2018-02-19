@@ -5,6 +5,9 @@ model Servo "Ideal pulse width controlled servo motor"
   parameter Modelica.SIunits.Time maxPulseWidth = 2400e-6 "The pulse width corresponding to the maximum (180-degree) angle on the servo";
   parameter Modelica.SIunits.Angle minAngle = Modelica.Constants.pi / 2 "Minimum rotation angle";
   parameter Modelica.SIunits.Angle maxAngle = -Modelica.Constants.pi / 2 "Maximum rotation angle";
+  parameter Modelica.SIunits.Angle startAngle = (minAngle + maxAngle) / 2 "Start angle";
+  parameter Real initialPulseWidth = (minPulseWidth + maxPulseWidth) / 2 "Intial pulse width";
+
 
   Modelica.Electrical.Analog.Sensors.VoltageSensor voltageSensor annotation (
       Placement(transformation(
@@ -19,7 +22,9 @@ model Servo "Ideal pulse width controlled servo motor"
         iconTransformation(extent={{-110,30},{-90,50}})));
   Modelica.Blocks.Logical.Timer timer
     annotation (Placement(transformation(extent={{-50,-10},{-30,10}})));
-  Modelica.Blocks.Discrete.TriggeredSampler triggeredSampler
+  Modelica.Blocks.Discrete.TriggeredSampler triggeredSampler(y_start=
+        minPulseWidth + ((startAngle - minAngle)/(maxAngle - minAngle))*(
+        maxPulseWidth - minPulseWidth))
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
   Modelica.Blocks.Logical.FallingEdge fallingEdge
     annotation (Placement(transformation(extent={{-50,-50},{-30,-30}})));

@@ -22,7 +22,16 @@ typedef struct {
 class FirmataConnection {
 
 public:
-	explicit FirmataConnection(std::string port, bool showCapabilitites = false, int samplingInterval = 10, int baudRate = 57600, Callbacks_t *callbacks = nullptr);
+	typedef void vFormatMessageTYPE(const char *, va_list);
+	typedef void vFormatErrorTYPE(const char *, va_list);
+
+	explicit FirmataConnection(
+		std::string port, 
+		bool showCapabilitites = false, 
+		int samplingInterval = 10, 
+		int baudRate = 57600,
+		vFormatMessageTYPE *vFormatMessage = nullptr,
+		vFormatErrorTYPE *vFormatError = nullptr);
 
 	std::string getPortName();
 	int openPort();
@@ -78,7 +87,6 @@ private:
 	uint8_t m_parseBuf[4096];
 
 	// callbacks
-	void (*cb_vFormatMessage)(const char *, va_list) = nullptr;
-	void (*cb_vFormatError)(const char *, va_list) = nullptr;
-
+	vFormatMessageTYPE *m_vFormatMessage = nullptr;
+	vFormatErrorTYPE   *m_vFormatError   = nullptr;
 };
