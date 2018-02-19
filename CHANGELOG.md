@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.1.0] (2018-02-19)
+
+### Added
+- 6 degree-of-freedom robot arm model w/ 3-d animation
+
+### Changed
+- PWM signals are now generated w/o sample() operator for Modelica compliance
+- Compile external ArduinoUno object as dynamic instead of static library
+
+
 ## [0.0.5] (2017-11-13)
 
 ### Added

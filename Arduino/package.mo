@@ -8,7 +8,7 @@ package Arduino "Library to simulate sketches on a virtual Arduino Uno and to co
 
 
   annotation (
-  version="0.0.5",
+  version="0.1.0",
   uses(Modelica(version="3.2.2"), Modelica_DeviceDrivers(version="1.4.4")),
   Icon(graphics={
       Ellipse(
