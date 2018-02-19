@@ -11,7 +11,7 @@ With the Arduino Modelica library you can simulate your circuits and [sketches](
 
 ## Getting Started
 
-- download the [latest release](releases/latest) and extract the archive
+- download the [latest release](https://github.com/CATIA-Systems/Modelica-Arduino/releases/latest) and extract the archive
 - in Dymola select `File > Open...` and open `Arduino/package.mo` from the extracted files
 - in the package browser double-click `Arduino.Examples.Blink`
 - right-click on the toolbar and check `Simulation` and `Animation` to view the simulation and animation toolbars
