@@ -1,8 +1,8 @@
 within Arduino.Components;
 model ArduinoUno "Virtual Arduino Uno"
 
-  parameter String sketch;
-  parameter Real sampleRate = 0.01;
+  parameter String sketch = "Blink.ino" "Sketch file";
+  parameter Modelica.SIunits.Period sampleInterval = 0.01 "Sample interval";
 
   Modelica.Electrical.Analog.Interfaces.Pin GND
     annotation (Placement(transformation(extent={{-10,-170},{10,-150}}),
@@ -158,7 +158,7 @@ public
       Placement(transformation(extent={{-10,190},{10,210}}),iconTransformation(
           extent={{-4,196},{4,204}})));
 
-  Internal.PinDriver pinDriver[14](each sampleInterval=sampleRate);
+  Internal.PinDriver pinDriver[14](each sampleInterval=sampleInterval);
 
 equation
 
@@ -171,7 +171,7 @@ equation
     connect(pinDriver[i].ground, GND);
   end for;
 
-  when sample(0, sampleRate) then
+  when sample(0, sampleInterval) then
   (portMode, pulseWidth, pulsePeriod) = evaluate(
     externalArduino,
     time,

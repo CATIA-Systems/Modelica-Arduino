@@ -2,7 +2,7 @@ within Arduino.Examples;
 model Ping "An Arduino controlling an ultra-sonic range finder"
               extends Modelica.Icons.Example;
 
-  Components.ArduinoUno arduinoUno(sampleRate=1e-6, sketch="Ping.ino")
+  Components.ArduinoUno arduinoUno(sampleInterval=1e-6, sketch="Ping.ino")
     annotation (Placement(transformation(extent={{-60,-50},{20,50}})));
   Modelica.Blocks.Sources.Ramp ramp(
     duration=0.2,
