@@ -1,3 +1,6 @@
+from pathlib import Path
+from subprocess import check_call
+
 import markdown2
 import os
 import zipfile
@@ -5,13 +8,34 @@ import zipfile
 
 archive_name = 'Modelica-Arduino.zip'
 
-# remove the build directory
+# remove the archive
 if os.path.exists(archive_name):
     os.remove(archive_name)
 
+generator = 'Visual Studio 17 2022'
+
+root = Path(__file__).parent
+
+# build the ModelicaFirmata library
+for platform in ['Win32', 'x64']:
+
+    check_call([
+        'cmake',
+        '-G', generator,
+        '-A', platform,
+        '-S', (root / 'Arduino' / 'Resources' / 'Source' / 'Firmata').as_posix(),
+        '-B', (root / 'Arduino' / 'Resources' / 'Source' / 'Firmata' / platform).as_posix(),
+    ])
+
+    check_call([
+        'cmake',
+        '--build', (root / 'Arduino' / 'Resources' / 'Source' / 'Firmata' / platform).as_posix(),
+        '--config', 'Release'
+    ])
+
 dist_files = []
 
-input = [('Arduino', ('.mo', '.order', '.png', '.css', '.h', '.c', '.cpp', '.ino', '.bat', 'makefile', 'ModelicaFirmata.dll', '.wrl'))]
+input = [('Arduino', ('.mo', '.order', '.png', '.css', '.h', '.c', '.cpp', '.ino', 'ModelicaFirmata.dll', '.wrl', 'CMakeLists.txt'))]
 
 # collect the distribution files
 for folder, suffix in input:

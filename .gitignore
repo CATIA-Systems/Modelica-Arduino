@@ -17,6 +17,12 @@ Arduino/*.exp
 Arduino/*.png
 
 # build artefacts
+Arduino/Resources/Source/Arduino/build/
+Arduino/Resources/Source/Arduino/Win32/
+Arduino/Resources/Source/Arduino/x64/
+Arduino/Resources/Source/Firmata/build/
+Arduino/Resources/Source/Firmata/Win32/
+Arduino/Resources/Source/Firmata/x64/
 *.a
 *.o
 *.obj

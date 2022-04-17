@@ -1,8 +1,11 @@
 within Arduino.Components;
 model ArduinoUno "Virtual Arduino Uno"
 
-  parameter String sketch = "Blink.ino" "Sketch file";
   parameter Modelica.Units.SI.Period sampleInterval=0.01 "Sample interval";
+  parameter String sketch = "Blink.ino" "Sketch file";
+  parameter String cmake = "cmake" "CMake command";
+  parameter String generator = "Visual Studio 17 2022" "CMake generator" annotation(choices(choice="Visual Studio 14 2015", choice="Visual Studio 15 2017", choice="Visual Studio 16 2019", choice="Visual Studio 17 2022"));
+  parameter String platform = "Win32" "CMake platform" annotation(choices(choice="Win32", choice="x64"));
 
   Modelica.Electrical.Analog.Interfaces.Pin GND
     annotation (Placement(transformation(extent={{-10,-170},{10,-150}}),
@@ -230,8 +233,7 @@ equation
                                                               color={0,0,255}));
   connect(resistorRESET.n, GND) annotation (Line(points={{-70,100},{0,100},{0,-160}},
                                                                 color={0,0,255}));
-  annotation (preInstantiate=Arduino.Internal.buildSketch(Modelica.Utilities.Files.loadResource(
-        "modelica://Arduino/"), sketch), Icon(coordinateSystem(preserveAspectRatio=true, extent={{-160,
+  annotation (preInstantiate=Arduino.Internal.buildSketch(sketch, cmake, generator, platform), Icon(coordinateSystem(preserveAspectRatio=true, extent={{-160,
             -200},{160,200}}),
                          graphics={
                                   Rectangle(extent={{-130,168},{130,-170}},
