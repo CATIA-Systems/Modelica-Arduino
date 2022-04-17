@@ -1,11 +1,16 @@
 within Arduino.Components;
 model Servo "Ideal pulse width controlled servo motor"
 
-  parameter Modelica.SIunits.Time minPulseWidth = 544e-6  "The pulse width corresponding to the minimum (0-degree) angle on the servo";
-  parameter Modelica.SIunits.Time maxPulseWidth = 2400e-6 "The pulse width corresponding to the maximum (180-degree) angle on the servo";
-  parameter Modelica.SIunits.Angle minAngle = Modelica.Constants.pi / 2 "Minimum rotation angle";
-  parameter Modelica.SIunits.Angle maxAngle = -Modelica.Constants.pi / 2 "Maximum rotation angle";
-  parameter Modelica.SIunits.Angle startAngle = (minAngle + maxAngle) / 2 "Start angle";
+  parameter Modelica.Units.SI.Time minPulseWidth=544e-6
+    "The pulse width corresponding to the minimum (0-degree) angle on the servo";
+  parameter Modelica.Units.SI.Time maxPulseWidth=2400e-6
+    "The pulse width corresponding to the maximum (180-degree) angle on the servo";
+  parameter Modelica.Units.SI.Angle minAngle=Modelica.Constants.pi/2
+    "Minimum rotation angle";
+  parameter Modelica.Units.SI.Angle maxAngle=-Modelica.Constants.pi/2
+    "Maximum rotation angle";
+  parameter Modelica.Units.SI.Angle startAngle=(minAngle + maxAngle)/2
+    "Start angle";
   parameter Real initialPulseWidth = (minPulseWidth + maxPulseWidth) / 2 "Intial pulse width";
 
 

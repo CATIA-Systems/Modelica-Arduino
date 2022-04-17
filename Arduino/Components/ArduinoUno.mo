@@ -2,7 +2,7 @@ within Arduino.Components;
 model ArduinoUno "Virtual Arduino Uno"
 
   parameter String sketch = "Blink.ino" "Sketch file";
-  parameter Modelica.SIunits.Period sampleInterval = 0.01 "Sample interval";
+  parameter Modelica.Units.SI.Period sampleInterval=0.01 "Sample interval";
 
   Modelica.Electrical.Analog.Interfaces.Pin GND
     annotation (Placement(transformation(extent={{-10,-170},{10,-150}}),
@@ -127,7 +127,7 @@ protected
 
    function evaluate
     input Arduino.Internal.ExternalArduino instance;
-    input Modelica.SIunits.Time timeIn;
+    input Modelica.Units.SI.Time timeIn;
     input Real analogReference;
     input Real analog[numAnalogInputs];
     input Real digital[numDigitalPins];

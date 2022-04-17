@@ -15,7 +15,7 @@ model Fade "An Arduino dimming an LED"
         origin={60,-40})));
   Modelica.Blocks.Sources.Sine sine(
     amplitude=0.5,
-    freqHz=0.5,
+    f=0.5,
     offset=0.5)
     annotation (Placement(transformation(extent={{-54,14},{-66,26}})));
   Modelica.Electrical.Analog.Basic.Potentiometer potentiometer(rConstant=0.01,

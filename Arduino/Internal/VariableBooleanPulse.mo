@@ -2,9 +2,9 @@ within Arduino.Internal;
 block VariableBooleanPulse "Generate pulse signal of type Boolean"
   extends Modelica.Blocks.Interfaces.partialBooleanSource;
 
-  parameter Modelica.SIunits.Time startTime=0 "Time instant of first pulse";
+  parameter Modelica.Units.SI.Time startTime=0 "Time instant of first pulse";
 
-  parameter Modelica.SIunits.Time sampleInterval(fixed=true) = 1e-2;
+  parameter Modelica.Units.SI.Time sampleInterval(fixed=true) = 1e-2;
 
 public
   Modelica.Blocks.Interfaces.BooleanInput pwm(start=false) annotation (Placement(transformation(extent={{-140,40},{-100,80}})));
@@ -15,7 +15,8 @@ public
     annotation (Placement(transformation(extent={{-140,-80},{-100,-40}})));
 
 protected
-  discrete Modelica.SIunits.Time nextTimeEvent(start=0, fixed=true) "Next time event instant";
+  discrete Modelica.Units.SI.Time nextTimeEvent(start=0, fixed=true)
+    "Next time event instant";
 
 equation
 

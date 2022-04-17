@@ -1,6 +1,6 @@
 within Arduino.Components;
 model SEN136B5B "SEN136B5B Ultrasonic Range Finder"
-  Modelica.Electrical.Analog.Ideal.IdealCommutingSwitch sensorGround5V
+  Modelica.Electrical.Analog.Ideal.IdealTwoWaySwitch sensorGround5V
     "Ground if true, 5V if false"
     annotation (Placement(transformation(extent={{-90,40},{-70,60}})));
   Modelica.Electrical.Analog.Basic.Resistor resistor(R=100) annotation (
