@@ -251,9 +251,9 @@ void loop(void);
 //
 unsigned long pulseIn(uint8_t pin, uint8_t state, unsigned long timeout = 1000000L);
 unsigned long pulseInLong(uint8_t pin, uint8_t state, unsigned long timeout = 1000000L);
-//
-//void tone(uint8_t _pin, unsigned int frequency, unsigned long duration = 0);
-//void noTone(uint8_t _pin);
+
+void tone(uint8_t pin, unsigned int frequency, unsigned long duration = 0);
+void noTone(uint8_t pin);
 
 // WMath prototypes
 long random(long);

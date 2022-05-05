@@ -1,5 +1,6 @@
 ModelicaFunctions
 ExternalArduino
+WavRecorder
 PinDriver
 VariableBooleanPulse
 buildSketch

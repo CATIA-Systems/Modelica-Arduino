@@ -210,6 +210,29 @@ unsigned long pulseInLong(uint8_t pin, uint8_t state, unsigned long timeout) {
 	return pulseIn(pin, state, timeout);
 }
 
+void tone(uint8_t pin, unsigned int frequency, unsigned long duration) {
+
+	assertPin(pin);
+
+	const int period = static_cast<int>(1e6 / frequency);  // period in microseconds
+
+	INSTANCE->portMode[pin] = SoftArduino::PORT_MODE_PWM;
+	INSTANCE->pulseWidth[pin] = period / 2;
+	INSTANCE->pulsePeriod[pin] = period;
+
+	if (duration > 0) {
+		delay(duration);
+	}
+}
+
+void noTone(uint8_t pin) {
+
+	assertPin(pin);
+
+	INSTANCE->portMode[pin] = SoftArduino::PORT_MODE_DIGITAL;
+	INSTANCE->pulseWidth[pin] = 0;
+}
+
 SoftArduino::SoftArduino() {
 
 	instance = this;
@@ -221,8 +244,6 @@ SoftArduino::SoftArduino() {
 
 	inputReady = CreateEvent(NULL, FALSE, FALSE, NULL);
 	outputReady = CreateEvent(NULL, FALSE, FALSE, NULL);
-
-	setup();
 
 	DWORD threadId;
 
@@ -247,6 +268,13 @@ void SoftArduino::update() {
 }
 
 DWORD WINAPI SoftArduino::MyThreadFunction(LPVOID lpParam) {
+
+	WaitForSingleObject(instance->inputReady, INFINITE);
+
+	setup();
+
+	SetEvent(instance->outputReady);
+
 
 	for (;;) {
 		WaitForSingleObject(instance->inputReady, INFINITE);
