@@ -61,6 +61,9 @@ void digitalWrite(uint8_t pin, uint8_t val) {
 	assertPin(pin);
 
 	INSTANCE->pulseWidth[pin] = (val == HIGH) ? SoftArduino::DEFAULT_PULSE_PERIOD : 0;
+
+	SetEvent(INSTANCE->outputReady);
+	WaitForSingleObject(INSTANCE->inputReady, INFINITE);
 	//ModelicaFormatMessage("digitalWrite(%d, %d) -> %d\n", pin, val, INSTANCE.pulseWidth[pin]);
 }
 
@@ -140,6 +143,43 @@ void delayMicroseconds(unsigned int us) {
 		SetEvent(INSTANCE->outputReady);
 		WaitForSingleObject(INSTANCE->inputReady, INFINITE);
 	}
+}
+
+void shiftOut(uint8_t dataPin, uint8_t clockPin, uint8_t bitOrder, uint8_t val) {
+
+	for (uint8_t i = 0; i < 8; i++) {
+
+		if (bitOrder == LSBFIRST) {
+			digitalWrite(dataPin, val & 1);
+			val >>= 1;
+		} else {
+			digitalWrite(dataPin, (val & 128) != 0);
+			val <<= 1;
+		}
+
+		digitalWrite(clockPin, HIGH);
+		digitalWrite(clockPin, LOW);
+	}
+}
+
+uint8_t shiftIn(uint8_t dataPin, uint8_t clockPin, uint8_t bitOrder) {
+	
+	uint8_t value = 0;
+
+	for (uint8_t i = 0; i < 8; ++i) {
+
+		digitalWrite(clockPin, HIGH);
+
+		if (bitOrder == LSBFIRST) {
+			value |= digitalRead(dataPin) << i;
+		} else {
+			value |= digitalRead(dataPin) << (7 - i);
+		}
+
+		digitalWrite(clockPin, LOW);
+	}
+
+	return value;
 }
 
 void attachInterrupt(uint8_t interrupt, void (*isr)(void), int mode) {
