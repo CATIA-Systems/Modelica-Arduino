@@ -39,7 +39,7 @@ To simulate your sketch `MySketch` you have to perform the following steps.
 - save your sketch as `Arduino/Resources/Sketches/MySketch.ino`
 - add the block `Arduino.Components.ArduinoUno` to your model
 - double-click the block and set the parameter `sketch` to `"MySketch.ino"`
-- click ![Translate Button](Arduino/Resources/Images/translate_button.png) to re-translate the model when the sketch has changed
+- click `Translate` to re-translate the model when the sketch has changed
 
 ## Limitations
 
