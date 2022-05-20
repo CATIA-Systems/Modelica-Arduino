@@ -8,7 +8,7 @@ package Arduino "Library to simulate sketches on a virtual Arduino Uno and to co
 
 
   annotation (
-  version="0.1.1",
+  version="0.2.0",
   uses(
       Modelica(version="4.0.0"), Modelica_DeviceDrivers(version="2.0.0")),
   Icon(graphics={
@@ -36,7 +36,5 @@ package Arduino "Library to simulate sketches on a virtual Arduino Uno and to co
         rotation=90)}),
   Documentation(info="<html>
 <p>For updates and tutorials visit <a href=\"https://github.com/CATIA-Systems/Modelica-Arduino\">https://github.com/CATIA-Systems/Modelica-Arduino</a></p>
-</html>"),
-  conversion(from(version="0.1.0", script=
-          "modelica://Arduino/Resources/ConvertFromArduino_0.1.0.mos")));
+</html>"));
 end Arduino;
