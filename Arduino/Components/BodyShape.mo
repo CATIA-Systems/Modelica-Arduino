@@ -15,7 +15,7 @@ model BodyShape
   Modelica.Mechanics.MultiBody.Interfaces.Frame_a frame_a
     "Coordinate system fixed to the component with one cut-force and cut-torque"
     annotation (Placement(transformation(extent={{-116,-16},{-84,16}})));
-  parameter Modelica.SIunits.Position r[3]={0,0,0}
+  parameter Modelica.Units.SI.Position r[3]={0,0,0}
     "Vector from frame_a to frame_b resolved in frame_a";
   Modelica.Mechanics.MultiBody.Parts.FixedRotation fixedRotation(
     n={1,0,0},
@@ -25,7 +25,7 @@ model BodyShape
     animation=false)
     annotation (Placement(transformation(extent={{-46,-10},{-26,10}})));
 
-  parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg angles[3]={0,0,0}
+  parameter Modelica.Units.NonSI.Angle_deg angles[3]={0,0,0}
     "Rotation angles around the axes defined in 'sequence'";
   parameter Real color[3]={255,255,255} "Color of shape";
 

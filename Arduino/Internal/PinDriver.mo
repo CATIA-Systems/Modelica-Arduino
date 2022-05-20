@@ -8,7 +8,7 @@ model PinDriver
     annotation (Placement(transformation(extent={{-10,10},{10,-10}},
         rotation=180,
         origin={70,0})));
-  Modelica.Electrical.Analog.Ideal.IdealCommutingSwitch idealCommutingSwitch
+  Modelica.Electrical.Analog.Ideal.IdealTwoWaySwitch idealCommutingSwitch
     annotation (Placement(transformation(extent={{40,10},{20,-10}})));
   VariableBooleanPulse variableBooleanPulse(sampleInterval=sampleInterval)
     annotation (Placement(transformation(extent={{-40,-30},{-20,-10}})));
@@ -23,7 +23,7 @@ model PinDriver
   Modelica.Electrical.Analog.Interfaces.PositivePin v_in
     "Positive pin (potential p.v > n.v for positive voltage drop v)"
     annotation (Placement(transformation(extent={{90,50},{110,70}})));
-  parameter Modelica.SIunits.Time sampleInterval=1e-2;
+  parameter Modelica.Units.SI.Time sampleInterval=1e-2;
   Modelica.Blocks.Sources.BooleanExpression booleanExpression(y=portMode == 2)
     annotation (Placement(transformation(extent={{-70,-24},{-50,-4}})));
   Modelica.Blocks.Interfaces.IntegerInput portMode "Port mode"

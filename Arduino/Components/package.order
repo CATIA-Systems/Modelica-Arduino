@@ -4,3 +4,7 @@ LED
 Servo
 BodyShape
 DFLG6DOF
+PiezoSpeaker
+IC74HC595N4
+DFlipFlop
+ResettableDFlipFlop

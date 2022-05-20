@@ -9,8 +9,7 @@ model Sweep "Control a connected servo"
     startTime=5,
     offset=0.5,
     amplitude=0.5,
-    freqHz=0.5)
-    annotation (Placement(transformation(extent={{-90,0},{-70,20}})));
+    f=0.5) annotation (Placement(transformation(extent={{-90,0},{-70,20}})));
 equation
   connect(servo.pinConnector, port.boardConnector)
     annotation (Line(points={{-32,10},{-20,10}}, color={0,0,0}));

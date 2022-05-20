@@ -5,7 +5,10 @@ model Port
     annotation (Placement(transformation(extent={{-110,-10},{-90,10}}),
         iconTransformation(extent={{-116,-16},{-84,16}})));
    parameter String port "Serial port (empty = auto)";
-   parameter Modelica.SIunits.Time sampleInterval(displayUnit="ms", min=0.001, max=0.1) = 0.001 "Sample interval";
+  parameter Modelica.Units.SI.Time sampleInterval(
+    displayUnit="ms",
+    min=0.001,
+    max=0.1) = 0.001 "Sample interval";
    Firmata.Internal.ExternalFirmata externalFirmata=
       Firmata.Internal.ExternalFirmata(
       port,
@@ -23,8 +26,8 @@ protected
   Integer boardId(start = -1);
 
 public
-  Modelica_DeviceDrivers.Blocks.OperatingSystem.SynchronizeRealtime
-    synchronizeRealtime
+  Modelica_DeviceDrivers.Blocks.OperatingSystem.RealtimeSynchronize
+    realtimeSynchronize
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
 equation
   when initial() then

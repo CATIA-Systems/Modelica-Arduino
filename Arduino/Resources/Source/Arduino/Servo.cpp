@@ -14,8 +14,8 @@ uint8_t Servo::attach(int pin) {
 
 	m_pin = pin;
 
-	INSTANCE.portMode[pin] = SoftArduino::PORT_MODE_PWM;
-	INSTANCE.pulsePeriod[pin] = REFRESH_INTERVAL;
+	INSTANCE->portMode[pin] = SoftArduino::PORT_MODE_PWM;
+	INSTANCE->pulsePeriod[pin] = REFRESH_INTERVAL;
 
 	return 1;
 }
@@ -32,8 +32,8 @@ uint8_t Servo::attach(int pin, int min, int max) {
 
 void Servo::detach() {
 
-	INSTANCE.portMode[m_pin] = SoftArduino::PORT_MODE_DIGITAL;
-	INSTANCE.pulsePeriod[m_pin] = SoftArduino::DEFAULT_PULSE_PERIOD;
+	INSTANCE->portMode[m_pin] = SoftArduino::PORT_MODE_DIGITAL;
+	INSTANCE->pulsePeriod[m_pin] = SoftArduino::DEFAULT_PULSE_PERIOD;
 
 	m_pin = -1;
 }
@@ -60,7 +60,7 @@ void Servo::writeMicroseconds(int value) {
 
 	m_pulseWidth = value;
 
-	INSTANCE.pulseWidth[m_pin] = m_pulseWidth;
+	INSTANCE->pulseWidth[m_pin] = m_pulseWidth;
 }
 
 int Servo::read() {

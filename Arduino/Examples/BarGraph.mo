@@ -62,7 +62,7 @@ model BarGraph "An Arduino reading a potentiometer and controlling 10 LEDs"
         origin={-70,2})));
   Modelica.Blocks.Sources.Sine sine(
     amplitude=0.5,
-    freqHz=0.5,
+    f=0.5,
     offset=0.5)
     annotation (Placement(transformation(extent={{-40,6},{-52,18}})));
   Modelica.Electrical.Analog.Sources.ConstantVoltage constantVoltage(V=5)
