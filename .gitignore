@@ -33,3 +33,6 @@ Temp/
 
 # Windows icon cache files
 Thumbs.db
+
+# test artifacts
+tests/work/
