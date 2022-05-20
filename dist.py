@@ -45,7 +45,7 @@ for folder, suffix in input:
                 dist_files += [os.path.join(root, f)]
 
 
-dist_files += ['Arduino/Resources/Library/win32', 'LICENSE', 'README.html']
+dist_files += ['Arduino/Resources/Library/win32', 'LICENSE.txt', 'README.html']
 
 
 html = """<!DOCTYPE html>
