@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "ModelicaUtilities.h"
 
 /* make sure all compiler use the same alignment policies for structures */
 #if defined _MSC_VER || defined __GNUC__
