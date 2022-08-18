@@ -1,4 +1,18 @@
-def test_examples(dymola):
+import pytest
+
+
+def pymola_available():
+    try:
+        import pymola
+        return True
+    except:
+        return False
+
+
+@pytest.mark.skipif(not pymola_available(), reason="Pymola was not found")
+def test_examples(workdir, package):
+
+    from pymola import Dymola
 
     examples = [
         ('Arduino.Examples.AnalogReadSerial', 1, ['arduinoUno.A0.v']),
@@ -19,8 +33,11 @@ def test_examples(dymola):
         ('Arduino.Firmata.Examples.Sweep', 10, ['servo.u']),
     ]
 
-    for model, stop_time, signals in examples:
+    with Dymola(showWindow=True) as dymola:
 
-        print("Simulating %s" % model)
+        dymola.openModel(path=package, changeDirectory=False)
 
-        result = dymola.simulate(model)
+        dymola.cd(workdir)
+
+        for model, stop_time, signals in examples:
+            dymola.simulate(model)

@@ -4,13 +4,16 @@ With the Arduino Modelica library you can simulate your circuits and [sketches](
 
 ## Prerequisites
 
-- [Dymola](https://www.3ds.com/products-services/catia/products/dymola)
+- [Dymola](https://www.3ds.com/products-services/catia/products/dymola) or [OpenModelica](https://www.openmodelica.org/download/download-windows)
 - [Visual Studio](https://visualstudio.microsoft.com/downloads/) 2015 or later
 - [CMake](https://cmake.org/download/)
 
 ## Getting Started
 
 - download the [latest release](https://github.com/CATIA-Systems/Modelica-Arduino/releases/latest) and extract the archive
+
+## Simulating a Sketch with Dymola
+
 - in Dymola select `File > Load...` and open `Arduino/package.mo` from the extracted files
 - open `Arduino.Components.ArduinoUno` and set the default values for parameters `cmake` and `generator` to match your installation, e.g.
 
@@ -30,7 +33,43 @@ model ArduinoUno "Virtual Arduino Uno"
 
 ![Arduino.Examples.Blink](Arduino/Resources/Images/blink_example.png)
 
-- try the other examples in `Arduino.Examples`
+## Simulating a Sketch with OpenModelica
+
+- in OMEdit select `File > Load library` and choose the `Arduino` folder from the extracted files
+- open `Arduino.Internal.buildSketchOM` and set the default values for parameters `cmake` and `generator` to match your installation, e.g.
+
+```Modelica
+within Arduino.Internal;
+encapsulated function buildSketchOM
+
+  // ...
+  input String cmake = "C:/Program Files/CMake/bin/cmake.exe" "Absolute path to the CMake executable";
+  input String generator = "Visual Studio 17 2022"within Arduino.Internal;
+encapsulated function buildSketchOM
+
+  import Arduino;
+  import Modelica;
+  input String sketch = "Blink.ino";
+  input String cmake = "C:/Program Files/CMake/bin/cmake.exe" "Absolute path to the CMake executable";
+  input String generator = "Visual Studio 17 2022" "CMake generator to build the Sketch";
+  // ...
+```
+
+- select `File > Save` to save your changes
+- open `Arduino.Examples.Blink`
+- select `Tools > OpenModelica Compiler CLI` and run
+
+```
+Arduino.Internal.buildSketchOM("Blink.ino")
+```
+
+  to build the Arduino binary
+
+- select `Simulation > Simulate` to run the simulation
+- in the `View` toolbar click on the gears icon (Diagram Window)
+- in the `Variables Browser` click the play button and watch the LED `L` blink
+
+![Arduino.Examples.Blink](Arduino/Resources/Images/blink_example_om.png)
 
 ## Simulate your own Sketch
 
@@ -39,7 +78,14 @@ To simulate your sketch `MySketch` you have to perform the following steps.
 - save your sketch as `Arduino/Resources/Sketches/MySketch.ino`
 - add the block `Arduino.Components.ArduinoUno` to your model
 - double-click the block and set the parameter `sketch` to `"MySketch.ino"`
+
+In Dymola:
+
 - click `Translate` to re-translate the model when the sketch has changed
+
+In OpenModelica:
+
+- run `Arduino.Internal.buildSketchOM("MySketch.ino")` in the Compiler CLI when the sketch has changed
 
 ## Limitations
 

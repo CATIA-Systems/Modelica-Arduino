@@ -2,24 +2,16 @@ import pytest
 from os import makedirs
 from pathlib import Path
 from shutil import rmtree
-from pymola import Dymola
 
 
-@pytest.fixture(scope='session')
-def dymola():
+@pytest.fixture
+def package():
+    yield Path(__file__).parent.parent / 'Arduino' / 'package.mo'
 
-    testsdir = Path(__file__).parent
-    workdir = testsdir / 'work'
 
-    with Dymola(showWindow=True) as dymola:
-
-        dymola.openModel(path=testsdir.parent / 'Arduino' / 'package.mo', changeDirectory=False)
-
-        if workdir.exists():
-            rmtree(workdir)
-
-        makedirs(workdir)
-
-        dymola.cd(workdir)
-
-        yield dymola
+@pytest.fixture
+def workdir():
+    path = Path(__file__).parent / 'work'
+    rmtree(path, ignore_errors=True)
+    makedirs(path)
+    yield path
