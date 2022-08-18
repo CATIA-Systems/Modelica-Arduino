@@ -36,7 +36,7 @@ SoftSerial Serial;
   // write the build script
   Modelica.Utilities.Streams.print(
     "set CMAKE=\"" + cmake + "\"\n" +
-    "set BUILD=\"" + path + "Resources/Source/Arduino/\"" + platform + "\n" +
+    "set BUILD=\"" + path + "Resources/Source/Arduino/" + platform + "\"\n" +
     "\n" +
     "%CMAKE% -G \"" + generator + "\" -A " + platform + " -S \"" + path + "Resources/Source/Arduino\" -B %BUILD%\n" +
     "if %errorlevel% neq 0 exit /b %errorlevel%\n" +
