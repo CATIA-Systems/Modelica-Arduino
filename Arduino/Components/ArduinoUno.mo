@@ -124,9 +124,9 @@ model ArduinoUno "Virtual Arduino Uno"
 protected
     final constant Integer numAnalogInputs = 6;
     final constant Integer numDigitalPins = 20;
-    Integer portMode[numDigitalPins](each start=0, fixed=true);
-    Integer pulsePeriod[numDigitalPins](each start=2000, fixed=true);
-    Integer pulseWidth[numDigitalPins](each start=0, fixed=true);
+    Integer portMode[numDigitalPins](each start=0, each fixed=true);
+    Integer pulsePeriod[numDigitalPins](each start=2000, each fixed=true);
+    Integer pulseWidth[numDigitalPins](each start=0, each fixed=true);
 
    function evaluate
     input Arduino.Internal.ExternalArduino instance;
