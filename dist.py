@@ -17,7 +17,7 @@ generator = 'Visual Studio 17 2022'
 root = Path(__file__).parent
 
 # build the ModelicaFirmata library
-for platform in ['Win32', 'x64']:
+for platform in ['x64']:
 
     check_call([
         'cmake',
@@ -45,7 +45,7 @@ for folder, suffix in input:
                 dist_files += [os.path.join(root, f)]
 
 
-dist_files += ['Arduino/Resources/Library/win32', 'LICENSE.txt', 'README.html']
+dist_files += ['Arduino/Resources/Library/win64', 'LICENSE.txt', 'README.html']
 
 
 html = """<!DOCTYPE html>

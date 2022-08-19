@@ -5,7 +5,7 @@ model ArduinoUno "Virtual Arduino Uno"
   parameter String sketch = "Blink.ino" "Sketch file";
   parameter String cmake = "cmake" "CMake command";
   parameter String generator = "Visual Studio 17 2022" "CMake generator" annotation(choices(choice="Visual Studio 14 2015", choice="Visual Studio 15 2017", choice="Visual Studio 16 2019", choice="Visual Studio 17 2022"));
-  parameter String platform = "Win32" "CMake platform" annotation(choices(choice="Win32", choice="x64"));
+  parameter String platform = "x64" "CMake platform" annotation(choices(choice="Win32", choice="x64"));
 
   Modelica.Electrical.Analog.Interfaces.Pin GND
     annotation (Placement(transformation(extent={{-10,-170},{10,-150}}),
