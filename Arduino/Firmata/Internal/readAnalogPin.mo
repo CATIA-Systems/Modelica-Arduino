@@ -1,5 +1,7 @@
 within Arduino.Firmata.Internal;
 function readAnalogPin
+  extends Modelica.Icons.Function;
+
   input Integer pin;
   input Real min;
   input Real max;

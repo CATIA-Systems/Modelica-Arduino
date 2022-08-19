@@ -1,5 +1,7 @@
 within Arduino.Firmata.Internal;
 function writeServoPin
+  extends Modelica.Icons.Function;
+
   input Integer pin;
   input Integer board;
   input Real value;

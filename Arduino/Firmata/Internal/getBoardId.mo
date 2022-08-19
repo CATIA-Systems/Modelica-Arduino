@@ -1,5 +1,7 @@
 within Arduino.Firmata.Internal;
 function getBoardId
+  extends Modelica.Icons.Function;
+
   input Firmata.Internal.ExternalFirmata board;
   output Integer id;
 

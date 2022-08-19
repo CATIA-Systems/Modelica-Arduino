@@ -1,6 +1,7 @@
 within Arduino.Internal;
 encapsulated function buildSketch
-
+  extends Modelica.Icons.Function;
+  
   import Arduino;
   import Modelica;
   input String sketch = "Blink.ino";

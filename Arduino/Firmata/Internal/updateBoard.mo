@@ -1,5 +1,6 @@
 within Arduino.Firmata.Internal;
 function updateBoard
+  extends Modelica.Icons.Function;
 
   input Integer board;
 

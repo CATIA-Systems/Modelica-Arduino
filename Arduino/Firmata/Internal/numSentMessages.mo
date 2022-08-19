@@ -1,5 +1,7 @@
 within Arduino.Firmata.Internal;
 function numSentMessages
+  extends Modelica.Icons.Function;
+
   input Integer id;
   output Integer count;
 

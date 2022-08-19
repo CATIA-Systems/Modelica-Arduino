@@ -1,5 +1,7 @@
 within Arduino.Firmata.Internal;
 function readDigitalPin
+  extends Modelica.Icons.Function;
+
   input Integer pin;
   input Boolean init;
   input Integer board;

@@ -1,5 +1,7 @@
 within Arduino.Firmata.Internal;
 function writeDigitalPin
+  extends Modelica.Icons.Function;
+
   input Integer pin;
   input Integer board;
   input Boolean value;
