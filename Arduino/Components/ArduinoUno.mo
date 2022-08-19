@@ -233,7 +233,7 @@ equation
                                                               color={0,0,255}));
   connect(resistorRESET.n, GND) annotation (Line(points={{-70,100},{0,100},{0,-160}},
                                                                 color={0,0,255}));
-  annotation (preInstantiate=Arduino.Internal.buildSketch(sketch, cmake, generator, platform), Icon(coordinateSystem(preserveAspectRatio=true, extent={{-160,
+  annotation (__Dymola_preInstantiate=Arduino.Internal.buildSketch(sketch, cmake, generator, platform), Icon(coordinateSystem(preserveAspectRatio=true, extent={{-160,
             -200},{160,200}}),
                          graphics={
                                   Rectangle(extent={{-130,168},{130,-170}},
