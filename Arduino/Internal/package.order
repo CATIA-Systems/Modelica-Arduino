@@ -5,3 +5,4 @@ PinDriver
 VariableBooleanPulse
 buildSketch
 buildSketchOM
+clean
