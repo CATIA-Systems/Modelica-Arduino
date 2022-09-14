@@ -39,17 +39,9 @@ model ArduinoUno "Virtual Arduino Uno"
 - open `Arduino.Internal.buildSketchOM` and set the default values for parameters `cmake` and `generator` to match your installation, e.g.
 
 ```Modelica
-within Arduino.Internal;
 encapsulated function buildSketchOM
 
   // ...
-  input String cmake = "C:/Program Files/CMake/bin/cmake.exe" "Absolute path to the CMake executable";
-  input String generator = "Visual Studio 17 2022"within Arduino.Internal;
-encapsulated function buildSketchOM
-
-  import Arduino;
-  import Modelica;
-  input String sketch = "Blink.ino";
   input String cmake = "C:/Program Files/CMake/bin/cmake.exe" "Absolute path to the CMake executable";
   input String generator = "Visual Studio 17 2022" "CMake generator to build the Sketch";
   // ...
