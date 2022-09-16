@@ -11,21 +11,17 @@
 #include "SoftArduino.h"
 
 
-#define INSTANCE SoftArduino::instance
-
-
 /** Constructor function of the external object */
 void * ModelicaArduino_open(void *callbacks) {
 
 	setModelicaUtilityFunctions(reinterpret_cast<ModelicaUtilityFunctions_t *>(callbacks));
 	
-	return new SoftArduino();
+	return INSTANCE;
 }
 
 /** Destructor function of the external object */
 void ModelicaArduino_close(void *externalObject) {
 	//ModelicaMessage("ModelicaArduino_close()\n");
-	delete INSTANCE;
 }
 
 void ModelicaArduino_update(void *instance__,

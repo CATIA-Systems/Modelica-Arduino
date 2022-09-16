@@ -8,6 +8,8 @@ typedef void (*InterruptSeriveRoutine)();
 
 #define interruptToDigitalPin(i)  ((i) == 0 ? 2 : ((i) == 1 ? 3 : NOT_A_PIN))
 
+#define INSTANCE SoftArduino::getInstance()
+
 
 class SoftInterrupt {
 
@@ -40,22 +42,26 @@ public:
 	int pulsePeriod[NUM_DIGITAL_PINS] = { DEFAULT_PULSE_PERIOD }; // pulse period in microseconds
 
 	bool interruptsEnabled = true;
+
 	SoftInterrupt *interrupts[2] = {};
 
 	const char *error = nullptr;
 
-	static SoftArduino* instance;
+	void update();
+
+	static SoftArduino* getInstance() {
+		static SoftArduino instance;
+		return &instance;
+	}
 
 	HANDLE thread      = INVALID_HANDLE_VALUE;
 	HANDLE inputReady  = INVALID_HANDLE_VALUE;
 	HANDLE outputReady = INVALID_HANDLE_VALUE;
 
+private:
 	explicit SoftArduino();
-
 	~SoftArduino();
 
-	void update();
+	static DWORD WINAPI runSketch(LPVOID lpParam);
 
-	static DWORD WINAPI MyThreadFunction(LPVOID lpParam);
-	
 };

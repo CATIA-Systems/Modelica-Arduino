@@ -2,11 +2,6 @@
 #include "ModelicaUtilities.h"
 
 
-SoftArduino* SoftArduino::instance = nullptr;
-
-#define INSTANCE SoftArduino::instance
-
-
 static void assertPin(uint8_t pin) {
 	if (pin >= NUM_DIGITAL_PINS) {
 		ModelicaFormatError("Pin must be < NUM_DIGITAL_PINS = %d but was %d.", NUM_DIGITAL_PINS, pin);
@@ -275,8 +270,6 @@ void noTone(uint8_t pin) {
 
 SoftArduino::SoftArduino() {
 
-	instance = this;
-
 	// intialize pulsePeriod
 	for (int i = 0; i < NUM_DIGITAL_PINS; i++) {
 		pulsePeriod[i] = DEFAULT_PULSE_PERIOD;
@@ -287,13 +280,13 @@ SoftArduino::SoftArduino() {
 
 	DWORD threadId;
 
-	instance->thread = CreateThread(
-		NULL, 			   // default security attributes
-		0, 				   // use default stack size
-		MyThreadFunction,  // thread function
-		&INSTANCE,         // argument to thread function
-		0, 				   // use default creation flags
-		&threadId); 	   // returns the thread identifier
+	thread = CreateThread(
+		NULL, 		 // default security attributes
+		0, 			 // use default stack size
+		runSketch,   // thread function
+		this,        // argument to thread function
+		0, 			 // use default creation flags
+		&threadId);  // returns the thread identifier
 }
 
 SoftArduino::~SoftArduino() {
@@ -307,19 +300,18 @@ void SoftArduino::update() {
 	SignalObjectAndWait(inputReady, outputReady, INFINITE, TRUE);
 }
 
-DWORD WINAPI SoftArduino::MyThreadFunction(LPVOID lpParam) {
+DWORD WINAPI SoftArduino::runSketch(LPVOID lpParam) {
 
-	WaitForSingleObject(instance->inputReady, INFINITE);
+	WaitForSingleObject(INSTANCE->inputReady, INFINITE);
 
 	setup();
 
-	SetEvent(instance->outputReady);
-
+	SetEvent(INSTANCE->outputReady);
 
 	for (;;) {
-		WaitForSingleObject(instance->inputReady, INFINITE);
+		WaitForSingleObject(INSTANCE->inputReady, INFINITE);
 		loop();
-		SetEvent(instance->outputReady);
+		SetEvent(INSTANCE->outputReady);
 	}
 
 	return 0;

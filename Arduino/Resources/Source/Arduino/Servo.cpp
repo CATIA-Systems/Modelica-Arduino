@@ -3,9 +3,6 @@
 #include "ModelicaUtilities.h"
 
 
-#define INSTANCE SoftArduino::instance
-
-
 uint8_t Servo::attach(int pin) {
 
 	//ModelicaFormatMessage("Servo::attach(%d)\n", pin);
