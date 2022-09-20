@@ -33,7 +33,7 @@ def test_run_examples(workdir, package):
         ('Fade', 'Fade.ino'),
         ('Ping', 'Ping.ino'),
         ('Sweep', 'Sweep.ino'),
-        # ('ControlledDCMotor', 'ControlledDCMotor.ino'),
+        ('ControlledDCMotor', 'ControlledDCMotor.ino'),
         # ('RobotArm', 'RobotArmGrabSponge.ino'),
         ('ToneMelody', 'Melody.ino'),
         ('ShiftOutHelloWorld', 'ShftOut11.ino'),

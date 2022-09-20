@@ -30,26 +30,6 @@ model ArduinoUno "Virtual Arduino Uno"
         transformation(extent={{-170,-110},{-150,-90}}),
                                                        iconTransformation(
           extent={{-164,-114},{-156,-106}})));
-  Modelica.Electrical.Analog.Basic.Resistor resistorA1(R=1e5) annotation (
-      Placement(transformation(
-        extent={{-10,10},{10,-10}},
-        rotation=180,
-        origin={-80,-20})));
-  Modelica.Electrical.Analog.Basic.Resistor resistorA2(R=1e5) annotation (
-      Placement(transformation(
-        extent={{-10,10},{10,-10}},
-        rotation=180,
-        origin={-80,-40})));
-  Modelica.Electrical.Analog.Basic.Resistor resistorA4(R=1e5) annotation (
-      Placement(transformation(
-        extent={{-10,10},{10,-10}},
-        rotation=180,
-        origin={-78,-80})));
-  Modelica.Electrical.Analog.Basic.Resistor resistorA5(R=1e5) annotation (
-      Placement(transformation(
-        extent={{-10,10},{10,-10}},
-        rotation=180,
-        origin={-80,-100})));
   Modelica.Electrical.Analog.Interfaces.Pin D1 annotation (Placement(
         transformation(extent={{150,90},{170,110}}),
                                                    iconTransformation(extent={{156,
@@ -63,11 +43,6 @@ model ArduinoUno "Virtual Arduino Uno"
   Modelica.Electrical.Analog.Interfaces.Pin A0 annotation (Placement(
         transformation(extent={{-170,-10},{-150,10}}), iconTransformation(
           extent={{-164,-14},{-156,-6}})));
-  Modelica.Electrical.Analog.Basic.Resistor resistorA0(R=1e5) annotation (
-      Placement(transformation(
-        extent={{-10,10},{10,-10}},
-        rotation=180,
-        origin={-80,0})));
   Modelica.Electrical.Analog.Interfaces.Pin D0 annotation (Placement(
         transformation(extent={{150,110},{170,130}}),
                                                    iconTransformation(extent={{156,
@@ -122,7 +97,6 @@ model ArduinoUno "Virtual Arduino Uno"
             {164,134}})));
 
 protected
-    final constant Integer numAnalogInputs = 6;
     final constant Integer numDigitalPins = 20;
     Integer portMode[numDigitalPins](each start=0, each fixed=true);
     Integer pulsePeriod[numDigitalPins](each start=2000, each fixed=true);
@@ -132,12 +106,11 @@ protected
     input Arduino.Internal.ExternalArduino instance;
     input Modelica.Units.SI.Time timeIn;
     input Real analogReference;
-    input Real analog[numAnalogInputs];
-    input Real digital[numDigitalPins];
+    input Real potential[numDigitalPins];
     output Integer portMode[numDigitalPins];
     output Integer pulseWidth[numDigitalPins];
     output Integer pulsePeriod[numDigitalPins];
-    external "C" ModelicaArduino_update(instance, timeIn, analogReference, analog, digital, portMode, pulseWidth, pulsePeriod) annotation (
+    external "C" ModelicaArduino_update(instance, timeIn, analogReference, potential, portMode, pulseWidth, pulsePeriod) annotation (
       Library="ModelicaArduino");
    end evaluate;
 
@@ -152,21 +125,16 @@ public
         extent={{-10,-10},{10,10}},
         rotation=0,
         origin={-80,100})));
-  Modelica.Electrical.Analog.Basic.Resistor resistorA3(R=1e5) annotation (
-      Placement(transformation(
-        extent={{-10,10},{10,-10}},
-        rotation=180,
-        origin={-80,-60})));
   Modelica.Electrical.Analog.Interfaces.Pin Vin "5V power supply" annotation (
       Placement(transformation(extent={{-10,190},{10,210}}),iconTransformation(
           extent={{-4,196},{4,204}})));
 
-  Internal.PinDriver pinDriver[14](each sampleInterval=sampleInterval);
+  Internal.PinDriver pinDriver[numDigitalPins](each sampleInterval=sampleInterval);
 
 equation
 
   // wire the digital pin drivers
-  for i in 1:14 loop
+  for i in 1:numDigitalPins loop
     pinDriver[i].portMode = portMode[i];
     pinDriver[i].pulsePeriod = pulsePeriod[i];
     pinDriver[i].pulseWidth = pulseWidth[i];
@@ -179,27 +147,8 @@ equation
     externalArduino,
     time,
     5.0,
-    {A0.v,A1.v,A2.v,A3.v,A4.v,A5.v},
-    {pre(D0.v),pre(D1.v),pre(D2.v),pre(D3.v),pre(D4.v),pre(D5.v),pre(D6.v),pre(D7.v),pre(D8.v),pre(D9.v),pre(D10.v),pre(D11.v),pre(D12.v),pre(D13.v),0,0,0,0,0,0});
+    {pre(D0.v),pre(D1.v),pre(D2.v),pre(D3.v),pre(D4.v),pre(D5.v),pre(D6.v),pre(D7.v),pre(D8.v),pre(D9.v),pre(D10.v),pre(D11.v),pre(D12.v),pre(D13.v),pre(A0.v),pre(A1.v),pre(A2.v),pre(A3.v),pre(A4.v),pre(A5.v)});
   end when;
-
-  connect(resistorA1.n, A1) annotation (Line(points={{-90,-20},{-160,-20}},
-                 color={0,0,255}));
-  connect(resistorA2.n, A2) annotation (Line(points={{-90,-40},{-160,-40}},
-                 color={0,0,255}));
-  connect(resistorA4.n, A4)
-    annotation (Line(points={{-88,-80},{-160,-80}},    color={0,0,255}));
-  connect(resistorA5.n, A5)
-    annotation (Line(points={{-90,-100},{-160,-100}},  color={0,0,255}));
-  connect(resistorA0.n, A0) annotation (Line(points={{-90,1.33227e-015},{-126,1.33227e-015},
-          {-126,0},{-160,0}},
-                      color={0,0,255}));
-  connect(AREF, resistorAREF.p)
-    annotation (Line(points={{-160,80},{-90,80}},    color={0,0,255}));
-  connect(RESET, resistorRESET.p)
-    annotation (Line(points={{-160,100},{-90,100}},  color={0,0,255}));
-  connect(A3, resistorA3.n) annotation (Line(points={{-160,-60},{-90,-60}},
-                 color={0,0,255}));
 
   // connect the digital pins
   connect(pinDriver[1].y, D0);
@@ -216,23 +165,21 @@ equation
   connect(pinDriver[12].y, D11);
   connect(pinDriver[13].y, D12);
   connect(pinDriver[14].y, D13);
+  connect(pinDriver[15].y, A0);
+  connect(pinDriver[16].y, A1);
+  connect(pinDriver[17].y, A2);
+  connect(pinDriver[18].y, A3);
+  connect(pinDriver[19].y, A4);
+  connect(pinDriver[20].y, A5);
 
-  connect(resistorA0.p, GND) annotation (Line(points={{-70,-1.33227e-015},{0,-1.33227e-015},
-          {0,-160}},  color={0,0,255}));
-  connect(resistorA1.p, GND) annotation (Line(points={{-70,-20},{0,-20},{0,-160}},
-                      color={0,0,255}));
-  connect(resistorA2.p, GND) annotation (Line(points={{-70,-40},{0,-40},{0,-160}},
-                      color={0,0,255}));
-  connect(resistorA3.p, GND) annotation (Line(points={{-70,-60},{0,-60},{0,-160}},
-                                              color={0,0,255}));
-  connect(resistorA4.p, GND) annotation (Line(points={{-68,-80},{0,-80},{0,-160}},
-                                                color={0,0,255}));
-  connect(resistorA5.p, GND) annotation (Line(points={{-70,-100},{0,-100},{0,-160}},
-                                                color={0,0,255}));
   connect(resistorAREF.n, GND) annotation (Line(points={{-70,80},{0,80},{0,-160}},
                                                               color={0,0,255}));
   connect(resistorRESET.n, GND) annotation (Line(points={{-70,100},{0,100},{0,-160}},
                                                                 color={0,0,255}));
+  connect(resistorAREF.p, AREF)
+    annotation (Line(points={{-90,80},{-160,80}}, color={0,0,255}));
+  connect(resistorRESET.p, RESET)
+    annotation (Line(points={{-90,100},{-160,100}}, color={0,0,255}));
   annotation (__Dymola_preInstantiate=Arduino.Internal.buildSketch(sketch, cmake, generator, platform), Icon(coordinateSystem(preserveAspectRatio=true, extent={{-160,
             -200},{160,200}}),
                          graphics={

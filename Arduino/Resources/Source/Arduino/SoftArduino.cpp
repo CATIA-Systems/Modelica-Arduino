@@ -1,3 +1,4 @@
+#include <math.h>
 #include "SoftArduino.h"
 #include "ModelicaUtilities.h"
 
@@ -66,8 +67,7 @@ int digitalRead(uint8_t pin) {
 
 	assertPin(pin);
 
-	// ModelicaFormatMessage("digitalRead(%d) -> %f\n", pin, instance.digital[pin]);
-	return INSTANCE->digital[pin] > 0 ? HIGH : LOW;
+	return INSTANCE->potential[pin] > 0.5 ? HIGH : LOW;
 }
 
 int analogRead(uint8_t pin) {
@@ -77,12 +77,8 @@ int analogRead(uint8_t pin) {
 	if (pin < A0 || pin > A7) {
 		ModelicaFormatError("Illegal analog pin: %d\n", pin);
 	}
-
-	// TODO: clip [0, 1023]?
-
-	//ModelicaFormatMessage("analogRead(%d) -> %d\n", pin, val);
 	
-	return INSTANCE->analog[pin - A0];
+	return round(INSTANCE->potential[pin] * 1023);
 }
 
 void analogReference(uint8_t mode) {
@@ -185,8 +181,8 @@ void attachInterrupt(uint8_t interrupt, void (*isr)(void), int mode) {
 		ModelicaFormatError("Illegal interrupt: %d", interrupt);
 	}
 
-	int pin = interruptToDigitalPin(interrupt);
-	int potential = INSTANCE->digital[pin];
+	const int pin = interruptToDigitalPin(interrupt);
+	const int potential = INSTANCE->potential[pin] > 0.5 ? HIGH : LOW;
 	INSTANCE->interrupts[interrupt] = new SoftInterrupt(isr, mode, potential);
 }
 
@@ -210,13 +206,13 @@ unsigned long pulseIn(const uint8_t pin, const uint8_t state, unsigned long time
 
 	unsigned long currentTime = INSTANCE->time;
 	const unsigned long endTime = currentTime + timeout;
-	uint8_t preState = INSTANCE->digital[pin];
+	uint8_t preState = INSTANCE->potential[pin] > 0.5 ? HIGH : LOW;
 	long startTime = -1;
 
 	// until the timeout is reached...
 	while(currentTime < endTime) {
 
-		const uint8_t currentState = INSTANCE->digital[pin];
+		const uint8_t currentState = INSTANCE->potential[pin] > 0.5 ? HIGH : LOW;
 		currentTime = INSTANCE->time;
 
 		if (startTime < 0 && preState != state && currentState == state) {

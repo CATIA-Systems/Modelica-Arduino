@@ -17,8 +17,7 @@ EXPORT void ModelicaArduino_close(void *externalObject);
 EXPORT void ModelicaArduino_update(void *instance,
 							double time, 
 							double analogReference, 
-							/*in*/ double *analog, 
-							/*in*/ double *digital, 
+							/*in*/ double *potential,
 							/*out*/ int *portMode, 
 							/*out*/ int *pulseWidth,
 							/*out*/ int *pulsePeriod);

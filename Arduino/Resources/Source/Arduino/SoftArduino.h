@@ -33,12 +33,11 @@ public:
 	static const int PORT_MODE_PWM        = 2;
 	static const int DEFAULT_PULSE_PERIOD = 2000; // default pulse period in microseconds 
 
-	unsigned long time = 0;                 // current time in micro seconds
-	int analogReferenceMode = DEFAULT;      // analog reference mode [DEFAULT, INTERNAL, INTERNAL1V1 or EXTERNAL]
-	int analog[NUM_ANALOG_INPUTS] = {};     // voltages of the analog pins [0, 255]
-	int digital[NUM_DIGITAL_PINS] = {};     // voltages of the digital pins [0, 255];  TODO: change to "State of digital pins (bool)" 
-	int portMode[NUM_DIGITAL_PINS] = {};	// 0 = input, 1 = digital, 2 = PWM
-	int pulseWidth[NUM_DIGITAL_PINS] = {};  // pulse width in microseconds
+	unsigned long time = 0;                   // current time in micro seconds
+	int analogReferenceMode = DEFAULT;        // analog reference mode [DEFAULT, INTERNAL, INTERNAL1V1 or EXTERNAL]
+	double potential[NUM_DIGITAL_PINS] = {};  // potential of the pins normalized to the reference voltage
+	int portMode[NUM_DIGITAL_PINS] = {};	  // 0 = input, 1 = digital, 2 = PWM
+	int pulseWidth[NUM_DIGITAL_PINS] = {};    // pulse width in microseconds
 	int pulsePeriod[NUM_DIGITAL_PINS] = { DEFAULT_PULSE_PERIOD }; // pulse period in microseconds
 
 	bool interruptsEnabled = true;

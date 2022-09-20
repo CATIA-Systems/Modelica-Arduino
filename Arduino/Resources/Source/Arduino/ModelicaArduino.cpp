@@ -27,8 +27,7 @@ void ModelicaArduino_close(void *externalObject) {
 void ModelicaArduino_update(void *instance__,
 							double time, 
 							double analogReference, 
-							double *analog, 
-							double *digital, 
+							double *potential,
 							int *portMode, 
 							int *pulseWidth,
 							int *pulsePeriod) {
@@ -38,27 +37,25 @@ void ModelicaArduino_update(void *instance__,
 		return;
 	}
 
+	if (INSTANCE->analogReferenceMode == EXTERNAL && analogReference == 0) {
+		ModelicaFormatError("Reference voltage must not be 0.");
+		return;
+	}
+
 	// update the time
 	INSTANCE->time = static_cast<unsigned long>(time * 1e6);
 
 	const double V_ref = INSTANCE->analogReferenceMode == EXTERNAL ? analogReference : 5.;
 
-	// TODO: assert vref != 0
-
-	for (int i = 0; i < NUM_ANALOG_INPUTS; i++) {
-		// map analog input from [0,V_ref] to [0,1023]
-		INSTANCE->analog[i] = static_cast<int>((analog[i] / V_ref) * 1023);
+	for (int i = 0; i < NUM_DIGITAL_PINS; i++) {
+		INSTANCE->potential[i] = potential[i] / V_ref;
 	}
 
 	INSTANCE->update();
 
-	for (int i = 0; i < 14; i++) {
-		// map digital input from [0,5] to LOW|HIGH using a threshold of 2.5
-		// TODO: add hysteresis
-		INSTANCE->digital[i] = digital[i] > 2.5 ? HIGH : LOW;
-
-		portMode[i]    = INSTANCE->portMode[i];
-		pulseWidth[i]  = INSTANCE->pulseWidth[i];
+	for (int i = 0; i < NUM_DIGITAL_PINS; i++) {
+		portMode[i] = INSTANCE->portMode[i];
+		pulseWidth[i] = INSTANCE->pulseWidth[i];
 		pulsePeriod[i] = INSTANCE->pulsePeriod[i];
 	}
 
@@ -66,7 +63,8 @@ void ModelicaArduino_update(void *instance__,
 	if (INSTANCE->interruptsEnabled) {
 		for (int i = 0; i < 2; i++) {
 			if (INSTANCE->interrupts[i]) {
-				INSTANCE->interrupts[i]->update(INSTANCE->digital[interruptToDigitalPin(i)]);
+				const int p = INSTANCE->potential[interruptToDigitalPin(i)] > 0.5 ? HIGH : LOW;
+				INSTANCE->interrupts[i]->update(p);
 			}
 		}
 	}
