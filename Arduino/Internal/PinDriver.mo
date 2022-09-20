@@ -1,7 +1,8 @@
 within Arduino.Internal;
 model PinDriver
 
-  Modelica.Electrical.Analog.Interfaces.Pin y
+  Modelica.Electrical.Analog.Interfaces.PositivePin
+                                            y
     annotation (Placement(transformation(extent={{90,-10},{110,10}})));
   Modelica.Electrical.Analog.Ideal.IdealOpeningSwitch idealOpeningSwitch(Goff=
        1e-9)
@@ -18,7 +19,8 @@ model PinDriver
   Modelica.Blocks.Interfaces.IntegerInput pulsePeriod
     "Pulse time in milliseconds"
     annotation (Placement(transformation(extent={{-140,-20},{-100,20}})));
-  Modelica.Electrical.Analog.Interfaces.Pin ground
+  Modelica.Electrical.Analog.Interfaces.NegativePin
+                                            ground
     annotation (Placement(transformation(extent={{90,-70},{110,-50}})));
   Modelica.Electrical.Analog.Interfaces.PositivePin v_in
     "Positive pin (potential p.v > n.v for positive voltage drop v)"
@@ -42,13 +44,13 @@ equation
   connect(idealCommutingSwitch.n2, v_in)
     annotation (Line(points={{20,0},{0,0},{0,60},{100,60}}, color={0,0,255}));
   connect(ground, idealCommutingSwitch.n1) annotation (Line(points={{100,-60},{
-          0,-60},{0,-5},{20,-5}}, color={0,0,255}));
+          0,-60},{0,-4},{20,-4}}, color={0,0,255}));
   connect(variableBooleanPulse.y, idealCommutingSwitch.control)
-    annotation (Line(points={{-19,-20},{30,-20},{30,-8}}, color={255,0,255}));
+    annotation (Line(points={{-19,-20},{30,-20},{30,-12}},color={255,0,255}));
   connect(booleanExpression.y, variableBooleanPulse.pwm)
     annotation (Line(points={{-49,-14},{-42,-14}}, color={255,0,255}));
   connect(booleanExpression1.y, idealOpeningSwitch.control)
-    annotation (Line(points={{61,30},{70,30},{70,7}}, color={255,0,255}));
+    annotation (Line(points={{61,30},{70,30},{70,12}},color={255,0,255}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false), graphics={
                                          Rectangle(
           extent={{-100,100},{100,-100}},
