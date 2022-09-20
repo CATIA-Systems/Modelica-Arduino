@@ -1,10 +1,9 @@
 within Arduino.Components;
 model LED "Light emitting diode with animation"
   extends Modelica.Electrical.Analog.Interfaces.TwoPin;
-  Modelica.Electrical.Analog.Semiconductors.Diode2 diode(Vf=1.6, Ids(
-        displayUnit="mA"))
+  Modelica.Electrical.Analog.Ideal.IdealDiode      diode(Vknee=1)
     annotation (Placement(transformation(extent={{-40,-10},{-20,10}})));
-  Modelica.Blocks.Math.Mean mean(f=20)
+  Modelica.Blocks.Math.Mean mean(f=10)
     annotation (Placement(transformation(extent={{40,40},{60,60}})));
   Modelica.Electrical.Analog.Sensors.CurrentSensor currentSensor
     annotation (Placement(transformation(extent={{20,10},{40,-10}})));
@@ -13,7 +12,7 @@ equation
     annotation (Line(points={{-40,0},{-100,0}}, color={0,0,255}));
   connect(diode.n,currentSensor. p)
     annotation (Line(points={{-20,0},{20,0}}, color={0,0,255}));
-  connect(currentSensor.i,mean. u) annotation (Line(points={{30,10},{30,24},{30,
+  connect(currentSensor.i,mean. u) annotation (Line(points={{30,11},{30,11},{30,
           50},{38,50}},    color={0,0,127}));
   connect(currentSensor.n, n)
     annotation (Line(points={{40,0},{70,0},{100,0}}, color={0,0,255}));

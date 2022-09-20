@@ -31,13 +31,13 @@ def test_run_examples(workdir, package):
         ('Blink', 'Blink.ino'),
         ('BlinkWithoutDelay', 'BlinkWithoutDelay.ino'),
         ('Button', 'Button.ino'),
+        ('ControlledDCMotor', 'ControlledDCMotor.ino'),
         ('Fade', 'Fade.ino'),
         ('Ping', 'Ping.ino'),
-        ('Sweep', 'Sweep.ino'),
-        ('ControlledDCMotor', 'ControlledDCMotor.ino'),
-        # ('RobotArm', 'RobotArmGrabSponge.ino'),
-        ('ToneMelody', 'Melody.ino'),
+        #('RobotArm', 'RobotArmGrabSponge.ino'),
         ('ShiftOutHelloWorld', 'ShftOut11.ino'),
+        ('Sweep', 'Sweep.ino'),
+        ('ToneMelody', 'Melody.ino'),
     ]:
         assert omc.sendExpression(f'Arduino.Internal.buildSketchOM("{sketch}")')
 

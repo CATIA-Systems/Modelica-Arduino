@@ -93,9 +93,9 @@ def validate_result(result, workdir, model):
         y = result[name]
         y_ref = reference[name]
 
-        t_band, y_min, y_max, i_out = validate_signal(t, y, t_ref, y_ref, num=10000, dx=200, dy=0.05)
+        t_band, y_min, y_max, i_out = validate_signal(t, y, t_ref, y_ref, num=10000, dx=300, dy=0.05)
 
-        passed = passed and not np.any(i_out)
+        passed = passed and not np.any(i_out[10:-10])
 
         trace1 = go.Scatter(x=np.concatenate([t_band, t_band[::-1]]),
                             y=np.concatenate([y_min, y_max[::-1]]),
@@ -106,6 +106,10 @@ def validate_result(result, workdir, model):
 
         figure.add_trace(trace1, row=i + 1, col=1)
         figure.add_trace(trace2, row=i + 1, col=1)
+
+        if np.any(i_out):
+            trace3 = go.Scatter(x=t[i_out], y=y[i_out], line_color='red', mode='markers', name=f'{name}_out')
+            figure.add_trace(trace3, row=i + 1, col=1)
 
     figure.write_html(workdir / f'{model}.html')
 

@@ -8,3 +8,4 @@ PiezoSpeaker
 IC74HC595N4
 DFlipFlop
 ResettableDFlipFlop
+LEDMatrix8x8
