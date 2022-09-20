@@ -7,90 +7,113 @@ model ArduinoUno "Virtual Arduino Uno"
   parameter String generator = "Visual Studio 17 2022" "CMake generator" annotation(choices(choice="Visual Studio 14 2015", choice="Visual Studio 15 2017", choice="Visual Studio 16 2019", choice="Visual Studio 17 2022"));
   parameter String platform = "x64" "CMake platform" annotation(choices(choice="Win32", choice="x64"));
 
-  Modelica.Electrical.Analog.Interfaces.Pin GND
+  Modelica.Electrical.Analog.Interfaces.NegativePin
+                                            GND
     annotation (Placement(transformation(extent={{-10,-170},{10,-150}}),
         iconTransformation(extent={{-4,-204},{4,-196}})));
 
   Arduino.Internal.ExternalArduino externalArduino=
       Arduino.Internal.ExternalArduino(Arduino.Internal.ModelicaFunctions());
 
-  Modelica.Electrical.Analog.Interfaces.Pin A1 annotation (Placement(
+  Modelica.Electrical.Analog.Interfaces.PositivePin
+                                            A1 annotation (Placement(
         transformation(extent={{-170,-30},{-150,-10}}),iconTransformation(
           extent={{-164,-34},{-156,-26}})));
-  Modelica.Electrical.Analog.Interfaces.Pin A2 annotation (Placement(
+  Modelica.Electrical.Analog.Interfaces.PositivePin
+                                            A2 annotation (Placement(
         transformation(extent={{-170,-50},{-150,-30}}),iconTransformation(
           extent={{-164,-54},{-156,-46}})));
-  Modelica.Electrical.Analog.Interfaces.Pin A3 annotation (Placement(
+  Modelica.Electrical.Analog.Interfaces.PositivePin
+                                            A3 annotation (Placement(
         transformation(extent={{-170,-70},{-150,-50}}),iconTransformation(
           extent={{-164,-74},{-156,-66}})));
-  Modelica.Electrical.Analog.Interfaces.Pin A4 annotation (Placement(
+  Modelica.Electrical.Analog.Interfaces.PositivePin
+                                            A4 annotation (Placement(
         transformation(extent={{-170,-90},{-150,-70}}),iconTransformation(
           extent={{-164,-94},{-156,-86}})));
-  Modelica.Electrical.Analog.Interfaces.Pin A5 annotation (Placement(
+  Modelica.Electrical.Analog.Interfaces.PositivePin
+                                            A5 annotation (Placement(
         transformation(extent={{-170,-110},{-150,-90}}),
                                                        iconTransformation(
           extent={{-164,-114},{-156,-106}})));
-  Modelica.Electrical.Analog.Interfaces.Pin D1 annotation (Placement(
+  Modelica.Electrical.Analog.Interfaces.PositivePin
+                                            D1 annotation (Placement(
         transformation(extent={{150,90},{170,110}}),
                                                    iconTransformation(extent={{156,
             -114},{164,-106}})));
-  Modelica.Electrical.Analog.Interfaces.Pin RESET annotation (Placement(
+  Modelica.Electrical.Analog.Interfaces.PositivePin
+                                            RESET annotation (Placement(
         transformation(extent={{-170,90},{-150,110}}),  iconTransformation(
           extent={{-164,106},{-156,114}})));
-  Modelica.Electrical.Analog.Interfaces.Pin AREF
+  Modelica.Electrical.Analog.Interfaces.PositivePin
+                                            AREF
     annotation (Placement(transformation(extent={{-170,70},{-150,90}}),
         iconTransformation(extent={{-164,86},{-156,94}})));
-  Modelica.Electrical.Analog.Interfaces.Pin A0 annotation (Placement(
+  Modelica.Electrical.Analog.Interfaces.PositivePin
+                                            A0 annotation (Placement(
         transformation(extent={{-170,-10},{-150,10}}), iconTransformation(
           extent={{-164,-14},{-156,-6}})));
-  Modelica.Electrical.Analog.Interfaces.Pin D0 annotation (Placement(
+  Modelica.Electrical.Analog.Interfaces.PositivePin
+                                            D0 annotation (Placement(
         transformation(extent={{150,110},{170,130}}),
                                                    iconTransformation(extent={{156,
             -134},{164,-126}})));
-  Modelica.Electrical.Analog.Interfaces.Pin D2 annotation (Placement(
+  Modelica.Electrical.Analog.Interfaces.PositivePin
+                                            D2 annotation (Placement(
         transformation(extent={{150,70},{170,90}}),iconTransformation(extent={{156,-94},
             {164,-86}})));
-  Modelica.Electrical.Analog.Interfaces.Pin D3 annotation (Placement(
+  Modelica.Electrical.Analog.Interfaces.PositivePin
+                                            D3 annotation (Placement(
         transformation(extent={{150,50},{170,70}}),iconTransformation(extent={{156,-74},
             {164,-66}})));
-  Modelica.Electrical.Analog.Interfaces.Pin D4 annotation (Placement(
+  Modelica.Electrical.Analog.Interfaces.PositivePin
+                                            D4 annotation (Placement(
         transformation(extent={{150,30},{170,50}}),iconTransformation(extent={{156,-54},
             {164,-46}})));
-  Modelica.Electrical.Analog.Interfaces.Pin D5 annotation (Placement(
+  Modelica.Electrical.Analog.Interfaces.PositivePin
+                                            D5 annotation (Placement(
         transformation(extent={{150,10},{170,30}}),iconTransformation(extent={{156,-34},
             {164,-26}})));
-  Modelica.Electrical.Analog.Interfaces.Pin D6 annotation (Placement(
+  Modelica.Electrical.Analog.Interfaces.PositivePin
+                                            D6 annotation (Placement(
         transformation(extent={{150,-10},{170,10}}),
                                                    iconTransformation(extent={{156,-14},
             {164,-6}})));
-  Modelica.Electrical.Analog.Interfaces.Pin D7 annotation (Placement(
+  Modelica.Electrical.Analog.Interfaces.PositivePin
+                                            D7 annotation (Placement(
         transformation(extent={{150,-30},{170,-10}}),
                                                    iconTransformation(extent={{156,6},
             {164,14}})));
-  Modelica.Electrical.Analog.Interfaces.Pin D8 annotation (Placement(
+  Modelica.Electrical.Analog.Interfaces.PositivePin
+                                            D8 annotation (Placement(
         transformation(extent={{150,-50},{170,-30}}),
                                                    iconTransformation(extent={{156,26},
             {164,34}})));
-  Modelica.Electrical.Analog.Interfaces.Pin D9 annotation (Placement(
+  Modelica.Electrical.Analog.Interfaces.PositivePin
+                                            D9 annotation (Placement(
         transformation(extent={{150,-70},{170,-50}}),
                                                    iconTransformation(extent={{156,46},
             {164,54}})));
-  Modelica.Electrical.Analog.Interfaces.Pin D10
+  Modelica.Electrical.Analog.Interfaces.PositivePin
+                                            D10
                                                annotation (Placement(
         transformation(extent={{150,-90},{170,-70}}),
                                                    iconTransformation(extent={{156,66},
             {164,74}})));
-  Modelica.Electrical.Analog.Interfaces.Pin D11
+  Modelica.Electrical.Analog.Interfaces.PositivePin
+                                            D11
                                                annotation (Placement(
         transformation(extent={{150,-110},{170,-90}}),
                                                    iconTransformation(extent={{156,86},
             {164,94}})));
-  Modelica.Electrical.Analog.Interfaces.Pin D12
+  Modelica.Electrical.Analog.Interfaces.PositivePin
+                                            D12
                                                annotation (Placement(
         transformation(extent={{150,-130},{170,-110}}),
                                                    iconTransformation(extent={{156,106},
             {164,114}})));
-  Modelica.Electrical.Analog.Interfaces.Pin D13
+  Modelica.Electrical.Analog.Interfaces.PositivePin
+                                            D13
                                                annotation (Placement(
         transformation(extent={{150,220},{170,240}}),
                                                    iconTransformation(extent={{156,126},
@@ -125,7 +148,8 @@ public
         extent={{-10,-10},{10,10}},
         rotation=0,
         origin={-80,100})));
-  Modelica.Electrical.Analog.Interfaces.Pin Vin "5V power supply" annotation (
+  Modelica.Electrical.Analog.Interfaces.PositivePin
+                                            Vin "5V power supply" annotation (
       Placement(transformation(extent={{-10,190},{10,210}}),iconTransformation(
           extent={{-4,196},{4,204}})));
 
