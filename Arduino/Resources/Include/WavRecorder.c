@@ -61,7 +61,7 @@ void* WavRecorder_create(const char* filename) {
         .channels      = 1,
         .samplesPerSec = 44100,
         .bytesPerSec   = 88200,
-        .blockAlign    = 4,
+        .blockAlign    = 2,
         .bitsPerSample = 16,
         .dataID        = "data",
         .dataSize      = 0
