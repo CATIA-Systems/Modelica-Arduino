@@ -1,6 +1,6 @@
 import os
-from pathlib import Path
 import pytest
+from tests.utils import validate_result
 
 
 def om_available():
@@ -17,6 +17,7 @@ def om_available():
 def test_run_examples(workdir, package):
 
     from OMPython import OMCSessionZMQ
+    from pymola import Dsres
 
     omc = OMCSessionZMQ()
 
@@ -39,8 +40,14 @@ def test_run_examples(workdir, package):
         ('ShiftOutHelloWorld', 'ShftOut11.ino'),
     ]:
         assert omc.sendExpression(f'Arduino.Internal.buildSketchOM("{sketch}")')
+
         info = omc.sendExpression(f'simulate(Arduino.Examples.{model})')
-        assert info['resultFile']
+
+        assert validate_result(
+            result=Dsres(info['resultFile']),
+            workdir=workdir,
+            model=f'Arduino.Examples.{model}'
+        )
 
     for model in ['Blink', 'Fade', 'AnalogInput', 'Button', 'Sweep']:
         info = omc.sendExpression(f'simulate(Arduino.Firmata.Examples.{model})')
