@@ -9,7 +9,7 @@ model Fade "An Arduino dimming an LED"
         extent={{-10,-10},{10,10}},
         rotation=270,
         origin={60,-10})));
-  Components.LED lED2_1 annotation (Placement(transformation(
+  Components.LED LED annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=270,
         origin={60,-40})));
@@ -33,10 +33,10 @@ model Fade "An Arduino dimming an LED"
 equation
   connect(resistor.p, arduinoUno.D9) annotation (Line(points={{60,0},{60,22.5},
           {40,22.5}},               color={0,0,255}));
-  connect(lED2_1.p, resistor.n)
-    annotation (Line(points={{60,-30},{60,-20}},          color={0,0,255}));
-  connect(lED2_1.n, arduinoUno.GND) annotation (Line(points={{60,-50},{60,-70},
-          {0,-70},{0,-40}}, color={0,0,255}));
+  connect(LED.p, resistor.n)
+    annotation (Line(points={{60,-30},{60,-20}}, color={0,0,255}));
+  connect(LED.n, arduinoUno.GND) annotation (Line(points={{60,-50},{60,-70},{0,
+          -70},{0,-40}}, color={0,0,255}));
   connect(arduinoUno.A0, potentiometer.contact) annotation (Line(points={{-40,7.5},
           {-58.875,7.5},{-58.875,0},{-78,0}},                         color={0,
           0,255}));
@@ -51,7 +51,7 @@ equation
   connect(potentiometer.pin_p, arduinoUno.Vin) annotation (Line(points={{-88,20},
           {-88,70},{0,70},{0,60}}, color={0,0,255}));
   connect(sine.y, potentiometer.r)
-    annotation (Line(points={{-66.6,20},{-77,20}}, color={0,0,127}));
+    annotation (Line(points={{-66.6,20},{-76,20}}, color={0,0,127}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,
             -100},{100,80}})),                                   Diagram(
         coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,

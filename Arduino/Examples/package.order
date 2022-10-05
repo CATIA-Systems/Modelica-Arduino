@@ -10,3 +10,4 @@ ControlledDCMotor
 RobotArm
 ToneMelody
 ShiftOutHelloWorld
+KeyboardSerial
