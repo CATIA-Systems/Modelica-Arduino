@@ -119,8 +119,8 @@ void delay(unsigned long ms) {
 	const unsigned long endTime = INSTANCE->time + ms * 1000;
 
 	while (INSTANCE->time < endTime) {
-		SetEvent(INSTANCE->outputReady);
-		WaitForSingleObject(INSTANCE->inputReady, INFINITE);
+		INSTANCE->outputReady.set();
+		INSTANCE->inputReady.wait();
 	}
 }
 
@@ -129,8 +129,8 @@ void delayMicroseconds(unsigned int us) {
 	const unsigned long endTime = INSTANCE->time + us;
 	
 	while (INSTANCE->time < endTime) {
-		SetEvent(INSTANCE->outputReady);
-		WaitForSingleObject(INSTANCE->inputReady, INFINITE);
+		INSTANCE->outputReady.set();
+		INSTANCE->inputReady.wait();
 	}
 }
 
@@ -146,18 +146,18 @@ void shiftOut(uint8_t dataPin, uint8_t clockPin, uint8_t bitOrder, uint8_t val) 
 			val <<= 1;
 		}
 
-		SetEvent(INSTANCE->outputReady);
-		WaitForSingleObject(INSTANCE->inputReady, INFINITE);
+		INSTANCE->outputReady.set();
+		INSTANCE->inputReady.wait();
 
 		digitalWrite(clockPin, HIGH);
 
-		SetEvent(INSTANCE->outputReady);
-		WaitForSingleObject(INSTANCE->inputReady, INFINITE);
+		INSTANCE->outputReady.set();
+		INSTANCE->inputReady.wait();
 
 		digitalWrite(clockPin, LOW);
 
-		SetEvent(INSTANCE->outputReady);
-		WaitForSingleObject(INSTANCE->inputReady, INFINITE);
+		INSTANCE->outputReady.set();
+		INSTANCE->inputReady.wait();
 	}
 }
 
@@ -169,8 +169,8 @@ uint8_t shiftIn(uint8_t dataPin, uint8_t clockPin, uint8_t bitOrder) {
 
 		digitalWrite(clockPin, HIGH);
 
-		SetEvent(INSTANCE->outputReady);
-		WaitForSingleObject(INSTANCE->inputReady, INFINITE);
+		INSTANCE->outputReady.set();
+		INSTANCE->inputReady.wait();
 
 		if (bitOrder == LSBFIRST) {
 			value |= digitalRead(dataPin) << i;
@@ -180,8 +180,8 @@ uint8_t shiftIn(uint8_t dataPin, uint8_t clockPin, uint8_t bitOrder) {
 
 		digitalWrite(clockPin, LOW);
 
-		SetEvent(INSTANCE->outputReady);
-		WaitForSingleObject(INSTANCE->inputReady, INFINITE);
+		INSTANCE->outputReady.set();
+		INSTANCE->inputReady.wait();
 	}
 
 	return value;
@@ -243,8 +243,8 @@ unsigned long pulseIn(const uint8_t pin, const uint8_t state, unsigned long time
 		// remember the state
 		preState = currentState;
 
-		SetEvent(INSTANCE->outputReady);
-		WaitForSingleObject(INSTANCE->inputReady, INFINITE);
+		INSTANCE->outputReady.set();
+		INSTANCE->inputReady.wait();
 	}
 
 	// timed out
@@ -278,51 +278,42 @@ void noTone(uint8_t pin) {
 	INSTANCE->pulseWidth[pin] = 0;
 }
 
-SoftArduino::SoftArduino() {
+SoftArduino::SoftArduino() : 
+	terminate(false), 
+	inputReady(false, false), 
+	outputReady(false, false) {
 
 	// intialize pulsePeriod
 	for (int i = 0; i < NUM_DIGITAL_PINS; i++) {
 		pulsePeriod[i] = DEFAULT_PULSE_PERIOD;
 	}
 
-	inputReady = CreateEvent(NULL, FALSE, FALSE, NULL);
-	outputReady = CreateEvent(NULL, FALSE, FALSE, NULL);
-
-	DWORD threadId;
-
-	thread = CreateThread(
-		NULL, 		 // default security attributes
-		0, 			 // use default stack size
-		runSketch,   // thread function
-		this,        // argument to thread function
-		0, 			 // use default creation flags
-		&threadId);  // returns the thread identifier
+	thread = std::thread(runSketch);
 }
 
 SoftArduino::~SoftArduino() {
-	DWORD exitCode = 0;
-	TerminateThread(thread, exitCode);
-	CloseHandle(inputReady);
-	CloseHandle(outputReady);
+	terminate = true;
+	INSTANCE->inputReady.set();
+	thread.join();
 }
 
 void SoftArduino::update() {
-	SignalObjectAndWait(inputReady, outputReady, INFINITE, TRUE);
+	INSTANCE->inputReady.set();
+	INSTANCE->outputReady.wait();
 }
 
-DWORD WINAPI SoftArduino::runSketch(LPVOID lpParam) {
+void SoftArduino::runSketch() {
 
-	WaitForSingleObject(INSTANCE->inputReady, INFINITE);
+	INSTANCE->inputReady.wait();
 
 	setup();
 
-	SetEvent(INSTANCE->outputReady);
+	INSTANCE->outputReady.set();
 
-	for (;;) {
-		WaitForSingleObject(INSTANCE->inputReady, INFINITE);
+	while (!INSTANCE->terminate) {
+		INSTANCE->inputReady.wait();
 		loop();
-		SetEvent(INSTANCE->outputReady);
+		INSTANCE->outputReady.set();
 	}
 
-	return 0;
 }

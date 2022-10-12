@@ -1,6 +1,7 @@
 #pragma once
 
-#include <Windows.h>
+#include <thread>
+#include "Event.h"
 
 #include "Arduino.h"
 
@@ -53,14 +54,15 @@ public:
 		return &instance;
 	}
 
-	HANDLE thread      = INVALID_HANDLE_VALUE;
-	HANDLE inputReady  = INVALID_HANDLE_VALUE;
-	HANDLE outputReady = INVALID_HANDLE_VALUE;
+	std::thread thread;
+	std::atomic<bool> terminate;
+	Event inputReady;
+	Event outputReady;
 
 private:
 	explicit SoftArduino();
 	~SoftArduino();
 
-	static DWORD WINAPI runSketch(LPVOID lpParam);
+	static void runSketch();
 
 };

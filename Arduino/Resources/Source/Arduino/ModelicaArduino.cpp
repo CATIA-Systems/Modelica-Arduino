@@ -1,4 +1,4 @@
-#include <Windows.h>
+#include <thread>
 #include <stdio.h>
 #include <conio.h>
 
