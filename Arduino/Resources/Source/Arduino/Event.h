@@ -75,5 +75,3 @@ private:
 	std::condition_variable condition;
 	bool state, manual;
 };
-
-

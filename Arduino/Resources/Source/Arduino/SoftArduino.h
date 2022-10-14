@@ -49,6 +49,8 @@ public:
 
 	void update();
 
+	void synchronize();
+
 	static SoftArduino* getInstance() {
 		static SoftArduino instance;
 		return &instance;

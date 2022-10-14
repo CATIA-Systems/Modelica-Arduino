@@ -35,7 +35,6 @@ void SoftInterrupt::update(int potential) {
 }
 
 void pinMode(uint8_t pin, uint8_t mode) {
-	//ModelicaFormatMessage("pinMode(%d, %d)\n", pin, mode);
 
 	assertPin(pin);
 
@@ -49,6 +48,7 @@ void pinMode(uint8_t pin, uint8_t mode) {
 		break;
 	default:
 		ModelicaFormatError("Error calling pinMode(). Mode must be one of INPUT = 0, OUTPUT = 1 or INPUT_PULLUP = 2 but was %d.", mode);
+		break;
 	}
 }
 
@@ -57,8 +57,6 @@ void digitalWrite(uint8_t pin, uint8_t val) {
 	assertPin(pin);
 
 	INSTANCE->pulseWidth[pin] = (val == HIGH) ? SoftArduino::DEFAULT_PULSE_PERIOD : 0;
-
-	//ModelicaFormatMessage("digitalWrite(%d, %d) -> %d\n", pin, val, INSTANCE.pulseWidth[pin]);
 }
 
 int digitalRead(uint8_t pin) {
@@ -100,8 +98,6 @@ void analogWrite(uint8_t pin, int val) {
 
 	INSTANCE->portMode[pin] = SoftArduino::PORT_MODE_PWM;
 	INSTANCE->pulseWidth[pin] = int((val / 255.) * SoftArduino::DEFAULT_PULSE_PERIOD);
-
-	//ModelicaFormatMessage("analogWrite(%d, %d) -> %d\n", pin, val, INSTANCE.pulseWidth[pin]);
 }
 
 unsigned long millis() {
@@ -113,14 +109,11 @@ unsigned long micros() {
 }
 
 void delay(unsigned long ms) {
-
-	//ModelicaFormatMessage("delay(%d) at %g s\n", ms, INSTANCE.time * 1e-6);
 	
 	const unsigned long endTime = INSTANCE->time + ms * 1000;
 
 	while (INSTANCE->time < endTime) {
-		INSTANCE->outputReady.set();
-		INSTANCE->inputReady.wait();
+		INSTANCE->synchronize();
 	}
 }
 
@@ -129,8 +122,7 @@ void delayMicroseconds(unsigned int us) {
 	const unsigned long endTime = INSTANCE->time + us;
 	
 	while (INSTANCE->time < endTime) {
-		INSTANCE->outputReady.set();
-		INSTANCE->inputReady.wait();
+		INSTANCE->synchronize();
 	}
 }
 
@@ -146,18 +138,15 @@ void shiftOut(uint8_t dataPin, uint8_t clockPin, uint8_t bitOrder, uint8_t val) 
 			val <<= 1;
 		}
 
-		INSTANCE->outputReady.set();
-		INSTANCE->inputReady.wait();
+		INSTANCE->synchronize();
 
 		digitalWrite(clockPin, HIGH);
 
-		INSTANCE->outputReady.set();
-		INSTANCE->inputReady.wait();
+		INSTANCE->synchronize();
 
 		digitalWrite(clockPin, LOW);
 
-		INSTANCE->outputReady.set();
-		INSTANCE->inputReady.wait();
+		INSTANCE->synchronize();
 	}
 }
 
@@ -169,8 +158,7 @@ uint8_t shiftIn(uint8_t dataPin, uint8_t clockPin, uint8_t bitOrder) {
 
 		digitalWrite(clockPin, HIGH);
 
-		INSTANCE->outputReady.set();
-		INSTANCE->inputReady.wait();
+		INSTANCE->synchronize();
 
 		if (bitOrder == LSBFIRST) {
 			value |= digitalRead(dataPin) << i;
@@ -180,8 +168,7 @@ uint8_t shiftIn(uint8_t dataPin, uint8_t clockPin, uint8_t bitOrder) {
 
 		digitalWrite(clockPin, LOW);
 
-		INSTANCE->outputReady.set();
-		INSTANCE->inputReady.wait();
+		INSTANCE->synchronize();
 	}
 
 	return value;
@@ -243,8 +230,7 @@ unsigned long pulseIn(const uint8_t pin, const uint8_t state, unsigned long time
 		// remember the state
 		preState = currentState;
 
-		INSTANCE->outputReady.set();
-		INSTANCE->inputReady.wait();
+		INSTANCE->synchronize();
 	}
 
 	// timed out
@@ -298,8 +284,13 @@ SoftArduino::~SoftArduino() {
 }
 
 void SoftArduino::update() {
-	INSTANCE->inputReady.set();
-	INSTANCE->outputReady.wait();
+	inputReady.set();
+	outputReady.wait();
+}
+
+void SoftArduino::synchronize() {
+	outputReady.set();
+	inputReady.wait();
 }
 
 void SoftArduino::runSketch() {
