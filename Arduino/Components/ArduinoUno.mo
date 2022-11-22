@@ -170,7 +170,7 @@ equation
   (portMode, pulseWidth, pulsePeriod) = evaluate(
     externalArduino,
     time,
-    5.0,
+    AREF.v,
     {pre(D0.v),pre(D1.v),pre(D2.v),pre(D3.v),pre(D4.v),pre(D5.v),pre(D6.v),pre(D7.v),pre(D8.v),pre(D9.v),pre(D10.v),pre(D11.v),pre(D12.v),pre(D13.v),pre(A0.v),pre(A1.v),pre(A2.v),pre(A3.v),pre(A4.v),pre(A5.v)});
   end when;
 
